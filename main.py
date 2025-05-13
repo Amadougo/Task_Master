@@ -31,4 +31,3 @@ if ups_data:
     print("Statut :", ups_data.get("ups.status", "Inconnu"))
 else:
     print("Impossible de récupérer les données de l'onduleur.")
-print("GregALBERTS a été ajouté au dépôt GitHub")
