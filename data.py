@@ -20,7 +20,7 @@ class Onduleur :
         self.ups_status = ups_status
 
     def afficher_donnees_onduleur(self):
-        print(f"Tension d'entrée :", {self.input_voltage}, "V")
+        print(f"Tension d'entrée : {self.input_voltage} V")
         print(f"Fréquence d'entrée :", {self.input_frequency}, "Hz")
         print(f"Tension de batterie :", {self.battery_voltage}, "V")
         print(f"Autonomie estimée (en secondes) :",{self.battery_runtime}, "s")
