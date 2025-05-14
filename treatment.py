@@ -28,7 +28,7 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
     ups_data = get_ups_data("onduleur@localhost")  # Remplace 'myups' par le nom exact de ton onduleur
 
     if ups_data:
-        onduleur.afficher_donnees_onduleur(onduleur)
+        onduleur.afficher_donnees_onduleur()
     else:
         print("Impossible de récupérer les données de l'onduleur.")
     
