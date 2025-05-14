@@ -29,17 +29,17 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
 
     if ups_data:
         onduleur.input_voltage = ups_data.get("input.voltage", "Inconnue")
-        onduleur.afficher_donnees_onduleur() # Affichage terminal optionnel
+        onduleur.input_frequency = ups_data.get("input.frequency", "Inconnue")
+        onduleur.battery_voltage = ups_data.get("battery.voltage", "Inconnue")
+        onduleur.battery_runtime = ups_data.get("battery.runtime", "Inconnue")
+        onduleur.battery_charge = ups_data.get("battery.charge", "Inconnue")
+        onduleur.ups_load = ups_data.get("ups.load","Inconnue")
+        onduleur.ups_status = ups_data.get("ups.status", "Inconnu")
+        # Affichage terminal optionnel
+        onduleur.afficher_donnees_onduleur() 
     else:
         print("Impossible de récupérer les données de l'onduleur.")
     
     return onduleur
 
-    '''
-    print("Fréquence d'entrée :", ups_data.get("input.frequency", "Inconnue"))
-    print("Tension de batterie :", ups_data.get("battery.voltage", "Inconnue"))
-    print("Autonomie estimée (en minutes) :", ups_data.get("battery.runtime", "Inconnue"))
-    print("Chargement de la batterie :", ups_data.get("battery.charge", "Inconnue"), "%")
-    print("Charge en sortie de l'onduleur :", ups_data.get("ups.load","Inconnue"),"%")
-    print("Statut :", ups_data.get("ups.status", "Inconnu"))
-    '''
+  

@@ -21,10 +21,10 @@ class Onduleur :
 
     def afficher_donnees_onduleur(self):
         print(f"Tension d'entrée : {self.input_voltage} V")
-        print(f"Fréquence d'entrée :", {self.input_frequency}, "Hz")
-        print(f"Tension de batterie :", {self.battery_voltage}, "V")
-        print(f"Autonomie estimée (en secondes) :",{self.battery_runtime}, "s")
-        print(f"Chargement de la batterie :",{self.battery_charge}, "%")
-        print(f"Charge en sortie de l'onduleur :", {self.ups_load},"%")
-        print(f"Statut :", {self.ups_status})
+        print(f"Fréquence d'entrée : {self.input_frequency} Hz")
+        print(f"Tension de batterie : {self.battery_voltage} V")
+        print(f"Autonomie estimée (en secondes) :{self.battery_runtime} s")
+        print(f"Chargement de la batterie :{self.battery_charge} %")
+        print(f"Charge en sortie de l'onduleur : {self.ups_load} %")
+        print(f"Statut : {self.ups_status}")
 
