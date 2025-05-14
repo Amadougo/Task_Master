@@ -88,12 +88,12 @@ def update_gui(onduleur):
     global text_box1_1, text_box1_2
     print("Passer par là !")
     recuperer_donnees_onduleur(onduleur)
-    text_box1_1.config(text="Mise à jour_box1_1")
+    text_box1_1.config(text=f"Tension d'entrée : {onduleur.input_voltage} V")
     text_box1_2.config(text="Mise à jour_box1_2")
     print("Repasser par là !")
     window.after(1000, update_gui, onduleur)
 
-    """
+"""
     class GUI:
         def __init__(self, onduleur):
             self.window = Tk()  # Creation of the window (Graphical User Interface)
@@ -101,18 +101,72 @@ def update_gui(onduleur):
             self.setup_gui()  # Initial configuration of the GUI
 
         def setup_gui(self):
-            self.
             # Get the size of the screen
-    screen_width = window.winfo_screenwidth()
-    screen_height = window.winfo_screenheight()
+            screen_width = self.window.winfo_screenwidth()
+            screen_height = self.window.winfo_screenheight()
 
-    # Edit of the main features for the window
-    window.attributes('-fullscreen', YES)
-    window.configure(bg='#64698A')
+            # Edit of the main features for the window
+            self.window.attributes('-fullscreen', YES)
+            self.window.configure(bg='#64698A')
 
-    # Configuration of the main grid (to place boxes in)
-    window.grid_rowconfigure(index=0, weight=9) # 1st row takes 90% of the screen
-    window.grid_rowconfigure(index=1, weight=1) # 2nd row takes 10% of the screen
-    window.grid_columnconfigure(index=0, weight=1) # 1st and only column takes the whole space
+            # Configuration of the main grid (to place boxes in)
+            self.window.grid_rowconfigure(index=0, weight=9) # 1st row takes 90% of the screen
+            self.window.grid_rowconfigure(index=1, weight=1) # 2nd row takes 10% of the screen
+            self.window.grid_columnconfigure(index=0, weight=1) # 1st and only column takes the whole space
 
-    """
+"""
+
+"""
+
+from tkinter import *
+from treatment import recuperer_donnees_onduleur
+
+class GUI:
+    def __init__(self, onduleur):
+        self.window = Tk()  # Fenêtre principale
+        self.onduleur = onduleur  # L'objet onduleur
+        self.setup_gui()  # Configuration initiale de l'interface
+    
+    def setup_gui(self):
+        # Configuration de la fenêtre principale
+        self.window.attributes('-fullscreen', YES)
+        self.window.configure(bg='#64698A')
+
+        # Création de boîtes principales
+        box1 = Frame(self.window, bg='#64698A', bd=0)
+        box2 = Frame(self.window, bg='#64698A', bd=0)
+        box1.grid(row=0, column=0, sticky='nsew')
+        box2.grid(row=1, column=0, sticky='nsew')
+
+        # Création des labels à l'intérieur de box1 et box2
+        self.text_box1_1 = Label(box1, text="Voltage", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text_box1_2 = Label(box2, text="Current", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+
+        # Placement des labels dans leurs boîtes respectives
+        self.text_box1_1.pack(expand=YES)
+        self.text_box1_2.pack(expand=YES)
+
+        # Gestion des mises à jour périodiques
+        self.update_gui()
+
+    def update_gui(self):
+        # Récupération des données mises à jour depuis l'onduleur
+        recuperer_donnees_onduleur(self.onduleur)
+
+        # Mise à jour des labels avec les nouvelles données
+        self.text_box1_1.config(text=f"Voltage: {self.onduleur.input_voltage} V")
+        self.text_box1_2.config(text=f"Current: {self.onduleur.input_current} A")
+
+        # Planifier la prochaine mise à jour dans 1000 ms (1 seconde)
+        self.window.after(1000, self.update_gui)
+
+    def run(self):
+        # Lancer la boucle principale Tkinter
+        self.window.mainloop()
+
+# Initialisation de l'onduleur et de l'interface
+onduleur = Onduleur()
+gui = GUI(onduleur)
+gui.run() # Lancer l'interface
+
+"""
