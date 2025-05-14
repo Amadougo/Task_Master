@@ -26,8 +26,11 @@ ups_data = get_ups_data("onduleur@localhost")  # Remplace 'myups' par le nom exa
 
 if ups_data:
     print("Tension d'entrée :", ups_data.get("input.voltage", "Inconnue"))
+    print("Fréquence d'entrée :", ups_data.get("input.frequency", "Inconnue"))
     print("Tension de batterie :", ups_data.get("battery.voltage", "Inconnue"))
-    print("Charge :", ups_data.get("battery.charge", "Inconnue"), "%")
+    print("Autonomie estimée (en minutes) :", ups_data.get("battery.runtime", "Inconnue"))
+    print("Chargement de la batterie :", ups_data.get("battery.charge", "Inconnue"), "%")
+    print("Charge en sortie de l'onduleur :", ups_data.get("ups.load","Inconnue"),"%")
     print("Statut :", ups_data.get("ups.status", "Inconnu"))
 else:
     print("Impossible de récupérer les données de l'onduleur.")
