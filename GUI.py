@@ -88,7 +88,7 @@ def update_gui(onduleur):
     global text_box1_1, text_box1_2
     print("Passer par là !")
     recuperer_donnees_onduleur(onduleur)
-    text_box1_1.config(text="Mise à jour_box1_1")
+    text_box1_1.config(text=f"Tension ={onduleur.input_voltage} V")
     text_box1_2.config(text="Mise à jour_box1_2")
     print("Repasser par là !")
     window.after(1000, update_gui, onduleur)
