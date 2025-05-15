@@ -28,3 +28,25 @@ class Onduleur :
         print(f"Charge en sortie de l'onduleur : {self.ups_load} %")
         print(f"Statut : {self.ups_status}")
 
+class Pression :
+    def __init__(
+        self,
+        Jauge_1_Turbo: str = "",
+        Jauge_2_Turbo: str = "",
+        Jauge_3_Turbo: str = "",
+        Jauge_4_Turbo: str = "",
+        Jauge_5_Primaire: str = "",
+    ):
+        self.Jauge_1_Turbo = Jauge_1_Turbo
+        self.Jauge_2_Turbo = Jauge_2_Turbo
+        self.Jauge_3_Turbo = Jauge_3_Turbo
+        self.Jauge_4_Turbo = Jauge_4_Turbo
+        self.Jauge_5_Primaire = Jauge_5_Primaire
+
+    def afficher_donnees_onduleur(self):
+        print(f"Jauge 1 : {self.self.Jauge_1_Turbo} Torr")
+        print(f"Jauge 2 : {self.self.Jauge_2_Turbo} Torr")
+        print(f"Jauge 3 : {self.self.Jauge_3_Turbo} Torr")
+        print(f"Jauge 4 : {self.self.Jauge_4_Turbo} Torr")
+        print(f"Jauge 5 Pompe primaire : {self.self.Jauge_5_Primaire} Torr")
+
