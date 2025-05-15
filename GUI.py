@@ -1,6 +1,113 @@
 from tkinter import *
 from treatment import recuperer_donnees_onduleur
 
+compteur = 0
+
+class Gui:
+    def __init__(self, onduleur):
+        self.window = Tk()  # Creation of the window (Graphical User Interface)
+        self.onduleur = onduleur  # Creation of the onduleur object
+        self.setup_gui()  # Initial configuration of the GUI
+
+    def setup_gui(self):
+        # Get the size of the screen
+        screen_width = self.window.winfo_screenwidth()
+        screen_height = self.window.winfo_screenheight()
+
+        # Edit of the main features for the window
+        self.window.attributes('-fullscreen', YES)
+        self.window.configure(bg='#64698A')
+
+        # Configuration of the main grid (to place boxes in)
+        self.window.grid_rowconfigure(index=0, weight=9) # 1st row takes 90% of the screen
+        self.window.grid_rowconfigure(index=1, weight=1) # 2nd row takes 10% of the screen
+        self.window.grid_columnconfigure(index=0, weight=1) # 1st and only column takes the whole space
+
+        # Creation of 2 boxes
+        self.box1 = Frame(self.window, bg='#64698A', bd=0)
+        self.box2 = Frame(self.window, bg='#64698A', bd=0)
+        self.box1.grid(row=0, column=0, sticky='nsew')
+        self.box2.grid(row=1, column=0, sticky='nsew')
+
+        # Configuration of a grid inside box1
+        self.box1.grid_rowconfigure(index=0, weight=1)
+        self.box1.grid_columnconfigure(index=0, weight=1)
+        self.box1.grid_columnconfigure(index=1, weight=1)
+
+        # Creation of 2 boxes inside box1
+        self.box1_1 = Frame(self.box1, bg='#64698A', bd=0)
+        self.box1_2 = Frame(self.box1, bg='#64698A', bd=0)
+        self.box1_1.grid(row=0, column=0, sticky='nsew')
+        self.box1_2.grid(row=0, column=1, sticky='nsew')
+
+        # Add labels inside the boxes
+        self.text_box1_1 = Label(self.box1_1, text="text_box1_1", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text_box1_2 = Label(self.box1_2, text="text_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+        self.text_box1_1.pack(expand=YES)
+        self.text_box1_2.pack(expand=YES)
+
+        # Configuration of a grid inside box2
+        self.box2.grid_rowconfigure(index=0, weight=1)
+        self.box2.grid_columnconfigure(index=0, weight=1)
+        self.box2.grid_columnconfigure(index=1, weight=1)
+        self.box2.grid_columnconfigure(index=2, weight=1)
+        self.box2.grid_columnconfigure(index=3, weight=1)
+        self.box2.grid_columnconfigure(index=4, weight=1)
+
+        # Creation of 5 boxes inside box2
+        self.box2_1 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_2 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_3 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_4 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_5 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_1.grid(row=0, column=0, sticky='nsew')
+        self.box2_2.grid(row=0, column=1, sticky='nsew')
+        self.box2_3.grid(row=0, column=2, sticky='nsew')
+        self.box2_4.grid(row=0, column=3, sticky='nsew')
+        self.box2_5.grid(row=0, column=4, sticky='nsew')
+
+        # Add button inside each box
+        self.button_box2_1 = Button(self.box2_1, text="button_box2_1", bg='#64698A', fg='lightgreen', font=('Helvetica', 16))
+        self.button_box2_2 = Button(self.box2_2, text="button_box2_2", bg='#64698A', fg='orange', font=('Helvetica', 16))
+        self.button_box2_3 = Button(self.box2_3, text="button_box2_3", bg='#64698A', fg='orange', font=('Helvetica', 16))
+        self.button_box2_4 = Button(self.box2_4, text="button_box2_4", bg='#64698A', fg='orange', font=('Helvetica', 16))
+        self.button_box2_5 = Button(self.box2_5, text="button_box2_5", bg='#64698A', fg='red', font=('Helvetica', 16))
+        self.button_box2_1.pack(expand=YES)
+        self.button_box2_2.pack(expand=YES)
+        self.button_box2_3.pack(expand=YES)
+        self.button_box2_4.pack(expand=YES)
+        self.button_box2_5.pack(expand=YES)
+
+        # Initialisation of the GUI
+        self.update_gui()
+
+        
+    def update_gui(self):
+        global compteur
+        
+        print("Passer par là !")
+        
+        # Get the data from onduleur
+        recuperer_donnees_onduleur(self.onduleur)
+
+        # Update the widgets of window
+        self.text_box1_1.config(text=f"Tension d'entrée : {self.onduleur.input_voltage} V")
+        
+        if(compteur > 4):
+            self.text_box1_2.config(text="Mise à jour_box1_2")
+        else:
+            compteur += 1
+
+        print("Repasser par là !")
+        
+        # Callback of this update function after 1 seconde
+        self.window.after(1000, self.update_gui)
+
+    def run(self):
+        # Display of the window
+        self.window.mainloop()
+
+"""
 text_box1_1 = None 
 text_box1_2 = None
 
@@ -92,81 +199,4 @@ def update_gui(onduleur):
     text_box1_2.config(text="Mise à jour_box1_2")
     print("Repasser par là !")
     window.after(1000, update_gui, onduleur)
-
-"""
-    class GUI:
-        def __init__(self, onduleur):
-            self.window = Tk()  # Creation of the window (Graphical User Interface)
-            self.onduleur = onduleur  # Creation of the onduleur object
-            self.setup_gui()  # Initial configuration of the GUI
-
-        def setup_gui(self):
-            # Get the size of the screen
-            screen_width = self.window.winfo_screenwidth()
-            screen_height = self.window.winfo_screenheight()
-
-            # Edit of the main features for the window
-            self.window.attributes('-fullscreen', YES)
-            self.window.configure(bg='#64698A')
-
-            # Configuration of the main grid (to place boxes in)
-            self.window.grid_rowconfigure(index=0, weight=9) # 1st row takes 90% of the screen
-            self.window.grid_rowconfigure(index=1, weight=1) # 2nd row takes 10% of the screen
-            self.window.grid_columnconfigure(index=0, weight=1) # 1st and only column takes the whole space
-
-"""
-
-"""
-
-from tkinter import *
-from treatment import recuperer_donnees_onduleur
-
-class GUI:
-    def __init__(self, onduleur):
-        self.window = Tk()  # Fenêtre principale
-        self.onduleur = onduleur  # L'objet onduleur
-        self.setup_gui()  # Configuration initiale de l'interface
-    
-    def setup_gui(self):
-        # Configuration de la fenêtre principale
-        self.window.attributes('-fullscreen', YES)
-        self.window.configure(bg='#64698A')
-
-        # Création de boîtes principales
-        box1 = Frame(self.window, bg='#64698A', bd=0)
-        box2 = Frame(self.window, bg='#64698A', bd=0)
-        box1.grid(row=0, column=0, sticky='nsew')
-        box2.grid(row=1, column=0, sticky='nsew')
-
-        # Création des labels à l'intérieur de box1 et box2
-        self.text_box1_1 = Label(box1, text="Voltage", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
-        self.text_box1_2 = Label(box2, text="Current", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
-
-        # Placement des labels dans leurs boîtes respectives
-        self.text_box1_1.pack(expand=YES)
-        self.text_box1_2.pack(expand=YES)
-
-        # Gestion des mises à jour périodiques
-        self.update_gui()
-
-    def update_gui(self):
-        # Récupération des données mises à jour depuis l'onduleur
-        recuperer_donnees_onduleur(self.onduleur)
-
-        # Mise à jour des labels avec les nouvelles données
-        self.text_box1_1.config(text=f"Voltage: {self.onduleur.input_voltage} V")
-        self.text_box1_2.config(text=f"Current: {self.onduleur.input_current} A")
-
-        # Planifier la prochaine mise à jour dans 1000 ms (1 seconde)
-        self.window.after(1000, self.update_gui)
-
-    def run(self):
-        # Lancer la boucle principale Tkinter
-        self.window.mainloop()
-
-# Initialisation de l'onduleur et de l'interface
-onduleur = Onduleur()
-gui = GUI(onduleur)
-gui.run() # Lancer l'interface
-
 """
