@@ -62,6 +62,7 @@ class Gui:
         self.text10_box1_1 = Label(self.box1_1, text="text10_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text11_box1_1 = Label(self.box1_1, text="text11_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text12_box1_1 = Label(self.box1_1, text="text12_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text13_box1_1 = Label(self.box1_1, text="text13_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         self.text1_box1_1.pack(expand=YES)
         self.text2_box1_1.pack(expand=YES)
@@ -75,6 +76,7 @@ class Gui:
         self.text10_box1_1.pack(expand=YES)
         self.text11_box1_1.pack(expand=YES)
         self.text12_box1_1.pack(expand=YES)
+        self.text13_box1_1.pack(expand=YES)
 
         # Add labels inside box1_2
         self.text_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
@@ -132,11 +134,12 @@ class Gui:
         self.text5_box1_1.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur.battery_charge} %")
         self.text6_box1_1.config(text=f"Charge ups (ups_load) : {self.onduleur.ups_load} %")
         self.text7_box1_1.config(text=f"Statut ups (ups_status) : {self.onduleur.ups_status}")
-        self.text8_box1_1.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo} Torr")
-        self.text9_box1_1.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo} Torr")
-        self.text10_box1_1.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo} Torr")
-        self.text11_box1_1.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo} Torr")
-        self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire} Torr")
+        self.text8_box1_1.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
+        self.text9_box1_1.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo}")
+        self.text10_box1_1.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
+        self.text11_box1_1.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
+        self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
+        self.text13_box1_1.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
              
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
