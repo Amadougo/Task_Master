@@ -1,4 +1,4 @@
-from data import Onduleur
+from data import Onduleur, Pression
 import subprocess
 
 #Fonction qui définie la récupération de données auprès de NUT

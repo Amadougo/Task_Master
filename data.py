@@ -44,9 +44,9 @@ class Pression :
         self.Jauge_5_Primaire = Jauge_5_Primaire
 
     def afficher_donnees_onduleur(self):
-        print(f"Jauge 1 : {self.self.Jauge_1_Turbo} Torr")
-        print(f"Jauge 2 : {self.self.Jauge_2_Turbo} Torr")
-        print(f"Jauge 3 : {self.self.Jauge_3_Turbo} Torr")
-        print(f"Jauge 4 : {self.self.Jauge_4_Turbo} Torr")
-        print(f"Jauge 5 Pompe primaire : {self.self.Jauge_5_Primaire} Torr")
+        print(f"Jauge 1 : {self.Jauge_1_Turbo} Torr")
+        print(f"Jauge 2 : {self.Jauge_2_Turbo} Torr")
+        print(f"Jauge 3 : {self.Jauge_3_Turbo} Torr")
+        print(f"Jauge 4 : {self.Jauge_4_Turbo} Torr")
+        print(f"Jauge 5 Pompe primaire : {self.Jauge_5_Primaire} Torr")
 
