@@ -13,5 +13,8 @@ recuperer_donnees_pression(pression)
 # Creation of the GUI
 gui = Gui(onduleur, pression)
 
+# Rescale images
+gui.resize_images()
+
 # Run the user interface
 gui.run()

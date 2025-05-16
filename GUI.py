@@ -1,6 +1,6 @@
 from tkinter import * # type: ignore
 from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression
-#from PIL import Image, ImageTk
+from PIL import Image, ImageTk # type: ignore
 
 class Gui:
     def __init__(self, onduleur, pression):
@@ -39,6 +39,12 @@ class Gui:
         self.box1_2 = Frame(self.box1, bg='#64698A', bd=0)
         self.box1_1.grid(row=0, column=0, sticky='nsew')
         self.box1_2.grid(row=0, column=1, sticky='nsew')
+
+        # Add a background image as box1_1 background
+        self.image_pillow_box1_1 = Image.open('image_Jauges_Test.jpg')
+        self.background_box1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1)
+        self.bg_box1_1 = Label(self.box1_1, image=self.background_box1_1)
+        self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
 
         # Add labels inside box1_1
         # Onduleur data
@@ -110,12 +116,14 @@ class Gui:
         # Initialisation of the GUI
         self.update_gui()
 
+        # Bind the images to rescale them later
+        self.box1_1.bind("<Configure>", self.resize_images)
         
     def update_gui(self):
         # Get the data from onduleur
         recuperer_donnees_onduleur(self.onduleur)
         recuperer_donnees_pression(self.pression)
-
+        
         # Update the widgets of box1_1
         self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
         self.text2_box1_1.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
@@ -129,10 +137,18 @@ class Gui:
         self.text10_box1_1.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo} Torr")
         self.text11_box1_1.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo} Torr")
         self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire} Torr")
-        
+             
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
 
     def run(self):
         # Display of the window
         self.window.mainloop()
+
+    def resize_images(self, event=None):
+        width = self.box1_1.winfo_width()
+        height = self.box1_1.winfo_height()
+        if width > 0 and height > 0:
+            resized_image = self.image_pillow_box1_1.resize((width, height), Image.Resampling.LANCZOS)
+            self.background_box1_1_resized = ImageTk.PhotoImage(resized_image)
+            self.bg_box1_1.config(image=self.background_box1_1_resized)
