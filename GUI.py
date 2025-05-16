@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import * # type: ignore
 from treatment import recuperer_donnees_onduleur
 
 compteur = 0

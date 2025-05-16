@@ -23,7 +23,7 @@ def get_ups_data(ups_name="onduleur@localhost"):
         print("La commande 'upsc' n'est pas trouvée. Vérifie que NUT est installé.")
         return None
 
-#Fonction pour récupérer les données et les mettre dans la class 'Onduleur'
+#Fonction pour récupérer les données de l'onduleur et les mettre dans la class 'Onduleur'
 def recuperer_donnees_onduleur(onduleur : Onduleur) :
     ups_data = get_ups_data("onduleur@localhost")  # Remplace 'myups' par le nom exact de ton onduleur
 
@@ -42,4 +42,8 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
     
     return onduleur
 
-  
+#Fonction pour récupérer les données de pression et les mettre dans la class 'Pression'
+
+def recuperer_donnees_pression(pression : Pression) :
+    #o
+    return 
