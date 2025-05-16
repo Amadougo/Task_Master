@@ -31,11 +31,11 @@ class Onduleur :
 class Pression :
     def __init__(
         self,
-        Jauge_1_Turbo: str = "",
-        Jauge_2_Turbo: str = "",
-        Jauge_3_Turbo: str = "",
-        Jauge_4_Turbo: str = "",
-        Jauge_5_Primaire: str = "",
+        Jauge_1_Turbo: str = "Déconnectée",
+        Jauge_2_Turbo: str = "Déconnectée",
+        Jauge_3_Turbo: str = "Déconnectée",
+        Jauge_4_Turbo: str = "Déconnectée",
+        Jauge_5_Primaire: str = "Déconnectée",
     ):
         self.Jauge_1_Turbo = Jauge_1_Turbo
         self.Jauge_2_Turbo = Jauge_2_Turbo
