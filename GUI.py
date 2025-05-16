@@ -102,11 +102,11 @@ class Gui:
         self.box2_5.grid(row=0, column=4, sticky='nsew')
 
         # Add button inside each box
-        self.button_box2_1 = Button(self.box2_1, text="button_box2_1", bg='#64698A', fg='red', font=('Helvetica', 16))
-        self.button_box2_2 = Button(self.box2_2, text="button_box2_2", bg='#64698A', fg='orange', font=('Helvetica', 16))
-        self.button_box2_3 = Button(self.box2_3, text="button_box2_3", bg='#64698A', fg='orange', font=('Helvetica', 16))
-        self.button_box2_4 = Button(self.box2_4, text="button_box2_4", bg='#64698A', fg='orange', font=('Helvetica', 16))
-        self.button_box2_5 = Button(self.box2_5, text="button_box2_5", bg='#64698A', fg='lightgreen', font=('Helvetica', 16))
+        self.button_box2_1 = Button(self.box2_1, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
+        self.button_box2_2 = Button(self.box2_2, text="button_box2_2 ???", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
+        self.button_box2_3 = Button(self.box2_3, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
+        self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
+        self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
         self.button_box2_3.pack(expand=YES)
