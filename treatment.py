@@ -38,7 +38,7 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
         onduleur.ups_load = ups_data.get("ups.load","Inconnue")
         onduleur.ups_status = ups_data.get("ups.status", "Inconnu")
         # Affichage terminal optionnel
-        onduleur.afficher_donnees_onduleur() 
+        #onduleur.afficher_donnees_onduleur() 
     else:
         print("Impossible de récupérer les données de l'onduleur.")
     
@@ -118,6 +118,15 @@ def recuperer_donnees_pression(pression : Pression) :
             i+=2
         else :
             pression.Jauge_5_Primaire = 'Déconnectée'
+
+        if (values[i] == '6') and (i < len(values)):
+            if values[i+1] == '9.9000e+09' :
+                pression.Jauge_6_Vide = 'OFF'
+            else :
+                pression.Jauge_6_Vide = values[i]+ "Torr"
+            i+=2
+        else :
+            pression.Jauge_6_Vide = 'Déconnectée'
 
     else:
         print("Erreur lors de la récupération des valeurs de jauge.")
