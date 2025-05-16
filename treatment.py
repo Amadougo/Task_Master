@@ -78,7 +78,7 @@ def recuperer_donnees_pression(pression : Pression) :
             if values[i+1] == '9.9000e+09' :
                 pression.Jauge_1_Turbo = 'OFF'
             else :
-                pression.Jauge_1_Turbo = values[i]
+                pression.Jauge_1_Turbo = values[i] + "Torr"
             i+=2
         else :
             pression.Jauge_1_Turbo = 'Déconnectée'
@@ -87,7 +87,7 @@ def recuperer_donnees_pression(pression : Pression) :
             if values[i+1] == '9.9000e+09' :
                 pression.Jauge_2_Turbo = 'OFF'
             else :
-                pression.Jauge_2_Turbo = values[i]
+                pression.Jauge_2_Turbo = values[i]+ "Torr"
             i+=2
         else :
             pression.Jauge_2_Turbo = 'Déconnectée'
@@ -96,7 +96,7 @@ def recuperer_donnees_pression(pression : Pression) :
             if values[i+1] == '9.9000e+09' :
                 pression.Jauge_3_Turbo = 'OFF'
             else :
-                pression.Jauge_3_Turbo = values[i]
+                pression.Jauge_3_Turbo = values[i]+ "Torr"
             i+=2
         else :
             pression.Jauge_3_Turbo = 'Déconnectée'
@@ -105,7 +105,7 @@ def recuperer_donnees_pression(pression : Pression) :
             if values[i+1] == '9.9000e+09' :
                 pression.Jauge_4_Turbo = 'OFF'
             else :
-                pression.Jauge_4_Turbo = values[i]
+                pression.Jauge_4_Turbo = values[i]+ "Torr"
             i+=2
         else :
             pression.Jauge_4_Turbo = 'Déconnectée'
@@ -114,7 +114,7 @@ def recuperer_donnees_pression(pression : Pression) :
             if values[i+1] == '9.9000e+09' :
                 pression.Jauge_5_Primaire = 'OFF'
             else :
-                pression.Jauge_5_Primaire = values[i]
+                pression.Jauge_5_Primaire = values[i]+ "Torr"
             i+=2
         else :
             pression.Jauge_5_Primaire = 'Déconnectée'
