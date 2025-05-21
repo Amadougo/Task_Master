@@ -64,6 +64,7 @@ def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934
     command = "?V914\r"
     ser.write(command.encode())
     response = ser.readline().decode().strip()
+    print(f"Réponse : {response} ")
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V914 "):
         data_str = response[len("=V914 "):]
