@@ -61,13 +61,13 @@ else:
 
 def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934, 935, 936
     #Cette commande renvoie les valeurs de toutes les jauges
-    command = "?V914\r"
+    command = "?V913\r"
     ser.write(command.encode())
     response = ser.readline().decode().strip()
     print(f"Réponse : {response} ")
     # 1. Enlever le préfixe (facultatif)
-    if response.startswith("=V914 "):
-        data_str = response[len("=V914 "):]
+    if response.startswith("=V913 "):
+        data_str = response[len("=V913 "):]
 
     # 2. Séparer par les points-virgules
         values = data_str.split(";")
@@ -80,7 +80,7 @@ def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934
             else :
                 pression.Jauge_1_Turbo = values[0] + "Pascal"
         else :
-            pression.Jauge_1_Turbo = 'Déconnectée'
+            pression.Jauge_1_Turbo = 'Décon'
     return Pression
     
 '''
