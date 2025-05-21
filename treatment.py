@@ -64,7 +64,6 @@ def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934
     command = "?V913\r"
     ser.write(command.encode())
     response = ser.readline().decode().strip()
-    print(f"Réponse : {response} ")
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V913 "):
         data_str = response[len("=V913 "):]
@@ -77,9 +76,119 @@ def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934
             pression.Jauge_1_Turbo = str(float(values[0])*0.00750062) + " Torr"
     # 4. enregistrer la valeur lue
         elif values[2] == '2' :
-            pression.Jauge_1_Turbo = 'Nouvel ID de Jauge'        
+            pression.Jauge_1_Turbo = 'Validation manuelle requise'        
         else :
             pression.Jauge_1_Turbo = 'Déconnectée'
+    return Pression
+
+def recuperer_donnees_pression_jauge2(pression : Pression) : #913, 914, 915, 934, 935, 936
+    #Cette commande renvoie les valeurs de toutes les jauges
+    command = "?V914\r"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    # 1. Enlever le préfixe (facultatif)
+    if response.startswith("=V914 "):
+        data_str = response[len("=V914 "):]
+
+    # 2. Séparer par les points-virgules
+        values = data_str.split(";")
+        
+    # 3. Vérifier le statut de la jauge
+        if (values[2] == '11') :
+            pression.Jauge_2_Turbo = str(float(values[0])*0.00750062) + " Torr"
+    # 4. enregistrer la valeur lue
+        elif values[2] == '2' :
+            pression.Jauge_2_Turbo = 'Validation manuelle requise'        
+        else :
+            pression.Jauge_2_Turbo = 'Déconnectée'
+    return Pression
+
+def recuperer_donnees_pression_jauge3(pression : Pression) : #913, 914, 915, 934, 935, 936
+    #Cette commande renvoie les valeurs de toutes les jauges
+    command = "?V915\r"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    # 1. Enlever le préfixe (facultatif)
+    if response.startswith("=V915 "):
+        data_str = response[len("=V915 "):]
+
+    # 2. Séparer par les points-virgules
+        values = data_str.split(";")
+        
+    # 3. Vérifier le statut de la jauge
+        if (values[2] == '11') :
+            pression.Jauge_3_Turbo = str(float(values[0])*0.00750062) + " Torr"
+    # 4. enregistrer la valeur lue
+        elif values[2] == '2' :
+            pression.Jauge_3_Turbo = 'Validation manuelle requise'        
+        else :
+            pression.Jauge_3_Turbo = 'Déconnectée'
+    return Pression
+
+def recuperer_donnees_pression_jauge4(pression : Pression) : #913, 914, 915, 934, 935, 936
+    #Cette commande renvoie les valeurs de toutes les jauges
+    command = "?V934\r"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    # 1. Enlever le préfixe (facultatif)
+    if response.startswith("=V934 "):
+        data_str = response[len("=V934 "):]
+
+    # 2. Séparer par les points-virgules
+        values = data_str.split(";")
+        
+    # 3. Vérifier le statut de la jauge
+        if (values[2] == '11') :
+            pression.Jauge_4_Turbo = str(float(values[0])*0.00750062) + " Torr"
+    # 4. enregistrer la valeur lue
+        elif values[2] == '2' :
+            pression.Jauge_4_Turbo = 'Validation manuelle requise'        
+        else :
+            pression.Jauge_4_Turbo = 'Déconnectée'
+    return Pression
+
+def recuperer_donnees_pression_jauge5(pression : Pression) : #913, 914, 915, 934, 935, 936
+    #Cette commande renvoie les valeurs de toutes les jauges
+    command = "?V935\r"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    # 1. Enlever le préfixe (facultatif)
+    if response.startswith("=V935 "):
+        data_str = response[len("=V935 "):]
+
+    # 2. Séparer par les points-virgules
+        values = data_str.split(";")
+        
+    # 3. Vérifier le statut de la jauge
+        if (values[2] == '11') :
+            pression.Jauge_5_Primaire = str(float(values[0])*0.00750062) + " Torr"
+    # 4. enregistrer la valeur lue
+        elif values[2] == '2' :
+            pression.Jauge_5_Primaire = 'Validation manuelle requise'        
+        else :
+            pression.Jauge_5_Primaire = 'Déconnectée'
+    return Pression
+
+def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934, 935, 936
+    #Cette commande renvoie les valeurs de toutes les jauges
+    command = "?V936\r"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    # 1. Enlever le préfixe (facultatif)
+    if response.startswith("=V936 "):
+        data_str = response[len("=V936 "):]
+
+    # 2. Séparer par les points-virgules
+        values = data_str.split(";")
+        
+    # 3. Vérifier le statut de la jauge
+        if (values[2] == '11') :
+            pression.Jauge_6_Vide = str(float(values[0])*0.00750062) + " Torr"
+    # 4. enregistrer la valeur lue
+        elif values[2] == '2' :
+            pression.Jauge_6_Vide = 'Validation manuelle requise'        
+        else :
+            pression.Jauge_6_Vide = 'Déconnectée'
     return Pression
     
 '''
