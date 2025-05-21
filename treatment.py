@@ -73,7 +73,7 @@ def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934
         
     # 3. Vérifier le statut de la jauge
         if (values[2] == '11') :
-            pression.Jauge_1_Turbo = str(float(values[0])*0.00750062) + " Torr"
+            pression.Jauge_1_Turbo = f"{float(values[0]) * 0.00750062:.2e} Torr"
     # 4. enregistrer la valeur lue
         elif values[2] == '2' :
             pression.Jauge_1_Turbo = 'Validation manuelle requise'        
