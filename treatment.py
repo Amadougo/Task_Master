@@ -73,7 +73,7 @@ def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934
         values = data_str.split(";")
         
     # 3. Vérifier le statut de la jauge
-        if (values[2] == '4') :
+        if (values[2] == '11') :
     # 4. enregistrer la valeur lue
             if values[0] == '9.9000e+09' :
                 pression.Jauge_1_Turbo = 'OFF'
