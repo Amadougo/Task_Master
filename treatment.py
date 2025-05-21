@@ -58,6 +58,31 @@ else:
 	print(f"Impossible d'ouvrir le Port {port}")
      
 #Fonction périodique
+
+def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934, 935, 936
+    #Cette commande renvoie les valeurs de toutes les jauges
+    command = "?V914\r"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    # 1. Enlever le préfixe (facultatif)
+    if response.startswith("=V914 "):
+        data_str = response[len("=V914 "):]
+
+    # 2. Séparer par les points-virgules
+        values = data_str.split(";")
+        
+    # 3. Vérifier le statut de la jauge
+        if (values[2] == '4') :
+    # 4. enregistrer la valeur lue
+            if values[0] == '9.9000e+09' :
+                pression.Jauge_1_Turbo = 'OFF'
+            else :
+                pression.Jauge_1_Turbo = values[0] + "Pascal"
+        else :
+            pression.Jauge_1_Turbo = 'Déconnectée'
+    return Pression
+    
+'''
 def recuperer_donnees_pression(pression : Pression) :
     #Cette commande renvoie les valeurs de toutes les jauges
     command = "?V940\r"
@@ -132,3 +157,4 @@ def recuperer_donnees_pression(pression : Pression) :
         print("Erreur lors de la récupération des valeurs de jauge.")
 
     return pression
+'''

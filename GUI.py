@@ -1,5 +1,5 @@
 from tkinter import * # type: ignore
-from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression
+from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1
 from PIL import Image, ImageTk # type: ignore
 
 class Gui:
@@ -124,7 +124,7 @@ class Gui:
     def update_gui(self):
         # Get the data from onduleur
         recuperer_donnees_onduleur(self.onduleur)
-        recuperer_donnees_pression(self.pression)
+        recuperer_donnees_pression_jauge1(self.pression)
         
         # Update the widgets of box1_1
         self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
