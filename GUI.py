@@ -133,7 +133,7 @@ class Gui:
         recuperer_donnees_pression_jauge6(self.pression)
         
         # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
-        if self.affichage_donnees == True:
+        if self.affichage_donnees == False:
             self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
             self.text2_box1_1.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
             self.text3_box1_1.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
@@ -148,7 +148,6 @@ class Gui:
             self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
             self.text13_box1_1.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
         else:
-            self.hide_data_box1_1()
             self.text1_box1_1.config(text="LOGS")
 
         # Callback of this update function after 1 seconde
@@ -167,14 +166,15 @@ class Gui:
             self.bg_box1_1.config(image=self.background_box1_1_resized)
 
     def change_state_button_Affichage_Logs(self):
-        if self.affichage_donnees == True :
+        if self.affichage_donnees == False :
             self.button_box2_3.config(text="Afficher les LOGS")
             self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
-            self.affichage_donnees = False
+            self.affichage_donnees = True
         else:
             self.button_box2_3.config(text="Afficher les DONNEES")
             self.bg_box1_1.place_forget()
-            self.affichage_donnees = True
+            self.hide_data_box1_1()
+            self.affichage_donnees = False
 
     def hide_data_box1_1(self):
         for label in [
