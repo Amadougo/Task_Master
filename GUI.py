@@ -3,10 +3,11 @@ from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jau
 from PIL import Image, ImageTk # type: ignore
 
 class Gui:
-    def __init__(self, onduleur, pression):
+    def __init__(self, onduleur, pression, affichage_donnees):
         self.window = Tk()  # Creation of the window (Graphical User Interface)
         self.onduleur = onduleur  # Creation of the onduleur object
         self.pression = pression # Creation of the pression object
+        self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.setup_gui()  # Initial configuration of the GUI
 
     def setup_gui(self):
@@ -92,7 +93,7 @@ class Gui:
         self.box2.grid_columnconfigure(index=4, weight=1)
 
         # Creation of 5 boxes inside box2
-        self.box2_1 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_1 = Frame(self.box2, bg="#64698A", bd=0)
         self.box2_2 = Frame(self.box2, bg='#64698A', bd=0)
         self.box2_3 = Frame(self.box2, bg='#64698A', bd=0)
         self.box2_4 = Frame(self.box2, bg='#64698A', bd=0)
@@ -105,8 +106,8 @@ class Gui:
 
         # Add button inside each box
         self.button_box2_1 = Button(self.box2_1, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
-        self.button_box2_2 = Button(self.box2_2, text="button_box2_2 ???", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
-        self.button_box2_3 = Button(self.box2_3, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
+        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode ???", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
+        self.button_box2_3 = Button(self.box2_3, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
         self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
         self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
         self.button_box2_1.pack(expand=YES)
@@ -131,21 +132,25 @@ class Gui:
         recuperer_donnees_pression_jauge5(self.pression)
         recuperer_donnees_pression_jauge6(self.pression)
         
-        # Update the widgets of box1_1
-        self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
-        self.text2_box1_1.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
-        self.text3_box1_1.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
-        self.text4_box1_1.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur.battery_runtime} s")
-        self.text5_box1_1.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur.battery_charge} %")
-        self.text6_box1_1.config(text=f"Charge ups (ups_load) : {self.onduleur.ups_load} %")
-        self.text7_box1_1.config(text=f"Statut ups (ups_status) : {self.onduleur.ups_status}")
-        self.text8_box1_1.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
-        self.text9_box1_1.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo}")
-        self.text10_box1_1.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
-        self.text11_box1_1.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
-        self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
-        self.text13_box1_1.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
-             
+        # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
+        if self.affichage_donnees == True:
+            self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
+            self.text2_box1_1.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
+            self.text3_box1_1.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
+            self.text4_box1_1.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur.battery_runtime} s")
+            self.text5_box1_1.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur.battery_charge} %")
+            self.text6_box1_1.config(text=f"Charge ups (ups_load) : {self.onduleur.ups_load} %")
+            self.text7_box1_1.config(text=f"Statut ups (ups_status) : {self.onduleur.ups_status}")
+            self.text8_box1_1.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
+            self.text9_box1_1.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo}")
+            self.text10_box1_1.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
+            self.text11_box1_1.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
+            self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
+            self.text13_box1_1.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
+        else:
+            self.hide_data_box1_1()
+            self.text1_box1_1.config(text="LOGS")
+
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
 
@@ -160,3 +165,22 @@ class Gui:
             resized_image = self.image_pillow_box1_1.resize((width, height), Image.Resampling.LANCZOS)
             self.background_box1_1_resized = ImageTk.PhotoImage(resized_image)
             self.bg_box1_1.config(image=self.background_box1_1_resized)
+
+    def change_state_button_Affichage_Logs(self):
+        if self.affichage_donnees == True :
+            self.button_box2_3.config(text="Afficher les LOGS")
+            self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
+            self.affichage_donnees = False
+        else:
+            self.button_box2_3.config(text="Afficher les DONNEES")
+            self.bg_box1_1.place_forget()
+            self.affichage_donnees = True
+
+    def hide_data_box1_1(self):
+        for label in [
+            self.text2_box1_1, self.text3_box1_1, self.text4_box1_1, 
+            self.text5_box1_1, self.text6_box1_1, self.text7_box1_1, 
+            self.text8_box1_1, self.text9_box1_1, self.text10_box1_1, 
+            self.text11_box1_1, self.text12_box1_1, self.text13_box1_1
+        ]:
+            label.pack_forget()

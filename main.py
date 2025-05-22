@@ -16,7 +16,7 @@ recuperer_donnees_pression_jauge5(pression)
 recuperer_donnees_pression_jauge6(pression)
 
 # Creation of the GUI
-gui = Gui(onduleur, pression)
+gui = Gui(onduleur, pression, affichage_donnees=True)
 
 # Rescale images
 gui.resize_images()
