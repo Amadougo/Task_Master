@@ -173,17 +173,17 @@ class Gui:
     def change_state_button_Affichage_Logs(self):
         if self.affichage_donnees == False :
             self.update_gui()
-            self.button_box2_3.config(text="Afficher les LOGS")
+            self.button_box2_3.config(text="Afficher les DONNEES")
             self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
-            self.hide_logs_box1_1()
-            self.show_data_box1_1()
+            self.hide_data_box1_1()
+            self.show_logs_box1_1()
             self.affichage_donnees = True
         else:
             self.update_gui()
-            self.button_box2_3.config(text="Afficher les DONNEES")
+            self.button_box2_3.config(text="Afficher les LOGS")
             self.bg_box1_1.place_forget()
-            self.hide_data_box1_1()
-            self.show_logs_box1_1()
+            self.hide_logs_box1_1()
+            self.show_data_box1_1()
             self.affichage_donnees = False
 
     def hide_data_box1_1(self):
