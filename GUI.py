@@ -82,8 +82,6 @@ class Gui:
         # Logs
         self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
-        self.textlog1_box1_1.pack(expand=YES)
-
         # Add labels inside box1_2
         self.text_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
         
@@ -138,7 +136,7 @@ class Gui:
         recuperer_donnees_pression_jauge6(self.pression)
         
         # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
-        if self.affichage_donnees == False:
+        if self.affichage_donnees == True:
             self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
             self.text2_box1_1.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
             self.text3_box1_1.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
