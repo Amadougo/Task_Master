@@ -150,7 +150,7 @@ class Gui:
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
 
-    def recuperer_donnees(onduleur, pression):
+    def recuperer_donnees(self, onduleur, pression):
         recuperer_donnees_onduleur(onduleur)
         recuperer_donnees_pression_jauge1(pression)
         recuperer_donnees_pression_jauge2(pression)
