@@ -126,14 +126,8 @@ class Gui:
         self.box1_1.bind("<Configure>", self.resize_images)
         
     def update_gui(self):
-        # Get the data from onduleur
-        recuperer_donnees_onduleur(self.onduleur)
-        recuperer_donnees_pression_jauge1(self.pression)
-        recuperer_donnees_pression_jauge2(self.pression)
-        recuperer_donnees_pression_jauge3(self.pression)
-        recuperer_donnees_pression_jauge4(self.pression)
-        recuperer_donnees_pression_jauge5(self.pression)
-        recuperer_donnees_pression_jauge6(self.pression)
+        # Get the data from onduleur and pression
+        self.recuperer_donnees(self.onduleur, self.pression)
         
         # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
         if self.affichage_donnees == True:
@@ -155,6 +149,15 @@ class Gui:
 
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
+
+    def recuperer_donnees(onduleur, pression):
+        recuperer_donnees_onduleur(onduleur)
+        recuperer_donnees_pression_jauge1(pression)
+        recuperer_donnees_pression_jauge2(pression)
+        recuperer_donnees_pression_jauge3(pression)
+        recuperer_donnees_pression_jauge4(pression)
+        recuperer_donnees_pression_jauge5(pression)
+        recuperer_donnees_pression_jauge6(pression)
 
     def run(self):
         # Display of the window
