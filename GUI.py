@@ -79,6 +79,11 @@ class Gui:
         self.text12_box1_1.pack(expand=YES)
         self.text13_box1_1.pack(expand=YES)
 
+        # Logs
+        self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+
+        self.textlog1_box1_1.pack(expand=YES)
+
         # Add labels inside box1_2
         self.text_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
         
@@ -167,20 +172,48 @@ class Gui:
 
     def change_state_button_Affichage_Logs(self):
         if self.affichage_donnees == False :
+            self.update_gui()
             self.button_box2_3.config(text="Afficher les LOGS")
             self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
+            self.hide_logs_box1_1()
+            self.show_data_box1_1()
             self.affichage_donnees = True
         else:
+            self.update_gui()
             self.button_box2_3.config(text="Afficher les DONNEES")
             self.bg_box1_1.place_forget()
             self.hide_data_box1_1()
+            self.show_logs_box1_1()
             self.affichage_donnees = False
 
     def hide_data_box1_1(self):
         for label in [
-            self.text2_box1_1, self.text3_box1_1, self.text4_box1_1, 
-            self.text5_box1_1, self.text6_box1_1, self.text7_box1_1, 
-            self.text8_box1_1, self.text9_box1_1, self.text10_box1_1, 
-            self.text11_box1_1, self.text12_box1_1, self.text13_box1_1
+            self.text1_box1_1, self.text2_box1_1, self.text3_box1_1,
+            self.text4_box1_1, self.text5_box1_1, self.text6_box1_1,
+            self.text7_box1_1, self.text8_box1_1, self.text9_box1_1,
+            self.text10_box1_1, self.text11_box1_1, self.text12_box1_1,
+            self.text13_box1_1
         ]:
             label.pack_forget()
+
+    def show_data_box1_1(self):
+        for label in [
+            self.text1_box1_1, self.text2_box1_1, self.text3_box1_1,
+            self.text4_box1_1, self.text5_box1_1, self.text6_box1_1,
+            self.text7_box1_1, self.text8_box1_1, self.text9_box1_1,
+            self.text10_box1_1, self.text11_box1_1, self.text12_box1_1,
+            self.text13_box1_1
+        ]: 
+            label.pack(expand=YES)
+
+    def hide_logs_box1_1(self):
+        for label in [
+            self.textlog1_box1_1
+        ]:
+            label.pack_forget()
+
+    def show_logs_box1_1(self):
+        for label in [
+            self.textlog1_box1_1
+        ]: 
+            label.pack(expand=YES)
