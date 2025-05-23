@@ -232,4 +232,4 @@ class Gui:
             time.sleep(500)
         elif(self.onduleur.ups_status == "OL CHRG"):
             logging.info("Reprise de courant : Onduleur sur secteur")
-            time.sleep(500)
+            time.sleep(0.500)
