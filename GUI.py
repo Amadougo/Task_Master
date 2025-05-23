@@ -110,7 +110,7 @@ class Gui:
 
         # Add button inside each box
         self.button_box2_1 = Button(self.box2_1, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
-        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode ???", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
+        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
         self.button_box2_3 = Button(self.box2_3, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
         self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
         self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
@@ -227,9 +227,76 @@ class Gui:
     def check_logs_with_data(self, onduleur, pression):
         self.recuperer_donnees(onduleur, pression)
 
-        if(self.onduleur.ups_status == "OB"):
+        # INFO Logs
+        if(False): # Si le bouton est pressé : Extinction générale progressive.
+            logging.info("Lancement du programme : Extinction générale progressive.")
+        if(False): # Si le bouton est pressé : Refroidissement cathode.
+            logging.info("Lancement du programme : Refroidissement cathode.")
+        if(False): # Si le bouton est pressé : Chauffe cathode.
+            logging.info("Lancement du programme : Chauffe cathode.")
+        if(False): # Si le bouton est pressé : Démarrage progressif.
+            logging.info("Lancement du programme : Démarrage progressif.")
+        if(False): # Message de chauffe de la cathode terminée.
+            logging.info("Chauffe de la cathode terminée.")
+        if(False): # Message de refroidissement de la cathode terminée.
+            logging.info("Refroidissement de la cathode terminée.")
+        if(False): # Message d'allumage de la manip terminé.
+            logging.info("Allumage de la manip terminé.")
+        if(False): # Envoi du sms pour motif de coupure de courant bien envoyé. 
+            logging.info("Envoi du sms pour motif de coupure de courant bien envoyé.")
+        if(False): # "Logs bien envoyées par mail" (mail toutes les semaines pour l'envoi des logs).
+            logging.info("Logs bien envoyées par mail.")
+        if(self.onduleur.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
+            logging.info("Reprise de courant : Onduleur sur secteur,")
+            #logging.info(f"Temps de coupure du courant : {#calcul du temps de coupure}")
+            logging.info("Envoi du mail avec le temps de coupure du courant.")
+            log_with_cooldown(logging.info, "Reprise de courant : Onduleur sur secteur,", 5)
+
+        # WARNING Logs
+        if(self.onduleur.ups_status == "OB"): # Coupure de courant.
             logging.warning("Coupure de courant : Onduleur sur batterie")
-            time.sleep(0.500)
-        elif(self.onduleur.ups_status == "OL CHRG"):
-            logging.info("Reprise de courant : Onduleur sur secteur")
-            time.sleep(0.500)
+            log_with_cooldown(logging.warning, "Coupure de courant : Onduleur sur batterie", 5)
+        if(False): # L'onduleur va se couper dans 1 minute.
+            logging.warning("L'onduleur va se couper dans 1 minute.")
+        if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
+            logging.warning("La jauge de pression 1 a dépassé la valeur seuil haute.")
+        if(False): # La jauge de pression 1 a dépassé la valeur seuil basse.
+            logging.warning("La jauge de pression 1 a dépassé la valeur seuil basse.")
+        if(False): # La jauge de pression 2 a dépassé la valeur seuil haute.
+            logging.warning("La jauge de pression 2 a dépassé la valeur seuil haute.")
+        if(False): # La jauge de pression 2 a dépassé la valeur seuil basse.
+            logging.warning("La jauge de pression 2 a dépassé la valeur seuil basse.")
+        if(False): # La jauge de pression 3 a dépassé la valeur seuil haute.
+            logging.warning("La jauge de pression 3 a dépassé la valeur seuil haute.")
+        if(False): # La jauge de pression 3 a dépassé la valeur seuil basse.
+            logging.warning("La jauge de pression 3 a dépassé la valeur seuil basse.")
+        if(False): # La jauge de pression 4 a dépassé la valeur seuil haute.
+            logging.warning("La jauge de pression 4 a dépassé la valeur seuil haute.")
+        if(False): # La jauge de pression 4 a dépassé la valeur seuil basse.
+            logging.warning("La jauge de pression 4 a dépassé la valeur seuil basse.")
+        if(False): # La jauge de pression 5 a dépassé la valeur seuil haute.
+            logging.warning("La jauge de pression 5 a dépassé la valeur seuil haute.")
+        if(False): # La jauge de pression 5 a dépassé la valeur seuil basse.
+            logging.warning("La jauge de pression 5 a dépassé la valeur seuil basse.")
+        if(False): # La jauge de pression 6 a dépassé la valeur seuil haute.
+            logging.warning("La jauge de pression 6 a dépassé la valeur seuil haute.")
+        if(False): # La jauge de pression 6 a dépassé la valeur seuil basse.
+            logging.warning("La jauge de pression 6 a dépassé la valeur seuil basse.")
+        
+        # CRITICAL Logs
+        if(False): # La jauge de pression 1 a atteint une valeur critique définie.
+            logging.critical("La jauge de pression 1 a atteint une valeur critique définie.")
+        if(False): # La jauge de pression 2 a atteint une valeur critique définie.
+            logging.critical("La jauge de pression 2 a atteint une valeur critique définie.")
+        if(False): # La jauge de pression 3 a atteint une valeur critique définie.
+            logging.critical("La jauge de pression 3 a atteint une valeur critique définie.")
+        if(False): # La jauge de pression 4 a atteint une valeur critique définie.
+            logging.critical("La jauge de pression 4 a atteint une valeur critique définie.")
+        if(False): # La jauge de pression 5 a atteint une valeur critique définie.
+            logging.critical("La jauge de pression 5 a atteint une valeur critique définie.")
+        if(False): # La jauge de pression 6 a atteint une valeur critique définie.
+            logging.critical("La jauge de pression 6 a atteint une valeur critique définie.")
+        if(False): #Arrêt général pour cause onduleurs vides.
+            logging.critical("Arrêt général pour cause onduleurs vides.")
+        if(False): # Batterie onduleur morte.
+            logging.critical("Batterie onduleur morte.")
