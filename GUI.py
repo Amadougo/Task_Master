@@ -1,5 +1,6 @@
 from tkinter import * # type: ignore
 from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
+from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 
 class Gui:
@@ -127,7 +128,7 @@ class Gui:
         
     def update_gui(self):
         # Get the data from onduleur and pression
-        self.recuperer_donnees(self.onduleur, self.pression)
+        self.check_logs_with_data(self.onduleur, self.pression)
         
         # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
         if self.affichage_donnees == True:
@@ -222,3 +223,13 @@ class Gui:
             self.textlog1_box1_1
         ]: 
             label.pack(expand=YES)
+
+    def check_logs_with_data(self, onduleur, pression):
+        self.recuperer_donnees(onduleur, pression)
+
+        if(self.onduleur.ups_status == "OB"):
+            logging.warning("Coupure de courant : Onduleur sur batterie")
+            time.sleep(500)
+        elif(self.onduleur.ups_status == "OL CHRG"):
+            logging.info("Reprise de courant : Onduleur sur secteur")
+            time.sleep(500)
