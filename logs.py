@@ -9,6 +9,18 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
+_last_log_time = {}
+logger = logging.getLogger(__name__)  # nom = nom du fichier/module
+
+def log_with_cooldown(level, message, cooldown=10):
+    now = time.time()
+    key = (level, message)
+    if key not in _last_log_time or now - _last_log_time[key] > cooldown:
+        logger.log(level, message)
+        _last_log_time[key] = now
+
+
+
 '''
 # Exemples de logs
 logging.info("Info classique")
@@ -16,16 +28,3 @@ logging.warning("Alerte")
 logging.error("Erreur détectée")
 logging.critical("Erreur critique !")
 '''
-
-'''logger = logging.getLogger("cooldown_logger")
-
-# Variable globale de dernier log
-last_warning_time = 0
-cooldown = 10  # en secondes
-
-def log_warning_with_cooldown(message):
-    global last_warning_time
-    now = time.time()
-    if now - last_warning_time >= cooldown:
-        logger.warning(message)
-        last_warning_time = now'''
