@@ -42,12 +42,12 @@ class Gui:
         self.box1_1.grid(row=0, column=0, sticky='nsew')
         self.box1_2.grid(row=0, column=1, sticky='nsew')
 
-        # Add a background image as box1_1 background
+        """# Add a background image as box1_1 background
         self.image_pillow_box1_1 = Image.open('image_Jauges_Test.jpg')
         self.background_box1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1)
         self.bg_box1_1 = Label(self.box1_1, image=self.background_box1_1)
-        self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
-
+        self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)"""
+        
         # Add labels inside box1_1
         # Onduleur data
         self.text1_box1_1 = Label(self.box1_1, text="text1_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
@@ -128,7 +128,7 @@ class Gui:
         
     def update_gui(self):
         # Get the data from onduleur and pression
-        self.check_logs_with_data(self.onduleur, self.pression)
+        #self.check_logs_with_data(self.onduleur, self.pression)
         
         # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
         if self.affichage_donnees == True:
@@ -176,19 +176,19 @@ class Gui:
         if self.affichage_donnees == False :
             self.update_gui()
             self.button_box2_3.config(text="Afficher les LOGS")
-            self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
+            #self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
             self.hide_logs_box1_1()
             self.show_data_box1_1()
-            self.resize_images()
+            #self.resize_images()
             self.update_gui()
             self.affichage_donnees = True
         else:
             self.update_gui()
             self.button_box2_3.config(text="Afficher les DONNEES")
-            self.bg_box1_1.place_forget()
+            #self.bg_box1_1.place_forget()
             self.hide_data_box1_1()
             self.show_logs_box1_1()
-            self.resize_images()
+            #self.resize_images()
             self.update_gui()
             self.affichage_donnees = False
 
