@@ -113,7 +113,7 @@ class Gui:
         self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
         self.button_box2_3 = Button(self.box2_3, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
         self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
-        self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.test_cooldown_logs)
+        self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
         self.button_box2_3.pack(expand=YES)
@@ -299,7 +299,3 @@ class Gui:
             logging.CRITICAL("Arrêt général pour cause onduleurs vides.")
         if(False): # Batterie onduleur morte.
             logging.CRITICAL("Batterie onduleur morte.")
-
-    def test_cooldown_logs(self):
-        log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur sur batterie", 5)
-        print("appui_bouton")
