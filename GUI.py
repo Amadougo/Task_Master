@@ -302,3 +302,4 @@ class Gui:
 
     def test_cooldown_logs(self):
         log_with_cooldown(logging.warning, "Coupure de courant : Onduleur sur batterie", 5)
+        print("appui_bouton")
