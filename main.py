@@ -12,7 +12,7 @@ pression = Pression()
 gui = Gui(onduleur, pression, affichage_donnees=True)
 
 # Get Onduleur and Pression data
-#gui.recuperer_donnees(onduleur, pression)
+gui.recuperer_donnees(onduleur, pression)
 
 # Rescale images
 #gui.resize_images()

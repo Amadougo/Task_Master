@@ -113,7 +113,7 @@ class Gui:
         self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))
         self.button_box2_3 = Button(self.box2_3, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
         self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
-        self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
+        self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.test_cooldown_logs)
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
         self.button_box2_3.pack(expand=YES)
@@ -129,7 +129,8 @@ class Gui:
     def update_gui(self):
         # Get the data from onduleur and pression
         #self.check_logs_with_data(self.onduleur, self.pression)
-        
+        self.recuperer_donnees(self.onduleur, self.pression)
+
         # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
         if self.affichage_donnees == True:
             self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
@@ -298,3 +299,7 @@ class Gui:
             logging.critical("Arrêt général pour cause onduleurs vides.")
         if(False): # Batterie onduleur morte.
             logging.critical("Batterie onduleur morte.")
+
+    def test_cooldown_logs(self):
+        if(self.onduleur.ups_status == "OB"): # Coupure de courant.
+            log_with_cooldown(logging.warning, "Coupure de courant : Onduleur sur batterie", 5)
