@@ -247,14 +247,12 @@ class Gui:
         if(False): # "Logs bien envoyées par mail" (mail toutes les semaines pour l'envoi des logs).
             logging.info("Logs bien envoyées par mail.")
         if(self.onduleur.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
-            logging.info("Reprise de courant : Onduleur sur secteur,")
             #logging.info(f"Temps de coupure du courant : {#calcul du temps de coupure}")
             logging.info("Envoi du mail avec le temps de coupure du courant.")
             log_with_cooldown(logging.info, "Reprise de courant : Onduleur sur secteur,", 5)
 
         # WARNING Logs
         if(self.onduleur.ups_status == "OB"): # Coupure de courant.
-            logging.warning("Coupure de courant : Onduleur sur batterie")
             log_with_cooldown(logging.warning, "Coupure de courant : Onduleur sur batterie", 5)
         if(False): # L'onduleur va se couper dans 1 minute.
             logging.warning("L'onduleur va se couper dans 1 minute.")
