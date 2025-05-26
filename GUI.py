@@ -301,5 +301,4 @@ class Gui:
             logging.critical("Batterie onduleur morte.")
 
     def test_cooldown_logs(self):
-        if(self.onduleur.ups_status == "OB"): # Coupure de courant.
-            log_with_cooldown(logging.warning, "Coupure de courant : Onduleur sur batterie", 5)
+        log_with_cooldown(logging.warning, "Coupure de courant : Onduleur sur batterie", 5)
