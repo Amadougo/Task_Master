@@ -46,6 +46,7 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
 
 #Fonctions pour récupérer les données de pression et les mettre dans la class 'Pression'
 #Récupérations globales
+#Port série pour les jauges de pression
 port = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port0'
 baud_rate = 9600
 time_out = 1
@@ -53,9 +54,21 @@ time_out = 1
 ser = serial.Serial(port, baudrate= baud_rate, timeout=time_out)
 
 if ser.is_open:
-	print(f"Port {port} ouvert avec succÃ¨s.")
+	print(f"Port {port} ouvert avec succès.")
 else:
 	print(f"Impossible d'ouvrir le Port {port}")
+
+#Port série pour les contrôleurs de pompes (SCU - 800, SCU - 1400 x2)
+port2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+baud_rate = 9600
+time_out = 1
+
+ser2 = serial.Serial(port2, baudrate= baud_rate, timeout=time_out)
+
+if ser2.is_open:
+	print(f"Port {port2} ouvert avec succès.")
+else:
+	print(f"Impossible d'ouvrir le Port {port2}")
      
 #Fonction périodique
 

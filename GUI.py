@@ -255,8 +255,8 @@ class Gui:
         # WARNING Logs
         if(self.onduleur.ups_status == "OB"): # Coupure de courant.
             log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur sur batterie", 5)
-        if(False): # L'onduleur va se couper dans 1 minute.
-            logging.WARNING("L'onduleur va se couper dans 1 minute.")
+        if(False): # L'onduleur va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
+            logging.WARNING("L'onduleur va se couper dans X minute(s). Processus d'extinction enclenché")
         if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
             logging.WARNING("La jauge de pression 1 a dépassé la valeur seuil haute.")
         if(False): # La jauge de pression 1 a dépassé la valeur seuil basse.
