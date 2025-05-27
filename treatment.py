@@ -59,7 +59,7 @@ else:
 	print(f"Impossible d'ouvrir le Port {port}")
 
 #Port série pour les contrôleurs de pompes (SCU - 800, SCU - 1400 x2)
-port2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+'''port2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
 baud_rate = 9600
 time_out = 1
 
@@ -68,7 +68,7 @@ ser2 = serial.Serial(port2, baudrate= baud_rate, timeout=time_out)
 if ser2.is_open:
 	print(f"Port {port2} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port2}")
+	print(f"Impossible d'ouvrir le Port {port2}")'''
      
 #Fonction périodique
 
