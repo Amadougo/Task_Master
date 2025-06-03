@@ -1,5 +1,5 @@
 from tkinter import * # type: ignore
-from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
+#from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 
@@ -48,12 +48,34 @@ class Gui:
         self.bg_box1_1 = Label(self.box1_1, image=self.background_box1_1)
         self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)"""
 
-        
-        
+        # Data boxes
+        for i in range(13):
+            self.box1_1.grid_rowconfigure(i, weight=1)
+
+        self.box1_1_1 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_2 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_2.grid_columnconfigure(0, weight=0) # the image dimensions stay fix
+        self.box1_1_2.grid_columnconfigure(1, weight=1) # # the text dimensions will take space left
+        self.box1_1_2.grid_columnconfigure(0, weight=0) # the image dimensions stay fix
+        self.box1_1_2.grid_columnconfigure(1, weight=1) # the text dimensions will take space left
+        self.box1_1_1.grid(row=0, column=0, sticky='nsew')
+        self.box1_1_2.grid(row=1, column=0, sticky='nsew')
+
+        # image box1_1_1 et box1_1_2
+        self.image_pillow_box1_1_1 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_box1_1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1_1)
+        self.label_image_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_box1_1_1, bg="#64698A", bd=0)
+        self.label_image_box1_1_1.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_2 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_box1_1_2 = ImageTk.PhotoImage(self.image_pillow_box1_1_2)
+        self.label_image_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_box1_1_2, bg="#64698A", bd=0)
+        self.label_image_box1_1_2.grid(row=1, column=0, sticky='nsew')
+
         # Add labels inside box1_1
         # Onduleur data
-        self.text1_box1_1 = Label(self.box1_1, text="text1_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text2_box1_1 = Label(self.box1_1, text="text2_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text1_box1_1_1 = Label(self.box1_1_1, text="text1_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text2_box1_1_2 = Label(self.box1_1_2, text="text2_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text3_box1_1 = Label(self.box1_1, text="text3_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text4_box1_1 = Label(self.box1_1, text="text4_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text5_box1_1 = Label(self.box1_1, text="text5_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
@@ -68,19 +90,32 @@ class Gui:
         self.text12_box1_1 = Label(self.box1_1, text="text12_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text13_box1_1 = Label(self.box1_1, text="text13_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
-        self.text1_box1_1.pack(expand=YES)
-        self.text2_box1_1.pack(expand=YES)
-        self.text3_box1_1.pack(expand=YES)
-        self.text4_box1_1.pack(expand=YES)
-        self.text5_box1_1.pack(expand=YES)
-        self.text6_box1_1.pack(expand=YES)
-        self.text7_box1_1.pack(expand=YES)
-        self.text8_box1_1.pack(expand=YES)
-        self.text9_box1_1.pack(expand=YES)
-        self.text10_box1_1.pack(expand=YES)
-        self.text11_box1_1.pack(expand=YES)
-        self.text12_box1_1.pack(expand=YES)
-        self.text13_box1_1.pack(expand=YES)
+        #self.text1_box1_1_1.pack(expand=YES, side=RIGHT)
+        self.text1_box1_1_1.grid(row=0, column=1, sticky='nsew')
+        #self.text2_box1_1_2.pack(expand=YES, side=RIGHT)
+        self.text2_box1_1_2.grid(row=1, column=1, sticky='nsew')
+        #self.text3_box1_1.pack(expand=YES)
+        self.text3_box1_1.grid(row=2, column=0, sticky='nsew')
+        #self.text4_box1_1.pack(expand=YES)
+        self.text4_box1_1.grid(row=3, column=0, sticky='nsew')
+        #self.text5_box1_1.pack(expand=YES)
+        self.text5_box1_1.grid(row=4, column=0, sticky='nsew')
+        #self.text6_box1_1.pack(expand=YES)
+        self.text6_box1_1.grid(row=5, column=0, sticky='nsew')
+        #self.text7_box1_1.pack(expand=YES)
+        self.text7_box1_1.grid(row=6, column=0, sticky='nsew')
+        #self.text8_box1_1.pack(expand=YES)
+        self.text8_box1_1.grid(row=7, column=0, sticky='nsew')
+        #self.text9_box1_1.pack(expand=YES)
+        self.text9_box1_1.grid(row=8, column=0, sticky='nsew')
+        #self.text10_box1_1.pack(expand=YES)
+        self.text10_box1_1.grid(row=9, column=0, sticky='nsew')
+        #self.text11_box1_1.pack(expand=YES)
+        self.text11_box1_1.grid(row=10, column=0, sticky='nsew')
+        #self.text12_box1_1.pack(expand=YES)
+        self.text12_box1_1.grid(row=11, column=0, sticky='nsew')
+        #self.text13_box1_1.pack(expand=YES)
+        self.text13_box1_1.grid(row=12, column=0, sticky='nsew')
 
         # Logs
         self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
@@ -126,17 +161,19 @@ class Gui:
         self.update_gui()
 
         # Bind the images to rescale them later
-        self.box1_1.bind("<Configure>", self.resize_images)
+        #self.box1_1.bind("<Configure>", self.resize_image_box1_1)
+        self.box1_1_1.bind("<Configure>", self.resize_image_box1_1_1)
+        self.box1_1_2.bind("<Configure>", self.resize_image_box1_1_2)
         
     def update_gui(self):
         # Get the data from onduleur and pression
         #self.check_logs_with_data(self.onduleur, self.pression)
-        self.recuperer_donnees(self.onduleur, self.pression)
+        #self.recuperer_donnees(self.onduleur, self.pression)
 
         # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
         if self.affichage_donnees == True:
-            self.text1_box1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
-            self.text2_box1_1.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
+            self.text1_box1_1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
+            self.text2_box1_1_2.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
             self.text3_box1_1.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
             self.text4_box1_1.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur.battery_runtime} s")
             self.text5_box1_1.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur.battery_charge} %")
@@ -148,6 +185,8 @@ class Gui:
             self.text11_box1_1.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
             self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
             self.text13_box1_1.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
+            self.resize_image_box1_1_1()
+            self.resize_image_box1_1_2()
         else:
             self.text1_box1_1.config(text="LOGS")
 
@@ -167,7 +206,7 @@ class Gui:
         # Display of the window
         self.window.mainloop()
 
-    def resize_images(self, event=None):
+    def resize_image_box1_1(self, event=None):
         width = self.box1_1.winfo_width()
         height = self.box1_1.winfo_height()
         if width > 0 and height > 0:
@@ -175,29 +214,60 @@ class Gui:
             self.background_box1_1_resized = ImageTk.PhotoImage(resized_image)
             self.bg_box1_1.config(image=self.background_box1_1_resized)
 
+    def resize_image_box1_1_1(self, event=None):
+        width = self.box1_1_1.winfo_width()
+        height = self.box1_1_1.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_1.resize(
+                (new_width+5, new_height+5),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_1 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_1.config(image=self.tk_resized_image_box1_1_1)
+            self.label_image_box1_1_1.image = self.tk_resized_image_box1_1_1
+
+    def resize_image_box1_1_2(self, event=None):
+        width = self.box1_1_2.winfo_width()
+        height = self.box1_1_2.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_2.resize(
+                (new_width+5, new_height+5),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_2 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_2.config(image=self.tk_resized_image_box1_1_2)
+            self.label_image_box1_1_2.image = self.tk_resized_image_box1_1_2
+
     def change_state_button_Affichage_Logs(self):
         if self.affichage_donnees == False :
-            self.update_gui()
+            #self.update_gui()
             self.button_box2_3.config(text="Afficher les LOGS")
             #self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
             self.hide_logs_box1_1()
             self.show_data_box1_1()
             #self.resize_images()
-            self.update_gui()
+            #self.update_gui()
             self.affichage_donnees = True
         else:
-            self.update_gui()
+            #self.update_gui()
             self.button_box2_3.config(text="Afficher les DONNEES")
             #self.bg_box1_1.place_forget()
             self.hide_data_box1_1()
             self.show_logs_box1_1()
             #self.resize_images()
-            self.update_gui()
+            #self.update_gui()
             self.affichage_donnees = False
+
+        self.update_gui()
 
     def hide_data_box1_1(self):
         for label in [
-            self.text1_box1_1, self.text2_box1_1, self.text3_box1_1,
+            self.label_image_box1_1_1, self.label_image_box1_1_2,
+            self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1,
             self.text4_box1_1, self.text5_box1_1, self.text6_box1_1,
             self.text7_box1_1, self.text8_box1_1, self.text9_box1_1,
             self.text10_box1_1, self.text11_box1_1, self.text12_box1_1,
@@ -207,7 +277,7 @@ class Gui:
 
     def show_data_box1_1(self):
         for label in [
-            self.text1_box1_1, self.text2_box1_1, self.text3_box1_1,
+            self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1,
             self.text4_box1_1, self.text5_box1_1, self.text6_box1_1,
             self.text7_box1_1, self.text8_box1_1, self.text9_box1_1,
             self.text10_box1_1, self.text11_box1_1, self.text12_box1_1,
