@@ -47,6 +47,8 @@ class Gui:
         self.background_box1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1)
         self.bg_box1_1 = Label(self.box1_1, image=self.background_box1_1)
         self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)"""
+
+        
         
         # Add labels inside box1_1
         # Onduleur data
