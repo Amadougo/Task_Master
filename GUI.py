@@ -9,7 +9,7 @@ class Gui:
         self.onduleur = onduleur  # Creation of the onduleur object
         self.pression = pression # Creation of the pression object
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
-        self.setup_gui()  # Initial configuration of the GUI
+        self.setup_gui()  # Initial configuration of the 
 
     def setup_gui(self):
         # Get the size of the screen
@@ -42,80 +42,144 @@ class Gui:
         self.box1_1.grid(row=0, column=0, sticky='nsew')
         self.box1_2.grid(row=0, column=1, sticky='nsew')
 
+        self.box1_1.config(highlightcolor='black', highlightthickness=2)
+
         """# Add a background image as box1_1 background
         self.image_pillow_box1_1 = Image.open('image_Jauges_Test.jpg')
         self.background_box1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1)
         self.bg_box1_1 = Label(self.box1_1, image=self.background_box1_1)
         self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)"""
 
-        # Data boxes
         for i in range(13):
-            self.box1_1.grid_rowconfigure(i, weight=1)
+            self.box1_1.grid_columnconfigure(0, weight=1)
+            self.box1_1.grid_rowconfigure(i, weight=1) # Every box will have same dimensions
 
+        # Boxes which contain image (left) and text (right)
         self.box1_1_1 = Frame(self.box1_1, bg='#64698A', bd=0)
         self.box1_1_2 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_2.grid_columnconfigure(0, weight=0) # the image dimensions stay fix
-        self.box1_1_2.grid_columnconfigure(1, weight=1) # # the text dimensions will take space left
-        self.box1_1_2.grid_columnconfigure(0, weight=0) # the image dimensions stay fix
-        self.box1_1_2.grid_columnconfigure(1, weight=1) # the text dimensions will take space left
-        self.box1_1_1.grid(row=0, column=0, sticky='nsew')
-        self.box1_1_2.grid(row=1, column=0, sticky='nsew')
+        self.box1_1_3 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_4 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_5 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_6 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_7 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_8 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_9 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_10 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_11 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_12 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_13 = Frame(self.box1_1, bg='#64698A', bd=0)
 
-        # image box1_1_1 et box1_1_2
+        i = 0
+        for label in[
+            self.box1_1_1, self.box1_1_2, self.box1_1_3, 
+            self.box1_1_4, self.box1_1_5, self.box1_1_6, 
+            self.box1_1_7, self.box1_1_8, self.box1_1_9, 
+            self.box1_1_10, self.box1_1_11, self.box1_1_12, 
+            self.box1_1_13,
+        ]:
+            label.grid_columnconfigure(0, weight=0) # the image dimensions stay fix
+            label.grid_columnconfigure(1, weight=1) # the text dimensions will take space left
+            label.grid_rowconfigure(0, weight=1)
+            label.grid(row=i, column=0, sticky='nsew')
+            i = i + 1
+
+        # images in box1_1_1 to box1_1_13
         self.image_pillow_box1_1_1 = Image.open('assets/Charge_rouge_0.png')
-        self.tk_image_box1_1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1_1)
+        self.tk_image_box1_1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1_1) # Save for TkInter
         self.label_image_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_box1_1_1, bg="#64698A", bd=0)
         self.label_image_box1_1_1.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_2 = Image.open('assets/Charge_rouge_4.png')
-        self.tk_image_box1_1_2 = ImageTk.PhotoImage(self.image_pillow_box1_1_2)
+        self.tk_image_box1_1_2 = ImageTk.PhotoImage(self.image_pillow_box1_1_2) # Save for TkInter
         self.label_image_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_box1_1_2, bg="#64698A", bd=0)
-        self.label_image_box1_1_2.grid(row=1, column=0, sticky='nsew')
+        self.label_image_box1_1_2.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_3 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_box1_1_3 = ImageTk.PhotoImage(self.image_pillow_box1_1_3) # Save for TkInter
+        self.label_image_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_box1_1_3, bg="#64698A", bd=0)
+        self.label_image_box1_1_3.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_box1_1_4 = ImageTk.PhotoImage(self.image_pillow_box1_1_4) # Save for TkInter
+        self.label_image_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_box1_1_4, bg="#64698A", bd=0)
+        self.label_image_box1_1_4.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_box1_1_5 = ImageTk.PhotoImage(self.image_pillow_box1_1_5) # Save for TkInter
+        self.label_image_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_box1_1_5, bg="#64698A", bd=0)
+        self.label_image_box1_1_5.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_box1_1_6 = ImageTk.PhotoImage(self.image_pillow_box1_1_6) # Save for TkInter
+        self.label_image_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_box1_1_6, bg="#64698A", bd=0)
+        self.label_image_box1_1_6.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_box1_1_7 = ImageTk.PhotoImage(self.image_pillow_box1_1_7) # Save for TkInter
+        self.label_image_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_box1_1_7, bg="#64698A", bd=0)
+        self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_8 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_box1_1_8 = ImageTk.PhotoImage(self.image_pillow_box1_1_8) # Save for TkInter
+        self.label_image_box1_1_8 = Label(self.box1_1_8, image=self.tk_image_box1_1_8, bg="#64698A", bd=0)
+        self.label_image_box1_1_8.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_9 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_box1_1_9 = ImageTk.PhotoImage(self.image_pillow_box1_1_9) # Save for TkInter
+        self.label_image_box1_1_9 = Label(self.box1_1_9, image=self.tk_image_box1_1_9, bg="#64698A", bd=0)
+        self.label_image_box1_1_9.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_10 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_box1_1_10 = ImageTk.PhotoImage(self.image_pillow_box1_1_10) # Save for TkInter
+        self.label_image_box1_1_10 = Label(self.box1_1_10, image=self.tk_image_box1_1_10, bg="#64698A", bd=0)
+        self.label_image_box1_1_10.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_11 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_box1_1_11 = ImageTk.PhotoImage(self.image_pillow_box1_1_11) # Save for TkInter
+        self.label_image_box1_1_11 = Label(self.box1_1_11, image=self.tk_image_box1_1_11, bg="#64698A", bd=0)
+        self.label_image_box1_1_11.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_12 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_box1_1_12 = ImageTk.PhotoImage(self.image_pillow_box1_1_12) # Save for TkInter
+        self.label_image_box1_1_12 = Label(self.box1_1_12, image=self.tk_image_box1_1_12, bg="#64698A", bd=0)
+        self.label_image_box1_1_12.grid(row=0, column=0, sticky='nsew')
+
+        self.image_pillow_box1_1_13 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_box1_1_13 = ImageTk.PhotoImage(self.image_pillow_box1_1_13) # Save for TkInter
+        self.label_image_box1_1_13 = Label(self.box1_1_13, image=self.tk_image_box1_1_13, bg="#64698A", bd=0)
+        self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
 
         # Add labels inside box1_1
         # Onduleur data
         self.text1_box1_1_1 = Label(self.box1_1_1, text="text1_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text2_box1_1_2 = Label(self.box1_1_2, text="text2_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text3_box1_1 = Label(self.box1_1, text="text3_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text4_box1_1 = Label(self.box1_1, text="text4_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text5_box1_1 = Label(self.box1_1, text="text5_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text6_box1_1 = Label(self.box1_1, text="text6_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text7_box1_1 = Label(self.box1_1, text="text7_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text3_box1_1_3 = Label(self.box1_1_3, text="text3_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text4_box1_1_4 = Label(self.box1_1_4, text="text4_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text5_box1_1_5 = Label(self.box1_1_5, text="text5_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text6_box1_1_6 = Label(self.box1_1_6, text="text6_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text7_box1_1_7 = Label(self.box1_1_7, text="text7_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Pression data
-        self.text8_box1_1 = Label(self.box1_1, text="text8_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text9_box1_1 = Label(self.box1_1, text="text9_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text10_box1_1 = Label(self.box1_1, text="text10_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text11_box1_1 = Label(self.box1_1, text="text11_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text12_box1_1 = Label(self.box1_1, text="text12_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text13_box1_1 = Label(self.box1_1, text="text13_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text8_box1_1_8 = Label(self.box1_1_8, text="text8_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text9_box1_1_9 = Label(self.box1_1_9, text="text9_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text10_box1_1_10 = Label(self.box1_1_10, text="text10_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text11_box1_1_11 = Label(self.box1_1_11, text="text11_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text12_box1_1_12 = Label(self.box1_1_12, text="text12_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text13_box1_1_13 = Label(self.box1_1_13, text="text13_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
-        #self.text1_box1_1_1.pack(expand=YES, side=RIGHT)
         self.text1_box1_1_1.grid(row=0, column=1, sticky='nsew')
-        #self.text2_box1_1_2.pack(expand=YES, side=RIGHT)
-        self.text2_box1_1_2.grid(row=1, column=1, sticky='nsew')
-        #self.text3_box1_1.pack(expand=YES)
-        self.text3_box1_1.grid(row=2, column=0, sticky='nsew')
-        #self.text4_box1_1.pack(expand=YES)
-        self.text4_box1_1.grid(row=3, column=0, sticky='nsew')
-        #self.text5_box1_1.pack(expand=YES)
-        self.text5_box1_1.grid(row=4, column=0, sticky='nsew')
-        #self.text6_box1_1.pack(expand=YES)
-        self.text6_box1_1.grid(row=5, column=0, sticky='nsew')
-        #self.text7_box1_1.pack(expand=YES)
-        self.text7_box1_1.grid(row=6, column=0, sticky='nsew')
-        #self.text8_box1_1.pack(expand=YES)
-        self.text8_box1_1.grid(row=7, column=0, sticky='nsew')
-        #self.text9_box1_1.pack(expand=YES)
-        self.text9_box1_1.grid(row=8, column=0, sticky='nsew')
-        #self.text10_box1_1.pack(expand=YES)
-        self.text10_box1_1.grid(row=9, column=0, sticky='nsew')
-        #self.text11_box1_1.pack(expand=YES)
-        self.text11_box1_1.grid(row=10, column=0, sticky='nsew')
-        #self.text12_box1_1.pack(expand=YES)
-        self.text12_box1_1.grid(row=11, column=0, sticky='nsew')
-        #self.text13_box1_1.pack(expand=YES)
-        self.text13_box1_1.grid(row=12, column=0, sticky='nsew')
+        self.text2_box1_1_2.grid(row=0, column=1, sticky='nsew')
+        self.text3_box1_1_3.grid(row=0, column=1, sticky='nsew')
+        self.text4_box1_1_4.grid(row=0, column=1, sticky='nsew')
+        self.text5_box1_1_5.grid(row=0, column=1, sticky='nsew')
+        self.text6_box1_1_6.grid(row=0, column=1, sticky='nsew')
+        self.text7_box1_1_7.grid(row=0, column=1, sticky='nsew')
+        self.text8_box1_1_8.grid(row=0, column=1, sticky='nsew')
+        self.text9_box1_1_9.grid(row=0, column=1, sticky='nsew')
+        self.text10_box1_1_10.grid(row=0, column=1, sticky='nsew')
+        self.text11_box1_1_11.grid(row=0, column=1, sticky='nsew')
+        self.text12_box1_1_12.grid(row=0, column=1, sticky='nsew')
+        self.text13_box1_1_13.grid(row=0, column=1, sticky='nsew')
 
         # Logs
         self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
@@ -161,10 +225,8 @@ class Gui:
         self.update_gui()
 
         # Bind the images to rescale them later
-        #self.box1_1.bind("<Configure>", self.resize_image_box1_1)
-        self.box1_1_1.bind("<Configure>", self.resize_image_box1_1_1)
-        self.box1_1_2.bind("<Configure>", self.resize_image_box1_1_2)
-        
+        self.window.after(500, self.force_initial_resizing)
+
     def update_gui(self):
         # Get the data from onduleur and pression
         #self.check_logs_with_data(self.onduleur, self.pression)
@@ -174,19 +236,17 @@ class Gui:
         if self.affichage_donnees == True:
             self.text1_box1_1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
             self.text2_box1_1_2.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
-            self.text3_box1_1.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
-            self.text4_box1_1.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur.battery_runtime} s")
-            self.text5_box1_1.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur.battery_charge} %")
-            self.text6_box1_1.config(text=f"Charge ups (ups_load) : {self.onduleur.ups_load} %")
-            self.text7_box1_1.config(text=f"Statut ups (ups_status) : {self.onduleur.ups_status}")
-            self.text8_box1_1.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
-            self.text9_box1_1.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo}")
-            self.text10_box1_1.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
-            self.text11_box1_1.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
-            self.text12_box1_1.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
-            self.text13_box1_1.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
-            self.resize_image_box1_1_1()
-            self.resize_image_box1_1_2()
+            self.text3_box1_1_3.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
+            self.text4_box1_1_4.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur.battery_runtime} s")
+            self.text5_box1_1_5.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur.battery_charge} %")
+            self.text6_box1_1_6.config(text=f"Charge ups (ups_load) : {self.onduleur.ups_load} %")
+            self.text7_box1_1_7.config(text=f"Statut ups (ups_status) : {self.onduleur.ups_status}")
+            self.text8_box1_1_8.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
+            self.text9_box1_1_9.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo}")
+            self.text10_box1_1_10.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
+            self.text11_box1_1_11.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
+            self.text12_box1_1_12.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
+            self.text13_box1_1_13.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
         else:
             self.text1_box1_1.config(text="LOGS")
 
@@ -221,26 +281,225 @@ class Gui:
         new_height = max(1, int(height * 0.7))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_1.resize(
-                (new_width+5, new_height+5),
+                (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
             self.tk_resized_image_box1_1_1 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_1.config(image=self.tk_resized_image_box1_1_1)
             self.label_image_box1_1_1.image = self.tk_resized_image_box1_1_1
+            print(f"[resize_image_box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
+            print(f"Frame: {self.box1_1_1.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
 
-    def resize_image_box1_1_2(self, event=None):
+    def resize_image_box1_1_2(self, event=None):        
         width = self.box1_1_2.winfo_width()
         height = self.box1_1_2.winfo_height()
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.7))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_2.resize(
-                (new_width+5, new_height+5),
+                (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
             self.tk_resized_image_box1_1_2 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_2.config(image=self.tk_resized_image_box1_1_2)
             self.label_image_box1_1_2.image = self.tk_resized_image_box1_1_2
+            print(f"[resize_image_box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
+            print(f"Frame: {self.box1_1_2.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_3(self, event=None):
+        width = self.box1_1_3.winfo_width()
+        height = self.box1_1_3.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_3.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_3 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_3.config(image=self.tk_resized_image_box1_1_3)
+            self.label_image_box1_1_3.image = self.tk_resized_image_box1_1_3
+            print(f"Frame: {self.box1_1_3.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_4(self, event=None):
+        width = self.box1_1_4.winfo_width()
+        height = self.box1_1_4.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_4.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_4 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_4.config(image=self.tk_resized_image_box1_1_4)
+            self.label_image_box1_1_4.image = self.tk_resized_image_box1_1_4
+            print(f"Frame: {self.box1_1_4.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_5(self, event=None):
+        width = self.box1_1_5.winfo_width()
+        height = self.box1_1_5.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_5.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_5 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_5.config(image=self.tk_resized_image_box1_1_5)
+            self.label_image_box1_1_5.image = self.tk_resized_image_box1_1_5
+            print(f"Frame: {self.box1_1_5.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_6(self, event=None):
+        width = self.box1_1_6.winfo_width()
+        height = self.box1_1_6.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_6.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_6 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_6.config(image=self.tk_resized_image_box1_1_6)
+            self.label_image_box1_1_6.image = self.tk_resized_image_box1_1_6
+            print(f"Frame: {self.box1_1_6.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_7(self, event=None):
+        width = self.box1_1_7.winfo_width()
+        height = self.box1_1_7.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_7.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_7 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_7.config(image=self.tk_resized_image_box1_1_7)
+            self.label_image_box1_1_7.image = self.tk_resized_image_box1_1_7
+            print(f"Frame: {self.box1_1_7.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_8(self, event=None):
+        width = self.box1_1_8.winfo_width()
+        height = self.box1_1_8.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_8.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_8 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_8.config(image=self.tk_resized_image_box1_1_8)
+            self.label_image_box1_1_8.image = self.tk_resized_image_box1_1_8
+            print(f"Frame: {self.box1_1_8.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_9(self, event=None):
+        width = self.box1_1_9.winfo_width()
+        height = self.box1_1_9.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_9.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_9 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_9.config(image=self.tk_resized_image_box1_1_9)
+            self.label_image_box1_1_9.image = self.tk_resized_image_box1_1_9
+            print(f"Frame: {self.box1_1_9.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_10(self, event=None):
+        width = self.box1_1_10.winfo_width()
+        height = self.box1_1_10.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_10.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_10 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_10.config(image=self.tk_resized_image_box1_1_10)
+            self.label_image_box1_1_10.image = self.tk_resized_image_box1_1_10
+            print(f"Frame: {self.box1_1_10.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_11(self, event=None):
+        width = self.box1_1_11.winfo_width()
+        height = self.box1_1_11.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_11.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_11 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_11.config(image=self.tk_resized_image_box1_1_11)
+            self.label_image_box1_1_11.image = self.tk_resized_image_box1_1_11
+            print(f"Frame: {self.box1_1_11.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_12(self, event=None):
+        width = self.box1_1_12.winfo_width()
+        height = self.box1_1_12.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_12.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_12 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_12.config(image=self.tk_resized_image_box1_1_12)
+            self.label_image_box1_1_12.image = self.tk_resized_image_box1_1_12
+            print(f"Frame: {self.box1_1_12.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_box1_1_13(self, event=None):
+        width = self.box1_1_13.winfo_width()
+        height = self.box1_1_13.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_pillow_box1_1_13.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_box1_1_13 = ImageTk.PhotoImage(resized_image)
+            self.label_image_box1_1_13.config(image=self.tk_resized_image_box1_1_13)
+            self.label_image_box1_1_13.image = self.tk_resized_image_box1_1_13
+            print(f"Frame: {self.box1_1_13.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def configure_initial_resizing(self):
+        self.box1_1_1.bind("<Configure>", self.resize_image_box1_1_1)
+        self.box1_1_2.bind("<Configure>", self.resize_image_box1_1_2)
+        self.box1_1_3.bind("<Configure>", self.resize_image_box1_1_3)
+        self.box1_1_4.bind("<Configure>", self.resize_image_box1_1_4)
+        self.box1_1_5.bind("<Configure>", self.resize_image_box1_1_5)
+        self.box1_1_6.bind("<Configure>", self.resize_image_box1_1_6)
+        self.box1_1_7.bind("<Configure>", self.resize_image_box1_1_7)
+        self.box1_1_8.bind("<Configure>", self.resize_image_box1_1_8)
+        self.box1_1_9.bind("<Configure>", self.resize_image_box1_1_9)
+        self.box1_1_10.bind("<Configure>", self.resize_image_box1_1_10)
+        self.box1_1_11.bind("<Configure>", self.resize_image_box1_1_11)
+        self.box1_1_12.bind("<Configure>", self.resize_image_box1_1_12)
+        self.box1_1_13.bind("<Configure>", self.resize_image_box1_1_13)
+
+    def force_initial_resizing(self):
+        self.resize_image_box1_1_1()
+        self.resize_image_box1_1_2()
+        self.resize_image_box1_1_3()
+        self.resize_image_box1_1_4()
+        self.resize_image_box1_1_5()
+        self.resize_image_box1_1_6()
+        self.resize_image_box1_1_7()
+        self.resize_image_box1_1_8()
+        self.resize_image_box1_1_9()
+        self.resize_image_box1_1_10()
+        self.resize_image_box1_1_11()
+        self.resize_image_box1_1_12()
+        self.resize_image_box1_1_13()
 
     def change_state_button_Affichage_Logs(self):
         if self.affichage_donnees == False :

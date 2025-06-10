@@ -14,9 +14,11 @@ gui = Gui(onduleur, pression, affichage_donnees=True)
 # Get Onduleur and Pression data
 #gui.recuperer_donnees(onduleur, pression)
 
-
 """# Rescale images
 #gui.resize_images()"""
+
+# Force the resize of boxes dimensions
+gui.force_initial_resizing()
 
 # Run the user interface
 gui.run()
