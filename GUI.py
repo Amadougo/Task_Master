@@ -10,7 +10,6 @@ class Gui:
         self.pression = pression # Creation of the pression object
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.setup_gui()  # Initial configuration of the 
-        self.config(cursor='arrow')
 
     def setup_gui(self):
         # Get the size of the screen
@@ -221,6 +220,9 @@ class Gui:
         self.button_box2_3.pack(expand=YES)
         self.button_box2_4.pack(expand=YES)
         self.button_box2_5.pack(expand=YES)
+
+        # Show the arrow cursor in Window
+        self.window.config(cursor="arrow")
 
         # Initialisation of the GUI
         self.update_gui()
