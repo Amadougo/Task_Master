@@ -17,9 +17,7 @@ class Gui:
         screen_height = self.window.winfo_screenheight()
 
         # Edit of the main features for the window
-        # self.window.attributes('-fullscreen', YES)
-        self.window.overrideredirect(TRUE)
-        self.window.geometry(f"{screen_width}x{screen_height}+0+0")
+        self.window.attributes('-fullscreen', YES)
         self.window.configure(bg='#64698A')
 
         # Configuration of the main grid (to place boxes in)
