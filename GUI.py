@@ -10,6 +10,7 @@ class Gui:
         self.pression = pression # Creation of the pression object
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.setup_gui()  # Initial configuration of the 
+        self.config(cursor='arrow')
 
     def setup_gui(self):
         # Get the size of the screen
