@@ -19,7 +19,7 @@ class Gui:
         # Edit of the main features for the window
         # self.window.attributes('-fullscreen', YES)
         self.window.overrideredirect(TRUE)
-        self.window.state('zoomed')
+        self.window.geometry(f"{screen_width}x{screen_height}+0+0")
         self.window.configure(bg='#64698A')
 
         # Configuration of the main grid (to place boxes in)
