@@ -2,6 +2,11 @@ from data import Onduleur, Pression
 import subprocess
 import serial
 import time
+import math
+
+#Variables globales
+t_0 = 0.0 # = time.clock_gettime(time.CLOCK_MONOTONIC)
+etat_cathode = "FROIDE"
 
 #Fonction qui définie la récupération de données auprès de NUT
 def get_ups_data(ups_name="onduleur@localhost"):
@@ -203,7 +208,65 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
         else :
             pression.Jauge_6_Vide = 'Déconnectée'
     return Pression
+
+def controle_cathode() :
+    # récupération du courant
+    command = "I?\n"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    print(f"Le courant est : {response}A")
+    courant_cathode = float(response.split("A ")[1])
+
+    # récupération de la tension
+    command = "V?\n"
+    ser.write(command.encode())
+    response = ser.readline().decode().strip()
+    print(f"La tension est : {response}V")
+    tension_cathode = float(response.split("V ")[1])
+
+    if tension_cathode != 18.00 :
+        command = "V 18.00\n"
+        ser.write(command.encode())
+
+    if etat_cathode == "CHAUFFE" :  # type: ignore
+        #Calcul du temps écoulé
+        t_ecoule = time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
+        #Test si fini
+        if (courant_cathode > 8.00) or (t_ecoule > 2700) :
+            etat_cathode = "CHAUDE"
+            return
+        #Calcul de la fonction
+        intensite_cathode = math.sqrt(t_ecoule/42.1875)
+        #Mise à jour du courant
+        command = "I " + str(intensite_cathode) + "\n"
+        ser.write(command.encode())
+
+
+    if etat_cathode == "REFROIDISSEMENT" :  # type: ignore
+        #Calcul du temps écoulé
+        t_ecoule = 2700 - time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
+        #Test si fini
+        if (courant_cathode <= 0.38) or (t_ecoule <= 0) :
+            etat_cathode = "FROIDE"
+            return
+        #Calcul de la fonction
+        intensite_cathode = math.sqrt(t_ecoule/42.1875)
+        #Mise à jour du courant
+        command = "I " + str(intensite_cathode) + "\n"
+        ser.write(command.encode())
+
     
+
+
+
+
+
+
+
+
+
+
+
 '''
 def recuperer_donnees_pression(pression : Pression) :
     #Cette commande renvoie les valeurs de toutes les jauges
