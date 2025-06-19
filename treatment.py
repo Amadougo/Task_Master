@@ -139,7 +139,7 @@ def recuperer_donnees_pression_jauge3(pression : Pression) : #913, 914, 915, 934
     return Pression
 
 def recuperer_donnees_pression_jauge4(pression : Pression) : #913, 914, 915, 934, 935, 936
-    #Cette commande renvoie les valeurs de toutes les jauges
+    #Cette commande renvoie les valeurs de 1 jauge
     command = "?V934\r"
     ser.write(command.encode())
     response = ser.readline().decode().strip()
