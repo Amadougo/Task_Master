@@ -1,16 +1,16 @@
 print("Chargement de data.py\n")
+# Définition du type énuméré EtatCathode
+from enum import Enum
 
 class Onduleur :
-    def __init__(
-        self,
-        input_voltage: int = 0,
-        input_frequency: float = 0.0,
-        battery_voltage: float = 0.0,
-        battery_runtime: int = 0,
-        battery_charge: int = 0,
-        ups_load: int = 0,
-        ups_status: str = ""
-    ):
+    def __init__(self,
+                 input_voltage: int = 0,
+                 input_frequency: float = 0.0,
+                 battery_voltage: float = 0.0,
+                 battery_runtime: int = 0,
+                 battery_charge: int = 0,
+                 ups_load: int = 0,
+                 ups_status: str = ""):
         self.input_voltage = input_voltage
         self.input_frequency = input_frequency
         self.battery_voltage = battery_voltage
@@ -29,15 +29,13 @@ class Onduleur :
         print(f"Statut : {self.ups_status}")
 
 class Pression :
-    def __init__(
-        self,
-        Jauge_1_Turbo: str = "Déconnectée",
-        Jauge_2_Turbo: str = "Déconnectée",
-        Jauge_3_Turbo: str = "Déconnectée",
-        Jauge_4_Turbo: str = "Déconnectée",
-        Jauge_5_Primaire: str = "Déconnectée",
-        Jauge_6_Vide: str = "Déconnectée",
-    ):
+    def __init__(self,
+                 Jauge_1_Turbo: str = "Déconnectée",
+                 Jauge_2_Turbo: str = "Déconnectée",
+                 Jauge_3_Turbo: str = "Déconnectée",
+                 Jauge_4_Turbo: str = "Déconnectée",
+                 Jauge_5_Primaire: str = "Déconnectée",
+                 Jauge_6_Vide: str = "Déconnectée"):
         self.Jauge_1_Turbo = Jauge_1_Turbo
         self.Jauge_2_Turbo = Jauge_2_Turbo
         self.Jauge_3_Turbo = Jauge_3_Turbo
@@ -53,3 +51,22 @@ class Pression :
         print(f"Jauge 5 Pompe primaire : {self.Jauge_5_Primaire} ")
         print(f"Jauge 6 Pompe non connectée : {self.Jauge_6_Vide} ")
 
+class EtatCathode(Enum):
+    FROIDE = "froide"
+    CHAUFFE = "chauffe"
+    CHAUDE = "chaude"
+    REFROIDISSEMENT = "refroidissement"
+
+class Cathode:
+    def __init__(self,
+                 etat: EtatCathode = EtatCathode.FROIDE,
+                 tension: float = 0.0,
+                 courant: float = 0.0):
+        self.etat = etat
+        self.tension = tension
+        self.courant = courant
+
+    def afficher_donnees(self):
+        print(f"État de la cathode : {self.etat.value}")
+        print(f"Tension : {self.tension} V")
+        print(f"Courant : {self.courant} A")
