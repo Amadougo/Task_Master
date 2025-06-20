@@ -1,4 +1,4 @@
-from data import Onduleur, Pression, EtatCathode
+from data import Onduleur, Pression, Cathode
 #from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 from GUI import Gui # import the GUI class from GUI.py
 
@@ -8,10 +8,11 @@ onduleur = Onduleur()
 # Creation of a Pression object
 pression = Pression()
 
-etat_cathode = EtatCathode()
+# Creation of a Cathode object
+cathode = Cathode()
 
 # Creation of the GUI
-gui = Gui(onduleur, pression, etat_cathode, affichage_donnees=True)
+gui = Gui(onduleur, pression, cathode, affichage_donnees=True)
 
 # Get Onduleur and Pression data
 #gui.recuperer_donnees(onduleur, pression)

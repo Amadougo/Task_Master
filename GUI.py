@@ -4,11 +4,11 @@ from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 
 class Gui:
-    def __init__(self, onduleur, pression, etat_cathode, affichage_donnees):
+    def __init__(self, onduleur, pression, cathode, affichage_donnees):
         self.window = Tk()  # Creation of the window (Graphical User Interface)
         self.onduleur = onduleur  # Creation of the onduleur object
         self.pression = pression # Creation of the pression object
-        self.etat_cathode = etat_cathode
+        self.cathode = cathode # Creation of the cathode object
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.setup_gui()  # Initial configuration of the 
 
