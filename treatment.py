@@ -210,53 +210,54 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
     return Pression
 
 def controle_cathode() :
-    # récupération du courant
+
+    #Récupration du courant
     command = "I?\n"
     ser.write(command.encode())
     response = ser.readline().decode().strip()
-    print(f"Le courant est : {response}A")
-    courant_cathode = float(response.split("A ")[1])
+    courant_cathode = float(response[len("I "):])
+    print(f"Le courant est : {courant_cathode}A")
 
-    # récupération de la tension
+    #Récupration de la tension
     command = "V?\n"
     ser.write(command.encode())
     response = ser.readline().decode().strip()
-    print(f"La tension est : {response}V")
-    tension_cathode = float(response.split("V ")[1])
-
+    tension_cathode = float(response[len("V "):])
+    print(f"La tension est : {tension_cathode}V")
+    
     if tension_cathode != 18.00 :
         command = "V 18.00\n"
         ser.write(command.encode())
 
     if etat_cathode == "CHAUFFE" :  # type: ignore
-        #Calcul du temps écoulé
+        #Calcul du temps ecoulÃ©
         t_ecoule = time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
+        print(f"temps écoulé = {t_ecoule}")
         #Test si fini
         if (courant_cathode > 8.00) or (t_ecoule > 2700) :
             etat_cathode = "CHAUDE"
             return
         #Calcul de la fonction
         intensite_cathode = math.sqrt(t_ecoule/42.1875)
-        #Mise à jour du courant
+        #Mise Ã  jour du courant
         command = "I " + str(intensite_cathode) + "\n"
+        print(f" commande envoyée : {command}")
         ser.write(command.encode())
 
-
-    if etat_cathode == "REFROIDISSEMENT" :  # type: ignore
-        #Calcul du temps écoulé
-        t_ecoule = 2700 - time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
-        #Test si fini
-        if (courant_cathode <= 0.38) or (t_ecoule <= 0) :
-            etat_cathode = "FROIDE"
-            return
-        #Calcul de la fonction
-        intensite_cathode = math.sqrt(t_ecoule/42.1875)
-        #Mise à jour du courant
-        command = "I " + str(intensite_cathode) + "\n"
-        ser.write(command.encode())
-
+        if etat_cathode == "REFROIDISSEMENT" :  # type: ignore
+            #Calcul du temps écoulé
+            t_ecoule = 2700 - time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
+            #Test si fini
+            if (courant_cathode <= 0.38) or (t_ecoule <= 0) :
+                etat_cathode = "FROIDE"
+                return
+            #Calcul de la fonction
+            intensite_cathode = math.sqrt(t_ecoule/42.1875)
+            #Mise à jour du courant
+            command = "I " + str(intensite_cathode) + "\n"
+            print(f" commande envoyée : {command}")
+            ser.write(command.encode())
     
-
 
 
 
