@@ -211,9 +211,9 @@ class Gui:
 
         # Add button inside each box
         self.button_box2_1 = Button(self.box2_1, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
-        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16))#, command=self.desactivate_buttons_Chauffe_et_Refroidissement_Cathode)
+        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16), command=self.desactivate_buttons_Chauffe_et_Refroidissement_Cathode)
         self.button_box2_3 = Button(self.box2_3, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
-        self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))#, command=self.desactivate_buttons_Chauffe_et_Refroidissement_Cathode)
+        self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.desactivate_buttons_Chauffe_et_Refroidissement_Cathode)
         self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
@@ -634,5 +634,45 @@ class Gui:
         if(False): # Batterie onduleur morte.
             logging.CRITICAL("Batterie onduleur morte.")
 
-def desactivate_buttons_Chauffe_et_Refroidissement_Cathode(self):
-    # Fonction à écrire avec pop-up lors de l'appui sur un des 2 boutons
+    def desactivate_buttons_Chauffe_et_Refroidissement_Cathode(self):
+        popup = Toplevel(self.window)
+        popup.title("Confirmation")
+        popup.geometry("400x200")
+        popup.transient(self.window) 
+        popup.grab_set()
+        popup.focus_force()
+
+        # ----- Centrage -----
+        self.window.update_idletasks()  # Assure les dimensions correctes
+        window_width = 400
+        window_height = 200
+
+        # Récupère la position de la fenêtre principale
+        x = self.window.winfo_x()
+        y = self.window.winfo_y()
+        w = self.window.winfo_width()
+        h = self.window.winfo_height()
+
+        # Calcule les coordonnées pour centrer la popup par rapport à la fenêtre principale
+        x_center = x + (w - window_width) // 2
+        y_center = y + (h - window_height) // 2
+
+        popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
+        # ---------------------
+
+        label = Label(popup, text="Êtes-vous sûr de vouloir continuer ?", font=("Arial", 14))
+        label.pack(pady=20)
+
+        def on_yes():
+            print("Action confirmée.")
+            popup.destroy()
+
+        def on_no():
+            print("Action annulée.")
+            popup.destroy()
+
+        bouton_oui = Button(popup, text="Oui, je suis sûr de mon choix", command=on_yes)
+        bouton_oui.pack(pady=5)
+
+        bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
+        bouton_non.pack(pady=5)
