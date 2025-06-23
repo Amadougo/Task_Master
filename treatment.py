@@ -1,4 +1,4 @@
-from data import Onduleur, Pression, EtatCathode
+from data import Onduleur, Pression, Cathode, EtatCathode
 import subprocess
 import serial
 import time
@@ -208,7 +208,7 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
             pression.Jauge_6_Vide = 'Déconnectée'
     return Pression
 
-def controle_cathode(etat_cathode: EtatCathode):
+def controle_cathode(cathode: Cathode):
 
     #Récupration du courant
     command = "I?\n"
@@ -228,13 +228,13 @@ def controle_cathode(etat_cathode: EtatCathode):
         command = "V 18.00\n"
         ser.write(command.encode())
 
-    if etat_cathode == EtatCathode.CHAUFFE : 
+    if cathode.etat == EtatCathode.CHAUFFE : 
         #Calcul du temps ecoulÃ©
         t_ecoule = time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
         print(f"temps écoulé = {t_ecoule}")
         #Test si fini
         if (courant_cathode > 8.00) or (t_ecoule > 2700) :
-            etat_cathode = EtatCathode.CHAUDE
+            cathode.etat = EtatCathode.CHAUDE
             return
         #Calcul de la fonction
         intensite_cathode = math.sqrt(t_ecoule/42.1875)
@@ -243,12 +243,12 @@ def controle_cathode(etat_cathode: EtatCathode):
         print(f" commande envoyée : {command}")
         ser.write(command.encode())
 
-    if etat_cathode == EtatCathode.REFROIDISSEMENT : 
+    if cathode.etat == EtatCathode.REFROIDISSEMENT : 
         #Calcul du temps écoulé
         t_ecoule = 2700 - time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
         #Test si fini
         if (courant_cathode <= 0.38) or (t_ecoule <= 0) :
-            etat_cathode = EtatCathode.FROIDE
+            cathode.etat = EtatCathode.FROIDE
             return
         #Calcul de la fonction
         intensite_cathode = math.sqrt(t_ecoule/42.1875)
