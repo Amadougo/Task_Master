@@ -1,8 +1,10 @@
 from tkinter import * # type: ignore
 #from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
+#from treatment import controle_cathode
 from data import EtatCathode as etatCathode
 from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
+import time
 
 class Gui:
     def __init__(self, onduleur, pression, cathode, affichage_donnees):
@@ -260,6 +262,7 @@ class Gui:
             elif ((self.cathode.etat == etatCathode.REFROIDISSEMENT) or (self.cathode.etat == etatCathode.CHAUFFE)):
                 self.button_box2_2.config(state="disabled")
                 self.button_box2_4.config(state="disabled")
+                #self.window.after(5400, self.controle_cathode)
         else:
             self.text1_box1_1.config(text="LOGS")
 
@@ -677,26 +680,26 @@ class Gui:
         label_2.pack(pady=20)
 
         # Zone de saisie de l'intensité (en A)
-        entry_intensity = Entry(popup, font=("Arial", 12))
+        entry_intensity = Spinbox(popup, from_=0.00, to=9.00, increment=0.01, format="%.2f", width=10)
         entry_intensity.pack()
 
         label_3 = Label(popup, text="Entrer le temps de consigne (en min, temps conseillé : [30;60]minutes)", font=("Arial", 14))
         label_3.pack(pady=20)
 
         # Zone de saisie de l'intensité (en min)
-        entry_time = Entry(popup, font=("Arial", 12))
+        entry_time = Spinbox(popup, from_=0, to=60, increment=1, width=10)
         entry_time.pack()
 
         def on_yes():
-            self.cathode.consigne_courant = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
-            user_input_time = entry_time.get() # Récupère le temps de consigne (en min)
-            
-            self.cathode.t_0 = time.clock_gettime(time.CLOCK_MONOTONIC)
+            self.cathode.consigne_courant = entry_intensity.get() # Récupère l'intensité de consigne (en A)
+            self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
+            self.cathode.t_0 = time.monotonic()
             self.cathode.etat = etatCathode.CHAUFFE
+            
             print("Action confirmée.")
             popup.destroy()
-            print(f"user_input_intensity = {user_input_intensity}")
-            print(f"user_input_time = {user_input_time}")
+            print(f"user_input_intensity = {self.cathode.consigne_courant}")
+            print(f"user_input_time = {self.cathode.consigne_temps}")
 
         def on_no():
             print("Action annulée.")
@@ -737,27 +740,30 @@ class Gui:
         label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (refroidissement de la cathode) ?", font=("Arial", 14))
         label_1.pack(pady=40)
 
-        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, intensité conseillée : [0;9]Ampères)", font=("Arial", 14))
+        label_2 = Label(popup, text="Entrer l'intensité de consigne (par pas de 0.01 A, intensité conseillée : [0.00;9.00]Ampères)", font=("Arial", 14))
         label_2.pack(pady=20)
 
-        # Zone de saisie de l'intensité (en A)
-        entry_intensity = Entry(popup, font=("Arial", 12))
+        # Zone de saisie de l'intensité (en A) par pas de 0.01A
+        entry_intensity = Spinbox(popup, from_=0.00, to=9.00, increment=0.01, format="%.2f", width=10)
         entry_intensity.pack()
 
         label_3 = Label(popup, text="Entrer le temps de consigne (en min, temps conseillé : [30;60]minutes)", font=("Arial", 14))
         label_3.pack(pady=20)
 
         # Zone de saisie de l'intensité (en min)
-        entry_time = Entry(popup, font=("Arial", 12))
+        entry_time = Spinbox(popup, from_=0, to=60, increment=1, width=10)
         entry_time.pack()
 
         def on_yes():
-            user_input_intensity = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
-            user_input_time = entry_time.get() # Récupère le temps de consigne (en min)
+            self.cathode.consigne_courant = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
+            self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
+            self.cathode.t_0 = time.monotonic()
+            self.cathode.etat = etatCathode.REFROIDISSEMENT
+
             print("Action confirmée.")
             popup.destroy()
-            print(f"user_input_intensity = {user_input_intensity}")
-            print(f"user_input_time = {user_input_time}")
+            print(f"user_input_intensity = {self.cathode.consigne_courant}")
+            print(f"user_input_time = {self.cathode.consigne_temps}")
 
         def on_no():
             print("Action annulée.")
