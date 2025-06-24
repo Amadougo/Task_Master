@@ -60,11 +60,17 @@ class EtatCathode(Enum):
 class Cathode:
     def __init__(self,
                  etat: EtatCathode = EtatCathode.FROIDE,
+                 t_0: float = 0.0,
                  tension: float = 0.0,
-                 courant: float = 0.0):
+                 courant: float = 0.0,
+                 consigne_courant: float = 0.0,
+                 consigne_temps: int = 0):
         self.etat = etat
+        self.t_0 = t_0
         self.tension = tension
         self.courant = courant
+        self.consigne_courant = consigne_courant
+        self.consigne_temps = consigne_temps
 
     def afficher_donnees(self):
         print(f"État de la cathode : {self.etat.value}")

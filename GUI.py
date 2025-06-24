@@ -1,5 +1,6 @@
 from tkinter import * # type: ignore
 #from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
+from data import EtatCathode as etatCathode
 from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 
@@ -8,7 +9,7 @@ class Gui:
         self.window = Tk()  # Creation of the window (Graphical User Interface)
         self.onduleur = onduleur  # Creation of the onduleur object
         self.pression = pression # Creation of the pression object
-        self.cathode = cathode # Creation of the cathode object
+        self.cathode = cathode # Creation of the cathode object 
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.setup_gui()  # Initial configuration of the 
 
@@ -212,9 +213,9 @@ class Gui:
 
         # Add button inside each box
         self.button_box2_1 = Button(self.box2_1, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
-        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16), command=self.desactivate_buttons_Chauffe_et_Refroidissement_Cathode)
+        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16), command=self.bouton_Refroidissement_Cathode)
         self.button_box2_3 = Button(self.box2_3, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
-        self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.desactivate_buttons_Chauffe_et_Refroidissement_Cathode)
+        self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.bouton_Chauffe_Cathode)
         self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
@@ -251,6 +252,14 @@ class Gui:
             self.text11_box1_1_11.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
             self.text12_box1_1_12.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
             self.text13_box1_1_13.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
+            
+            # Gestion des boutons de chauffe et refroidissement de la cathode
+            if ((self.cathode.etat == etatCathode.FROIDE) or (self.cathode.etat == etatCathode.CHAUDE)):
+                self.button_box2_2.config(state="normal") 
+                self.button_box2_4.config(state="normal")
+            elif ((self.cathode.etat == etatCathode.REFROIDISSEMENT) or (self.cathode.etat == etatCathode.CHAUFFE)):
+                self.button_box2_2.config(state="disabled")
+                self.button_box2_4.config(state="disabled")
         else:
             self.text1_box1_1.config(text="LOGS")
 
@@ -635,10 +644,10 @@ class Gui:
         if(False): # Batterie onduleur morte.
             logging.CRITICAL("Batterie onduleur morte.")
 
-    def desactivate_buttons_Chauffe_et_Refroidissement_Cathode(self):
+    def bouton_Chauffe_Cathode(self):
         popup = Toplevel(self.window)
-        popup.title("Confirmation")
-        popup.geometry("400x200")
+        popup.title("Confirmation chauffe cathode")
+        popup.geometry("800x400")
         popup.transient(self.window) 
         popup.grab_set()
         popup.focus_force()
@@ -661,17 +670,81 @@ class Gui:
         popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
         # ---------------------
 
-        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer ?", font=("Arial", 14))
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (chauffage de la cathode) ?", font=("Arial", 14))
         label_1.pack(pady=40)
 
-        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, [0;9]Ampères)", font=("Arial", 14))
+        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, intensité conseillée : [0;9]Ampères)", font=("Arial", 14))
         label_2.pack(pady=20)
 
         # Zone de saisie de l'intensité (en A)
         entry_intensity = Entry(popup, font=("Arial", 12))
         entry_intensity.pack()
 
-        label_3 = Label(popup, text="Entrer le temps de consigne (en min, [30;60]minutes)", font=("Arial", 14))
+        label_3 = Label(popup, text="Entrer le temps de consigne (en min, temps conseillé : [30;60]minutes)", font=("Arial", 14))
+        label_3.pack(pady=20)
+
+        # Zone de saisie de l'intensité (en min)
+        entry_time = Entry(popup, font=("Arial", 12))
+        entry_time.pack()
+
+        def on_yes():
+            self.cathode.consigne_courant = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
+            user_input_time = entry_time.get() # Récupère le temps de consigne (en min)
+            
+            self.cathode.t_0 = time.clock_gettime(time.CLOCK_MONOTONIC)
+            self.cathode.etat = etatCathode.CHAUFFE
+            print("Action confirmée.")
+            popup.destroy()
+            print(f"user_input_intensity = {user_input_intensity}")
+            print(f"user_input_time = {user_input_time}")
+
+        def on_no():
+            print("Action annulée.")
+            popup.destroy()
+
+        bouton_oui = Button(popup, text="Oui, je suis sûr de mon choix", command=on_yes)
+        bouton_oui.pack(pady=5)
+
+        bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
+        bouton_non.pack()
+
+    def bouton_Refroidissement_Cathode(self):
+        popup = Toplevel(self.window)
+        popup.title("Confirmation refroidissement cathode")
+        popup.geometry("800x400")
+        popup.transient(self.window) 
+        popup.grab_set()
+        popup.focus_force()
+
+        # ----- Centrage de la pop up dans l'écran -----
+        self.window.update_idletasks()  # Assure les dimensions correctes
+        window_width = 800
+        window_height = 400
+
+        # Récupère la position de la fenêtre principale
+        x = self.window.winfo_x()
+        y = self.window.winfo_y()
+        w = self.window.winfo_width()
+        h = self.window.winfo_height()
+
+        # Calcule les coordonnées pour centrer la popup par rapport à la fenêtre principale
+        x_center = x + (w - window_width) // 2
+        y_center = y + (h - window_height) // 2
+
+        popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
+        # ---------------------
+
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (refroidissement de la cathode) ?", font=("Arial", 14))
+        label_1.pack(pady=40)
+
+        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, intensité conseillée : [0;9]Ampères)", font=("Arial", 14))
+        label_2.pack(pady=20)
+
+        # Zone de saisie de l'intensité (en A)
+        entry_intensity = Entry(popup, font=("Arial", 12))
+        entry_intensity.pack()
+
+        label_3 = Label(popup, text="Entrer le temps de consigne (en min, temps conseillé : [30;60]minutes)", font=("Arial", 14))
         label_3.pack(pady=20)
 
         # Zone de saisie de l'intensité (en min)
