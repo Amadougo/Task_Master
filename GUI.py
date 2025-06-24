@@ -13,7 +13,7 @@ class Gui:
         self.pression = pression # Creation of the pression object
         self.cathode = cathode # Creation of the cathode object 
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
-        self.setup_gui()  # Initial configuration of the 
+        self.setup_gui()  # Initial configuration of the gui setup
 
     def setup_gui(self):
         # Get the size of the screen
@@ -231,6 +231,9 @@ class Gui:
         # Initialisation of the GUI
         self.update_gui()
 
+        # Callback controle_cathode function
+        #self.window.after(5400, self.controle_cathode)
+
         # Bind the images to rescale them later
         self.window.after(500, self.force_initial_resizing)
 
@@ -262,7 +265,6 @@ class Gui:
             elif ((self.cathode.etat == etatCathode.REFROIDISSEMENT) or (self.cathode.etat == etatCathode.CHAUFFE)):
                 self.button_box2_2.config(state="disabled")
                 self.button_box2_4.config(state="disabled")
-                #self.window.after(5400, self.controle_cathode)
         else:
             self.text1_box1_1.config(text="LOGS")
 
