@@ -4,9 +4,6 @@ import serial
 import time
 import math
 
-#Variables globales
-t_0 = 0.0 # = time.clock_gettime(time.CLOCK_MONOTONIC)
-
 #Fonction qui définie la récupération de données auprès de NUT
 def get_ups_data(ups_name="onduleur@localhost"):
     try:
@@ -230,7 +227,7 @@ def controle_cathode(cathode: Cathode):
 
     if cathode.etat == EtatCathode.CHAUFFE : 
         #Calcul du temps ecoulÃ©
-        t_ecoule = time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
+        t_ecoule = time.clock_gettime(time.CLOCK_MONOTONIC) - cathode.t_0
         print(f"temps écoulé = {t_ecoule}")
         #Test si fini
         if (courant_cathode > 8.00) or (t_ecoule > 2700) :
@@ -245,7 +242,7 @@ def controle_cathode(cathode: Cathode):
 
     if cathode.etat == EtatCathode.REFROIDISSEMENT : 
         #Calcul du temps écoulé
-        t_ecoule = 2700 - time.clock_gettime(time.CLOCK_MONOTONIC) - t_0
+        t_ecoule = 2700 - time.clock_gettime(time.CLOCK_MONOTONIC) - cathode.t_0
         #Test si fini
         if (courant_cathode <= 0.38) or (t_ecoule <= 0) :
             cathode.etat = EtatCathode.FROIDE
