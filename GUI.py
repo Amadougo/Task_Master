@@ -645,8 +645,8 @@ class Gui:
 
         # ----- Centrage de la pop up dans l'écran -----
         self.window.update_idletasks()  # Assure les dimensions correctes
-        window_width = 400
-        window_height = 200
+        window_width = 800
+        window_height = 400
 
         # Récupère la position de la fenêtre principale
         x = self.window.winfo_x()
@@ -661,12 +661,30 @@ class Gui:
         popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
         # ---------------------
 
-        label = Label(popup, text="Êtes-vous sûr de vouloir continuer ?", font=("Arial", 14))
-        label.pack(pady=20)
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer ?", font=("Arial", 14))
+        label_1.pack(pady=40)
+
+        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, [0;9]Ampères)", font=("Arial", 14))
+        label_2.pack(pady=20)
+
+        # Zone de saisie de l'intensité (en A)
+        entry_intensity = Entry(popup, font=("Arial", 12))
+        entry_intensity.pack()
+
+        label_3 = Label(popup, text="Entrer le temps de consigne (en min, [30;60]minutes)", font=("Arial", 14))
+        label_3.pack(pady=20)
+
+        # Zone de saisie de l'intensité (en min)
+        entry_time = Entry(popup, font=("Arial", 12))
+        entry_time.pack()
 
         def on_yes():
+            user_input_intensity = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
+            user_input_time = entry_time.get() # Récupère le temps de consigne (en min)
             print("Action confirmée.")
             popup.destroy()
+            print(f"user_input_intensity = {user_input_intensity}")
+            print(f"user_input_time = {user_input_time}")
 
         def on_no():
             print("Action annulée.")
@@ -676,4 +694,4 @@ class Gui:
         bouton_oui.pack(pady=5)
 
         bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
-        bouton_non.pack(pady=5)
+        bouton_non.pack()
