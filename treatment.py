@@ -227,7 +227,7 @@ def controle_cathode(cathode: Cathode):
 
     if cathode.etat == EtatCathode.CHAUFFE : 
         #Calcul du temps ecoulÃ©
-        t_ecoule = time.clock_gettime(time.CLOCK_MONOTONIC) - cathode.t_0
+        t_ecoule = time.monotonic() - cathode.t_0
         print(f"temps écoulé = {t_ecoule}")
         #Test si fini
         if (courant_cathode > 8.00) or (t_ecoule > 2700) :
@@ -242,7 +242,7 @@ def controle_cathode(cathode: Cathode):
 
     if cathode.etat == EtatCathode.REFROIDISSEMENT : 
         #Calcul du temps écoulé
-        t_ecoule = 2700 - time.clock_gettime(time.CLOCK_MONOTONIC) - cathode.t_0
+        t_ecoule = 2700 - time.monotonic() - cathode.t_0
         #Test si fini
         if (courant_cathode <= 0.38) or (t_ecoule <= 0) :
             cathode.etat = EtatCathode.FROIDE
