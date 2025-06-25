@@ -206,6 +206,8 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
     return Pression
 
 def controle_cathode(cathode: Cathode):
+    #Convertion du temps en secondes
+    consigne_temps_seconde = cathode.consigne_temps*60
 
     #Récupration du courant
     command = "I?\n"
@@ -226,15 +228,15 @@ def controle_cathode(cathode: Cathode):
         ser.write(command.encode())
 
     if cathode.etat == EtatCathode.CHAUFFE : 
-        #Calcul du temps ecoulÃ©
+        #Calcul du temps ecoulé
         t_ecoule = time.monotonic() - cathode.t_0
         print(f"temps écoulé = {t_ecoule}")
         #Test si fini
-        if (courant_cathode > 8.00) or (t_ecoule > 2700) :
+        if (courant_cathode > cathode.consigne_courant) or (t_ecoule > consigne_temps_seconde) :
             cathode.etat = EtatCathode.CHAUDE
             return
         #Calcul de la fonction
-        intensite_cathode = math.sqrt(t_ecoule/42.1875)
+        intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))
         #Mise Ã  jour du courant
         command = "I " + str(intensite_cathode) + "\n"
         print(f" commande envoyée : {command}")
@@ -242,13 +244,13 @@ def controle_cathode(cathode: Cathode):
 
     if cathode.etat == EtatCathode.REFROIDISSEMENT : 
         #Calcul du temps écoulé
-        t_ecoule = 2700 - time.monotonic() - cathode.t_0
+        t_ecoule = consigne_temps_seconde - time.monotonic() - cathode.t_0
         #Test si fini
-        if (courant_cathode <= 0.38) or (t_ecoule <= 0) :
+        if (courant_cathode <= cathode.consigne_courant) or (t_ecoule <= 0) :
             cathode.etat = EtatCathode.FROIDE
             return
         #Calcul de la fonction
-        intensite_cathode = math.sqrt(t_ecoule/42.1875)
+        intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))
         #Mise à jour du courant
         command = "I " + str(intensite_cathode) + "\n"
         print(f" commande envoyée : {command}")
