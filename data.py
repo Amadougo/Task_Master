@@ -76,3 +76,9 @@ class Cathode:
         print(f"État de la cathode : {self.etat.value}")
         print(f"Tension : {self.tension} V")
         print(f"Courant : {self.courant} A")
+
+class EtatManip(Enum):
+    OFF = "off"
+    DEMARRAGE = "demarrage"
+    FONCTIONNE = "fonctionne"
+    ARRET_EN_COURS = "arret en cours"
