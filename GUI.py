@@ -190,12 +190,12 @@ class Gui:
         self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Add labels inside box1_2
-        self.text1_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
-        self.text2_box1_2 = Label(self.box1_2, text="text2_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
-        self.text3_box1_2 = Label(self.box1_2, text="text3_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
-        self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
-        self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
-        self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+        self.text1_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text2_box1_2 = Label(self.box1_2, text="text2_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text3_box1_2 = Label(self.box1_2, text="text3_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
 
         self.text1_box1_2.pack(expand=YES)
         self.text2_box1_2.pack(expand=YES)
@@ -211,6 +211,7 @@ class Gui:
         self.box2.grid_columnconfigure(index=2, weight=1)
         self.box2.grid_columnconfigure(index=3, weight=1)
         self.box2.grid_columnconfigure(index=4, weight=1)
+        self.box2.grid_columnconfigure(index=5, weight=1)
 
         # Creation of 5 boxes inside box2
         self.box2_1 = Frame(self.box2, bg="#64698A", bd=0)
@@ -218,23 +219,29 @@ class Gui:
         self.box2_3 = Frame(self.box2, bg='#64698A', bd=0)
         self.box2_4 = Frame(self.box2, bg='#64698A', bd=0)
         self.box2_5 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_6 = Frame(self.box2, bg='#64698A', bd=0)
         self.box2_1.grid(row=0, column=0, sticky='nsew')
         self.box2_2.grid(row=0, column=1, sticky='nsew')
         self.box2_3.grid(row=0, column=2, sticky='nsew')
         self.box2_4.grid(row=0, column=3, sticky='nsew')
         self.box2_5.grid(row=0, column=4, sticky='nsew')
+        self.box2_6.grid(row=0, column=4, sticky='nsew')
+        
 
         # Add button inside each box
-        self.button_box2_1 = Button(self.box2_1, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
-        self.button_box2_2 = Button(self.box2_2, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16), command=self.bouton_Refroidissement_Cathode)
-        self.button_box2_3 = Button(self.box2_3, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
-        self.button_box2_4 = Button(self.box2_4, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.bouton_Chauffe_Cathode)
-        self.button_box2_5 = Button(self.box2_5, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
+        self.button_box2_1 = Button(self.box2_1, text="Sécurité : ACTIVÉE", bg="#309641", fg='white', font=('Helvetica', 16), command=self.bouton_changer_mode_Securite)
+        self.button_box2_2 = Button(self.box2_2, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
+        self.button_box2_3 = Button(self.box2_3, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16), command=self.bouton_Refroidissement_Cathode)
+        self.button_box2_4 = Button(self.box2_4, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
+        self.button_box2_5 = Button(self.box2_5, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.bouton_Chauffe_Cathode)
+        self.button_box2_6 = Button(self.box2_6, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
+
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
         self.button_box2_3.pack(expand=YES)
         self.button_box2_4.pack(expand=YES)
         self.button_box2_5.pack(expand=YES)
+        self.button_box2_6.pack(expand=YES)
 
         # Show the arrow cursor in Window
         self.window.config(cursor="arrow")
@@ -548,6 +555,7 @@ class Gui:
             #self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
             self.hide_logs_box1_1()
             self.show_data_box1_1()
+            self.show_data_box1_2()
             #self.resize_images()
             #self.update_gui()
             self.affichage_donnees = True
@@ -556,6 +564,7 @@ class Gui:
             self.button_box2_3.config(text="Afficher les DONNEES")
             #self.bg_box1_1.place_forget()
             self.hide_data_box1_1()
+            self.hide_data_box1_2()
             self.show_logs_box1_1()
             #self.resize_images()
             #self.update_gui()
@@ -566,21 +575,35 @@ class Gui:
     def hide_data_box1_1(self):
         for label in [
             self.label_image_box1_1_1, self.label_image_box1_1_2,
-            self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1,
-            self.text4_box1_1, self.text5_box1_1, self.text6_box1_1,
-            self.text7_box1_1, self.text8_box1_1, self.text9_box1_1,
-            self.text10_box1_1, self.text11_box1_1, self.text12_box1_1,
-            self.text13_box1_1
+            self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1_3,
+            self.text4_box1_1_4, self.text5_box1_1_5, self.text6_box1_1_6,
+            self.text7_box1_1_7, self.text8_box1_1_8, self.text9_box1_1_9,
+            self.text10_box1_1_10, self.text11_box1_1_11, self.text12_box1_1_12,
+            self.text13_box1_1_13
         ]:
             label.pack_forget()
 
     def show_data_box1_1(self):
         for label in [
-            self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1,
-            self.text4_box1_1, self.text5_box1_1, self.text6_box1_1,
-            self.text7_box1_1, self.text8_box1_1, self.text9_box1_1,
-            self.text10_box1_1, self.text11_box1_1, self.text12_box1_1,
-            self.text13_box1_1
+            self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1_3,
+            self.text4_box1_1_4, self.text5_box1_1_5, self.text6_box1_1_6,
+            self.text7_box1_1_7, self.text8_box1_1_8, self.text9_box1_1_9,
+            self.text10_box1_1_10, self.text11_box1_1_11, self.text12_box1_1_12,
+            self.text13_box1_1_13
+        ]: 
+            label.pack(expand=YES)
+
+    def hide_data_box1_2(self):
+        for label in [
+            self.text1_box1_2, self.text2_box1_2, self.text3_box1_2,
+            self.text4_box1_2, self.text5_box1_2, self.text6_box1_2
+        ]:
+            label.pack_forget()
+
+    def show_data_box1_2(self):
+        for label in [
+            self.text1_box1_2, self.text2_box1_2, self.text3_box1_2,
+            self.text4_box1_2, self.text5_box1_2, self.text6_box1_2
         ]: 
             label.pack(expand=YES)
 
@@ -798,3 +821,6 @@ class Gui:
 
         bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
         bouton_non.pack()
+
+    def bouton_changer_mode_Securite(self):
+        self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
