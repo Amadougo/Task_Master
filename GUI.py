@@ -227,7 +227,7 @@ class Gui:
         self.box2_3.grid(row=0, column=2, sticky='nsew')
         self.box2_4.grid(row=0, column=3, sticky='nsew')
         self.box2_5.grid(row=0, column=4, sticky='nsew')
-        self.box2_6.grid(row=0, column=4, sticky='nsew')
+        self.box2_6.grid(row=0, column=5, sticky='nsew')
         
 
         # Add button inside each box
@@ -262,7 +262,7 @@ class Gui:
         #self.check_logs_with_data(self.onduleur, self.pression)
         #self.recuperer_donnees(self.onduleur, self.pression)
 
-        # Update the widgets of box1_1 if button_box2_3 is in Affichage_donnees's state
+        # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
             self.text1_box1_1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
             self.text2_box1_1_2.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
@@ -553,7 +553,7 @@ class Gui:
     def change_state_button_Affichage_Logs(self):
         if self.affichage_donnees == False :
             #self.update_gui()
-            self.button_box2_3.config(text="Afficher les LOGS")
+            self.button_box2_4.config(text="Afficher les LOGS")
             #self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
             self.hide_logs_box1_1()
             self.show_data_box1_1()
@@ -563,7 +563,7 @@ class Gui:
             self.affichage_donnees = True
         else:
             #self.update_gui()
-            self.button_box2_3.config(text="Afficher les DONNEES")
+            self.button_box2_4.config(text="Afficher les DONNEES")
             #self.bg_box1_1.place_forget()
             self.hide_data_box1_1()
             self.hide_data_box1_2()
