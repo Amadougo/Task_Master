@@ -46,7 +46,8 @@ class Gui:
         self.box1_1.grid(row=0, column=0, sticky='nsew')
         self.box1_2.grid(row=0, column=1, sticky='nsew')
 
-        self.box1_1.config(highlightcolor='black', highlightthickness=2)
+        self.box1_1.config(highlightcolor='white', highlightthickness=2)
+        self.box1_2.config(highlightcolor='white', highlightthickness=2)
 
         """# Add a background image as box1_1 background
         self.image_pillow_box1_1 = Image.open('image_Jauges_Test.jpg')
@@ -189,9 +190,19 @@ class Gui:
         self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Add labels inside box1_2
-        self.text_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
-        
-        self.text_box1_2.pack(expand=YES)
+        self.text1_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+        self.text2_box1_2 = Label(self.box1_2, text="text2_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+        self.text3_box1_2 = Label(self.box1_2, text="text3_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+        self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+        self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+        self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#64698A', fg='black', font=('Helvetica', 16, 'bold italic'))
+
+        self.text1_box1_2.pack(expand=YES)
+        self.text2_box1_2.pack(expand=YES)
+        self.text3_box1_2.pack(expand=YES)
+        self.text4_box1_2.pack(expand=YES)
+        self.text5_box1_2.pack(expand=YES)
+        self.text6_box1_2.pack(expand=YES)
 
         # Configuration of a grid inside box2
         self.box2.grid_rowconfigure(index=0, weight=1)
@@ -258,13 +269,24 @@ class Gui:
             self.text12_box1_1_12.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
             self.text13_box1_1_13.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
             
+            self.text1_box1_2.config(text=f"État de la cathode : {self.cathode.etat}")
+            self.text2_box1_2.config(text=f"t_0 : {self.cathode.t_0}")
+            self.text3_box1_2.config(text=f"Valeur de tension de la cathode : {self.cathode.tension}")
+            self.text4_box1_2.config(text=f"Valeur de courant de la cathode : {self.cathode.courant}")
+            self.text5_box1_2.config(text=f"Courant de consigne : {self.cathode.consigne_courant}")
+            self.text6_box1_2.config(text=f"Temps de consigne : {self.cathode.consigne_temps}")
+
             # Gestion des boutons de chauffe et refroidissement de la cathode
             if ((self.cathode.etat == etatCathode.FROIDE) or (self.cathode.etat == etatCathode.CHAUDE)):
-                self.button_box2_2.config(state="normal") 
-                self.button_box2_4.config(state="normal")
+                # self.button_box2_2.config(state="normal") 
+                # self.button_box2_4.config(state="normal") # Fonctionnement normal cathode enlever les commentaires
+                self.button_box2_2.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                self.button_box2_4.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
             elif ((self.cathode.etat == etatCathode.REFROIDISSEMENT) or (self.cathode.etat == etatCathode.CHAUFFE)):
-                self.button_box2_2.config(state="disabled")
-                self.button_box2_4.config(state="disabled")
+                # self.button_box2_2.config(state="disabled")
+                # self.button_box2_4.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
+                self.button_box2_2.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                self.button_box2_4.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
         else:
             self.text1_box1_1.config(text="LOGS")
 
@@ -678,7 +700,7 @@ class Gui:
         label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (chauffage de la cathode) ?", font=("Arial", 14))
         label_1.pack(pady=40)
 
-        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, intensité conseillée : [0;9]Ampères)", font=("Arial", 14))
+        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, intensité conseillée : [0.00;9.00]Ampères)", font=("Arial", 14))
         label_2.pack(pady=20)
 
         # Zone de saisie de l'intensité (en A)
@@ -717,7 +739,7 @@ class Gui:
         popup = Toplevel(self.window)
         popup.title("Confirmation refroidissement cathode")
         popup.geometry("800x400")
-        popup.transient(self.window) 
+        popup.transient(self.window)
         popup.grab_set()
         popup.focus_force()
 
