@@ -1,17 +1,19 @@
 from tkinter import * # type: ignore
 #from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 #from treatment import controle_cathode
-from data import EtatCathode as etatCathode
+from data import EtatCathode
+from data import EtatManip
 from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 import time
 
 class Gui:
-    def __init__(self, onduleur, pression, cathode, affichage_donnees):
+    def __init__(self, onduleur, pression, cathode, etatManip, affichage_donnees):
         self.window = Tk()  # Creation of the window (Graphical User Interface)
         self.onduleur = onduleur  # Creation of the onduleur object
         self.pression = pression # Creation of the pression object
         self.cathode = cathode # Creation of the cathode object 
+        self.etatManip = etatManip # Creation of the etatManip object 
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.setup_gui()  # Initial configuration of the gui setup
 
@@ -230,11 +232,11 @@ class Gui:
 
         # Add button inside each box
         self.button_box2_1 = Button(self.box2_1, text="Sécurité : ACTIVÉE", bg="#309641", fg='white', font=('Helvetica', 16), command=self.bouton_changer_mode_Securite)
-        self.button_box2_2 = Button(self.box2_2, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16))
+        self.button_box2_2 = Button(self.box2_2, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16), command=self.changer_EtatManip_Arret_En_Cours)
         self.button_box2_3 = Button(self.box2_3, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16), command=self.bouton_Refroidissement_Cathode)
         self.button_box2_4 = Button(self.box2_4, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
         self.button_box2_5 = Button(self.box2_5, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.bouton_Chauffe_Cathode)
-        self.button_box2_6 = Button(self.box2_6, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16))
+        self.button_box2_6 = Button(self.box2_6, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.changer_EtatManip_Demarrage)
 
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
@@ -284,16 +286,16 @@ class Gui:
             self.text6_box1_2.config(text=f"Temps de consigne : {self.cathode.consigne_temps}")
 
             # Gestion des boutons de chauffe et refroidissement de la cathode
-            if ((self.cathode.etat == etatCathode.FROIDE) or (self.cathode.etat == etatCathode.CHAUDE)):
-                # self.button_box2_2.config(state="normal") 
-                # self.button_box2_4.config(state="normal") # Fonctionnement normal cathode enlever les commentaires
-                self.button_box2_2.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
-                self.button_box2_4.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
-            elif ((self.cathode.etat == etatCathode.REFROIDISSEMENT) or (self.cathode.etat == etatCathode.CHAUFFE)):
-                # self.button_box2_2.config(state="disabled")
-                # self.button_box2_4.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
-                self.button_box2_2.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
-                self.button_box2_4.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+            if ((self.cathode.etat == EtatCathode.FROIDE) or (self.cathode.etat == EtatCathode.CHAUDE)):
+                # self.button_box2_3.config(state="normal") 
+                # self.button_box2_5.config(state="normal") # Fonctionnement normal cathode enlever les commentaires
+                self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+            elif ((self.cathode.etat == EtatCathode.REFROIDISSEMENT) or (self.cathode.etat == EtatCathode.CHAUFFE)):
+                # self.button_box2_3.config(state="disabled")
+                # self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
+                self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
         else:
             self.text1_box1_1.config(text="LOGS")
 
@@ -741,7 +743,7 @@ class Gui:
             self.cathode.consigne_courant = entry_intensity.get() # Récupère l'intensité de consigne (en A)
             self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
             self.cathode.t_0 = time.monotonic()
-            self.cathode.etat = etatCathode.CHAUFFE
+            self.cathode.etat = EtatCathode.CHAUFFE
             
             print("Action confirmée.")
             popup.destroy()
@@ -805,7 +807,7 @@ class Gui:
             self.cathode.consigne_courant = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
             self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
             self.cathode.t_0 = time.monotonic()
-            self.cathode.etat = etatCathode.REFROIDISSEMENT
+            self.cathode.etat = EtatCathode.REFROIDISSEMENT
 
             print("Action confirmée.")
             popup.destroy()
@@ -824,3 +826,91 @@ class Gui:
 
     def bouton_changer_mode_Securite(self):
         self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
+
+    def changer_EtatManip_Demarrage(self):
+        popup = Toplevel(self.window)
+        popup.title("Confirmation démarrage progressif de la Manip")
+        popup.geometry("1000x200")
+        popup.transient(self.window)
+        popup.grab_set()
+        popup.focus_force()
+
+        # ----- Centrage de la pop up dans l'écran -----
+        self.window.update_idletasks()  # Assure les dimensions correctes
+        window_width = 1000
+        window_height = 200
+
+        # Récupère la position de la fenêtre principale
+        x = self.window.winfo_x()
+        y = self.window.winfo_y()
+        w = self.window.winfo_width()
+        h = self.window.winfo_height()
+
+        # Calcule les coordonnées pour centrer la popup par rapport à la fenêtre principale
+        x_center = x + (w - window_width) // 2
+        y_center = y + (h - window_height) // 2
+
+        popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
+        # ---------------------
+
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir démarrer la Manip (Attention : Veuillez vous assurer que les pompes primaires sont actives) ?", font=("Arial", 14))
+        label_1.pack(pady=40)
+
+        def on_yes():
+            self.etatManip = EtatManip.DEMARRAGE
+            print("Action confirmée.")
+            popup.destroy()
+
+        def on_no():
+            print("Action annulée.")
+            popup.destroy()
+
+        bouton_oui = Button(popup, text="Oui, je suis sûr de mon choix", command=on_yes)
+        bouton_oui.pack(pady=5)
+
+        bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
+        bouton_non.pack()
+
+    def changer_EtatManip_Arret_En_Cours(self):
+        popup = Toplevel(self.window)
+        popup.title("Confirmation extinction progressive de la Manip")
+        popup.geometry("1000x200")
+        popup.transient(self.window)
+        popup.grab_set()
+        popup.focus_force()
+
+        # ----- Centrage de la pop up dans l'écran -----
+        self.window.update_idletasks()  # Assure les dimensions correctes
+        window_width = 1000
+        window_height = 200
+
+        # Récupère la position de la fenêtre principale
+        x = self.window.winfo_x()
+        y = self.window.winfo_y()
+        w = self.window.winfo_width()
+        h = self.window.winfo_height()
+
+        # Calcule les coordonnées pour centrer la popup par rapport à la fenêtre principale
+        x_center = x + (w - window_width) // 2
+        y_center = y + (h - window_height) // 2
+
+        popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
+        # ---------------------
+
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir éteindre la Manip (Attention : Veuillez éteindre les pompes primaires par la suite) ?", font=("Arial", 14))
+        label_1.pack(pady=40)
+
+        def on_yes():
+            self.etatManip = EtatManip.OFF
+            print("Action confirmée.")
+            popup.destroy()
+
+        def on_no():
+            print("Action annulée.")
+            popup.destroy()
+
+        bouton_oui = Button(popup, text="Oui, je suis sûr de mon choix", command=on_yes)
+        bouton_oui.pack(pady=5)
+
+        bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
+        bouton_non.pack()
