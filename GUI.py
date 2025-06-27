@@ -8,9 +8,10 @@ from PIL import Image, ImageTk # type: ignore
 import time
 
 class Gui:
-    def __init__(self, onduleur, pression, cathode, etatManip, affichage_donnees):
+    def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees):
         self.window = Tk()  # Creation of the window (Graphical User Interface)
-        self.onduleur = onduleur  # Creation of the onduleur object
+        self.onduleur1 = onduleur1  # Creation of the onduleur1 object
+        self.onduleur2 = onduleur2  # Creation of the onduleur2 object
         self.pression = pression # Creation of the pression object
         self.cathode = cathode # Creation of the cathode object 
         self.etatManip = etatManip # Creation of the etatManip object 
@@ -157,7 +158,7 @@ class Gui:
         self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
 
         # Add labels inside box1_1
-        # Onduleur data
+        # Onduleur1 data
         self.text1_box1_1_1 = Label(self.box1_1_1, text="text1_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text2_box1_1_2 = Label(self.box1_1_2, text="text2_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
         self.text3_box1_1_3 = Label(self.box1_1_3, text="text3_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
@@ -258,19 +259,19 @@ class Gui:
         self.window.after(500, self.force_initial_resizing)
 
     def update_gui(self):
-        # Get the data from onduleur and pression
-        #self.check_logs_with_data(self.onduleur, self.pression)
-        #self.recuperer_donnees(self.onduleur, self.pression)
+        # Get the data from onduleur1 and pression
+        #self.check_logs_with_data(self.onduleur1, self.pression)
+        #self.recuperer_donnees(self.onduleur1, self.pression)
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
-            self.text1_box1_1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur.input_voltage} V")
-            self.text2_box1_1_2.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur.input_frequency} Hz")
-            self.text3_box1_1_3.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur.battery_voltage} V")
-            self.text4_box1_1_4.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur.battery_runtime} s")
-            self.text5_box1_1_5.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur.battery_charge} %")
-            self.text6_box1_1_6.config(text=f"Charge ups (ups_load) : {self.onduleur.ups_load} %")
-            self.text7_box1_1_7.config(text=f"Statut ups (ups_status) : {self.onduleur.ups_status}")
+            self.text1_box1_1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
+            self.text2_box1_1_2.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur1.input_frequency} Hz")
+            self.text3_box1_1_3.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur1.battery_voltage} V")
+            self.text4_box1_1_4.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur1.battery_runtime} s")
+            self.text5_box1_1_5.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur1.battery_charge} %")
+            self.text6_box1_1_6.config(text=f"Charge ups (ups_load) : {self.onduleur1.ups_load} %")
+            self.text7_box1_1_7.config(text=f"Statut ups (ups_status) : {self.onduleur1.ups_status}")
             self.text8_box1_1_8.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
             self.text9_box1_1_9.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo}")
             self.text10_box1_1_10.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
@@ -302,8 +303,8 @@ class Gui:
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
 
-    def recuperer_donnees(self, onduleur, pression):
-        recuperer_donnees_onduleur(onduleur)
+    def recuperer_donnees(self, onduleur1, pression):
+        recuperer_donnees_onduleur(onduleur1)
         recuperer_donnees_pression_jauge1(pression)
         recuperer_donnees_pression_jauge2(pression)
         recuperer_donnees_pression_jauge3(pression)
@@ -655,8 +656,8 @@ class Gui:
         ]: 
             label.grid(row=0, column=0, sticky='nsew')
 
-    def check_logs_with_data(self, onduleur, pression):
-        self.recuperer_donnees(onduleur, pression)
+    def check_logs_with_data(self, onduleur1, pression):
+        self.recuperer_donnees(onduleur1, pression)
 
         # INFO Logs
         if(False): # Si le bouton est pressé : Extinction générale progressive.
@@ -677,16 +678,16 @@ class Gui:
             logging.INFO("Envoi du sms pour motif de coupure de courant bien envoyé.")
         if(False): # "Logs bien envoyées par mail" (mail toutes les semaines pour l'envoi des logs).
             logging.INFO("Logs bien envoyées par mail.")
-        if(self.onduleur.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
+        if(self.onduleur1.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
             #logging.INFO(f"Temps de coupure du courant : {#calcul du temps de coupure}")
             logging.INFO("Envoi du mail avec le temps de coupure du courant.")
-            log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur sur secteur,", 5)
+            log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)
 
         # WARNING Logs
-        if(self.onduleur.ups_status == "OB"): # Coupure de courant.
-            log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur sur batterie", 5)
-        if(False): # L'onduleur va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
-            logging.WARNING("L'onduleur va se couper dans X minute(s). Processus d'extinction enclenché")
+        if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
+            log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 5)
+        if(False): # L'onduleur1 va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
+            logging.WARNING("L'onduleur1 va se couper dans X minute(s). Processus d'extinction enclenché")
         if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
             logging.WARNING("La jauge de pression 1 a dépassé la valeur seuil haute.")
         if(False): # La jauge de pression 1 a dépassé la valeur seuil basse.
@@ -725,10 +726,10 @@ class Gui:
             logging.CRITICAL("La jauge de pression 5 a atteint une valeur critique définie.")
         if(False): # La jauge de pression 6 a atteint une valeur critique définie.
             logging.CRITICAL("La jauge de pression 6 a atteint une valeur critique définie.")
-        if(False): #Arrêt général pour cause onduleurs vides.
-            logging.CRITICAL("Arrêt général pour cause onduleurs vides.")
-        if(False): # Batterie onduleur morte.
-            logging.CRITICAL("Batterie onduleur morte.")
+        if(False): #Arrêt général pour cause onduleur1 vide.
+            logging.CRITICAL("Arrêt général pour cause onduleur1 vide.")
+        if(False): # Batterie onduleur1 morte.
+            logging.CRITICAL("Batterie onduleur1 morte.")
 
     def bouton_Chauffe_Cathode(self):
         popup = Toplevel(self.window)

@@ -3,7 +3,9 @@ from data import Onduleur, Pression, Cathode, EtatManip
 from GUI import Gui # import the GUI class from GUI.py
 
 # Creation of an Onduleur object
-onduleur = Onduleur()
+onduleur1 = Onduleur()
+
+onduleur2 = Onduleur()
 
 # Creation of a Pression object
 pression = Pression()
@@ -15,7 +17,7 @@ cathode = Cathode()
 etatManip: EtatManip = EtatManip.OFF
 
 # Creation of the GUI
-gui = Gui(onduleur, pression, cathode, etatManip, affichage_donnees=True)
+gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees=True)
 
 # Get Onduleur and Pression data
 #gui.recuperer_donnees(onduleur, pression)
