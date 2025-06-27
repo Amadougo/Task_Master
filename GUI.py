@@ -127,6 +127,41 @@ class Gui:
         self.label_image_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_box1_1_7, bg="#64698A", bd=0)
         self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
 
+        self.image_2_pillow_box1_1_1 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_2_box1_1_1 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_1) # Save for TkInter
+        self.label_image_2_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_2_box1_1_1, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_1.grid(row=1, column=0, sticky='nsew')
+
+        self.image_2_pillow_box1_1_2 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_2_box1_1_2 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_2) # Save for TkInter
+        self.label_image_2_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_2_box1_1_2, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_2.grid(row=1, column=0, sticky='nsew')
+
+        self.image_2_pillow_box1_1_3 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_2_box1_1_3 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_3) # Save for TkInter
+        self.label_image_2_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_2_box1_1_3, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_3.grid(row=1, column=0, sticky='nsew')
+
+        self.image_2_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_2_box1_1_4 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_4) # Save for TkInter
+        self.label_image_2_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_2_box1_1_4, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
+
+        self.image_2_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_2_box1_1_5 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_5) # Save for TkInter
+        self.label_image_2_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_2_box1_1_5, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
+
+        self.image_2_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_2_box1_1_6 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_6) # Save for TkInter
+        self.label_image_2_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_2_box1_1_6, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
+
+        self.image_2_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_2_box1_1_7 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_7) # Save for TkInter
+        self.label_image_2_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_2_box1_1_7, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
+
         self.image_pillow_box1_1_8 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_8 = ImageTk.PhotoImage(self.image_pillow_box1_1_8) # Save for TkInter
         self.label_image_box1_1_8 = Label(self.box1_1_8, image=self.tk_image_box1_1_8, bg="#64698A", bd=0)
@@ -159,21 +194,30 @@ class Gui:
 
         # Add labels inside box1_1
         # Onduleur1 data
-        self.text1_box1_1_1 = Label(self.box1_1_1, text="text1_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text2_box1_1_2 = Label(self.box1_1_2, text="text2_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text3_box1_1_3 = Label(self.box1_1_3, text="text3_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text4_box1_1_4 = Label(self.box1_1_4, text="text4_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text5_box1_1_5 = Label(self.box1_1_5, text="text5_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text6_box1_1_6 = Label(self.box1_1_6, text="text6_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text7_box1_1_7 = Label(self.box1_1_7, text="text7_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text1_box1_1_1 = Label(self.box1_1_1, text="text1_box1_1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text2_box1_1_2 = Label(self.box1_1_2, text="text2_box1_1_2", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text3_box1_1_3 = Label(self.box1_1_3, text="text3_box1_1_3", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text4_box1_1_4 = Label(self.box1_1_4, text="text4_box1_1_4", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text5_box1_1_5 = Label(self.box1_1_5, text="text5_box1_1_5", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text6_box1_1_6 = Label(self.box1_1_6, text="text6_box1_1_6", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text7_box1_1_7 = Label(self.box1_1_7, text="text7_box1_1_7", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+
+        # Onduleur2 data
+        self.text1_2_box1_1_1 = Label(self.box1_1_1, text="text1_2_box1_1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text2_2_box1_1_2 = Label(self.box1_1_2, text="text2_2_box1_1_2", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text3_2_box1_1_3 = Label(self.box1_1_3, text="text3_2_box1_1_3", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text4_2_box1_1_4 = Label(self.box1_1_4, text="text4_2_box1_1_4", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text5_2_box1_1_5 = Label(self.box1_1_5, text="text5_2_box1_1_5", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text6_2_box1_1_6 = Label(self.box1_1_6, text="text6_2_box1_1_6", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text7_2_box1_1_7 = Label(self.box1_1_7, text="text7_2_box1_1_7", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Pression data
-        self.text8_box1_1_8 = Label(self.box1_1_8, text="text8_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text9_box1_1_9 = Label(self.box1_1_9, text="text9_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text10_box1_1_10 = Label(self.box1_1_10, text="text10_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text11_box1_1_11 = Label(self.box1_1_11, text="text11_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text12_box1_1_12 = Label(self.box1_1_12, text="text12_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text13_box1_1_13 = Label(self.box1_1_13, text="text13_box1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text8_box1_1_8 = Label(self.box1_1_8, text="text8_box1_1_8", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text9_box1_1_9 = Label(self.box1_1_9, text="text9_box1_1_9", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text10_box1_1_10 = Label(self.box1_1_10, text="text10_box1_1_10", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text11_box1_1_11 = Label(self.box1_1_11, text="text11_box1_1_11", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text12_box1_1_12 = Label(self.box1_1_12, text="text12_box1_1_12", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text13_box1_1_13 = Label(self.box1_1_13, text="text13_box1_1_13", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         self.text1_box1_1_1.grid(row=0, column=1, sticky='nsew')
         self.text2_box1_1_2.grid(row=0, column=1, sticky='nsew')
@@ -182,6 +226,13 @@ class Gui:
         self.text5_box1_1_5.grid(row=0, column=1, sticky='nsew')
         self.text6_box1_1_6.grid(row=0, column=1, sticky='nsew')
         self.text7_box1_1_7.grid(row=0, column=1, sticky='nsew')
+        self.text1_2_box1_1_1.grid(row=1, column=1, sticky='nsew')
+        self.text2_2_box1_1_2.grid(row=1, column=1, sticky='nsew')
+        self.text3_2_box1_1_3.grid(row=1, column=1, sticky='nsew')
+        self.text4_2_box1_1_4.grid(row=1, column=1, sticky='nsew')
+        self.text5_2_box1_1_5.grid(row=1, column=1, sticky='nsew')
+        self.text6_2_box1_1_6.grid(row=1, column=1, sticky='nsew')
+        self.text7_2_box1_1_7.grid(row=1, column=1, sticky='nsew')
         self.text8_box1_1_8.grid(row=0, column=1, sticky='nsew')
         self.text9_box1_1_9.grid(row=0, column=1, sticky='nsew')
         self.text10_box1_1_10.grid(row=0, column=1, sticky='nsew')
@@ -260,18 +311,25 @@ class Gui:
 
     def update_gui(self):
         # Get the data from onduleur1 and pression
-        #self.check_logs_with_data(self.onduleur1, self.pression)
-        #self.recuperer_donnees(self.onduleur1, self.pression)
+        #self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
+        #self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
-            self.text1_box1_1_1.config(text=f"Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
-            self.text2_box1_1_2.config(text=f"Fréquence d'entrée (input_frequency) : {self.onduleur1.input_frequency} Hz")
-            self.text3_box1_1_3.config(text=f"Tension de la batterie (battery_voltage) : {self.onduleur1.battery_voltage} V")
-            self.text4_box1_1_4.config(text=f"Temps avant extinction de la batterie (battery_runtime) : {self.onduleur1.battery_runtime} s")
-            self.text5_box1_1_5.config(text=f"Charge de la batterie (battery_charge) : {self.onduleur1.battery_charge} %")
-            self.text6_box1_1_6.config(text=f"Charge ups (ups_load) : {self.onduleur1.ups_load} %")
-            self.text7_box1_1_7.config(text=f"Statut ups (ups_status) : {self.onduleur1.ups_status}")
+            self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
+            self.text2_box1_1_2.config(text=f"Onduleur1: Fréquence d'entrée (input_frequency) : {self.onduleur1.input_frequency} Hz")
+            self.text3_box1_1_3.config(text=f"Onduleur1: Tension de la batterie (battery_voltage) : {self.onduleur1.battery_voltage} V")
+            self.text4_box1_1_4.config(text=f"Onduleur1: Temps avant extinction de la batterie (battery_runtime) : {self.onduleur1.battery_runtime} s")
+            self.text5_box1_1_5.config(text=f"Onduleur1: Charge de la batterie (battery_charge) : {self.onduleur1.battery_charge} %")
+            self.text6_box1_1_6.config(text=f"Onduleur1: Charge ups (ups_load) : {self.onduleur1.ups_load} %")
+            self.text7_box1_1_7.config(text=f"Onduleur1: Statut ups (ups_status) : {self.onduleur1.ups_status}")
+            self.text1_2_box1_1_1.config(text=f"Onduleur2: Tension d'entrée (input_voltage) : {self.onduleur2.input_voltage} V")
+            self.text2_2_box1_1_2.config(text=f"Onduleur2: Fréquence d'entrée (input_frequency) : {self.onduleur2.input_frequency} Hz")
+            self.text3_2_box1_1_3.config(text=f"Onduleur2: Tension de la batterie (battery_voltage) : {self.onduleur2.battery_voltage} V")
+            self.text4_2_box1_1_4.config(text=f"Onduleur2: Temps avant extinction de la batterie (battery_runtime) : {self.onduleur2.battery_runtime} s")
+            self.text5_2_box1_1_5.config(text=f"Onduleur2: Charge de la batterie (battery_charge) : {self.onduleur2.battery_charge} %")
+            self.text6_2_box1_1_6.config(text=f"Onduleur2: Charge ups (ups_load) : {self.onduleur2.ups_load} %")
+            self.text7_2_box1_1_7.config(text=f"Onduleur2: Statut ups (ups_status) : {self.onduleur2.ups_status}")
             self.text8_box1_1_8.config(text=f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
             self.text9_box1_1_9.config(text=f"Pression de la 2nde pompe Turbo (Jauge_2_Turbo) : {self.pression.Jauge_2_Turbo}")
             self.text10_box1_1_10.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
@@ -303,8 +361,9 @@ class Gui:
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
 
-    def recuperer_donnees(self, onduleur1, pression):
+    def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
+        recuperer_donnees_onduleur(onduleur2)
         recuperer_donnees_pression_jauge1(pression)
         recuperer_donnees_pression_jauge2(pression)
         recuperer_donnees_pression_jauge3(pression)
@@ -431,6 +490,113 @@ class Gui:
             self.label_image_box1_1_7.image = self.tk_resized_image_box1_1_7
             print(f"Frame: {self.box1_1_7.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
 
+    def resize_image_2_box1_1_1(self, event=None):
+        width = self.box1_1_1.winfo_width()
+        height = self.box1_1_1.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_2_pillow_box1_1_1.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_2_box1_1_1 = ImageTk.PhotoImage(resized_image)
+            self.label_image_2_box1_1_1.config(image=self.tk_resized_image_2_box1_1_1)
+            self.label_image_2_box1_1_1.image = self.tk_resized_image_2_box1_1_1
+            print(f"[resize_image_2box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
+            print(f"Frame: {self.box1_1_1.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_2_box1_1_2(self, event=None):        
+        width = self.box1_1_2.winfo_width()
+        height = self.box1_1_2.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_2_pillow_box1_1_2.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_2_box1_1_2 = ImageTk.PhotoImage(resized_image)
+            self.label_image_2_box1_1_2.config(image=self.tk_resized_image_2_box1_1_2)
+            self.label_image_2_box1_1_2.image = self.tk_resized_image_2_box1_1_2
+            print(f"[resize_image_2_box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
+            print(f"Frame: {self.box1_1_2.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_2_box1_1_3(self, event=None):
+        width = self.box1_1_3.winfo_width()
+        height = self.box1_1_3.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_2_pillow_box1_1_3.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_2_box1_1_3 = ImageTk.PhotoImage(resized_image)
+            self.label_image_2_box1_1_3.config(image=self.tk_resized_image_2_box1_1_3)
+            self.label_image_2_box1_1_3.image = self.tk_resized_image_2_box1_1_3
+            print(f"Frame: {self.box1_1_3.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_2_box1_1_4(self, event=None):
+        width = self.box1_1_4.winfo_width()
+        height = self.box1_1_4.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_2_pillow_box1_1_4.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_2_box1_1_4 = ImageTk.PhotoImage(resized_image)
+            self.label_image_2_box1_1_4.config(image=self.tk_resized_image_2_box1_1_4)
+            self.label_image_2_box1_1_4.image = self.tk_resized_image_2_box1_1_4
+            print(f"Frame: {self.box1_1_4.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_2_box1_1_5(self, event=None):
+        width = self.box1_1_5.winfo_width()
+        height = self.box1_1_5.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_2_pillow_box1_1_5.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_2_box1_1_5 = ImageTk.PhotoImage(resized_image)
+            self.label_image_2_box1_1_5.config(image=self.tk_resized_image_2_box1_1_5)
+            self.label_image_2_box1_1_5.image = self.tk_resized_image_2_box1_1_5
+            print(f"Frame: {self.box1_1_5.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_2_box1_1_6(self, event=None):
+        width = self.box1_1_6.winfo_width()
+        height = self.box1_1_6.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_2_pillow_box1_1_6.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_2_box1_1_6 = ImageTk.PhotoImage(resized_image)
+            self.label_image_2_box1_1_6.config(image=self.tk_resized_image_2_box1_1_6)
+            self.label_image_2_box1_1_6.image = self.tk_resized_image_2_box1_1_6
+            print(f"Frame: {self.box1_1_6.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
+    def resize_image_2_box1_1_7(self, event=None):
+        width = self.box1_1_7.winfo_width()
+        height = self.box1_1_7.winfo_height()
+        new_width = max(1, int(width * 0.3))
+        new_height = max(1, int(height * 0.7))
+        if width > 0 and height > 0:                
+            resized_image = self.image_2_pillow_box1_1_7.resize(
+                (new_width, new_height),
+                Image.Resampling.LANCZOS
+            )
+            self.tk_resized_image_2_box1_1_7 = ImageTk.PhotoImage(resized_image)
+            self.label_image_2_box1_1_7.config(image=self.tk_resized_image_2_box1_1_7)
+            self.label_image_2_box1_1_7.image = self.tk_resized_image_2_box1_1_7
+            print(f"Frame: {self.box1_1_7.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
+
     def resize_image_box1_1_8(self, event=None):
         width = self.box1_1_8.winfo_width()
         height = self.box1_1_8.winfo_height()
@@ -544,6 +710,13 @@ class Gui:
         self.resize_image_box1_1_5()
         self.resize_image_box1_1_6()
         self.resize_image_box1_1_7()
+        self.resize_image_2_box1_1_1()
+        self.resize_image_2_box1_1_2()
+        self.resize_image_2_box1_1_3()
+        self.resize_image_2_box1_1_4()
+        self.resize_image_2_box1_1_5()
+        self.resize_image_2_box1_1_6()
+        self.resize_image_2_box1_1_7()
         self.resize_image_box1_1_8()
         self.resize_image_box1_1_9()
         self.resize_image_box1_1_10()
@@ -579,12 +752,20 @@ class Gui:
         for label in [
             self.label_image_box1_1_1, self.label_image_box1_1_2, self.label_image_box1_1_3,
             self.label_image_box1_1_4, self.label_image_box1_1_5, self.label_image_box1_1_6,
-            self.label_image_box1_1_7, self.label_image_box1_1_8, self.label_image_box1_1_9,
+            self.label_image_box1_1_7, 
+            self.label_image_2_box1_1_1, self.label_image_2_box1_1_2, self.label_image_2_box1_1_3,
+            self.label_image_2_box1_1_4, self.label_image_2_box1_1_5, self.label_image_2_box1_1_6,
+            self.label_image_2_box1_1_7,
+            self.label_image_box1_1_8, self.label_image_box1_1_9,
             self.label_image_box1_1_10, self.label_image_box1_1_11, self.label_image_box1_1_12,
             self.label_image_box1_1_13,
             self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1_3,
             self.text4_box1_1_4, self.text5_box1_1_5, self.text6_box1_1_6,
-            self.text7_box1_1_7, self.text8_box1_1_8, self.text9_box1_1_9,
+            self.text7_box1_1_7, 
+            self.text1_2_box1_1_1, self.text2_2_box1_1_2, self.text3_2_box1_1_3,
+            self.text4_2_box1_1_4, self.text5_2_box1_1_5, self.text6_2_box1_1_6,
+            self.text7_2_box1_1_7,
+            self.text8_box1_1_8, self.text9_box1_1_9,
             self.text10_box1_1_10, self.text11_box1_1_11, self.text12_box1_1_12,
             self.text13_box1_1_13
         ]:
@@ -611,6 +792,27 @@ class Gui:
 
         self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
         self.text7_box1_1_7.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_2_box1_1_1.grid(row=1, column=0, sticky='nsew')
+        self.text1_2_box1_1_1.grid(row=1, column=1, sticky='nsew')
+
+        self.label_image_2_box1_1_2.grid(row=1, column=0, sticky='nsew')
+        self.text2_2_box1_1_2.grid(row=1, column=1, sticky='nsew')
+
+        self.label_image_2_box1_1_3.grid(row=1, column=0, sticky='nsew')
+        self.text3_2_box1_1_3.grid(row=1, column=1, sticky='nsew')
+
+        self.label_image_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
+        self.text4_2_box1_1_4.grid(row=1, column=1, sticky='nsew')
+
+        self.label_image_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
+        self.text5_2_box1_1_5.grid(row=1, column=1, sticky='nsew')
+
+        self.label_image_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
+        self.text6_2_box1_1_6.grid(row=1, column=1, sticky='nsew')
+
+        self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
+        self.text7_2_box1_1_7.grid(row=1, column=1, sticky='nsew')
 
         self.label_image_box1_1_8.grid(row=0, column=0, sticky='nsew')
         self.text8_box1_1_8.grid(row=0, column=1, sticky='nsew')
@@ -656,8 +858,8 @@ class Gui:
         ]: 
             label.grid(row=0, column=0, sticky='nsew')
 
-    def check_logs_with_data(self, onduleur1, pression):
-        self.recuperer_donnees(onduleur1, pression)
+    def check_logs_with_data(self, onduleur1, onduleur2, pression):
+        self.recuperer_donnees(onduleur1, onduleur2, pression)
 
         # INFO Logs
         if(False): # Si le bouton est pressé : Extinction générale progressive.
