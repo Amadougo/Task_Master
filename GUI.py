@@ -892,7 +892,7 @@ class Gui:
 
         def on_yes():
             self.etatManip = EtatManip.DEMARRAGE
-            print("Action confirmée.")
+            print(f"Action confirmée. {self.etatManip}")
             popup.destroy()
 
         def on_no():
@@ -936,7 +936,7 @@ class Gui:
 
         def on_yes():
             self.etatManip = EtatManip.OFF
-            print("Action confirmée.")
+            print(f"Action confirmée. {self.etatManip}")
             popup.destroy()
 
         def on_no():
