@@ -295,9 +295,9 @@ class Gui:
                 # self.button_box2_3.config(state="disabled")
                 # self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
                 self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
-                self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
         else:
-            self.text1_box1_1.config(text="LOGS")
+            self.textlog1_box1_1.config(text="LOGS")
 
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
@@ -557,7 +557,7 @@ class Gui:
             #self.bg_box1_1.place(x=0, y=0, relwidth=1, relheight=1)
             self.hide_logs_box1_1()
             self.show_data_box1_1()
-            self.show_data_box1_2()
+            # self.show_data_box1_2() # Pas nécessaire
             #self.resize_images()
             #self.update_gui()
             self.affichage_donnees = True
@@ -566,7 +566,7 @@ class Gui:
             self.button_box2_4.config(text="Afficher les DONNEES")
             #self.bg_box1_1.place_forget()
             self.hide_data_box1_1()
-            self.hide_data_box1_2()
+            # self.hide_data_box1_2() # Pas nécessaire
             self.show_logs_box1_1()
             #self.resize_images()
             #self.update_gui()
@@ -576,24 +576,58 @@ class Gui:
 
     def hide_data_box1_1(self):
         for label in [
-            self.label_image_box1_1_1, self.label_image_box1_1_2,
+            self.label_image_box1_1_1, self.label_image_box1_1_2, self.label_image_box1_1_3,
+            self.label_image_box1_1_4, self.label_image_box1_1_5, self.label_image_box1_1_6,
+            self.label_image_box1_1_7, self.label_image_box1_1_8, self.label_image_box1_1_9,
+            self.label_image_box1_1_10, self.label_image_box1_1_11, self.label_image_box1_1_12,
+            self.label_image_box1_1_13,
             self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1_3,
             self.text4_box1_1_4, self.text5_box1_1_5, self.text6_box1_1_6,
             self.text7_box1_1_7, self.text8_box1_1_8, self.text9_box1_1_9,
             self.text10_box1_1_10, self.text11_box1_1_11, self.text12_box1_1_12,
             self.text13_box1_1_13
         ]:
-            label.pack_forget()
+            label.grid_forget()
 
     def show_data_box1_1(self):
-        for label in [
-            self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1_3,
-            self.text4_box1_1_4, self.text5_box1_1_5, self.text6_box1_1_6,
-            self.text7_box1_1_7, self.text8_box1_1_8, self.text9_box1_1_9,
-            self.text10_box1_1_10, self.text11_box1_1_11, self.text12_box1_1_12,
-            self.text13_box1_1_13
-        ]: 
-            label.pack(expand=YES)
+        self.label_image_box1_1_1.grid(row=0, column=0, sticky='nsew')
+        self.text1_box1_1_1.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_2.grid(row=0, column=0, sticky='nsew')
+        self.text2_box1_1_2.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_3.grid(row=0, column=0, sticky='nsew')
+        self.text3_box1_1_3.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_4.grid(row=0, column=0, sticky='nsew')
+        self.text4_box1_1_4.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_5.grid(row=0, column=0, sticky='nsew')
+        self.text5_box1_1_5.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_6.grid(row=0, column=0, sticky='nsew')
+        self.text6_box1_1_6.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
+        self.text7_box1_1_7.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_8.grid(row=0, column=0, sticky='nsew')
+        self.text8_box1_1_8.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_9.grid(row=0, column=0, sticky='nsew')
+        self.text9_box1_1_9.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_10.grid(row=0, column=0, sticky='nsew')
+        self.text10_box1_1_10.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_11.grid(row=0, column=0, sticky='nsew')
+        self.text11_box1_1_11.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_12.grid(row=0, column=0, sticky='nsew')
+        self.text12_box1_1_12.grid(row=0, column=1, sticky='nsew')
+
+        self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
+        self.text13_box1_1_13.grid(row=0, column=1, sticky='nsew')
 
     def hide_data_box1_2(self):
         for label in [
@@ -613,13 +647,13 @@ class Gui:
         for label in [
             self.textlog1_box1_1
         ]:
-            label.pack_forget()
+            label.grid_forget()
 
     def show_logs_box1_1(self):
         for label in [
             self.textlog1_box1_1
         ]: 
-            label.pack(expand=YES)
+            label.grid(row=0, column=0, sticky='nsew')
 
     def check_logs_with_data(self, onduleur, pression):
         self.recuperer_donnees(onduleur, pression)
