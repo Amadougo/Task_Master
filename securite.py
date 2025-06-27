@@ -1,9 +1,9 @@
-from data import EtatManip, Pression
+from data import EtatManip, Pression, Onduleur
 from math import pow
 
 PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 
-def securite(etat_manip: EtatManip, pression: Pression ) :
+def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, onduleur2 : Onduleur) :
     #Actions lorsque la manip est en 'OFF'
     if (etat_manip == EtatManip.OFF) :
         print("État manip : 0FF")
@@ -16,6 +16,8 @@ def securite(etat_manip: EtatManip, pression: Pression ) :
     #Actions lorsque la manip est en 'Fonctionnement'
     elif (etat_manip == EtatManip.FONCTIONNE) :
         print("État manip : Fonctionne")
+
+        #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
         if (pression.Jauge_5_Primaire == "Déconnectée" or pression.Jauge_5_Primaire == "Validation manuelle requise") :
             print("Erreur jauge primaire, arrêt des pompes")
             etat_manip = EtatManip.ARRET_EN_COURS
@@ -24,6 +26,10 @@ def securite(etat_manip: EtatManip, pression: Pression ) :
             flt = float(value[0])
             if (flt > PRESSION_SEUIL_PRIMAIRE) :
                 etat_manip = EtatManip.ARRET_EN_COURS
+        #Deuxième sécurité en cas de coupure de courant de plus de 10min
+        if (onduleur1.battery_runtime < 240) :
+            etat_manip = EtatManip.ARRET_EN_COURS
+        
 
     #Actions lorsque la manip est en 'cours d'arrêt'
     elif (etat_manip == EtatManip.ARRET_EN_COURS) :
