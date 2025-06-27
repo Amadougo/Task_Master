@@ -17,7 +17,7 @@ cathode = Cathode()
 etatManip: EtatManip = EtatManip.OFF
 
 # Creation of the GUI
-gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees=True)
+gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees=True, mode_securite_actif=True)
 
 # Get Onduleur and Pression data
 #gui.recuperer_donnees(onduleur, pression)

@@ -1,4 +1,5 @@
 from tkinter import * # type: ignore
+from tkinter import scrolledtext
 #from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 #from treatment import controle_cathode
 from data import EtatCathode
@@ -8,7 +9,7 @@ from PIL import Image, ImageTk # type: ignore
 import time
 
 class Gui:
-    def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees):
+    def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees, mode_securite_actif):
         self.window = Tk()  # Creation of the window (Graphical User Interface)
         self.onduleur1 = onduleur1  # Creation of the onduleur1 object
         self.onduleur2 = onduleur2  # Creation of the onduleur2 object
@@ -16,6 +17,7 @@ class Gui:
         self.cathode = cathode # Creation of the cathode object 
         self.etatManip = etatManip # Creation of the etatManip object 
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
+        self.mode_securite_actif = mode_securite_actif # Creation of the mode_securite_actif object
         self.setup_gui()  # Initial configuration of the gui setup
 
     def setup_gui(self):
@@ -283,12 +285,13 @@ class Gui:
         
 
         # Add button inside each box
-        self.button_box2_1 = Button(self.box2_1, text="Sécurité : ACTIVÉE", bg="#309641", fg='white', font=('Helvetica', 16), command=self.bouton_changer_mode_Securite)
-        self.button_box2_2 = Button(self.box2_2, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 16), command=self.changer_EtatManip_Arret_En_Cours)
-        self.button_box2_3 = Button(self.box2_3, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 16), command=self.bouton_Refroidissement_Cathode)
-        self.button_box2_4 = Button(self.box2_4, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 16), command=self.change_state_button_Affichage_Logs)
-        self.button_box2_5 = Button(self.box2_5, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.bouton_Chauffe_Cathode)
-        self.button_box2_6 = Button(self.box2_6, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 16), command=self.changer_EtatManip_Demarrage)
+        self.button_box2_1 = Button(self.box2_1, text="Sécurité : ACTIVÉE", bg="#309641", fg='white', font=('Helvetica', 15), command=self.bouton_changer_mode_Securite)
+        self.mode_securite_actif = True
+        self.button_box2_2 = Button(self.box2_2, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 15), command=self.changer_EtatManip_Arret_En_Cours)
+        self.button_box2_3 = Button(self.box2_3, text="Refroidissement cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 15), command=self.bouton_Refroidissement_Cathode)
+        self.button_box2_4 = Button(self.box2_4, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 15), command=self.change_state_button_Affichage_Logs)
+        self.button_box2_5 = Button(self.box2_5, text="Chauffe cathode", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 15), command=self.bouton_Chauffe_Cathode)
+        self.button_box2_6 = Button(self.box2_6, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 15), command=self.changer_EtatManip_Demarrage)
 
         self.button_box2_1.pack(expand=YES)
         self.button_box2_2.pack(expand=YES)
@@ -356,7 +359,8 @@ class Gui:
                 self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
                 self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
         else:
-            self.textlog1_box1_1.config(text="LOGS")
+            # self.textlog1_box1_1.config(text="LOGS")
+            NotImplemented # À enlever
 
         # Callback of this update function after 1 seconde
         self.window.after(1000, self.update_gui)
@@ -387,7 +391,7 @@ class Gui:
         width = self.box1_1_1.winfo_width()
         height = self.box1_1_1.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_1.resize(
                 (new_width, new_height),
@@ -396,14 +400,12 @@ class Gui:
             self.tk_resized_image_box1_1_1 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_1.config(image=self.tk_resized_image_box1_1_1)
             self.label_image_box1_1_1.image = self.tk_resized_image_box1_1_1
-            print(f"[resize_image_box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
-            print(f"Frame: {self.box1_1_1.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_2(self, event=None):        
         width = self.box1_1_2.winfo_width()
         height = self.box1_1_2.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_2.resize(
                 (new_width, new_height),
@@ -412,14 +414,12 @@ class Gui:
             self.tk_resized_image_box1_1_2 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_2.config(image=self.tk_resized_image_box1_1_2)
             self.label_image_box1_1_2.image = self.tk_resized_image_box1_1_2
-            print(f"[resize_image_box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
-            print(f"Frame: {self.box1_1_2.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_3(self, event=None):
         width = self.box1_1_3.winfo_width()
         height = self.box1_1_3.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_3.resize(
                 (new_width, new_height),
@@ -428,13 +428,12 @@ class Gui:
             self.tk_resized_image_box1_1_3 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_3.config(image=self.tk_resized_image_box1_1_3)
             self.label_image_box1_1_3.image = self.tk_resized_image_box1_1_3
-            print(f"Frame: {self.box1_1_3.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_4(self, event=None):
         width = self.box1_1_4.winfo_width()
         height = self.box1_1_4.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_4.resize(
                 (new_width, new_height),
@@ -443,13 +442,12 @@ class Gui:
             self.tk_resized_image_box1_1_4 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_4.config(image=self.tk_resized_image_box1_1_4)
             self.label_image_box1_1_4.image = self.tk_resized_image_box1_1_4
-            print(f"Frame: {self.box1_1_4.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_5(self, event=None):
         width = self.box1_1_5.winfo_width()
         height = self.box1_1_5.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_5.resize(
                 (new_width, new_height),
@@ -458,13 +456,12 @@ class Gui:
             self.tk_resized_image_box1_1_5 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_5.config(image=self.tk_resized_image_box1_1_5)
             self.label_image_box1_1_5.image = self.tk_resized_image_box1_1_5
-            print(f"Frame: {self.box1_1_5.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_6(self, event=None):
         width = self.box1_1_6.winfo_width()
         height = self.box1_1_6.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_6.resize(
                 (new_width, new_height),
@@ -473,13 +470,12 @@ class Gui:
             self.tk_resized_image_box1_1_6 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_6.config(image=self.tk_resized_image_box1_1_6)
             self.label_image_box1_1_6.image = self.tk_resized_image_box1_1_6
-            print(f"Frame: {self.box1_1_6.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_7(self, event=None):
         width = self.box1_1_7.winfo_width()
         height = self.box1_1_7.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_7.resize(
                 (new_width, new_height),
@@ -488,13 +484,12 @@ class Gui:
             self.tk_resized_image_box1_1_7 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_7.config(image=self.tk_resized_image_box1_1_7)
             self.label_image_box1_1_7.image = self.tk_resized_image_box1_1_7
-            print(f"Frame: {self.box1_1_7.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_2_box1_1_1(self, event=None):
         width = self.box1_1_1.winfo_width()
         height = self.box1_1_1.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_2_pillow_box1_1_1.resize(
                 (new_width, new_height),
@@ -503,14 +498,12 @@ class Gui:
             self.tk_resized_image_2_box1_1_1 = ImageTk.PhotoImage(resized_image)
             self.label_image_2_box1_1_1.config(image=self.tk_resized_image_2_box1_1_1)
             self.label_image_2_box1_1_1.image = self.tk_resized_image_2_box1_1_1
-            print(f"[resize_image_2box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
-            print(f"Frame: {self.box1_1_1.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_2_box1_1_2(self, event=None):        
         width = self.box1_1_2.winfo_width()
         height = self.box1_1_2.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_2_pillow_box1_1_2.resize(
                 (new_width, new_height),
@@ -519,14 +512,12 @@ class Gui:
             self.tk_resized_image_2_box1_1_2 = ImageTk.PhotoImage(resized_image)
             self.label_image_2_box1_1_2.config(image=self.tk_resized_image_2_box1_1_2)
             self.label_image_2_box1_1_2.image = self.tk_resized_image_2_box1_1_2
-            print(f"[resize_image_2_box1_1_2] called at time: {time.time()} | size: ({width}, {height})")
-            print(f"Frame: {self.box1_1_2.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_2_box1_1_3(self, event=None):
         width = self.box1_1_3.winfo_width()
         height = self.box1_1_3.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_2_pillow_box1_1_3.resize(
                 (new_width, new_height),
@@ -535,13 +526,12 @@ class Gui:
             self.tk_resized_image_2_box1_1_3 = ImageTk.PhotoImage(resized_image)
             self.label_image_2_box1_1_3.config(image=self.tk_resized_image_2_box1_1_3)
             self.label_image_2_box1_1_3.image = self.tk_resized_image_2_box1_1_3
-            print(f"Frame: {self.box1_1_3.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_2_box1_1_4(self, event=None):
         width = self.box1_1_4.winfo_width()
         height = self.box1_1_4.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_2_pillow_box1_1_4.resize(
                 (new_width, new_height),
@@ -550,13 +540,12 @@ class Gui:
             self.tk_resized_image_2_box1_1_4 = ImageTk.PhotoImage(resized_image)
             self.label_image_2_box1_1_4.config(image=self.tk_resized_image_2_box1_1_4)
             self.label_image_2_box1_1_4.image = self.tk_resized_image_2_box1_1_4
-            print(f"Frame: {self.box1_1_4.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_2_box1_1_5(self, event=None):
         width = self.box1_1_5.winfo_width()
         height = self.box1_1_5.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_2_pillow_box1_1_5.resize(
                 (new_width, new_height),
@@ -565,13 +554,12 @@ class Gui:
             self.tk_resized_image_2_box1_1_5 = ImageTk.PhotoImage(resized_image)
             self.label_image_2_box1_1_5.config(image=self.tk_resized_image_2_box1_1_5)
             self.label_image_2_box1_1_5.image = self.tk_resized_image_2_box1_1_5
-            print(f"Frame: {self.box1_1_5.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_2_box1_1_6(self, event=None):
         width = self.box1_1_6.winfo_width()
         height = self.box1_1_6.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_2_pillow_box1_1_6.resize(
                 (new_width, new_height),
@@ -580,13 +568,12 @@ class Gui:
             self.tk_resized_image_2_box1_1_6 = ImageTk.PhotoImage(resized_image)
             self.label_image_2_box1_1_6.config(image=self.tk_resized_image_2_box1_1_6)
             self.label_image_2_box1_1_6.image = self.tk_resized_image_2_box1_1_6
-            print(f"Frame: {self.box1_1_6.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_2_box1_1_7(self, event=None):
         width = self.box1_1_7.winfo_width()
         height = self.box1_1_7.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_2_pillow_box1_1_7.resize(
                 (new_width, new_height),
@@ -595,13 +582,12 @@ class Gui:
             self.tk_resized_image_2_box1_1_7 = ImageTk.PhotoImage(resized_image)
             self.label_image_2_box1_1_7.config(image=self.tk_resized_image_2_box1_1_7)
             self.label_image_2_box1_1_7.image = self.tk_resized_image_2_box1_1_7
-            print(f"Frame: {self.box1_1_7.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_8(self, event=None):
         width = self.box1_1_8.winfo_width()
         height = self.box1_1_8.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_8.resize(
                 (new_width, new_height),
@@ -610,13 +596,12 @@ class Gui:
             self.tk_resized_image_box1_1_8 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_8.config(image=self.tk_resized_image_box1_1_8)
             self.label_image_box1_1_8.image = self.tk_resized_image_box1_1_8
-            print(f"Frame: {self.box1_1_8.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_9(self, event=None):
         width = self.box1_1_9.winfo_width()
         height = self.box1_1_9.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_9.resize(
                 (new_width, new_height),
@@ -625,13 +610,12 @@ class Gui:
             self.tk_resized_image_box1_1_9 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_9.config(image=self.tk_resized_image_box1_1_9)
             self.label_image_box1_1_9.image = self.tk_resized_image_box1_1_9
-            print(f"Frame: {self.box1_1_9.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_10(self, event=None):
         width = self.box1_1_10.winfo_width()
         height = self.box1_1_10.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_10.resize(
                 (new_width, new_height),
@@ -640,13 +624,12 @@ class Gui:
             self.tk_resized_image_box1_1_10 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_10.config(image=self.tk_resized_image_box1_1_10)
             self.label_image_box1_1_10.image = self.tk_resized_image_box1_1_10
-            print(f"Frame: {self.box1_1_10.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_11(self, event=None):
         width = self.box1_1_11.winfo_width()
         height = self.box1_1_11.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_11.resize(
                 (new_width, new_height),
@@ -655,13 +638,12 @@ class Gui:
             self.tk_resized_image_box1_1_11 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_11.config(image=self.tk_resized_image_box1_1_11)
             self.label_image_box1_1_11.image = self.tk_resized_image_box1_1_11
-            print(f"Frame: {self.box1_1_11.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_12(self, event=None):
         width = self.box1_1_12.winfo_width()
         height = self.box1_1_12.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_12.resize(
                 (new_width, new_height),
@@ -670,13 +652,12 @@ class Gui:
             self.tk_resized_image_box1_1_12 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_12.config(image=self.tk_resized_image_box1_1_12)
             self.label_image_box1_1_12.image = self.tk_resized_image_box1_1_12
-            print(f"Frame: {self.box1_1_12.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def resize_image_box1_1_13(self, event=None):
         width = self.box1_1_13.winfo_width()
         height = self.box1_1_13.winfo_height()
         new_width = max(1, int(width * 0.3))
-        new_height = max(1, int(height * 0.7))
+        new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
             resized_image = self.image_pillow_box1_1_13.resize(
                 (new_width, new_height),
@@ -685,8 +666,7 @@ class Gui:
             self.tk_resized_image_box1_1_13 = ImageTk.PhotoImage(resized_image)
             self.label_image_box1_1_13.config(image=self.tk_resized_image_box1_1_13)
             self.label_image_box1_1_13.image = self.tk_resized_image_box1_1_13
-            print(f"Frame: {self.box1_1_13.winfo_name()} | width_box: {width}, height_box: {height} | new size_image: ({new_width}, {new_height})")
-
+            
     def configure_initial_resizing(self):
         self.box1_1_1.bind("<Configure>", self.resize_image_box1_1_1)
         self.box1_1_2.bind("<Configure>", self.resize_image_box1_1_2)
@@ -847,16 +827,34 @@ class Gui:
             label.pack(expand=YES)
 
     def hide_logs_box1_1(self):
-        for label in [
-            self.textlog1_box1_1
-        ]:
-            label.grid_forget()
+        if hasattr(self, 'textlog1_box1_1_widget'):
+            self.textlog1_box1_1_widget.grid_forget() 
 
     def show_logs_box1_1(self):
-        for label in [
-            self.textlog1_box1_1
-        ]: 
-            label.grid(row=0, column=0, sticky='nsew')
+        # Lire le fichier logs.txt
+        try:
+            with open("fichier_log.log", "r", encoding="utf-8") as file:
+                contenu = file.read()
+        except FileNotFoundError:
+            contenu = "Fichier de logs introuvable."
+
+        # Si le widget n'existe pas encore, on le crée
+        if not hasattr(self, 'textlog1_box1_1_widget'):
+            self.textlog1_box1_1_widget = scrolledtext.ScrolledText(
+                self.box1_1,
+                wrap='word',
+                bg='#1e1e1e',
+                fg='white',
+                font=('Consolas', 11),
+                borderwidth=0
+            )
+
+        # Remettre le widget dans le layout
+        self.textlog1_box1_1_widget.grid(row=0, column=0, rowspan=13, columnspan=1, sticky='nsew')
+
+        # Mettre à jour le contenu
+        self.textlog1_box1_1_widget.delete('1.0', END)
+        self.textlog1_box1_1_widget.insert(INSERT, contenu)
 
     def check_logs_with_data(self, onduleur1, onduleur2, pression):
         self.recuperer_donnees(onduleur1, onduleur2, pression)
@@ -1062,7 +1060,12 @@ class Gui:
         bouton_non.pack()
 
     def bouton_changer_mode_Securite(self):
-        self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
+        if(self.mode_securite_actif == True):
+            self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
+            self.mode_securite_actif = False
+        else:
+            self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
+            self.mode_securite_actif = True
 
     def changer_EtatManip_Demarrage(self):
         popup = Toplevel(self.window)
