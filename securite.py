@@ -1,5 +1,6 @@
 from data import EtatManip, Pression, Onduleur
 from math import pow
+import subprocess
 
 PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 
@@ -8,6 +9,12 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
     if (etat_manip == EtatManip.OFF) :
         print("État manip : 0FF")
         #print(f"seuil primaire défini à {PRESSION_SEUIL_PRIMAIRE}")
+        #Exctinction de l'ordinateur en cas de coupure de courant prolongée
+        if (onduleur2.battery_runtime < 300) :  # 300 secondes = 5 minutes
+            print("Coupure de courant prolongée, extinction de l'ordinateur")
+            #Besoin des droits sudoers, à voir si on peut démarrer le programme avec les droits sudoers
+            # ou bien si on peut désactiver les droits sudoers pour shutdown
+            subprocess.run(["sudo", "shutdown", "-h", "now"])
 
     #Actions lorsque la manip est en 'Démarrage'
     elif (etat_manip == EtatManip.DEMARRAGE) :
@@ -37,4 +44,6 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
 
 etat_manip: EtatManip = EtatManip.OFF
 pression = Pression()
-securite(etat_manip, pression)    
+onduleur1 = Onduleur()
+onduleur2 = Onduleur()
+securite(etat_manip, pression, onduleur1, onduleur2)    
