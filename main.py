@@ -28,6 +28,7 @@ while(os.environ.get("DISPLAY") == None):
     # recuperer_donnees_pression_jauge5(pression)
     # recuperer_donnees_pression_jauge6(pression)
     # securite(etatManip, pression, onduleur1, onduleur2)
+    print("test OS")
     time.sleep(1)
 
 time.sleep(5)
@@ -36,6 +37,8 @@ from GUI import Gui # import the GUI class from GUI.py
 
 # Creation of the GUI
 gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees=True, mode_securite_actif=True)
+
+print("interface graphique")
 
 # Get Onduleur and Pression data
 #gui.recuperer_donnees(onduleur, pression)
