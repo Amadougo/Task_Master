@@ -30,14 +30,6 @@ class Gui:
 
         # Edit of the main features for the window
         self.window.attributes('-fullscreen', YES)
-        
-        # Enlève la barre de titre (donc plus de croix ni redimensionnement possible)
-        self.window.overrideredirect(True) 
-
-        # Affiche le curseur (important sous Wayland)
-        self.window.config(cursor="arrow")
-
-        # Set the background color
         self.window.configure(bg='#64698A')
 
         # Configuration of the main grid (to place boxes in)
