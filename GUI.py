@@ -1059,13 +1059,58 @@ class Gui:
         bouton_non.pack()
 
     def bouton_changer_mode_Securite(self):
-        if(self.mode_securite_actif == True):
-            self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
-            self.mode_securite_actif = False
-            self.etatManip = EtatManip.OFF
-        else:
-            self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
-            self.mode_securite_actif = True
+        popup = Toplevel(self.window)
+        popup.title("Confirmation du changement de mode sécurité")
+        popup.geometry("800x200")
+        popup.transient(self.window)
+        popup.grab_set()
+        popup.focus_force()
+
+        # ----- Centrage de la pop up dans l'écran -----
+        self.window.update_idletasks()  # Assure les dimensions correctes
+        window_width = 800
+        window_height = 200
+
+        # Récupère la position de la fenêtre principale
+        x = self.window.winfo_x()
+        y = self.window.winfo_y()
+        w = self.window.winfo_width()
+        h = self.window.winfo_height()
+
+        # Calcule les coordonnées pour centrer la popup par rapport à la fenêtre principale
+        x_center = x + (w - window_width) // 2
+        y_center = y + (h - window_height) // 2
+
+        popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
+        # ---------------------
+
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir changer de mode de sécurité ?", font=("Arial", 14))
+        label_1.pack(pady=10)
+
+        label_2 = Label(popup, text="Attention : si la sécurité est désactivée, alors la manip se mettra en arrêt progressif.", font=("Arial", 14))
+        label_2.pack(pady=20)
+
+        def on_yes():
+            if(self.mode_securite_actif == True):
+                self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
+                self.mode_securite_actif = False
+                self.etatManip = EtatManip.OFF
+            else:
+                self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
+                self.mode_securite_actif = True
+
+            print(f"Action confirmée.")
+            popup.destroy()
+
+        def on_no():
+            print(f"Action annulée.")
+            popup.destroy()
+
+        bouton_oui = Button(popup, text="Oui, je suis sûr de mon choix", command=on_yes)
+        bouton_oui.pack(pady=5)
+
+        bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
+        bouton_non.pack()
 
     def changer_EtatManip_Demarrage(self):
         popup = Toplevel(self.window)

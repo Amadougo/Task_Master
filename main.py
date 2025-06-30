@@ -18,7 +18,7 @@ cathode = Cathode()
 # Creation of a EtatManip object
 etatManip: EtatManip = EtatManip.OFF
 
-while(os.environ.get("DISPLAY") == None):
+while(os.environ.get("DISPLAY")):
     # recuperer_donnees_onduleur(onduleur1)
     # recuperer_donnees_onduleur(onduleur2)
     # recuperer_donnees_pression_jauge1(pression)
