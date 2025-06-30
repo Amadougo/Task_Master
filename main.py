@@ -31,7 +31,7 @@ while(os.environ.get("DISPLAY") == None):
     print("test OS")
     time.sleep(1)
 
-time.sleep(20)
+time.sleep(5)
 
 from GUI import Gui # import the GUI class from GUI.py
 
