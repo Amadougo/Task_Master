@@ -32,7 +32,7 @@ class Gui:
         self.window.attributes('-fullscreen', YES)
 
         # Enlève la barre de titre (donc plus de croix ni redimensionnement possible)
-        self.window.overrideredirect(False) 
+        self.window.overrideredirect(True) 
 
         # Affiche le curseur (important sous Wayland)
         self.window.config(cursor="arrow")
