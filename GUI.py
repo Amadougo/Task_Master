@@ -30,7 +30,7 @@ class Gui:
 
         # Edit of the main features for the window
         self.window.attributes('-fullscreen', YES)
-
+        time.sleep(3)
         # Enlève la barre de titre (donc plus de croix ni redimensionnement possible)
         self.window.overrideredirect(True) 
 
