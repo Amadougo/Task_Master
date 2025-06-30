@@ -31,6 +31,8 @@ while(os.environ.get("DISPLAY") == None):
     # securite(etatManip, pression, onduleur1, onduleur2)
     time.sleep(1)
 
+time.sleep(5)
+
 # Creation of the GUI
 gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees=True, mode_securite_actif=True)
 
