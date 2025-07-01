@@ -45,6 +45,8 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
     else:
         print("Impossible de récupérer les données de l'onduleur.")
     
+    print(f"{time.monotonic()}, fin du passage dans recuperer_donnees_onduleurs")
+
     return onduleur
 
 #Fonctions pour récupérer les données de pression et les mettre dans la class 'Pression'
