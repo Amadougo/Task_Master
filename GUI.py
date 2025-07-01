@@ -1,6 +1,6 @@
 from tkinter import * # type: ignore
 from tkinter import scrolledtext
-#from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
+from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 #from treatment import controle_cathode
 from data import EtatCathode
 from data import EtatManip
@@ -319,8 +319,8 @@ class Gui:
 
     def update_gui(self):
         # Get the data from onduleur1 and pression
-        # self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
-        # self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
+        self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
+        self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
