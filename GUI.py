@@ -325,6 +325,8 @@ class Gui:
         # Get the data from onduleur1 and pression
         self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
 
+        print(f"{time.monotonic()}, passage dans update gui")
+
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
             self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
@@ -369,8 +371,6 @@ class Gui:
         else:
             # self.textlog1_box1_1.config(text="LOGS")
             NotImplemented # À enlever
-
-        print("Update gui")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
