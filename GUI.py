@@ -1114,16 +1114,16 @@ class Gui:
                 self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
                 self.mode_securite_actif = False
                 self.etatManip = EtatManip.OFF
+                print(f"{self.etatManip}")
             else:
                 self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
                 self.mode_securite_actif = True
 
-            print(f"{self.etatManip}")
             print(f"Action confirmée.")
             popup.destroy()
 
         def on_no():
-            print(f"Action annulée.")
+            print("Action annulée.")
             popup.destroy()
 
         bouton_oui = Button(popup, text="Oui, je suis sûr de mon choix", command=on_yes)
