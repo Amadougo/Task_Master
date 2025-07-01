@@ -39,7 +39,7 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
             if (flt > PRESSION_SEUIL_PRIMAIRE) :
                 etat_manip = EtatManip.ARRET_EN_COURS
         #Deuxième sécurité en cas de coupure de courant de plus de 10min
-        if (onduleur1.battery_runtime < 240) :
+        if (int(onduleur1.battery_runtime) < 240) :
             etat_manip = EtatManip.ARRET_EN_COURS
         
 
