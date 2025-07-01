@@ -1,10 +1,14 @@
 from data import EtatManip, Pression, Onduleur
 from math import pow
 import subprocess
+import time
 
 PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 
 def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, onduleur2 : Onduleur) :
+    
+    print(f"{time.monotonic()}, fin du passage dans la securite")
+    
     #Actions lorsque la manip est en 'OFF'
     if (etat_manip == EtatManip.OFF) :
         print("État manip : 0FF")
@@ -41,3 +45,5 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
     #Actions lorsque la manip est en 'cours d'arrêt'
     elif (etat_manip == EtatManip.ARRET_EN_COURS) :
         print("État manip : Arrêt en cours")
+
+    print(f"{time.monotonic()}, fin du passage dans la securite")
