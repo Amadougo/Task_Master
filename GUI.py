@@ -316,14 +316,14 @@ class Gui:
         #self.window.after(5400, self.controle_cathode)
 
         # Bind the images to rescale them later
-        # self.window.after(500, self.force_initial_resizing)
+        self.window.after(500, self.force_initial_resizing)
 
     def update_gui(self):
 
         print(f"{time.monotonic()}, passage dans update gui")
 
         # Callback of the gui update function after 1 seconde
-        #self.window.after(1000, self.update_gui)
+        self.window.after(1000, self.update_gui)
 
         # Get the data from onduleur1 and pression
         self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
@@ -737,7 +737,7 @@ class Gui:
             #self.update_gui()
             self.affichage_donnees = False
 
-        self.update_gui()
+        # self.update_gui()
 
     def hide_data_box1_1(self):
         for label in [
@@ -1110,6 +1110,7 @@ class Gui:
                 self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
                 self.mode_securite_actif = True
 
+            print(f"{self.etatManip}")
             print(f"Action confirmée.")
             popup.destroy()
 
