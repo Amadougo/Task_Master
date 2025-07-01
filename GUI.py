@@ -29,8 +29,10 @@ class Gui:
         self.window.title("Interface graphique du programme de sécurité OIA")
 
         # Edit of the main features for the window
-        self.window.attributes('-fullscreen', YES)
+        self.window.geometry(f"{self.screen_width}x{self.screen_height}")
         self.window.configure(bg='#64698A')
+        # Redéfinir le comportement de fermeture
+        self.window.protocol("WM_DELETE_WINDOW", self.popUpConfirmationQuitterApplication)
 
         # Configuration of the main grid (to place boxes in)
         self.window.grid_rowconfigure(index=0, weight=9) # 1st row takes 90% of the screen
@@ -1192,6 +1194,50 @@ class Gui:
             self.etatManip = EtatManip.OFF
             print(f"Action confirmée. {self.etatManip}")
             popup.destroy()
+
+        def on_no():
+            print("Action annulée.")
+            popup.destroy()
+
+        bouton_oui = Button(popup, text="Oui, je suis sûr de mon choix", command=on_yes)
+        bouton_oui.pack(pady=5)
+
+        bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
+        bouton_non.pack()
+
+    def popUpConfirmationQuitterApplication(self):
+        popup = Toplevel(self.window)
+        popup.title("Confirmation de l'arrêt du programme de sécurité OIA")
+        popup.geometry("600x200")
+        popup.transient(self.window)
+        popup.grab_set()
+        popup.focus_force()
+
+        # ----- Centrage de la pop up dans l'écran -----
+        self.window.update_idletasks()  # Assure les dimensions correctes
+        window_width = 600
+        window_height = 200
+
+        # Récupère la position de la fenêtre principale
+        x = self.window.winfo_x()
+        y = self.window.winfo_y()
+        w = self.window.winfo_width()
+        h = self.window.winfo_height()
+
+        # Calcule les coordonnées pour centrer la popup par rapport à la fenêtre principale
+        x_center = x + (w - window_width) // 2
+        y_center = y + (h - window_height) // 2
+
+        popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
+        # ---------------------
+
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir quitter le programme de  sécurité OIA ?", font=("Arial", 14))
+        label_1.pack(pady=40)
+
+        def on_yes():
+            print("Action confirmée.")
+            popup.destroy()
+            self.window.destroy()  # Ferme l'application et le programme de sécurité OIA
 
         def on_no():
             print("Action annulée.")
