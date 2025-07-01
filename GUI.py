@@ -259,7 +259,7 @@ class Gui:
         self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
-        self.text7_box1_2 = Label(self.box1_2, text="text7_box1_2", bg='#64698A', fg='darkgreen', font=('Helvetica', 16, 'bold italic'))
+        self.text7_box1_2 = Label(self.box1_2, text="text7_box1_2", bg="#93949B", fg='darkgreen', font=('Helvetica', 16, 'bold italic'))
 
         self.text1_box1_2.pack(expand=YES)
         self.text2_box1_2.pack(expand=YES)
