@@ -316,7 +316,7 @@ class Gui:
         #self.window.after(5400, self.controle_cathode)
 
         # Bind the images to rescale them later
-        self.window.after(500, self.force_initial_resizing)
+        # self.window.after(500, self.force_initial_resizing)
 
     def update_gui(self):
 
