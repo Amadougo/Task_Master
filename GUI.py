@@ -337,7 +337,7 @@ class Gui:
             self.text5_box1_1_5.config(text=f"Onduleur1: Charge de la batterie (battery_charge) : {self.onduleur1.battery_charge} %")
             self.text6_box1_1_6.config(text=f"Onduleur1: Charge ups (ups_load) : {self.onduleur1.ups_load} %")
             self.text7_box1_1_7.config(text=f"Onduleur1: Statut ups (ups_status) : {self.onduleur1.ups_status}")
-            self.text1_2_box1_1_1.config(text=f"Onduleur2: Tension d'entrée (input_voltage) : {self.onduleur2.input_voltage} V")
+            """self.text1_2_box1_1_1.config(text=f"Onduleur2: Tension d'entrée (input_voltage) : {self.onduleur2.input_voltage} V")
             self.text2_2_box1_1_2.config(text=f"Onduleur2: Fréquence d'entrée (input_frequency) : {self.onduleur2.input_frequency} Hz")
             self.text3_2_box1_1_3.config(text=f"Onduleur2: Tension de la batterie (battery_voltage) : {self.onduleur2.battery_voltage} V")
             self.text4_2_box1_1_4.config(text=f"Onduleur2: Temps avant extinction de la batterie (battery_runtime) : {self.onduleur2.battery_runtime} s")
@@ -349,7 +349,7 @@ class Gui:
             self.text10_box1_1_10.config(text=f"Pression de la 3ème pompe Turbo (Jauge_3_Turbo) : {self.pression.Jauge_3_Turbo}")
             self.text11_box1_1_11.config(text=f"Pression de la 4ème pompe Turbo (Jauge_4_Turbo) : {self.pression.Jauge_4_Turbo}")
             self.text12_box1_1_12.config(text=f"Pression de la pompe primaire (Jauge_5_Primaire) : {self.pression.Jauge_5_Primaire}")
-            self.text13_box1_1_13.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
+            self.text13_box1_1_13.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")"""
             
             self.text1_box1_2.config(text=f"État de la cathode : {self.cathode.etat}")
             self.text2_box1_2.config(text=f"t_0 : {self.cathode.t_0}")
