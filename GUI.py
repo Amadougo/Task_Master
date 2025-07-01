@@ -1272,6 +1272,7 @@ class Gui:
         bouton_non.pack()
 
     def securite_gui(self, etatManip, pression, onduleur1, onduleur2):
+        time.sleep(10)
         while self.running2:
             securite(etatManip, pression, onduleur1, onduleur2)
 

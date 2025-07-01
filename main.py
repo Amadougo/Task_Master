@@ -34,16 +34,10 @@ while(os.environ.get("DISPLAY") == None):
 
 from GUI import Gui # import the GUI class from GUI.py
 
-# Creation of the GUI
-gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees=True, mode_securite_actif=True)
-
 print("interface graphique")
 
-# Get Onduleur and Pression data
-#gui.recuperer_donnees(onduleur, pression)
-
-"""# Rescale images
-#gui.resize_images()"""
+# Creation of the GUI
+gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees=True, mode_securite_actif=True)
 
 # Force the resize of boxes dimensions
 gui.force_initial_resizing()

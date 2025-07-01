@@ -1,7 +1,7 @@
 from data import EtatManip, Pression, Onduleur
 from math import pow
 import subprocess
-import time  
+import time
 
 PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 
