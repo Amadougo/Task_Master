@@ -321,7 +321,8 @@ class Gui:
 
         # Thread de mise à jour
         self.running = True
-        self.update_thread = threading.Thread(target=self.update_loop, daemon=True).start()
+        self.update_thread = threading.Thread(target=self.check_logs_with_data, args=(self.onduleur1, self.onduleur2, self.pression), daemon=True)
+        self.update_thread.start()
 
     def update_gui(self):
 
