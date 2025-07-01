@@ -15,7 +15,7 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
         print("État manip : 0FF")
         #print(f"seuil primaire défini à {PRESSION_SEUIL_PRIMAIRE}")
         #Exctinction de l'ordinateur en cas de coupure de courant prolongée
-        if (onduleur2.battery_runtime < 300) :  # 300 secondes = 5 minutes
+        if (int(onduleur2.battery_runtime) < 300) :  # 300 secondes = 5 minutes
             print("Coupure de courant prolongée, extinction de l'ordinateur")
             #Besoin des droits sudoers, à voir si on peut démarrer le programme avec les droits sudoers
             # ou bien si on peut désactiver les droits sudoers pour shutdown
