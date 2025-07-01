@@ -7,6 +7,7 @@ from data import EtatManip
 from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 import time
+import threading
 
 class Gui:
     def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees, mode_securite_actif):
@@ -318,7 +319,9 @@ class Gui:
         # Bind the images to rescale them later
         self.window.after(500, self.force_initial_resizing)
 
-        self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
+        # Thread de mise à jour
+        self.running = True
+        self.update_thread = threading.Thread(target=self.update_loop, daemon=True).start()
 
     def update_gui(self):
 
@@ -940,8 +943,10 @@ class Gui:
         if(False): # Batterie onduleur1 morte.
             log_with_cooldown(logging.CRITICAL, "Batterie onduleur1 morte.")
 
-        # Get the data from onduleur1 and pression every second
-        self.window.after(1000, lambda: self.check_logs_with_data(onduleur1, onduleur2, pression))
+        while self.running:
+            data = self.check_logs_with_data(onduleur1, onduleur2, pression)
+            self.data_var_set(data)
+            time.sleep(1) # Fréquence de mise à jour : 1 seconde
 
     def bouton_Chauffe_Cathode(self):
         popup = Toplevel(self.window)
@@ -1246,6 +1251,7 @@ class Gui:
         def on_yes():
             print("Action confirmée.")
             popup.destroy()
+            self.running = False
             self.window.destroy()  # Ferme l'application et le programme de sécurité OIA
 
         def on_no():
