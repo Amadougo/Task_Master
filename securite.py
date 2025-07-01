@@ -41,9 +41,3 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
     #Actions lorsque la manip est en 'cours d'arrêt'
     elif (etat_manip == EtatManip.ARRET_EN_COURS) :
         print("État manip : Arrêt en cours")
-
-etat_manip: EtatManip = EtatManip.OFF
-pression = Pression()
-onduleur1 = Onduleur()
-onduleur2 = Onduleur()
-securite(etat_manip, pression, onduleur1, onduleur2)    
