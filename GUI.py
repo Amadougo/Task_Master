@@ -318,9 +318,6 @@ class Gui:
         # Bind the images to rescale them later
         self.window.after(500, self.force_initial_resizing)
 
-        # Callback of the gui update function after 1 seconde
-        self.window.after(1000, self.update_gui)
-
     def update_gui(self):
 
         print(f"{time.monotonic()}, passage dans update gui")
@@ -373,6 +370,9 @@ class Gui:
             # self.textlog1_box1_1.config(text="LOGS")
             NotImplemented # À enlever
 
+        # Callback of the gui update function after 1 seconde
+        self.window.after(1000, self.update_gui)
+        
         print(f"{time.monotonic()}, fin du passage dans update gui")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
