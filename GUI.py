@@ -259,7 +259,7 @@ class Gui:
         self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
-        self.text7_box1_2 = Label(self.box1_2, text="text7_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text7_box1_2 = Label(self.box1_2, text="text7_box1_2", bg='#64698A', fg='darkgreen', font=('Helvetica', 16, 'bold italic'))
 
         self.text1_box1_2.pack(expand=YES)
         self.text2_box1_2.pack(expand=YES)
@@ -286,6 +286,7 @@ class Gui:
         self.box2_4 = Frame(self.box2, bg='#64698A', bd=0)
         self.box2_5 = Frame(self.box2, bg='#64698A', bd=0)
         self.box2_6 = Frame(self.box2, bg='#64698A', bd=0)
+
         self.box2_1.grid(row=0, column=0, sticky='nsew')
         self.box2_2.grid(row=0, column=1, sticky='nsew')
         self.box2_3.grid(row=0, column=2, sticky='nsew')
@@ -720,7 +721,6 @@ class Gui:
         self.resize_image_box1_1_11()
         self.resize_image_box1_1_12()
         self.resize_image_box1_1_13()
-        print("Passage dans force_initial_resizing")
 
     def change_state_button_Affichage_Logs(self):
         if self.affichage_donnees == False :
