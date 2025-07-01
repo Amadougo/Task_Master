@@ -1193,7 +1193,7 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            self.etatManip = EtatManip.OFF
+            self.etatManip = EtatManip.ARRET_EN_COURS
             print(f"Action confirmée. {self.etatManip}")
             popup.destroy()
 
