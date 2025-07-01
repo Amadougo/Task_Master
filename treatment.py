@@ -5,7 +5,7 @@ import time
 import math
 
 #Fonction qui définie la récupération de données auprès de NUT
-def get_ups_data(ups_name="onduleur@localhost"):
+def get_ups_data(ups_name="onduleur1@localhost"):
     try:
         # Lance la commande 'upsc'
         result = subprocess.run(["upsc", ups_name], capture_output=True, text=True, check=True)
