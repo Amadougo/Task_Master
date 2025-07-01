@@ -370,6 +370,8 @@ class Gui:
             # self.textlog1_box1_1.config(text="LOGS")
             NotImplemented # À enlever
 
+        print("Update gui")
+
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
         recuperer_donnees_onduleur(onduleur2)
