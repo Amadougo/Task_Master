@@ -330,14 +330,14 @@ class Gui:
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
-            self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
+            """self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
             self.text2_box1_1_2.config(text=f"Onduleur1: Fréquence d'entrée (input_frequency) : {self.onduleur1.input_frequency} Hz")
             self.text3_box1_1_3.config(text=f"Onduleur1: Tension de la batterie (battery_voltage) : {self.onduleur1.battery_voltage} V")
             self.text4_box1_1_4.config(text=f"Onduleur1: Temps avant extinction de la batterie (battery_runtime) : {self.onduleur1.battery_runtime} s")
             self.text5_box1_1_5.config(text=f"Onduleur1: Charge de la batterie (battery_charge) : {self.onduleur1.battery_charge} %")
             self.text6_box1_1_6.config(text=f"Onduleur1: Charge ups (ups_load) : {self.onduleur1.ups_load} %")
             self.text7_box1_1_7.config(text=f"Onduleur1: Statut ups (ups_status) : {self.onduleur1.ups_status}")
-            """self.text1_2_box1_1_1.config(text=f"Onduleur2: Tension d'entrée (input_voltage) : {self.onduleur2.input_voltage} V")
+            self.text1_2_box1_1_1.config(text=f"Onduleur2: Tension d'entrée (input_voltage) : {self.onduleur2.input_voltage} V")
             self.text2_2_box1_1_2.config(text=f"Onduleur2: Fréquence d'entrée (input_frequency) : {self.onduleur2.input_frequency} Hz")
             self.text3_2_box1_1_3.config(text=f"Onduleur2: Tension de la batterie (battery_voltage) : {self.onduleur2.battery_voltage} V")
             self.text4_2_box1_1_4.config(text=f"Onduleur2: Temps avant extinction de la batterie (battery_runtime) : {self.onduleur2.battery_runtime} s")
