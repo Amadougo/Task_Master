@@ -29,6 +29,7 @@ class Gui:
         self.window.title("Interface graphique du programme de sécurité OIA")
 
         # Edit of the main features for the window
+        # Ajout Plein écran avec 'F11' self.window.bind("<F11>", lambda event: self.window.attributes("-fullscreen", not self.window.attributes("-fullscreen")))
         self.window.geometry(f"{self.screen_width}x{self.screen_height}")
         self.window.configure(bg='#64698A')
         # Redéfinir le comportement de fermeture
@@ -320,7 +321,6 @@ class Gui:
     def update_gui(self):
         # Get the data from onduleur1 and pression
         self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
-        self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
