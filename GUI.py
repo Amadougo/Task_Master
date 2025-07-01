@@ -29,7 +29,7 @@ class Gui:
         self.window.title("Interface graphique du programme de sécurité OIA")
 
         # Edit of the main features for the window
-        self.window.config('-fullscreen', YES)
+        self.window.attributes('-fullscreen', YES)
         #self.window.geometry(f"{self.screen_width}x{self.screen_height}")
         self.window.configure(bg='#64698A')
         # Redéfinir le comportement de fermeture
