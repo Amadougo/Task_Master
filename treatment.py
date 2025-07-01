@@ -48,7 +48,7 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
 #Fonctions pour récupérer les données de pression et les mettre dans la class 'Pression'
 #Récupérations globales
 #Port série pour les jauges de pression
-port = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port0'
+port = '/dev/ttyUSB0'
 baud_rate = 9600
 time_out = 1
 
