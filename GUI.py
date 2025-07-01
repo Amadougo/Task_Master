@@ -323,10 +323,10 @@ class Gui:
         print(f"{time.monotonic()}, passage dans update gui")
 
         # Callback of the gui update function after 1 seconde
-        # self.window.after(1000, self.update_gui)
+        self.window.after(1000, self.update_gui)
 
         # Get the data from onduleur1 and pression
-        self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
+        # self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
