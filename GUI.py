@@ -8,6 +8,7 @@ from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 import time
 import threading
+from securite import securite
 
 class Gui:
     def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees, mode_securite_actif):
@@ -327,6 +328,11 @@ class Gui:
         self.running = True
         self.update_thread = threading.Thread(target=self.check_logs_with_data, args=(self.onduleur1, self.onduleur2, self.pression), daemon=True)
         self.update_thread.start()
+        
+        # 2nd Thread de mise à jour
+        self.running2 = True
+        update_thread2 = threading.Thread(target=self.securite_gui, args=(self.etatManip, self.pression, self.onduleur1, self.onduleur2), daemon=True)
+        update_thread2.start()
 
     def update_gui(self):
 
@@ -1252,6 +1258,7 @@ class Gui:
             print("Action confirmée.")
             popup.destroy()
             self.running = False
+            self.running2 = False
             self.window.destroy()  # Ferme l'application et le programme de sécurité OIA
 
         def on_no():
@@ -1263,3 +1270,9 @@ class Gui:
 
         bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
         bouton_non.pack()
+
+    def securite_gui(self, etatManip, pression, onduleur1, onduleur2):
+        while self.running2:
+            securite(etatManip, pression, onduleur1, onduleur2)
+
+            time.sleep(1)

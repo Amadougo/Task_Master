@@ -2,7 +2,8 @@ from data import Onduleur, Pression, Cathode, EtatManip
 from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 import os
 import time
-# from securite import securite
+import threading 
+from securite import securite
 
 # Creation of an Onduleur object
 onduleur1 = Onduleur()
@@ -19,15 +20,15 @@ cathode = Cathode()
 etatManip: EtatManip = EtatManip.OFF
 
 while(os.environ.get("DISPLAY") == None):
-    # recuperer_donnees_onduleur(onduleur1)
-    # recuperer_donnees_onduleur(onduleur2)
-    # recuperer_donnees_pression_jauge1(pression)
-    # recuperer_donnees_pression_jauge2(pression)
-    # recuperer_donnees_pression_jauge3(pression)
-    # recuperer_donnees_pression_jauge4(pression)
-    # recuperer_donnees_pression_jauge5(pression)
-    # recuperer_donnees_pression_jauge6(pression)
-    # securite(etatManip, pression, onduleur1, onduleur2)
+    recuperer_donnees_onduleur(onduleur1)
+    recuperer_donnees_onduleur(onduleur2)
+    recuperer_donnees_pression_jauge1(pression)
+    recuperer_donnees_pression_jauge2(pression)
+    recuperer_donnees_pression_jauge3(pression)
+    recuperer_donnees_pression_jauge4(pression)
+    recuperer_donnees_pression_jauge5(pression)
+    recuperer_donnees_pression_jauge6(pression)
+    securite(etatManip, pression, onduleur1, onduleur2)
     print("test OS")
     time.sleep(1)
 
