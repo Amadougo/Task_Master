@@ -259,6 +259,7 @@ class Gui:
         self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text7_box1_2 = Label(self.box1_2, text="text7_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
 
         self.text1_box1_2.pack(expand=YES)
         self.text2_box1_2.pack(expand=YES)
@@ -266,6 +267,7 @@ class Gui:
         self.text4_box1_2.pack(expand=YES)
         self.text5_box1_2.pack(expand=YES)
         self.text6_box1_2.pack(expand=YES)
+        self.text7_box1_2.pack(expand=YES)
 
         # Configuration of a grid inside box2
         self.box2.grid_rowconfigure(index=0, weight=1)
@@ -275,6 +277,7 @@ class Gui:
         self.box2.grid_columnconfigure(index=3, weight=1)
         self.box2.grid_columnconfigure(index=4, weight=1)
         self.box2.grid_columnconfigure(index=5, weight=1)
+        self.box2.grid_columnconfigure(index=6, weight=1)
 
         # Creation of 5 boxes inside box2
         self.box2_1 = Frame(self.box2, bg="#64698A", bd=0)
@@ -360,6 +363,7 @@ class Gui:
             self.text4_box1_2.config(text=f"Valeur de courant de la cathode : {self.cathode.courant}")
             self.text5_box1_2.config(text=f"Courant de consigne : {self.cathode.consigne_courant}")
             self.text6_box1_2.config(text=f"Temps de consigne : {self.cathode.consigne_temps}")
+            self.text7_box1_2.config(text=f"Etat de la manip : {self.etatManip}")
 
             # Gestion des boutons de chauffe et refroidissement de la cathode
             if ((self.cathode.etat == EtatCathode.FROIDE) or (self.cathode.etat == EtatCathode.CHAUDE)):
@@ -871,82 +875,80 @@ class Gui:
         self.textlog1_box1_1_widget.insert(INSERT, contenu)
 
     def check_logs_with_data(self, onduleur1, onduleur2, pression):
-        self.recuperer_donnees(onduleur1, onduleur2, pression)
-
-        # INFO Logs
-        if(False): # Si le bouton est pressé : Extinction générale progressive.
-            log_with_cooldown(logging.INFO, "Lancement du programme : Extinction generale progressive.")
-        if(False): # Si le bouton est pressé : Refroidissement cathode.
-            log_with_cooldown(logging.INFO, "Lancement du programme : Refroidissement cathode.")
-        if(False): # Si le bouton est pressé : Chauffe cathode.
-            log_with_cooldown(logging.INFO,"Lancement du programme : Chauffe cathode.")
-        if(False): # Si le bouton est pressé : Démarrage progressif.
-            log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
-        if(False): # Message de chauffe de la cathode terminée.
-            log_with_cooldown(logging.INFO, "Chauffe de la cathode terminee.")
-        if(False): # Message de refroidissement de la cathode terminée.
-            log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
-        if(False): # Message d'allumage de la manip terminé.
-            log_with_cooldown(logging.INFO, "Allumage de la manip termine.")
-        if(False): # Envoi du sms pour motif de coupure de courant bien envoyé. 
-            log_with_cooldown(logging.INFO, "Envoi du sms pour motif de coupure de courant bien envoye.")
-        if(False): # "Logs bien envoyées par mail" (mail toutes les semaines pour l'envoi des logs).
-            log_with_cooldown(logging.INFO, "Logs bien envoyees par mail.")
-        if(self.onduleur1.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
-            # log_with_cooldown(logging.INFO, f"Temps de coupure du courant : {#calcul du temps de coupure}")
-            log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)
-
-        # WARNING Logs
-        if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
-            log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 5)
-        if(False): # L'onduleur1 va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
-            log_with_cooldown(logging.WARNING, "L'onduleur1 va se couper dans X minute(s). Processus d'extinction enclenche")
-        if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 1 a depasse la valeur seuil haute.")
-        if(False): # La jauge de pression 1 a dépassé la valeur seuil basse.
-            logging.warning("La jauge de pression 1 a depasse la valeur seuil basse.")
-        if(False): # La jauge de pression 2 a dépassé la valeur seuil haute.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 2 a depasse la valeur seuil haute.")
-        if(False): # La jauge de pression 2 a dépassé la valeur seuil basse.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 2 a depasse la valeur seuil basse.")
-        if(False): # La jauge de pression 3 a dépassé la valeur seuil haute.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 3 a depasse la valeur seuil haute.")
-        if(False): # La jauge de pression 3 a dépassé la valeur seuil basse.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 3 a depasse la valeur seuil basse.")
-        if(False): # La jauge de pression 4 a dépassé la valeur seuil haute.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 4 a depasse la valeur seuil haute.")
-        if(False): # La jauge de pression 4 a dépassé la valeur seuil basse.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 4 a depasse la valeur seuil basse.")
-        if(False): # La jauge de pression 5 a dépassé la valeur seuil haute.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 5 a depasse la valeur seuil haute.")
-        if(False): # La jauge de pression 5 a dépassé la valeur seuil basse.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 5 a depasse la valeur seuil basse.")
-        if(False): # La jauge de pression 6 a dépassé la valeur seuil haute.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 6 a depasse la valeur seuil haute.")
-        if(False): # La jauge de pression 6 a dépassé la valeur seuil basse.
-            log_with_cooldown(logging.WARNING, "La jauge de pression 6 a depasse la valeur seuil basse.")
-        
-        # CRITICAL Logs
-        if(False): # La jauge de pression 1 a atteint une valeur critique définie.
-            log_with_cooldown(logging.CRITICAL, "La jauge de pression 1 a atteint une valeur critique definie.")
-        if(False): # La jauge de pression 2 a atteint une valeur critique définie.
-            log_with_cooldown(logging.CRITICAL, "La jauge de pression 2 a atteint une valeur critique definie.")
-        if(False): # La jauge de pression 3 a atteint une valeur critique définie.
-            log_with_cooldown(logging.CRITICAL, "La jauge de pression 3 a atteint une valeur critique definie.")
-        if(False): # La jauge de pression 4 a atteint une valeur critique définie.
-            log_with_cooldown(logging.CRITICAL, "La jauge de pression 4 a atteint une valeur critique definie.")
-        if(False): # La jauge de pression 5 a atteint une valeur critique définie.
-            log_with_cooldown(logging.CRITICAL, "La jauge de pression 5 a atteint une valeur critique definie.")
-        if(False): # La jauge de pression 6 a atteint une valeur critique définie.
-            log_with_cooldown(logging.CRITICAL, "La jauge de pression 6 a atteint une valeur critique definie.")
-        if(False): #Arrêt général pour cause onduleur1 vide.
-            log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 vide.")
-        if(False): # Batterie onduleur1 morte.
-            log_with_cooldown(logging.CRITICAL, "Batterie onduleur1 morte.")
-
         while self.running:
-            data = self.check_logs_with_data(onduleur1, onduleur2, pression)
-            self.data_var_set(data)
+            self.recuperer_donnees(onduleur1, onduleur2, pression)
+
+            # INFO Logs
+            if(False): # Si le bouton est pressé : Extinction générale progressive.
+                log_with_cooldown(logging.INFO, "Lancement du programme : Extinction generale progressive.")
+            if(False): # Si le bouton est pressé : Refroidissement cathode.
+                log_with_cooldown(logging.INFO, "Lancement du programme : Refroidissement cathode.")
+            if(False): # Si le bouton est pressé : Chauffe cathode.
+                log_with_cooldown(logging.INFO,"Lancement du programme : Chauffe cathode.")
+            if(False): # Si le bouton est pressé : Démarrage progressif.
+                log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
+            if(False): # Message de chauffe de la cathode terminée.
+                log_with_cooldown(logging.INFO, "Chauffe de la cathode terminee.")
+            if(False): # Message de refroidissement de la cathode terminée.
+                log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
+            if(False): # Message d'allumage de la manip terminé.
+                log_with_cooldown(logging.INFO, "Allumage de la manip termine.")
+            if(False): # Envoi du sms pour motif de coupure de courant bien envoyé. 
+                log_with_cooldown(logging.INFO, "Envoi du sms pour motif de coupure de courant bien envoye.")
+            if(False): # "Logs bien envoyées par mail" (mail toutes les semaines pour l'envoi des logs).
+                log_with_cooldown(logging.INFO, "Logs bien envoyees par mail.")
+            if(self.onduleur1.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
+                # log_with_cooldown(logging.INFO, f"Temps de coupure du courant : {#calcul du temps de coupure}")
+                log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)
+
+            # WARNING Logs
+            if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
+                log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 5)
+            if(False): # L'onduleur1 va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
+                log_with_cooldown(logging.WARNING, "L'onduleur1 va se couper dans X minute(s). Processus d'extinction enclenche")
+            if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 1 a depasse la valeur seuil haute.")
+            if(False): # La jauge de pression 1 a dépassé la valeur seuil basse.
+                logging.warning("La jauge de pression 1 a depasse la valeur seuil basse.")
+            if(False): # La jauge de pression 2 a dépassé la valeur seuil haute.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 2 a depasse la valeur seuil haute.")
+            if(False): # La jauge de pression 2 a dépassé la valeur seuil basse.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 2 a depasse la valeur seuil basse.")
+            if(False): # La jauge de pression 3 a dépassé la valeur seuil haute.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 3 a depasse la valeur seuil haute.")
+            if(False): # La jauge de pression 3 a dépassé la valeur seuil basse.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 3 a depasse la valeur seuil basse.")
+            if(False): # La jauge de pression 4 a dépassé la valeur seuil haute.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 4 a depasse la valeur seuil haute.")
+            if(False): # La jauge de pression 4 a dépassé la valeur seuil basse.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 4 a depasse la valeur seuil basse.")
+            if(False): # La jauge de pression 5 a dépassé la valeur seuil haute.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 5 a depasse la valeur seuil haute.")
+            if(False): # La jauge de pression 5 a dépassé la valeur seuil basse.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 5 a depasse la valeur seuil basse.")
+            if(False): # La jauge de pression 6 a dépassé la valeur seuil haute.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 6 a depasse la valeur seuil haute.")
+            if(False): # La jauge de pression 6 a dépassé la valeur seuil basse.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 6 a depasse la valeur seuil basse.")
+            
+            # CRITICAL Logs
+            if(False): # La jauge de pression 1 a atteint une valeur critique définie.
+                log_with_cooldown(logging.CRITICAL, "La jauge de pression 1 a atteint une valeur critique definie.")
+            if(False): # La jauge de pression 2 a atteint une valeur critique définie.
+                log_with_cooldown(logging.CRITICAL, "La jauge de pression 2 a atteint une valeur critique definie.")
+            if(False): # La jauge de pression 3 a atteint une valeur critique définie.
+                log_with_cooldown(logging.CRITICAL, "La jauge de pression 3 a atteint une valeur critique definie.")
+            if(False): # La jauge de pression 4 a atteint une valeur critique définie.
+                log_with_cooldown(logging.CRITICAL, "La jauge de pression 4 a atteint une valeur critique definie.")
+            if(False): # La jauge de pression 5 a atteint une valeur critique définie.
+                log_with_cooldown(logging.CRITICAL, "La jauge de pression 5 a atteint une valeur critique definie.")
+            if(False): # La jauge de pression 6 a atteint une valeur critique définie.
+                log_with_cooldown(logging.CRITICAL, "La jauge de pression 6 a atteint une valeur critique definie.")
+            if(False): #Arrêt général pour cause onduleur1 vide.
+                log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 vide.")
+            if(False): # Batterie onduleur1 morte.
+                log_with_cooldown(logging.CRITICAL, "Batterie onduleur1 morte.")
+
             time.sleep(1) # Fréquence de mise à jour : 1 seconde
 
     def bouton_Chauffe_Cathode(self):
