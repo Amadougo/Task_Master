@@ -322,6 +322,9 @@ class Gui:
 
         print(f"{time.monotonic()}, passage dans update gui")
 
+        # Callback of the gui update function after 1 seconde
+        self.window.after(1000, self.update_gui)
+
         # Get the data from onduleur1 and pression
         self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
 
@@ -370,9 +373,6 @@ class Gui:
             # self.textlog1_box1_1.config(text="LOGS")
             NotImplemented # À enlever
 
-        # Callback of the gui update function after 1 seconde
-        self.window.after(1000, self.update_gui)
-        
         print(f"{time.monotonic()}, fin du passage dans update gui")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
@@ -713,6 +713,7 @@ class Gui:
         self.resize_image_box1_1_11()
         self.resize_image_box1_1_12()
         self.resize_image_box1_1_13()
+        print("Passage dans force_initial_resizing")
 
     def change_state_button_Affichage_Logs(self):
         if self.affichage_donnees == False :
