@@ -377,9 +377,6 @@ class Gui:
                 # self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
                 self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
                 self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
-        else:
-            # self.textlog1_box1_1.config(text="LOGS")
-            NotImplemented # À enlever
 
         print(f"{time.monotonic()}, fin du passage dans update gui")
 
