@@ -318,8 +318,7 @@ class Gui:
         # Bind the images to rescale them later
         self.window.after(500, self.force_initial_resizing)
 
-        # Get the data from onduleur1, onduleur2 and pression every second
-        self.window.after(1000, lambda: self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression))
+        self.check_logs_with_data(self.onduleur1, self.onduleur2, self.pression)
 
     def update_gui(self):
 
@@ -940,6 +939,9 @@ class Gui:
             log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 vide.")
         if(False): # Batterie onduleur1 morte.
             log_with_cooldown(logging.CRITICAL, "Batterie onduleur1 morte.")
+
+        # Get the data from onduleur1 and pression every second
+        self.window.after(1000, lambda: self.check_logs_with_data(onduleur1, onduleur2, pression))
 
     def bouton_Chauffe_Cathode(self):
         popup = Toplevel(self.window)
