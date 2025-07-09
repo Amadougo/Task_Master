@@ -98,7 +98,7 @@ else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_1400_2}")
 
 #Port série pour le contrôleur de cathode
-port_cathode = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_EDAQc143M08-if00-port0'
+port_cathode = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port0'
 baud_rate = 9600
 time_out = 1
 
