@@ -114,9 +114,9 @@ else:
 baud_rate = 9600
 time_out = 1
 
-serial_sec_finale = serial.Serial(port_secu_finale, baudrate= baud_rate, timeout=time_out)
+serial_secu_finale = serial.Serial(port_secu_finale, baudrate= baud_rate, timeout=time_out)
 
-if serial_sec_finale.is_open:
+if serial_secu_finale.is_open:
 	print(f"Port {port_secu_finale} ouvert avec succès.")
 else:
 	print(f"Impossible d'ouvrir le Port {port_secu_finale}")'''
@@ -305,9 +305,70 @@ def controle_cathode(cathode: Cathode):
         command = "I " + str(intensite_cathode) + "\n"
         print(f" commande envoyée : {command}")
         serial_cathode.write(command.encode())
+
+
+# -------------------------------- #
+#    Gestion de la carte relais    #
+# -------------------------------- #
     
+def envoyer_commande_carte_relais(cmd_bytes):
+    print(f"Envoi : {cmd_bytes.hex()}")
+    serial_secu_finale.write(cmd_bytes)
+    time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
+    response = serial_secu_finale.read(100)
+    print("Réponse brute hex :", response.hex())
+    try:
+        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
+    except:
+        print("Impossible de décoder la réponse.")
 
+def relais1_OFF():
+    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_carte_relais(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
 
+    # Commande éteindre relais 1
+    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Relais1 éteint
+    envoyer_commande_carte_relais(cmd_off)
+
+def relais1_ON():
+    # IMPORTANT  Initialisé au moins au démarrage de la carte de commande des relais
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_carte_relais(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
+    
+    # Commande allumer relais 1
+    cmd_on = bytes([0x03, 0x01, 0x01, 0x03]) # SetPORT  Relais1 allumé
+    envoyer_commande_carte_relais(cmd_on)
+
+def relais2_OFF():
+    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_carte_relais(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
+
+    # Commande éteindre relais 2
+    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Relais2 éteint
+    envoyer_commande_carte_relais(cmd_off)
+
+def relais2_ON():
+    # IMPORTANT  Initialisé au moins au démarrage de la carte de commande des relais
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_carte_relais(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
+    
+    # Commande allumer relais 2
+    cmd_on = bytes([0x03, 0x01, 0x02, 0x00]) # SetPORT  Relais2 allumé
+    envoyer_commande_carte_relais(cmd_on)
 
 
 
