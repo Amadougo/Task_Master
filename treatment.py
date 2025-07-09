@@ -52,36 +52,82 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
 #Fonctions pour récupérer les données de pression et les mettre dans la class 'Pression'
 #Récupérations globales
 #Port série pour les jauges de pression
-port = '/dev/ttyUSB0'
+port_jauges = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_AWAFc143M08-if00-port0'
 baud_rate = 9600
 time_out = 1
 
-ser = serial.Serial(port, baudrate= baud_rate, timeout=time_out)
+serial_jauges = serial.Serial(port_jauges, baudrate= baud_rate, timeout=time_out)
 
-if ser.is_open:
-	print(f"Port {port} ouvert avec succès.")
+if serial_jauges.is_open:
+	print(f"port_jauges {port_jauges} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port}")
+	print(f"Impossible d'ouvrir le port_jauges {port_jauges}")
 
 #Port série pour les contrôleurs de pompes (SCU - 800, SCU - 1400 x2)
-'''port2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+'''port_SCU_800 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
 baud_rate = 9600
 time_out = 1
 
-ser2 = serial.Serial(port2, baudrate= baud_rate, timeout=time_out)
+serial_SCU_800 = serial.Serial(port_SCU_800, baudrate= baud_rate, timeout=time_out)
 
-if ser2.is_open:
-	print(f"Port {port2} ouvert avec succès.")
+if serial_SCU_800.is_open:
+	print(f"Port {port_SCU_800} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port2}")'''
+	print(f"Impossible d'ouvrir le Port {port_SCU_800}")'''
+
+'''port_SCU_1400_1 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+baud_rate = 9600
+time_out = 1
+
+serial_SCU_1400_1 = serial.Serial(port_SCU_1400_1, baudrate= baud_rate, timeout=time_out)
+
+if serial_SCU_1400_1.is_open:
+	print(f"Port {port_SCU_1400_1} ouvert avec succès.")
+else:
+	print(f"Impossible d'ouvrir le Port {port_SCU_1400_1}")'''
+
+'''port_SCU_1400_2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+baud_rate = 9600
+time_out = 1
+
+serial_SCU_1400_2 = serial.Serial(port_SCU_1400_2, baudrate= baud_rate, timeout=time_out)
+
+if serial_SCU_1400_2.is_open:
+	print(f"Port {port_SCU_1400_2} ouvert avec succès.")
+else:
+	print(f"Impossible d'ouvrir le Port {port_SCU_1400_2}")'''
+
+#Port série pour le contrôleur de cathode
+port_cathode = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port0'
+baud_rate = 9600
+time_out = 1
+
+serial_cathode = serial.Serial(port_cathode, baudrate= baud_rate, timeout=time_out)
+
+if serial_cathode.is_open:
+	print(f"Port {port_cathode} ouvert avec succès.")
+else:
+	print(f"Impossible d'ouvrir le Port {port_cathode}")
+
+#Port série pour la sécurité des pompes finales
+'''port_secu_finale = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+baud_rate = 9600
+time_out = 1
+
+serial_sec_finale = serial.Serial(port_secu_finale, baudrate= baud_rate, timeout=time_out)
+
+if serial_sec_finale.is_open:
+	print(f"Port {port_secu_finale} ouvert avec succès.")
+else:
+	print(f"Impossible d'ouvrir le Port {port_secu_finale}")'''
      
 #Fonction périodique
 
 def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934, 935, 936
     #Cette commande renvoie les valeurs de toutes les jauges
     command = "?V913\r"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_jauges.write(command.encode())
+    response = serial_jauges.readline().decode().strip()
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V913 "):
         data_str = response[len("=V913 "):]
@@ -102,8 +148,8 @@ def recuperer_donnees_pression_jauge1(pression : Pression) : #913, 914, 915, 934
 def recuperer_donnees_pression_jauge2(pression : Pression) : #913, 914, 915, 934, 935, 936
     #Cette commande renvoie les valeurs de toutes les jauges
     command = "?V914\r"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_jauges.write(command.encode())
+    response = serial_jauges.readline().decode().strip()
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V914 "):
         data_str = response[len("=V914 "):]
@@ -124,8 +170,8 @@ def recuperer_donnees_pression_jauge2(pression : Pression) : #913, 914, 915, 934
 def recuperer_donnees_pression_jauge3(pression : Pression) : #913, 914, 915, 934, 935, 936
     #Cette commande renvoie les valeurs de toutes les jauges
     command = "?V915\r"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_jauges.write(command.encode())
+    response = serial_jauges.readline().decode().strip()
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V915 "):
         data_str = response[len("=V915 "):]
@@ -146,8 +192,8 @@ def recuperer_donnees_pression_jauge3(pression : Pression) : #913, 914, 915, 934
 def recuperer_donnees_pression_jauge4(pression : Pression) : #913, 914, 915, 934, 935, 936
     #Cette commande renvoie les valeurs de 1 jauge
     command = "?V934\r"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_jauges.write(command.encode())
+    response = serial_jauges.readline().decode().strip()
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V934 "):
         data_str = response[len("=V934 "):]
@@ -168,8 +214,8 @@ def recuperer_donnees_pression_jauge4(pression : Pression) : #913, 914, 915, 934
 def recuperer_donnees_pression_jauge5(pression : Pression) : #913, 914, 915, 934, 935, 936
     #Cette commande renvoie les valeurs de toutes les jauges
     command = "?V935\r"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_jauges.write(command.encode())
+    response = serial_jauges.readline().decode().strip()
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V935 "):
         data_str = response[len("=V935 "):]
@@ -190,8 +236,8 @@ def recuperer_donnees_pression_jauge5(pression : Pression) : #913, 914, 915, 934
 def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934, 935, 936
     #Cette commande renvoie les valeurs de toutes les jauges
     command = "?V936\r"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_jauges.write(command.encode())
+    response = serial_jauges.readline().decode().strip()
     # 1. Enlever le préfixe (facultatif)
     if response.startswith("=V936 "):
         data_str = response[len("=V936 "):]
@@ -215,21 +261,21 @@ def controle_cathode(cathode: Cathode):
 
     #Récupration du courant
     command = "I?\n"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_cathode.write(command.encode())
+    response = serial_cathode.readline().decode().strip()
     courant_cathode = float(response[len("I "):])
     print(f"Le courant est : {courant_cathode}A")
 
     #Récupration de la tension
     command = "V?\n"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
+    serial_cathode.write(command.encode())
+    response = serial_cathode.readline().decode().strip()
     tension_cathode = float(response[len("V "):])
     print(f"La tension est : {tension_cathode}V")
     
     if tension_cathode != 18.00 :
         command = "V 18.00\n"
-        ser.write(command.encode())
+        serial_cathode.write(command.encode())
 
     if cathode.etat == EtatCathode.CHAUFFE : 
         #Calcul du temps ecoulé
@@ -244,7 +290,7 @@ def controle_cathode(cathode: Cathode):
         #Mise Ã  jour du courant
         command = "I " + str(intensite_cathode) + "\n"
         print(f" commande envoyée : {command}")
-        ser.write(command.encode())
+        serial_cathode.write(command.encode())
 
     if cathode.etat == EtatCathode.REFROIDISSEMENT : 
         #Calcul du temps écoulé
@@ -258,7 +304,7 @@ def controle_cathode(cathode: Cathode):
         #Mise à jour du courant
         command = "I " + str(intensite_cathode) + "\n"
         print(f" commande envoyée : {command}")
-        ser.write(command.encode())
+        serial_cathode.write(command.encode())
     
 
 
