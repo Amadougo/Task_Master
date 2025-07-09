@@ -323,7 +323,7 @@ def envoyer_commande_SCU_800(cmd_bytes):
 
 def pompe_SCU_800_ON():
     # Commande allumer pompe SCU-800
-    cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x08, 0x45, 0x30, 0x31, 0x03, 0x83]) # E1SetPORT : Pompe SCU-800 allumée
+    cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x31, 0x03, 0xAB]) # E1 SetPORT : Pompe SCU-800 allumée
     envoyer_commande_SCU_800(cmd_on)
 
 def pompe_SCU_800_OFF():
@@ -343,28 +343,14 @@ def envoyer_commande_SCU_1400_1(cmd_bytes):
         print("Impossible de décoder la réponse.")
 
 def pompe_SCU_1400_1_ON():
-    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
-    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
-    envoyer_commande_SCU_1400_1(cmd_init)
-    
-    # Attendre 1 seconde
-    time.sleep(1)
-
-    # Commande allumer pompe SCU-1400-1
-    cmd_on = bytes([0x03, 0x01, 0x01, 0x03]) # SetPORT : Pompe SCU-1400-1 allumée
-    envoyer_commande_SCU_1400_1(cmd_on)
+    # Commande allumer pompe SCU-800
+    cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x31, 0x03, 0xAB]) # E1 SetPORT : Pompe SCU-800 allumée
+    envoyer_commande_SCU_800(cmd_on)
 
 def pompe_SCU_1400_1_OFF():
-    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
-    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
-    envoyer_commande_SCU_1400_1(cmd_init)
-    
-    # Attendre 1 seconde
-    time.sleep(1)
-
-    # Commande éteindre pompe SCU-1400-1
-    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Pompe SCU-1400-1 éteinte
-    envoyer_commande_SCU_1400_1(cmd_off)
+    # Commande éteindre pompe SCU-800
+    cmd_off = bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x32, 0x03, 0xA8]) # E2 brake SetPORT : Pompe SCU-800 éteinte
+    envoyer_commande_SCU_800(cmd_off)
 
 def envoyer_commande_SCU_1400_2(cmd_bytes):
     print(f"Envoi : {cmd_bytes.hex()}")
@@ -548,6 +534,6 @@ def recuperer_donnees_pression(pression : Pression) :
     return pression
 '''
 time.sleep(3)  # Attendre un peu avant de continuer
-pompe_SCU_800_OFF()
+pompe_SCU_1400_1_OFF()
 time.sleep(10)  # Attendre un peu avant de continuer
-pompe_SCU_800_ON()
+pompe_SCU_1400_1_ON()
