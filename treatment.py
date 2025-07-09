@@ -110,8 +110,8 @@ else:
 	print(f"Impossible d'ouvrir le Port {port_cathode}")
 
 #Port série pour la sécurité des pompes finales
-'''port_secu_finale = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
-baud_rate = 9600
+port_secu_finale = '/dev/ttyS0'
+baud_rate = 19200
 time_out = 1
 
 serial_secu_finale = serial.Serial(port_secu_finale, baudrate= baud_rate, timeout=time_out)
@@ -119,7 +119,7 @@ serial_secu_finale = serial.Serial(port_secu_finale, baudrate= baud_rate, timeou
 if serial_secu_finale.is_open:
 	print(f"Port {port_secu_finale} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port_secu_finale}")'''
+	print(f"Impossible d'ouvrir le Port {port_secu_finale}")
      
 #Fonction périodique
 
