@@ -62,9 +62,9 @@ if serial_jauges.is_open:
 	print(f"port_jauges {port_jauges} ouvert avec succès.")
 else:
 	print(f"Impossible d'ouvrir le port_jauges {port_jauges}")
-'''
+
 #Port série pour les contrôleurs de pompes (SCU - 800, SCU - 1400 1 et 2)
-port_SCU_800 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_A_CRd143M08-if00-port0'
+port_SCU_800 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CGARc143M08-if00-port0'
 baud_rate = 9600
 time_out = 1
 
@@ -75,7 +75,7 @@ if serial_SCU_800.is_open:
 else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_800}")
 
-port_SCU_1400_1 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+port_SCU_1400_1 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_AWAFc143M08-if00-port0'
 baud_rate = 9600
 time_out = 1
 
@@ -95,10 +95,10 @@ serial_SCU_1400_2 = serial.Serial(port_SCU_1400_2, baudrate= baud_rate, timeout=
 if serial_SCU_1400_2.is_open:
 	print(f"Port {port_SCU_1400_2} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port_SCU_1400_2}")'''
+	print(f"Impossible d'ouvrir le Port {port_SCU_1400_2}")
 
 #Port série pour le contrôleur de cathode
-port_cathode = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port0'
+port_cathode = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_EDAQc143M08-if00-port0'
 baud_rate = 9600
 time_out = 1
 
