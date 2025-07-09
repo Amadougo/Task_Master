@@ -86,7 +86,7 @@ if serial_SCU_1400_1.is_open:
 else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_1400_1}")
 
-port_SCU_1400_2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port1'
+port_SCU_1400_2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_EDAQ143M08-if00-port0'
 baud_rate = 9600
 time_out = 1
 
