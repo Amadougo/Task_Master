@@ -52,7 +52,7 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
 #Fonctions pour récupérer les données de pression et les mettre dans la class 'Pression'
 #Récupérations globales
 #Port série pour les jauges de pression
-port_jauges = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_AWAFc143M08-if00-port0'
+port_jauges = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_A_CRd143M08-if00-port0'
 baud_rate = 9600
 time_out = 1
 
@@ -86,7 +86,7 @@ if serial_SCU_1400_1.is_open:
 else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_1400_1}")
 
-port_SCU_1400_2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_EDAQ143M08-if00-port0'
+port_SCU_1400_2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_EDAQc143M08-if00-port0'
 baud_rate = 9600
 time_out = 1
 
