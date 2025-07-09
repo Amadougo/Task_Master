@@ -71,7 +71,7 @@ time_out = 1
 serial_SCU_800 = serial.Serial(port_SCU_800, baudrate= baud_rate, timeout=time_out)
 
 if serial_SCU_800.is_open:
-	print(f"Port {port_SCU_800} ouvert avec succès.")
+	print(f"Port SCU 800 {port_SCU_800} ouvert avec succès.")
 else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_800}")
 
@@ -82,7 +82,7 @@ time_out = 1
 serial_SCU_1400_1 = serial.Serial(port_SCU_1400_1, baudrate= baud_rate, timeout=time_out)
 
 if serial_SCU_1400_1.is_open:
-	print(f"Port {port_SCU_1400_1} ouvert avec succès.")
+	print(f"Port SCU 1400 1 {port_SCU_1400_1} ouvert avec succès.")
 else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_1400_1}")
 
@@ -93,7 +93,7 @@ time_out = 1
 serial_SCU_1400_2 = serial.Serial(port_SCU_1400_2, baudrate= baud_rate, timeout=time_out)
 
 if serial_SCU_1400_2.is_open:
-	print(f"Port {port_SCU_1400_2} ouvert avec succès.")
+	print(f"Port SCU 1400 2 {port_SCU_1400_2} ouvert avec succès.")
 else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_1400_2}")
 
@@ -533,6 +533,10 @@ def recuperer_donnees_pression(pression : Pression) :
 
     return pression
 '''
+pression = Pression()
+recuperer_donnees_pression_jauge1(pression)
+afficher_donnees_pression_jauge1 = pression.Jauge_1_Turbo
+print(f"Jauge 1 Turbo : {afficher_donnees_pression_jauge1}")
 time.sleep(3)  # Attendre un peu avant de continuer
 pompe_SCU_1400_1_OFF()
 time.sleep(10)  # Attendre un peu avant de continuer
