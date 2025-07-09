@@ -306,6 +306,100 @@ def controle_cathode(cathode: Cathode):
         print(f" commande envoyée : {command}")
         serial_cathode.write(command.encode())
 
+# -------------------------------- #
+#  Gestion des pompes secondaires  #
+# -------------------------------- #
+
+def envoyer_commande_SCU_800(cmd_bytes):
+    print(f"Envoi : {cmd_bytes.hex()}")
+    serial_SCU_800.write(cmd_bytes)
+    time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
+    response = serial_SCU_800.read(100)
+    print("Réponse brute hex :", response.hex())
+    try:
+        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
+    except:
+        print("Impossible de décoder la réponse.")
+
+def pompe_SCU_800_ON():
+    # Commande allumer pompe SCU-800
+    cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x08, 0x45, 0x30, 0x31, 0x03, 0x83]) # E1SetPORT : Pompe SCU-800 allumée
+    envoyer_commande_SCU_800(cmd_on)
+
+def pompe_SCU_800_OFF():
+    # Commande éteindre pompe SCU-800
+    cmd_off = bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x32, 0x03, 0xA8]) # E2 brake SetPORT : Pompe SCU-800 éteinte
+    envoyer_commande_SCU_800(cmd_off)
+
+def envoyer_commande_SCU_1400_1(cmd_bytes):
+    print(f"Envoi : {cmd_bytes.hex()}")
+    serial_SCU_1400_1.write(cmd_bytes)
+    time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
+    response = serial_SCU_1400_1.read(100)
+    print("Réponse brute hex :", response.hex())
+    try:
+        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
+    except:
+        print("Impossible de décoder la réponse.")
+
+def pompe_SCU_1400_1_ON():
+    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_SCU_1400_1(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
+
+    # Commande allumer pompe SCU-1400-1
+    cmd_on = bytes([0x03, 0x01, 0x01, 0x03]) # SetPORT : Pompe SCU-1400-1 allumée
+    envoyer_commande_SCU_1400_1(cmd_on)
+
+def pompe_SCU_1400_1_OFF():
+    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_SCU_1400_1(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
+
+    # Commande éteindre pompe SCU-1400-1
+    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Pompe SCU-1400-1 éteinte
+    envoyer_commande_SCU_1400_1(cmd_off)
+
+def envoyer_commande_SCU_1400_2(cmd_bytes):
+    print(f"Envoi : {cmd_bytes.hex()}")
+    serial_SCU_1400_2.write(cmd_bytes)
+    time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
+    response = serial_SCU_1400_2.read(100)
+    print("Réponse brute hex :", response.hex())
+    try:
+        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
+    except:
+        print("Impossible de décoder la réponse.")
+
+def pompe_SCU_1400_2_ON():
+    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_SCU_1400_2(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
+
+    # Commande allumer pompe SCU-1400-2
+    cmd_on = bytes([0x03, 0x01, 0x01, 0x03]) # SetPORT : Pompe SCU-1400-2 allumée
+    envoyer_commande_SCU_1400_2(cmd_on)
+
+def pompe_SCU_1400_2_OFF():
+    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
+    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+    envoyer_commande_SCU_1400_2(cmd_init)
+    
+    # Attendre 1 seconde
+    time.sleep(1)
+
+    # Commande éteindre pompe SCU-1400-2
+    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Pompe SCU-1400-2 éteinte
+    envoyer_commande_SCU_1400_2(cmd_off)
 
 # -------------------------------- #
 #    Gestion de la carte relais    #
