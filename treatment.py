@@ -402,7 +402,7 @@ def envoyer_commande_carte_relais(cmd_bytes):
     except:
         print("Impossible de décoder la réponse.")
 
-def relais1_OFF():
+def relais1et2_OFF():
     # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
     cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
     envoyer_commande_carte_relais(cmd_init)
@@ -410,11 +410,11 @@ def relais1_OFF():
     # Attendre 1 seconde
     time.sleep(1)
 
-    # Commande éteindre relais 1
+    # Commande éteindre relais 1 et 2
     cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Relais1 éteint
     envoyer_commande_carte_relais(cmd_off)
 
-def relais1_ON():
+def relais1et2_ON():
     # IMPORTANT  Initialisé au moins au démarrage de la carte de commande des relais
     cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
     envoyer_commande_carte_relais(cmd_init)
@@ -422,32 +422,8 @@ def relais1_ON():
     # Attendre 1 seconde
     time.sleep(1)
     
-    # Commande allumer relais 1
-    cmd_on = bytes([0x03, 0x01, 0x01, 0x03]) # SetPORT  Relais1 allumé
-    envoyer_commande_carte_relais(cmd_on)
-
-def relais2_OFF():
-    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
-    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
-    envoyer_commande_carte_relais(cmd_init)
-    
-    # Attendre 1 seconde
-    time.sleep(1)
-
-    # Commande éteindre relais 2
-    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Relais2 éteint
-    envoyer_commande_carte_relais(cmd_off)
-
-def relais2_ON():
-    # IMPORTANT  Initialisé au moins au démarrage de la carte de commande des relais
-    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
-    envoyer_commande_carte_relais(cmd_init)
-    
-    # Attendre 1 seconde
-    time.sleep(1)
-    
-    # Commande allumer relais 2
-    cmd_on = bytes([0x03, 0x01, 0x02, 0x00]) # SetPORT  Relais2 allumé
+    # Commande allumer relais 1 et 2
+    cmd_on = bytes([0x03, 0x01, 0x03, 0x01]) # SetPORT  Relais1 allumé
     envoyer_commande_carte_relais(cmd_on)
 
 
