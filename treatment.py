@@ -345,12 +345,12 @@ def envoyer_commande_SCU_1400_1(cmd_bytes):
 def pompe_SCU_1400_1_ON():
     # Commande allumer pompe SCU-800
     cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x31, 0x03, 0xAB]) # E1 SetPORT : Pompe SCU-800 allumée
-    envoyer_commande_SCU_800(cmd_on)
+    envoyer_commande_SCU_1400_1(cmd_on)
 
 def pompe_SCU_1400_1_OFF():
     # Commande éteindre pompe SCU-800
     cmd_off = bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x32, 0x03, 0xA8]) # E2 brake SetPORT : Pompe SCU-800 éteinte
-    envoyer_commande_SCU_800(cmd_off)
+    envoyer_commande_SCU_1400_1(cmd_off)
 
 def envoyer_commande_SCU_1400_2(cmd_bytes):
     print(f"Envoi : {cmd_bytes.hex()}")
