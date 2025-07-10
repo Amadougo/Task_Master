@@ -1262,6 +1262,6 @@ class Gui:
     def securite_gui(self, etatManip, pression, onduleur1, onduleur2):
         time.sleep(10)
         while self.running2:
-            securite(etatManip, pression, onduleur1, onduleur2)
+            securite(self.etatManip, self.pression, self.onduleur1, self.onduleur2)
 
             time.sleep(1)
