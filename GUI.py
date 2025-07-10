@@ -1158,7 +1158,7 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            self.etat_manip.etatManip = EtatManip.DEMARRAGE
+            self.securite.etat_manip = EtatManip.DEMARRAGE
             popup.destroy()
 
         def on_no():
@@ -1201,7 +1201,7 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            self.etat_manip.etatManip = EtatManip.ARRET_EN_COURS
+            self.securite.etat_manip = EtatManip.ARRET_EN_COURS
             popup.destroy()
 
         def on_no():
