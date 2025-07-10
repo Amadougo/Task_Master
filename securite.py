@@ -39,7 +39,7 @@ class Securite:
             pompe_SCU_1400_2_ON()
             pompe_SCU_800_ON()
             #On passe l'état de la manip à 'Fonctionnement'
-            etat_manip = EtatManip.FONCTIONNE
+            self.etat_manip = EtatManip.FONCTIONNE
             '''vérifier pompes primaires'''
 
         #Actions lorsque la manip est en 'Fonctionnement'
@@ -49,15 +49,15 @@ class Securite:
             #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
             if (self.pression.Jauge_5_Primaire == "Déconnectée" or self.pression.Jauge_5_Primaire == "Validation manuelle requise") :
                 print("Erreur jauge primaire, arrêt des pompes")
-                etat_manip = EtatManip.ARRET_EN_COURS
+                self.etat_manip = EtatManip.ARRET_EN_COURS
             else :
                 value = self.pression.Jauge_5_Primaire.split(" ")      
                 flt = float(value[0])
                 if (flt > PRESSION_SEUIL_PRIMAIRE) :
-                    etat_manip = EtatManip.ARRET_EN_COURS
+                    self.etat_manip = EtatManip.ARRET_EN_COURS
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             if (int(self.onduleur1.battery_runtime) < 240) :
-                etat_manip = EtatManip.ARRET_EN_COURS
+                self.etat_manip = EtatManip.ARRET_EN_COURS
             
 
         #Actions lorsque la manip est en 'cours d'arrêt'
@@ -69,6 +69,6 @@ class Securite:
             pompe_SCU_1400_1_OFF()
             pompe_SCU_1400_2_OFF()
             pompe_SCU_800_OFF()
-            etat_manip = EtatManip.OFF
+            self.etat_manip = EtatManip.OFF
 
         print(f"{time.monotonic()}, fin du passage dans la securite")
