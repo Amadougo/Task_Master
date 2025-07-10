@@ -1110,7 +1110,7 @@ class Gui:
             if(self.mode_securite_actif == True):
                 self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
                 self.mode_securite_actif = False
-                self.etatManip = EtatManip.OFF
+                self.securite.etatManip = EtatManip.OFF
             else:
                 self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
                 self.mode_securite_actif = True
@@ -1158,7 +1158,7 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            self.etatManip = EtatManip.DEMARRAGE
+            self.securite.etatManip = EtatManip.DEMARRAGE
             popup.destroy()
 
         def on_no():
@@ -1201,7 +1201,7 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            self.etatManip = EtatManip.ARRET_EN_COURS
+            self.securite.etatManip = EtatManip.ARRET_EN_COURS
             popup.destroy()
 
         def on_no():
@@ -1263,6 +1263,6 @@ class Gui:
     def securite_gui(self):
         time.sleep(10)
         while self.running2:
-            self.securite.securite(self.securite)
+            self.securite.securite()
 
             time.sleep(1)
