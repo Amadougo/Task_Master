@@ -343,13 +343,13 @@ def envoyer_commande_SCU_1400_1(cmd_bytes):
         print("Impossible de décoder la réponse.")
 
 def pompe_SCU_1400_1_ON():
-    # Commande allumer pompe SCU-800
-    cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x31, 0x03, 0xAB]) # E1 SetPORT : Pompe SCU-800 allumée
+    # Commande allumer pompe SCU-1400 1
+    cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x31, 0x03, 0xAB]) # E1 SetPORT : Pompe SCU-1400 1 allumée
     envoyer_commande_SCU_1400_1(cmd_on)
 
 def pompe_SCU_1400_1_OFF():
-    # Commande éteindre pompe SCU-800
-    cmd_off = bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x32, 0x03, 0xA8]) # E2 brake SetPORT : Pompe SCU-800 éteinte
+    # Commande éteindre pompe SCU-1400 1
+    cmd_off = bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x32, 0x03, 0xA8]) # E2 brake SetPORT : Pompe SCU-1400 1 éteinte
     envoyer_commande_SCU_1400_1(cmd_off)
 
 def envoyer_commande_SCU_1400_2(cmd_bytes):
@@ -364,27 +364,13 @@ def envoyer_commande_SCU_1400_2(cmd_bytes):
         print("Impossible de décoder la réponse.")
 
 def pompe_SCU_1400_2_ON():
-    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
-    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
-    envoyer_commande_SCU_1400_2(cmd_init)
-    
-    # Attendre 1 seconde
-    time.sleep(1)
-
-    # Commande allumer pompe SCU-1400-2
-    cmd_on = bytes([0x03, 0x01, 0x01, 0x03]) # SetPORT : Pompe SCU-1400-2 allumée
+    # Commande allumer pompe SCU-1400 2
+    cmd_on =  bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x31, 0x03, 0xAB]) # E1 SetPORT : Pompe SCU-1400 2 allumée
     envoyer_commande_SCU_1400_2(cmd_on)
 
 def pompe_SCU_1400_2_OFF():
-    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des pompes
-    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
-    envoyer_commande_SCU_1400_2(cmd_init)
-    
-    # Attendre 1 seconde
-    time.sleep(1)
-
-    # Commande éteindre pompe SCU-1400-2
-    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Pompe SCU-1400-2 éteinte
+    # Commande éteindre pompe SCU-1400 2
+    cmd_off = bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x32, 0x03, 0xA8]) # E2 brake SetPORT : Pompe SCU-1400 2 éteinte
     envoyer_commande_SCU_1400_2(cmd_off)
 
 # -------------------------------- #
@@ -538,6 +524,6 @@ recuperer_donnees_pression_jauge1(pression)
 afficher_donnees_pression_jauge1 = pression.Jauge_1_Turbo
 print(f"Jauge 1 Turbo : {afficher_donnees_pression_jauge1}")
 time.sleep(3)  # Attendre un peu avant de continuer
-pompe_SCU_1400_1_OFF()
+pompe_SCU_1400_2_OFF()
 time.sleep(10)  # Attendre un peu avant de continuer
-pompe_SCU_1400_1_ON()
+pompe_SCU_1400_2_ON()
