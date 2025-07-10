@@ -8,16 +8,17 @@ from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 import time
 import threading
-from securite import securite
+from securite import Securite
 
 class Gui:
-    def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, affichage_donnees, mode_securite_actif):
+    def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, securite, affichage_donnees, mode_securite_actif):
         self.window = Tk()  # Creation of the window (Graphical User Interface)
         self.onduleur1 = onduleur1  # Creation of the onduleur1 object
         self.onduleur2 = onduleur2  # Creation of the onduleur2 object
         self.pression = pression # Creation of the pression object
         self.cathode = cathode # Creation of the cathode object 
         self.etatManip = etatManip # Creation of the etatManip object 
+        self.securite = securite # Creation of the securite object 
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.mode_securite_actif = mode_securite_actif # Creation of the mode_securite_actif object
         self.setup_gui()  # Initial configuration of the gui setup
@@ -331,7 +332,7 @@ class Gui:
         
         # 2nd Thread de mise à jour
         self.running2 = True
-        update_thread2 = threading.Thread(target=self.securite_gui, args=(self.etatManip, self.pression, self.onduleur1, self.onduleur2), daemon=True)
+        update_thread2 = threading.Thread(target=self.securite_gui, daemon=True)
         update_thread2.start()
 
     def update_gui(self):
@@ -1259,9 +1260,9 @@ class Gui:
         bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
         bouton_non.pack()
 
-    def securite_gui(self, etatManip, pression, onduleur1, onduleur2):
+    def securite_gui(self):
         time.sleep(10)
         while self.running2:
-            securite(self.etatManip, self.pression, self.onduleur1, self.onduleur2)
+            self.securite.securite()
 
             time.sleep(1)
