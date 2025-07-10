@@ -335,9 +335,6 @@ class Gui:
         update_thread2.start()
 
     def update_gui(self):
-
-        print(f"{time.monotonic()}, passage dans update gui")
-
         # Callback of the gui update function after 1 seconde
         self.window.after(1000, self.update_gui)
 
@@ -383,8 +380,6 @@ class Gui:
                 # self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
                 self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
                 self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
-
-        print(f"{time.monotonic()}, fin du passage dans update gui")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
@@ -1005,8 +1000,6 @@ class Gui:
             
             print("Action confirmée.")
             popup.destroy()
-            print(f"user_input_intensity = {self.cathode.consigne_courant}")
-            print(f"user_input_time = {self.cathode.consigne_temps}")
 
         def on_no():
             print("Action annulée.")
@@ -1069,8 +1062,6 @@ class Gui:
 
             print("Action confirmée.")
             popup.destroy()
-            print(f"user_input_intensity = {self.cathode.consigne_courant}")
-            print(f"user_input_time = {self.cathode.consigne_temps}")
 
         def on_no():
             print("Action annulée.")
@@ -1119,7 +1110,6 @@ class Gui:
                 self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
                 self.mode_securite_actif = False
                 self.etatManip = EtatManip.OFF
-                print(f"{self.etatManip}")
             else:
                 self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
                 self.mode_securite_actif = True
@@ -1168,7 +1158,6 @@ class Gui:
 
         def on_yes():
             self.etatManip = EtatManip.DEMARRAGE
-            print(f"Action confirmée. {self.etatManip}")
             popup.destroy()
 
         def on_no():
@@ -1212,7 +1201,6 @@ class Gui:
 
         def on_yes():
             self.etatManip = EtatManip.ARRET_EN_COURS
-            print(f"Action confirmée. {self.etatManip}")
             popup.destroy()
 
         def on_no():
@@ -1274,6 +1262,6 @@ class Gui:
     def securite_gui(self, etatManip, pression, onduleur1, onduleur2):
         time.sleep(10)
         while self.running2:
-            securite(etatManip, pression, onduleur1, onduleur2)
+            securite(self.etatManip, self.pression, self.onduleur1, self.onduleur2)
 
             time.sleep(1)

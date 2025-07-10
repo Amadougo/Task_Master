@@ -1,5 +1,7 @@
 from data import EtatManip, Pression, Onduleur
 from math import pow
+from treatment import relais1_OFF, relais1_ON, relais2_OFF, relais2_ON
+from treatment import pompe_SCU_1400_1_ON, pompe_SCU_1400_1_OFF, pompe_SCU_1400_2_ON, pompe_SCU_1400_2_OFF, pompe_SCU_800_OFF, pompe_SCU_800_ON
 import subprocess
 import time
 
@@ -8,7 +10,7 @@ PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, onduleur2 : Onduleur) :
     
     print(f"{time.monotonic()}, passage dans la securite")
-    print(f"onduleur2.battery_runtime = {onduleur2.battery_runtime}")
+    print(f"Action confirmée. {etat_manip}")
     
     #Actions lorsque la manip est en 'OFF'
     if (etat_manip == EtatManip.OFF) :
@@ -24,6 +26,16 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
     #Actions lorsque la manip est en 'Démarrage'
     elif (etat_manip == EtatManip.DEMARRAGE) :
         print("État manip : Démarrage…")
+        #On démarre les pompes finales (relais)
+        relais1_ON()
+        relais2_ON()
+        #On démarre les pompes secondaires
+        pompe_SCU_1400_1_ON()
+        pompe_SCU_1400_2_ON()
+        pompe_SCU_800_ON()
+        #On passe l'état de la manip à 'Fonctionnement'
+        etat_manip = EtatManip.FONCTIONNE
+        '''vérifier pompes primaires'''
 
     #Actions lorsque la manip est en 'Fonctionnement'
     elif (etat_manip == EtatManip.FONCTIONNE) :
@@ -46,5 +58,13 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
     #Actions lorsque la manip est en 'cours d'arrêt'
     elif (etat_manip == EtatManip.ARRET_EN_COURS) :
         print("État manip : Arrêt en cours")
-
+        #On arrête les pompes finales (relais)
+        relais1_OFF()
+        relais2_OFF()
+        #On arrête les pompes secondaires
+        pompe_SCU_1400_1_OFF()
+        pompe_SCU_1400_2_OFF()
+        pompe_SCU_800_OFF()
+        etat_manip = EtatManip.OFF
+        
     print(f"{time.monotonic()}, fin du passage dans la securite")
