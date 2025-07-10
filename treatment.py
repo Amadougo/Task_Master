@@ -519,11 +519,3 @@ def recuperer_donnees_pression(pression : Pression) :
 
     return pression
 '''
-pression = Pression()
-recuperer_donnees_pression_jauge1(pression)
-afficher_donnees_pression_jauge1 = pression.Jauge_1_Turbo
-print(f"Jauge 1 Turbo : {afficher_donnees_pression_jauge1}")
-time.sleep(3)  # Attendre un peu avant de continuer
-pompe_SCU_800_OFF()
-time.sleep(10)  # Attendre un peu avant de continuer
-pompe_SCU_800_ON()
