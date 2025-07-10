@@ -1263,6 +1263,6 @@ class Gui:
     def securite_gui(self):
         time.sleep(10)
         while self.running2:
-            self.securite.securite()
+            self.securite.securite(self.securite)
 
             time.sleep(1)
