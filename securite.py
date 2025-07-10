@@ -10,7 +10,7 @@ PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, onduleur2 : Onduleur) :
     
     print(f"{time.monotonic()}, passage dans la securite")
-    print(f"onduleur2.battery_runtime = {onduleur2.battery_runtime}")
+    print(f"Action confirmée. {etat_manip}")
     
     #Actions lorsque la manip est en 'OFF'
     if (etat_manip == EtatManip.OFF) :
@@ -67,5 +67,4 @@ def securite(etat_manip: EtatManip, pression: Pression, onduleur1 : Onduleur, on
         pompe_SCU_800_OFF()
         etat_manip = EtatManip.OFF
         
-
     print(f"{time.monotonic()}, fin du passage dans la securite")
