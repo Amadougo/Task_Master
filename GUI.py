@@ -878,6 +878,9 @@ class Gui:
 
     def check_logs_with_data(self):
         while self.running:
+            
+            print(f"{time.monotonic()}, Récupération des données dans check_logs_with_data()")
+            
             self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
             # INFO Logs
