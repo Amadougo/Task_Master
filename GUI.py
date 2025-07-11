@@ -341,9 +341,6 @@ class Gui:
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
-            
-            print("Afichage des données")
-
             self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
             self.text2_box1_1_2.config(text=f"Onduleur1: Fréquence d'entrée (input_frequency) : {self.onduleur1.input_frequency} Hz")
             self.text3_box1_1_3.config(text=f"Onduleur1: Tension de la batterie (battery_voltage) : {self.onduleur1.battery_voltage} V")
@@ -878,9 +875,6 @@ class Gui:
 
     def check_logs_with_data(self):
         while self.running:
-            
-            print(f"{time.monotonic()}, Récupération des données dans check_logs_with_data()")
-            
             self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
             # INFO Logs
