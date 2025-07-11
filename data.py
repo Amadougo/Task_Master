@@ -10,7 +10,8 @@ class Onduleur :
                  battery_runtime: int = 0,
                  battery_charge: int = 0,
                  ups_load: int = 0,
-                 ups_status: str = ""):
+                 ups_status: str = "", 
+                 name_ups_data: str = ""):
         self.input_voltage = input_voltage
         self.input_frequency = input_frequency
         self.battery_voltage = battery_voltage
@@ -18,6 +19,7 @@ class Onduleur :
         self.battery_charge = battery_charge
         self.ups_load = ups_load
         self.ups_status = ups_status
+        self.name_ups_data = name_ups_data
 
     def afficher_donnees_onduleur(self):
         print(f"Tension d'entrée : {self.input_voltage} V")

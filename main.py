@@ -6,9 +6,9 @@ import threading
 from securite import Securite
 
 # Creation of an Onduleur object
-onduleur1 = Onduleur()
+onduleur1 = Onduleur(name_ups_data="onduleur1@localhost")
 
-onduleur2 = Onduleur()
+onduleur2 = Onduleur(name_ups_data="onduleur2@localhost")
 
 # Creation of a Pression object
 pression = Pression()
