@@ -327,7 +327,7 @@ class Gui:
 
         # Thread de mise à jour
         self.running = True
-        self.update_thread = threading.Thread(target=self.check_logs_with_data, args=(self.onduleur1, self.onduleur2, self.pression), daemon=True)
+        self.update_thread = threading.Thread(target=self.check_logs_with_data, daemon=True)
         self.update_thread.start()
         
         # 2nd Thread de mise à jour
@@ -341,6 +341,9 @@ class Gui:
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
+            
+            print("Afichage des données")
+
             self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
             self.text2_box1_1_2.config(text=f"Onduleur1: Fréquence d'entrée (input_frequency) : {self.onduleur1.input_frequency} Hz")
             self.text3_box1_1_3.config(text=f"Onduleur1: Tension de la batterie (battery_voltage) : {self.onduleur1.battery_voltage} V")
@@ -873,7 +876,7 @@ class Gui:
         self.textlog1_box1_1_widget.delete('1.0', END)
         self.textlog1_box1_1_widget.insert(INSERT, contenu)
 
-    def check_logs_with_data(self, onduleur1, onduleur2, pression):
+    def check_logs_with_data(self):
         while self.running:
             self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
