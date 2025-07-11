@@ -875,7 +875,7 @@ class Gui:
 
     def check_logs_with_data(self, onduleur1, onduleur2, pression):
         while self.running:
-            self.recuperer_donnees(onduleur1, onduleur2, pression)
+            self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
             # INFO Logs
             if(False): # Si le bouton est pressé : Extinction générale progressive.
