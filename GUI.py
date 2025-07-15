@@ -16,9 +16,9 @@ class Gui:
         self.onduleur1 = onduleur1  # Creation of the onduleur1 object
         self.onduleur2 = onduleur2  # Creation of the onduleur2 object
         self.pression = pression # Creation of the pression object
-        self.cathode = cathode # Creation of the cathode object 
-        self.etatManip = etatManip # Creation of the etatManip object 
-        self.securite = securite # Creation of the securite object 
+        self.cathode = cathode # Creation of the cathode object
+        self.etatManip = etatManip # Creation of the etatManip object
+        self.securite = securite # Creation of the securite object
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.mode_securite_actif = mode_securite_actif # Creation of the mode_securite_actif object
         self.setup_gui()  # Initial configuration of the gui setup
