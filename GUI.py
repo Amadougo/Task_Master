@@ -372,15 +372,15 @@ class Gui:
 
             # Gestion des boutons de chauffe et refroidissement de la cathode
             if ((self.cathode.etat == EtatCathode.FROIDE) or (self.cathode.etat == EtatCathode.CHAUDE)):
-                # self.button_box2_3.config(state="normal") 
-                # self.button_box2_5.config(state="normal") # Fonctionnement normal cathode enlever les commentaires
-                self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
-                self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                self.button_box2_3.config(state="normal") 
+                self.button_box2_5.config(state="normal") # Fonctionnement normal cathode enlever les commentaires
+                # self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                # self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
             elif ((self.cathode.etat == EtatCathode.REFROIDISSEMENT) or (self.cathode.etat == EtatCathode.CHAUFFE)):
-                # self.button_box2_3.config(state="disabled")
-                # self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
-                self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
-                self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
+                self.button_box2_3.config(state="disabled")
+                self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
+                # self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
+                # self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
