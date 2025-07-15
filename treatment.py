@@ -256,7 +256,7 @@ def controle_cathode(cathode: Cathode):
     command = "I?\n"
     serial_cathode.write(command.encode())
     response = serial_cathode.readline().decode().strip()
-    if(response[0] != "I"):
+    if(not response or response[0] != "I"):
        cathode.etat = EtatCathode.DECONNECTEE  
 
     #
