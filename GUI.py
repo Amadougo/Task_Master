@@ -1103,8 +1103,11 @@ class Gui:
         label_1 = Label(popup, text="Êtes-vous sûr de vouloir changer de mode de sécurité ?", font=("Arial", 14))
         label_1.pack(pady=10)
 
-        label_2 = Label(popup, text="Attention : si la sécurité est désactivée, alors la vérification des pressions seuils et de la cathode n'est plus faite.", font=("Arial", 14))
+        label_2 = Label(popup, text="Attention : si la sécurité est désactivée,", font=("Arial", 14))
         label_2.pack(pady=20) 
+
+        label_3 = Label(popup, text="alors la vérification des pressions seuils et de la cathode n'est plus faite.", font=("Arial", 14))
+        label_3.pack(pady=0) 
 
         def on_yes():
             if(self.mode_securite_actif == True):
