@@ -256,19 +256,20 @@ def controle_cathode(cathode: Cathode):
     #Convertion du temps en secondes
     consigne_temps_seconde = cathode.consigne_temps*60
 
-    #Récupration du courant
-    command = "I?\n"
-    serial_cathode.write(command.encode())
-    response = serial_cathode.readline().decode().strip()
-    courant_cathode = float(response[len("I "):])
-    print(f"Le courant est : {courant_cathode}A")
+    if(cathode.etat != EtatCathode.FROIDE):
+        #Récupration du courant
+        command = "I?\n"
+        serial_cathode.write(command.encode())
+        response = serial_cathode.readline().decode().strip()
+        courant_cathode = float(response[len("I "):])
+        print(f"Le courant est : {courant_cathode}A")
 
-    #Récupration de la tension
-    command = "V?\n"
-    serial_cathode.write(command.encode())
-    response = serial_cathode.readline().decode().strip()
-    tension_cathode = float(response[len("V "):])
-    print(f"La tension est : {tension_cathode}V")
+        #Récupration de la tension
+        command = "V?\n"
+        serial_cathode.write(command.encode())
+        response = serial_cathode.readline().decode().strip()
+        tension_cathode = float(response[len("V "):])
+        print(f"La tension est : {tension_cathode}V")
     
     if tension_cathode != 18.00 :
         command = "V 18.00\n"
