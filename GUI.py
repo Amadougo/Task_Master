@@ -1274,7 +1274,6 @@ class Gui:
             time.sleep(1)
 
     def controle_cathode_gui(self):
-        time.sleep(10)
         while self.running2:
             controle_cathode(self.cathode.etat)
 
