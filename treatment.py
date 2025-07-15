@@ -255,7 +255,7 @@ def controle_cathode(cathode: Cathode):
     print(f"état de la cathode : {cathode.etat}")
     #Convertion du temps en secondes
     consigne_temps_seconde = cathode.consigne_temps*60
-
+    
     if(cathode.etat != EtatCathode.FROIDE):
         #Récupration du courant
         command = "I?\n"
@@ -270,39 +270,39 @@ def controle_cathode(cathode: Cathode):
         response = serial_cathode.readline().decode().strip()
         tension_cathode = float(response[len("V "):])
         print(f"La tension est : {tension_cathode}V")
-    
-    if tension_cathode != 18.00 :
-        command = "V 18.00\n"
-        serial_cathode.write(command.encode())
+        
+        if tension_cathode != 18.00 :
+            command = "V 18.00\n"
+            serial_cathode.write(command.encode())
 
-    if cathode.etat == EtatCathode.CHAUFFE : 
-        #Calcul du temps ecoulé
-        t_ecoule = time.monotonic() - cathode.t_0
-        print(f"temps écoulé = {t_ecoule}")
-        #Test si fini
-        if (courant_cathode > cathode.consigne_courant) or (t_ecoule > consigne_temps_seconde) :
-            cathode.etat = EtatCathode.CHAUDE
-            return
-        #Calcul de la fonction
-        intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))
-        #Mise Ã  jour du courant
-        command = "I " + str(intensite_cathode) + "\n"
-        print(f" commande envoyée : {command}")
-        serial_cathode.write(command.encode())
+        if cathode.etat == EtatCathode.CHAUFFE : 
+            #Calcul du temps ecoulé
+            t_ecoule = time.monotonic() - cathode.t_0
+            print(f"temps écoulé = {t_ecoule}")
+            #Test si fini
+            if (courant_cathode > cathode.consigne_courant) or (t_ecoule > consigne_temps_seconde) :
+                cathode.etat = EtatCathode.CHAUDE
+                return
+            #Calcul de la fonction
+            intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))
+            #Mise Ã  jour du courant
+            command = "I " + str(intensite_cathode) + "\n"
+            print(f" commande envoyée : {command}")
+            serial_cathode.write(command.encode())
 
-    if cathode.etat == EtatCathode.REFROIDISSEMENT : 
-        #Calcul du temps écoulé
-        t_ecoule = consigne_temps_seconde - time.monotonic() - cathode.t_0
-        #Test si fini
-        if (courant_cathode <= cathode.consigne_courant) or (t_ecoule <= 0) :
-            cathode.etat = EtatCathode.FROIDE
-            return
-        #Calcul de la fonction
-        intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))
-        #Mise à jour du courant
-        command = "I " + str(intensite_cathode) + "\n"
-        print(f" commande envoyée : {command}")
-        serial_cathode.write(command.encode())
+        if cathode.etat == EtatCathode.REFROIDISSEMENT : 
+            #Calcul du temps écoulé
+            t_ecoule = consigne_temps_seconde - time.monotonic() - cathode.t_0
+            #Test si fini
+            if (courant_cathode <= cathode.consigne_courant) or (t_ecoule <= 0) :
+                cathode.etat = EtatCathode.FROIDE
+                return
+            #Calcul de la fonction
+            intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))
+            #Mise à jour du courant
+            command = "I " + str(intensite_cathode) + "\n"
+            print(f" commande envoyée : {command}")
+            serial_cathode.write(command.encode())
 
 # -------------------------------- #
 #  Gestion des pompes secondaires  #
