@@ -334,7 +334,7 @@ class Gui:
 
         # 3ème Thread de mise à jour
         self.running3 = True
-        update_thread3 = threading.Thread(target=self.controle_cathode, daemon=True)
+        update_thread3 = threading.Thread(target=self.cathode.controle_cathode, daemon=True)
         update_thread3.start()
 
     def update_gui(self):
@@ -1275,6 +1275,6 @@ class Gui:
 
     def controle_cathode_gui(self):
         while self.running2:
-            controle_cathode(self.cathode.etat)
+            self.cathode.controle_cathode(self.cathode)
 
             time.sleep(1)
