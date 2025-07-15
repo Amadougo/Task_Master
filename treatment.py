@@ -252,15 +252,17 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
     return Pression
 
 def controle_cathode(cathode: Cathode):
-    print(f"état de la cathode : {cathode.etat}")
-
     #Récupération du courant
     command = "I?\n"
     serial_cathode.write(command.encode())
     response = serial_cathode.readline().decode().strip()
     if(response[0] != "I"):
        cathode.etat = EtatCathode.DECONNECTEE  
-   
+
+    #
+    print(f"état de la cathode : {cathode.etat}")
+    #
+
     if(cathode.etat != EtatCathode.DECONNECTEE):
         #Convertion du temps en secondes
         consigne_temps_seconde = cathode.consigne_temps*60
