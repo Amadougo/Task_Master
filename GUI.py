@@ -1106,7 +1106,7 @@ class Gui:
         label_2 = Label(popup, text="Attention : si la sécurité est désactivée, alors la vérification des pressions seuils n'est plus faite.", font=("Arial", 14))
         label_2.pack(pady=20) 
 
-        def on_yes(self):
+        def on_yes():
             if(self.mode_securite_actif == True):
                 self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
                 self.mode_securite_actif = False
