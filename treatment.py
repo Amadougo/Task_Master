@@ -257,14 +257,14 @@ def controle_cathode(cathode: Cathode):
     consigne_temps_seconde = cathode.consigne_temps*60
     
     if(cathode.etat != EtatCathode.DECONNECTEE):
-        #Récupration du courant
+        #Récupération du courant
         command = "I?\n"
         serial_cathode.write(command.encode())
         response = serial_cathode.readline().decode().strip()
         courant_cathode = float(response[len("I "):])
         print(f"Le courant est : {courant_cathode}A")
 
-        #Récupration de la tension
+        #Récupération de la tension
         command = "V?\n"
         serial_cathode.write(command.encode())
         response = serial_cathode.readline().decode().strip()
