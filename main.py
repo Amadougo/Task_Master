@@ -20,7 +20,8 @@ cathode = Cathode()
 etatManip: EtatManip = EtatManip.OFF
 
 # Creation of a Securite object
-securite = Securite(etatManip, pression, onduleur1, onduleur2)
+mode_securite_actif=True
+securite = Securite(etatManip, pression, onduleur1, onduleur2, mode_securite_actif)
 
 while(os.environ.get("DISPLAY") == None):
     recuperer_donnees_onduleur(onduleur1)
@@ -40,7 +41,7 @@ from GUI import Gui # import the GUI class from GUI.py
 print("interface graphique")
 
 # Creation of the GUI
-gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, securite, affichage_donnees=True, mode_securite_actif=True)
+gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, securite, affichage_donnees=True, mode_securite_actif=mode_securite_actif)
 
 # Force the resize of boxes dimensions
 gui.force_initial_resizing()
