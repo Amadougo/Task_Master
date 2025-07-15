@@ -1103,10 +1103,10 @@ class Gui:
         label_1 = Label(popup, text="Êtes-vous sûr de vouloir changer de mode de sécurité ?", font=("Arial", 14))
         label_1.pack(pady=10)
 
-        label_2 = Label(popup, text="Attention : si la sécurité est désactivée, alors la manip se mettra en arrêt progressif.", font=("Arial", 14))
+        label_2 = Label(popup, text="Attention : si la sécurité est désactivée, alors la vérification des pressions seuils n'est plus faite.", font=("Arial", 14))
         label_2.pack(pady=20) 
 
-        def on_yes():
+        def on_yes(self):
             if(self.mode_securite_actif == True):
                 self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
                 self.mode_securite_actif = False
@@ -1262,6 +1262,6 @@ class Gui:
     def securite_gui(self):
         time.sleep(10)
         while self.running2:
-            self.securite.securite(self.mode_securite_actif)
+            self.securite.securite()
 
             time.sleep(1)

@@ -32,7 +32,7 @@ while(os.environ.get("DISPLAY") == None):
     recuperer_donnees_pression_jauge4(pression)
     recuperer_donnees_pression_jauge5(pression)
     recuperer_donnees_pression_jauge6(pression)
-    securite.securite(mode_securite_actif)
+    securite.securite()
     print("test OS")
     time.sleep(1)
 
