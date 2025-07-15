@@ -41,7 +41,7 @@ from GUI import Gui # import the GUI class from GUI.py
 print("interface graphique")
 
 # Creation of the GUI
-gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, securite, est_securite_active, affichage_donnees=True)
+gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, securite, affichage_donnees=True, mode_securite_actif=est_securite_active)
 
 # Force the resize of boxes dimensions
 gui.force_initial_resizing()
