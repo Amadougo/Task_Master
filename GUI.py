@@ -1,7 +1,7 @@
 from tkinter import * # type: ignore
 from tkinter import scrolledtext
 from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
-#from treatment import controle_cathode
+from treatment import controle_cathode
 from data import EtatCathode
 from data import EtatManip
 from logs import * # type: ignore
