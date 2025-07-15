@@ -365,8 +365,6 @@ class Gui:
             self.text13_box1_1_13.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
             
             self.text1_box1_2.config(text=f"État de la cathode : {self.cathode.etat}")
-            if(self.cathode.etat == EtatCathode.CHAUDE):
-                self.button_box2_2.config(state="disabled")
             self.text2_box1_2.config(text=f"t_0 : {self.cathode.t_0}")
             self.text3_box1_2.config(text=f"Valeur de tension de la cathode : {self.cathode.tension}")
             self.text4_box1_2.config(text=f"Valeur de courant de la cathode : {self.cathode.courant}")
