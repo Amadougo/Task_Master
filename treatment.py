@@ -3,6 +3,7 @@ import subprocess
 import serial
 import time
 import math
+from logs import *
 
 #Fonction qui définie la récupération de données auprès de NUT
 def get_ups_data(ups_name="onduleur1@localhost"):
@@ -295,6 +296,7 @@ def controle_cathode(cathode: Cathode):
             #Test si fini
             if (courant_cathode > cathode.consigne_courant) or (t_ecoule > consigne_temps_seconde) :
                 cathode.etat = EtatCathode.CHAUDE
+                log_with_cooldown(logging.INFO, "Chauffe de la cathode terminee.")
                 return
             #Calcul de la fonction
             intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))
@@ -309,6 +311,7 @@ def controle_cathode(cathode: Cathode):
             #Test si fini
             if (courant_cathode <= cathode.consigne_courant) or (t_ecoule <= 0) :
                 cathode.etat = EtatCathode.FROIDE
+                log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
                 return
             #Calcul de la fonction
             intensite_cathode = math.sqrt(t_ecoule/(consigne_temps_seconde/math.pow(cathode.consigne_courant,2)))

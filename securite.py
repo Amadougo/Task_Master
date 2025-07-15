@@ -4,6 +4,7 @@ from treatment import relais1et2_OFF, relais1et2_ON
 from treatment import pompe_SCU_1400_1_ON, pompe_SCU_1400_1_OFF, pompe_SCU_1400_2_ON, pompe_SCU_1400_2_OFF, pompe_SCU_800_OFF, pompe_SCU_800_ON
 import subprocess
 import time
+from logs import *
 
 PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 class Securite:
@@ -60,9 +61,11 @@ class Securite:
                     flt = float(value[0])
                     if (flt > PRESSION_SEUIL_PRIMAIRE) :
                         self.etat_manip = EtatManip.ARRET_EN_COURS
+                        log_with_cooldown(logging.CRITICAL, f"La jauge de pression 5 a depasse la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} mbar.")
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             if (int(self.onduleur1.battery_runtime) < 240) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
+                log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
             
 
         #Actions lorsque la manip est en 'cours d'arrêt'

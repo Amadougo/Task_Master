@@ -881,17 +881,17 @@ class Gui:
 
             # INFO Logs
             if(False): # Si le bouton est pressé : Extinction générale progressive.
-                log_with_cooldown(logging.INFO, "Lancement du programme : Extinction generale progressive.")
+                return # log_with_cooldown(logging.INFO, "Lancement du programme : Extinction generale progressive.")
             if(False): # Si le bouton est pressé : Refroidissement cathode.
-                log_with_cooldown(logging.INFO, "Lancement du programme : Refroidissement cathode.")
+                return # log_with_cooldown(logging.INFO, "Lancement du programme : Refroidissement cathode.")
             if(False): # Si le bouton est pressé : Chauffe cathode.
-                log_with_cooldown(logging.INFO,"Lancement du programme : Chauffe cathode.")
+                return # log_with_cooldown(logging.INFO,"Lancement du programme : Chauffe cathode.")
             if(False): # Si le bouton est pressé : Démarrage progressif.
-                log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
+                return # log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
             if(False): # Message de chauffe de la cathode terminée.
-                log_with_cooldown(logging.INFO, "Chauffe de la cathode terminee.")
+                return # log_with_cooldown(logging.INFO, "Chauffe de la cathode terminee.")
             if(False): # Message de refroidissement de la cathode terminée.
-                log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
+                return # log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
             if(False): # Message d'allumage de la manip terminé.
                 log_with_cooldown(logging.INFO, "Allumage de la manip termine.")
             if(False): # Envoi du sms pour motif de coupure de courant bien envoyé. 
@@ -904,7 +904,7 @@ class Gui:
 
             # WARNING Logs
             if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
-                log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 5)
+                log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 30)
             if(False): # L'onduleur1 va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
                 log_with_cooldown(logging.WARNING, "L'onduleur1 va se couper dans X minute(s). Processus d'extinction enclenche")
             if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
@@ -923,10 +923,8 @@ class Gui:
                 log_with_cooldown(logging.WARNING, "La jauge de pression 4 a depasse la valeur seuil haute.")
             if(False): # La jauge de pression 4 a dépassé la valeur seuil basse.
                 log_with_cooldown(logging.WARNING, "La jauge de pression 4 a depasse la valeur seuil basse.")
-            if(False): # La jauge de pression 5 a dépassé la valeur seuil haute.
-                log_with_cooldown(logging.WARNING, "La jauge de pression 5 a depasse la valeur seuil haute.")
-            if(False): # La jauge de pression 5 a dépassé la valeur seuil basse.
-                log_with_cooldown(logging.WARNING, "La jauge de pression 5 a depasse la valeur seuil basse.")
+            if(False): # La jauge de pression 5 a dépassé la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} mbar.
+                log_with_cooldown(logging.WARNING, "La jauge de pression 5 a depasse la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} mbar.")
             if(False): # La jauge de pression 6 a dépassé la valeur seuil haute.
                 log_with_cooldown(logging.WARNING, "La jauge de pression 6 a depasse la valeur seuil haute.")
             if(False): # La jauge de pression 6 a dépassé la valeur seuil basse.
@@ -941,13 +939,13 @@ class Gui:
                 log_with_cooldown(logging.CRITICAL, "La jauge de pression 3 a atteint une valeur critique definie.")
             if(False): # La jauge de pression 4 a atteint une valeur critique définie.
                 log_with_cooldown(logging.CRITICAL, "La jauge de pression 4 a atteint une valeur critique definie.")
-            if(False): # La jauge de pression 5 a atteint une valeur critique définie.
-                log_with_cooldown(logging.CRITICAL, "La jauge de pression 5 a atteint une valeur critique definie.")
+            if(False): # La jauge de pression 5 a atteint une valeur critique de {PRESSION_SEUIL_PRIMAIRE} mbar.
+                return # log_with_cooldown(logging.CRITICAL, f"La jauge de pression 5 a depasse la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} mbar.")
             if(False): # La jauge de pression 6 a atteint une valeur critique définie.
                 log_with_cooldown(logging.CRITICAL, "La jauge de pression 6 a atteint une valeur critique definie.")
-            if(False): #Arrêt général pour cause onduleur1 vide.
-                log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 vide.")
-            if(False): # Batterie onduleur1 morte.
+            if(False): #Arrêt général pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).
+                return # log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
+            if(self.onduleur1.ups_status == "MORTE"): # Batterie onduleur1 morte.
                 log_with_cooldown(logging.CRITICAL, "Batterie onduleur1 morte.")
 
             time.sleep(1) # Fréquence de mise à jour : 1 seconde
@@ -1000,7 +998,7 @@ class Gui:
             self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
             self.cathode.t_0 = time.monotonic()
             self.cathode.etat = EtatCathode.CHAUFFE
-            
+            log_with_cooldown(logging.INFO,"Lancement du programme : Chauffe cathode.")
             print("Action confirmée.")
             popup.destroy()
 
@@ -1062,7 +1060,7 @@ class Gui:
             self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
             self.cathode.t_0 = time.monotonic()
             self.cathode.etat = EtatCathode.REFROIDISSEMENT
-
+            log_with_cooldown(logging.INFO, "Lancement du programme : Refroidissement cathode.")
             print("Action confirmée.")
             popup.destroy()
 
@@ -1165,6 +1163,7 @@ class Gui:
 
         def on_yes():
             self.securite.etat_manip = EtatManip.DEMARRAGE
+            log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
             popup.destroy()
 
         def on_no():
@@ -1208,6 +1207,7 @@ class Gui:
 
         def on_yes():
             self.securite.etat_manip = EtatManip.ARRET_EN_COURS
+            log_with_cooldown(logging.INFO, "Lancement du programme : Extinction generale progressive.")
             popup.destroy()
 
         def on_no():
