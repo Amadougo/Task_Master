@@ -49,6 +49,8 @@ class Securite:
 
             #On vérifie si la sécurité de pression est active
             if self.securite_pression_actif:
+                print("Sécurité de pression active")
+                print(f"Pression primaire : {self.pression.Jauge_5_Primaire}")
                 #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
                 if (self.pression.Jauge_5_Primaire == "Déconnectée" or self.pression.Jauge_5_Primaire == "Validation manuelle requise") :
                     print("Erreur jauge primaire, arrêt des pompes")
