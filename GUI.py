@@ -319,9 +319,6 @@ class Gui:
         # Initialisation of the GUI
         self.update_gui()
 
-        # Callback controle_cathode function
-        #self.window.after(5400, self.controle_cathode)
-
         # Bind the images to rescale them later
         self.window.after(500, self.force_initial_resizing)
 
@@ -334,6 +331,11 @@ class Gui:
         self.running2 = True
         update_thread2 = threading.Thread(target=self.securite_gui, daemon=True)
         update_thread2.start()
+
+        # 3ème Thread de mise à jour
+        self.running3 = True
+        update_thread3 = threading.Thread(target=self.controle_cathode, daemon=True)
+        update_thread3.start()
 
     def update_gui(self):
         # Callback of the gui update function after 1 seconde
@@ -1268,5 +1270,12 @@ class Gui:
         time.sleep(10)
         while self.running2:
             self.securite.securite()
+
+            time.sleep(1)
+
+    def controle_cathode_gui(self):
+        time.sleep(10)
+        while self.running2:
+            controle_cathode(self.cathode.etat)
 
             time.sleep(1)
