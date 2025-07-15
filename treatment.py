@@ -256,8 +256,10 @@ def controle_cathode(cathode: Cathode):
     command = "I?\n"
     serial_cathode.write(command.encode())
     response = serial_cathode.readline().decode().strip()
-    if(not response or response[0] != "I"):
-       cathode.etat = EtatCathode.DECONNECTEE  
+    if(response[0] != "I"):
+       cathode.etat = EtatCathode.DECONNECTEE
+    elif(cathode.etat == EtatCathode.DECONNECTEE):
+        cathode.etat = EtatCathode.FROIDE # Seulement pour la première où l'appareil est reconnecté/rallumé
 
     #
     print(f"état de la cathode : {cathode.etat}")
