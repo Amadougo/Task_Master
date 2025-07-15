@@ -256,7 +256,7 @@ def controle_cathode(cathode: Cathode):
     #Convertion du temps en secondes
     consigne_temps_seconde = cathode.consigne_temps*60
     
-    if(cathode.etat != EtatCathode.FROIDE):
+    if(cathode.etat != EtatCathode.DECONNECTEE):
         #Récupration du courant
         command = "I?\n"
         serial_cathode.write(command.encode())

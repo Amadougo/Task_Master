@@ -58,6 +58,7 @@ class EtatCathode(Enum):
     CHAUFFE = "chauffe"
     CHAUDE = "chaude"
     REFROIDISSEMENT = "refroidissement"
+    DECONNECTEE = "deconnectee"
 
 class Cathode:
     def __init__(self,
