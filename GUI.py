@@ -255,7 +255,7 @@ class Gui:
         self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Add labels inside box1_2
-        self.text1_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text1_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#64698A', fg='white', font=('Helvetica', 15, 'bold italic'))
         self.text2_box1_2 = Label(self.box1_2, text="text2_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text3_box1_2 = Label(self.box1_2, text="text3_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
