@@ -1077,7 +1077,7 @@ class Gui:
     def bouton_changer_mode_Securite(self):
         popup = Toplevel(self.window)
         popup.title("Confirmation du changement de mode sécurité")
-        popup.geometry("800x250")
+        popup.geometry("800x220")
         popup.transient(self.window)
         popup.grab_set()
         popup.focus_force()
@@ -1085,7 +1085,7 @@ class Gui:
         # ----- Centrage de la pop up dans l'écran -----
         self.window.update_idletasks()  # Assure les dimensions correctes
         window_width = 800
-        window_height = 250
+        window_height = 220
 
         # Récupère la position de la fenêtre principale
         x = self.window.winfo_x()
