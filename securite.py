@@ -7,11 +7,12 @@ import time
 
 PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
 class Securite:
-    def __init__(self, etat_manip, pression, onduleur1, onduleur2):
+    def __init__(self, etat_manip, pression, onduleur1, onduleur2, securite_pression_actif):
         self.etat_manip = etat_manip
         self.pression = pression
         self.onduleur1 = onduleur1
         self.onduleur2 = onduleur2
+        self.securite_pression_actif = securite_pression_actif  # Indicateur pour activer ou désactiver la sécurité
 
     def securite(self) :
         
@@ -46,15 +47,17 @@ class Securite:
         elif (self.etat_manip == EtatManip.FONCTIONNE) :
             print("État manip : Fonctionne")
 
-            #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
-            if (self.pression.Jauge_5_Primaire == "Déconnectée" or self.pression.Jauge_5_Primaire == "Validation manuelle requise") :
-                print("Erreur jauge primaire, arrêt des pompes")
-                self.etat_manip = EtatManip.ARRET_EN_COURS
-            else :
-                value = self.pression.Jauge_5_Primaire.split(" ")      
-                flt = float(value[0])
-                if (flt > PRESSION_SEUIL_PRIMAIRE) :
+            #On vérifie si la sécurité de pression est active
+            if self.securite_pression_actif:
+                #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
+                if (self.pression.Jauge_5_Primaire == "Déconnectée" or self.pression.Jauge_5_Primaire == "Validation manuelle requise") :
+                    print("Erreur jauge primaire, arrêt des pompes")
                     self.etat_manip = EtatManip.ARRET_EN_COURS
+                else :
+                    value = self.pression.Jauge_5_Primaire.split(" ")      
+                    flt = float(value[0])
+                    if (flt > PRESSION_SEUIL_PRIMAIRE) :
+                        self.etat_manip = EtatManip.ARRET_EN_COURS
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             if (int(self.onduleur1.battery_runtime) < 240) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
