@@ -252,7 +252,7 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
     return Pression
 
 def controle_cathode(cathode: Cathode):
-    print(f"etat de la cathode : {cathode.etat}")
+    print(f"état de la cathode : {cathode.etat}")
     #Convertion du temps en secondes
     consigne_temps_seconde = cathode.consigne_temps*60
 
