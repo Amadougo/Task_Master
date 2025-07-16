@@ -67,7 +67,7 @@ class Securite:
         #Actions lorsque la manip est en 'cours d'arrêt'
         elif (self.etat_manip == EtatManip.ARRET_EN_COURS) :
             etat_SCU = recuperer_etat_SCU_800()
-            if (etat_SCU == 4):
+            if (etat_SCU == 4 or etat_SCU == 3):
                 #On arrête les pompes finales (relais)
                 relais1et2_OFF()
                 #On arrête les pompes secondaires
