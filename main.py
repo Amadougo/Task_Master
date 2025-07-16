@@ -23,7 +23,7 @@ etatManip: EtatManip = EtatManip.OFF
 est_securite_active = True
 securite = Securite(etatManip, pression, onduleur1, onduleur2, est_securite_active)
 
-log_with_cooldown(logging.INFO, "Démarrage du programme")
+log_with_cooldown(logging.INFO, "Démarrage du programme",60)
 
 while(os.environ.get("DISPLAY") == None):
     recuperer_donnees_onduleur(onduleur1)
