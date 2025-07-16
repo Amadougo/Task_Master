@@ -28,12 +28,13 @@ class Securite:
 
         #Actions lorsque la manip est en 'Démarrage'
         elif (self.etat_manip == EtatManip.DEMARRAGE) :
-            #On démarre les pompes finales (relais)
-            relais1et2_ON()
-            #On démarre les pompes secondaires
-            pompe_SCU_1400_1_ON()
-            pompe_SCU_1400_2_ON()
-            pompe_SCU_800_ON()
+            if (recuperer_etat_SCU_800() == 1):
+                #On démarre les pompes finales (relais)
+                relais1et2_ON()
+                #On démarre les pompes secondaires
+                pompe_SCU_1400_1_ON()
+                pompe_SCU_1400_2_ON()
+                pompe_SCU_800_ON()
             if(recuperer_etat_SCU_800() == 4):
                 #On passe l'état de la manip à 'Fonctionnement'
                 self.etat_manip = EtatManip.FONCTIONNE
@@ -60,11 +61,12 @@ class Securite:
 
         #Actions lorsque la manip est en 'cours d'arrêt'
         elif (self.etat_manip == EtatManip.ARRET_EN_COURS) :
-            #On arrête les pompes finales (relais)
-            relais1et2_OFF()
-            #On arrête les pompes secondaires
-            pompe_SCU_1400_1_OFF()
-            pompe_SCU_1400_2_OFF()
-            pompe_SCU_800_OFF()
+            if (recuperer_etat_SCU_800() == 4):
+                #On arrête les pompes finales (relais)
+                relais1et2_OFF()
+                #On arrête les pompes secondaires
+                pompe_SCU_1400_1_OFF()
+                pompe_SCU_1400_2_OFF()
+                pompe_SCU_800_OFF()
             if(recuperer_etat_SCU_800() == 1):
                 self.etat_manip = EtatManip.OFF
