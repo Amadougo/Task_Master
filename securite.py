@@ -36,7 +36,7 @@ class Securite:
             pompe_SCU_800_ON()
             #On passe l'état de la manip à 'Fonctionnement'
             self.etat_manip = EtatManip.FONCTIONNE
-            print(f"recuperer_etat_SCU_800() égal à {recuperer_etat_SCU_800()}")
+            #print(f"recuperer_etat_SCU_800() égal à {recuperer_etat_SCU_800()}")
 
         #Actions lorsque la manip est en 'Fonctionnement'
         elif (self.etat_manip == EtatManip.FONCTIONNE) :
