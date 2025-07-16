@@ -337,6 +337,11 @@ class Gui:
         update_thread3 = threading.Thread(target=self.controle_cathode_gui, daemon=True)
         update_thread3.start()
 
+        # 4ème Thread de mise à jour
+        self.running4 = True
+        update_thread4 = threading.Thread(target=self.coupure_de_courant_gui, daemon=True)
+        update_thread4.start()
+
     def update_gui(self):
         # Callback of the gui update function after 1 seconde
         self.window.after(1000, self.update_gui)
@@ -1276,7 +1281,19 @@ class Gui:
             time.sleep(1)
 
     def controle_cathode_gui(self):
-        while self.running2:
-            controle_cathode(self.cathode)
+        while self.running3:
+            self.cathode.controle_cathode()
 
             time.sleep(1)
+
+    def coupure_de_courant_gui(self):
+        while self.running4:
+            self.coupure_de_courant()
+
+            time.sleep(1)
+
+    def coupure_de_courant(self):
+        var = self.onduleur1.battery_runtime
+        var = var[:2]
+        while(var != "OL"):
+            log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
