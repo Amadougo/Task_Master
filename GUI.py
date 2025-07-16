@@ -1114,10 +1114,12 @@ class Gui:
                 self.button_box2_1.config(text="Sécurité : DÉSACTIVÉE", bg="#FF3F3F")
                 self.mode_securite_actif = False
                 self.securite.securite_pression_actif = self.mode_securite_actif
+                log_with_cooldown(logging.WARNING, "La sécurité a été désactivé")
             else:
                 self.button_box2_1.config(text="Sécurité : ACTIVÉE", bg="#309641")
                 self.mode_securite_actif = True
                 self.securite.securite_pression_actif = self.mode_securite_actif
+                log_with_cooldown(logging.INFO, "La sécurité a été activé")
 
             print(f"Action confirmée.")
             popup.destroy()
