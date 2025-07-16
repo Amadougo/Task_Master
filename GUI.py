@@ -1170,7 +1170,7 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            if(self.onduleur1.battery_runtime > 240):
+            if(int(self.onduleur1.battery_runtime) > 240):
                 self.securite.etat_manip = EtatManip.DEMARRAGE
                 log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
                 popup.destroy()
