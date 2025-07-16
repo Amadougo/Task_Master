@@ -3,7 +3,7 @@ import subprocess
 import serial
 import time
 import math
-from logs import *
+from logs import * # type: ignore
 
 #Fonction qui définie la récupération de données auprès de NUT
 def get_ups_data(ups_name="onduleur1@localhost"):

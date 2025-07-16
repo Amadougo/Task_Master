@@ -4,6 +4,7 @@ import os
 import time
 import threading 
 from securite import Securite
+from logs import * # type: ignore
 
 # Creation of an Onduleur object
 onduleur1 = Onduleur(name_ups_data="onduleur1@localhost")
@@ -22,6 +23,8 @@ etatManip: EtatManip = EtatManip.OFF
 # Creation of a Securite object
 est_securite_active = True
 securite = Securite(etatManip, pression, onduleur1, onduleur2, est_securite_active)
+
+log_with_cooldown(logging.INFO, "Démarrage du programme")
 
 while(os.environ.get("DISPLAY") == None):
     recuperer_donnees_onduleur(onduleur1)
