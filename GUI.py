@@ -900,7 +900,7 @@ class Gui:
                 log_with_cooldown(logging.INFO, "Logs bien envoyees par mail.")
             if(self.onduleur1.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
                 # log_with_cooldown(logging.INFO, f"Temps de coupure du courant : {#calcul du temps de coupure}")
-                log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)
+                return #### log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)
 
             # WARNING Logs
             if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
