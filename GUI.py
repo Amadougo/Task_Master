@@ -1294,12 +1294,13 @@ class Gui:
             time.sleep(1)
 
     def controle_cathode_gui(self):
-        while self.running3:
+        while self.running4:
             controle_cathode(self.cathode)
 
             time.sleep(1)
 
     def coupure_de_courant_gui(self):
+        time.sleep(30)
         while self.running4:
             self.coupure_de_courant()
 
