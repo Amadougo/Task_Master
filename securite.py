@@ -2,7 +2,7 @@ from data import EtatManip, Pression, Onduleur
 from math import pow
 from treatment import relais1et2_OFF, relais1et2_ON
 from treatment import pompe_SCU_1400_1_ON, pompe_SCU_1400_1_OFF, pompe_SCU_1400_2_ON, pompe_SCU_1400_2_OFF, pompe_SCU_800_OFF, pompe_SCU_800_ON
-#from treatment import recuperer_etat_SCU_800
+from treatment import recuperer_etat_SCU_800
 import subprocess
 import time
 from logs import * # type: ignore
@@ -36,7 +36,7 @@ class Securite:
             pompe_SCU_800_ON()
             #On passe l'état de la manip à 'Fonctionnement'
             self.etat_manip = EtatManip.FONCTIONNE
-            #print(f"recuperer_etat_SCU_800() égal à {recuperer_etat_SCU_800()}")
+            print(f"recuperer_etat_SCU_800() égal à {recuperer_etat_SCU_800()}")
 
         #Actions lorsque la manip est en 'Fonctionnement'
         elif (self.etat_manip == EtatManip.FONCTIONNE) :
