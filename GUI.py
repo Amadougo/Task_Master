@@ -1169,9 +1169,10 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            self.securite.etat_manip = EtatManip.DEMARRAGE
-            log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
-            popup.destroy()
+            if(self.onduleur1.battery_runtime > 240):
+                self.securite.etat_manip = EtatManip.DEMARRAGE
+                log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
+                popup.destroy()
 
         def on_no():
             print("Action annulée.")
@@ -1274,7 +1275,7 @@ class Gui:
         bouton_non.pack()
 
     def coupure_de_courant(self):
-        var = self.onduleur1.battery_runtime
+        var = self.onduleur1.ups_status
         var = var[:2]
         while(var != "OL"):
             log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
