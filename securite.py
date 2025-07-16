@@ -65,12 +65,17 @@ class Securite:
 
         #Actions lorsque la manip est en 'cours d'arrêt'
         elif (self.etat_manip == EtatManip.ARRET_EN_COURS) :
-            if (recuperer_etat_SCU_800() == 4):
+            etat_SCU = recuperer_etat_SCU_800()
+            if (etat_SCU == 4):
                 #On arrête les pompes finales (relais)
                 relais1et2_OFF()
                 #On arrête les pompes secondaires
                 pompe_SCU_1400_1_OFF()
                 pompe_SCU_1400_2_OFF()
                 pompe_SCU_800_OFF()
-            if(recuperer_etat_SCU_800() == 1):
+            elif(etat_SCU == 1):
+                #On passe l'état de la manip à 'OFF'
                 self.etat_manip = EtatManip.OFF
+            elif(etat_SCU != 5):
+                #Arrêt impossible
+                log_with_cooldown(logging.CRITICAL, "Erreur SCU800 lors de l'arrêt de la manipulation")
