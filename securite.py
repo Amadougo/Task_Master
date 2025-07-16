@@ -16,24 +16,17 @@ class Securite:
         self.securite_pression_actif = securite_pression_actif  # Indicateur pour activer ou désactiver la sécurité
 
     def securite(self) :
-        
-        print(f"{time.monotonic()}, passage dans la securite")
-        print(f"Action confirmée. {self.etat_manip}")
-        
         #Actions lorsque la manip est en 'OFF'
         if (self.etat_manip == EtatManip.OFF) :
-            print("État manip : 0FF")
-            #print(f"seuil primaire défini à {PRESSION_SEUIL_PRIMAIRE}")
-            #Exctinction de l'ordinateur en cas de coupure de courant prolongée
+            """#Exctinction de l'ordinateur en cas de coupure de courant prolongée
             if (int(self.onduleur2.battery_runtime) < 300) :  # 300 secondes = 5 minutes
                 print("Coupure de courant prolongée, extinction de l'ordinateur")
                 #Besoin des droits sudoers, à voir si on peut démarrer le programme avec les droits sudoers
                 # ou bien si on peut désactiver les droits sudoers pour shutdown
-                subprocess.run(["sudo", "shutdown", "-h", "now"])
+                subprocess.run(["sudo", "shutdown", "-h", "now"])"""
 
         #Actions lorsque la manip est en 'Démarrage'
         elif (self.etat_manip == EtatManip.DEMARRAGE) :
-            print("État manip : Démarrage…")
             #On démarre les pompes finales (relais)
             relais1et2_ON()
             #On démarre les pompes secondaires
@@ -42,20 +35,15 @@ class Securite:
             pompe_SCU_800_ON()
             #On passe l'état de la manip à 'Fonctionnement'
             self.etat_manip = EtatManip.FONCTIONNE
-            '''vérifier pompes primaires'''
 
         #Actions lorsque la manip est en 'Fonctionnement'
         elif (self.etat_manip == EtatManip.FONCTIONNE) :
-            print("État manip : Fonctionne")
-
             #On vérifie si la sécurité de pression est active
             if self.securite_pression_actif:
-                print("Sécurité de pression active")
-                print(f"Pression primaire : {self.pression.Jauge_5_Primaire}")
                 #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
                 if (self.pression.Jauge_5_Primaire == "Déconnectée" or self.pression.Jauge_5_Primaire == "Validation manuelle requise") :
-                    print("Erreur jauge primaire, arrêt des pompes")
                     self.etat_manip = EtatManip.ARRET_EN_COURS
+                    log_with_cooldown(logging.CRITICAL, "Erreur jauge primaire -> arrêt de la manipulation")
                 else :
                     value = self.pression.Jauge_5_Primaire.split(" ")      
                     flt = float(value[0])
@@ -70,7 +58,6 @@ class Securite:
 
         #Actions lorsque la manip est en 'cours d'arrêt'
         elif (self.etat_manip == EtatManip.ARRET_EN_COURS) :
-            print("État manip : Arrêt en cours")
             #On arrête les pompes finales (relais)
             relais1et2_OFF()
             #On arrête les pompes secondaires
@@ -78,5 +65,3 @@ class Securite:
             pompe_SCU_1400_2_OFF()
             pompe_SCU_800_OFF()
             self.etat_manip = EtatManip.OFF
-
-        print(f"{time.monotonic()}, fin du passage dans la securite")
