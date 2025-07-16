@@ -1294,7 +1294,7 @@ class Gui:
             time.sleep(1)
 
     def controle_cathode_gui(self):
-        while self.running4:
+        while self.running3:
             controle_cathode(self.cathode)
 
             time.sleep(1)
