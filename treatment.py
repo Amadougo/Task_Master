@@ -358,7 +358,7 @@ def recuperer_etat_SCU_800():
     except:
         print("Impossible de décoder la réponse.")
     
-    return responseSCU800[8]
+    return responseSCU800[8] - 48 # 1 = Levitation, 2 = no levitation, 3 = acceleration, 4 = normal, 5 = brake 
 
 def envoyer_commande_SCU_1400_1(cmd_bytes):
     print(f"Envoi : {cmd_bytes.hex()}")
