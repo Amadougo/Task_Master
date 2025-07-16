@@ -344,7 +344,7 @@ def pompe_SCU_800_OFF():
     # Commande éteindre pompe SCU-800
     cmd_off = bytes([0x02, 0x30, 0x30, 0x31, 0x20, 0x45, 0x30, 0x32, 0x03, 0xA8]) # E2 brake SetPORT : Pompe SCU-800 éteinte
     envoyer_commande_SCU_800(cmd_off)
-
+"""
 def recuperer_etat_SCU_800():
     cmd_bytes = bytes([0x02, 0x30, 0x30, 0x31, 0x3F, 0x4D, 0x03, 0xBD]) #?M
     
@@ -359,7 +359,7 @@ def recuperer_etat_SCU_800():
         print("Impossible de décoder la réponse.")
     
     return responseSCU800[3]
-
+"""
 def envoyer_commande_SCU_1400_1(cmd_bytes):
     print(f"Envoi : {cmd_bytes.hex()}")
     serial_SCU_1400_1.write(cmd_bytes)
