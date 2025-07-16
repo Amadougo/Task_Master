@@ -29,7 +29,7 @@ class Securite:
         #Actions lorsque la manip est en 'Démarrage'
         elif (self.etat_manip == EtatManip.DEMARRAGE) :
             etat_SCU = recuperer_etat_SCU_800()
-            if (etat_SCU == 1):
+            if (etat_SCU == 1 or etat_SCU == 5):
                 #On démarre les pompes finales (relais)
                 relais1et2_ON()
                 #On démarre les pompes secondaires
