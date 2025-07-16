@@ -1284,7 +1284,7 @@ class Gui:
             log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
         else:
             if indicateur:
-                subprocess.run(["sudo", "upsdrvctl", "start"])
+                subprocess.run(["sudo", "upsdrvctl", "start"]) # Lancement driver onduleur en cas de coupure de courant
 
     def securite_gui(self):
         time.sleep(10)
