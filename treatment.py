@@ -358,7 +358,7 @@ def recuperer_etat_SCU_800():
     except:
         print("Impossible de décoder la réponse.")
     
-    return responseSCU800[3]
+    return responseSCU800[8]
 
 def envoyer_commande_SCU_1400_1(cmd_bytes):
     print(f"Envoi : {cmd_bytes.hex()}")
