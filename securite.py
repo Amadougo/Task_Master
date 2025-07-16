@@ -35,9 +35,12 @@ class Securite:
                 pompe_SCU_1400_1_ON()
                 pompe_SCU_1400_2_ON()
                 pompe_SCU_800_ON()
-            if(recuperer_etat_SCU_800() == 4):
+            elif(recuperer_etat_SCU_800() == 4):
                 #On passe l'état de la manip à 'Fonctionnement'
                 self.etat_manip = EtatManip.FONCTIONNE
+            elif(recuperer_etat_SCU_800() != 3):
+                #Démarrage impossible
+                log_with_cooldown(logging.CRITICAL, "Erreur SCU800 lors du démarrage de la manipulation")                
 
         #Actions lorsque la manip est en 'Fonctionnement'
         elif (self.etat_manip == EtatManip.FONCTIONNE) :
