@@ -42,7 +42,7 @@ class Securite:
             elif(etat_SCU != 3):
                 #Démarrage impossible
                 log_with_cooldown(logging.CRITICAL, "Erreur SCU800 lors du démarrage de la manipulation")
-            time.sleep(1)  # Attente pour éviter une boucle trop rapide             
+            time.sleep(5)  # Attente pour éviter une boucle trop rapide             
 
         #Actions lorsque la manip est en 'Fonctionnement'
         elif (self.etat_manip == EtatManip.FONCTIONNE) :
@@ -80,4 +80,4 @@ class Securite:
             elif(etat_SCU != 5):
                 #Arrêt impossible
                 log_with_cooldown(logging.CRITICAL, "Erreur SCU800 lors de l'arrêt de la manipulation")
-            time.sleep(1)  # Attente pour éviter une boucle trop rapide
+            time.sleep(5)  # Attente pour éviter une boucle trop rapide
