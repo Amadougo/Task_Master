@@ -1273,6 +1273,12 @@ class Gui:
         bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
         bouton_non.pack()
 
+    def coupure_de_courant(self):
+        var = self.onduleur1.battery_runtime
+        var = var[:2]
+        while(var != "OL"):
+            log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
+
     def securite_gui(self):
         time.sleep(10)
         while self.running2:
@@ -1291,9 +1297,3 @@ class Gui:
             self.coupure_de_courant()
 
             time.sleep(1)
-
-    def coupure_de_courant(self):
-        var = self.onduleur1.battery_runtime
-        var = var[:2]
-        while(var != "OL"):
-            log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
