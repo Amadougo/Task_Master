@@ -945,7 +945,7 @@ class Gui:
                 log_with_cooldown(logging.CRITICAL, "La jauge de pression 6 a atteint une valeur critique definie.")
             if(False): #Arrêt général pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).
                 return # log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
-            if(self.onduleur1.ups_status == "MORTE"): # Batterie onduleur1 morte.
+            if(False): # Batterie onduleur1 morte.
                 log_with_cooldown(logging.CRITICAL, "Batterie onduleur1 morte.")
 
             time.sleep(1) # Fréquence de mise à jour : 1 seconde
