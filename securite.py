@@ -28,17 +28,18 @@ class Securite:
 
         #Actions lorsque la manip est en 'Démarrage'
         elif (self.etat_manip == EtatManip.DEMARRAGE) :
-            if (recuperer_etat_SCU_800() == 1):
+            etat_SCU = recuperer_etat_SCU_800()
+            if (etat_SCU == 1):
                 #On démarre les pompes finales (relais)
                 relais1et2_ON()
                 #On démarre les pompes secondaires
                 pompe_SCU_1400_1_ON()
                 pompe_SCU_1400_2_ON()
                 pompe_SCU_800_ON()
-            elif(recuperer_etat_SCU_800() == 4):
+            elif(etat_SCU == 4):
                 #On passe l'état de la manip à 'Fonctionnement'
                 self.etat_manip = EtatManip.FONCTIONNE
-            elif(recuperer_etat_SCU_800() != 3):
+            elif(etat_SCU != 3):
                 #Démarrage impossible
                 log_with_cooldown(logging.CRITICAL, "Erreur SCU800 lors du démarrage de la manipulation")                
 
