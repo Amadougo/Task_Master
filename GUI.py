@@ -1265,6 +1265,7 @@ class Gui:
             self.running2 = False
             self.running3 = False
             self.running4 = False
+            time.sleep(2)
             self.window.destroy()  # Ferme l'application et le programme de sécurité OIA
 
         def on_no():
