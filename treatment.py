@@ -348,6 +348,10 @@ def pompe_SCU_800_OFF():
 def recuperer_etat_SCU_800():
     cmd_bytes = bytes([0x02, 0x30, 0x30, 0x31, 0x3F, 0x4D, 0x03, 0xBD]) #?M
     
+    # Vider le buffer avant envoi
+    serial_SCU_800.reset_input_buffer()
+    serial_SCU_800.reset_output_buffer()
+
     print(f"Envoi : {cmd_bytes.hex()}")
     serial_SCU_800.write(cmd_bytes)
     time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
