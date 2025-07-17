@@ -1265,7 +1265,6 @@ class Gui:
             self.running2 = False
             self.running3 = False
             self.running4 = False
-            # fermer_ports_serie()
             self.window.destroy()  # Ferme l'application et le programme de sécurité OIA
 
         def on_no():
