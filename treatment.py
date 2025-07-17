@@ -121,24 +121,19 @@ else:
      
 #Fonction pour fermer les ports série à la fin du programme
 def close_serial_ports():
+    log_with_cooldown(logging.INFO, "Fermeture des ports série", 10)
     if serial_jauges.is_open:
         serial_jauges.close()
-        print(f"Port {port_jauges} fermé.")
     if serial_SCU_800.is_open:
         serial_SCU_800.close()
-        print(f"Port {port_SCU_800} fermé.")
     if serial_SCU_1400_1.is_open:
         serial_SCU_1400_1.close()
-        print(f"Port {port_SCU_1400_1} fermé.")
     if serial_SCU_1400_2.is_open:
         serial_SCU_1400_2.close()
-        print(f"Port {port_SCU_1400_2} fermé.")
     if serial_cathode.is_open:
         serial_cathode.close()
-        print(f"Port {port_cathode} fermé.")
     if serial_secu_finale.is_open:
         serial_secu_finale.close()
-        print(f"Port {port_secu_finale} fermé.")
 
 # Enregistrer la fonction de fermeture des ports à l'arrêt du programme
 # Utiliser atexit pour s'assurer que les ports sont fermés proprement
