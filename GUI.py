@@ -393,7 +393,7 @@ class Gui:
         if(int(self.onduleur1.battery_runtime) < 240):
             self.button_box2_6.config(state="disabled")
         else:
-            self.button_box2_6.config(state="enabled")
+            self.button_box2_6.config(state="normal")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
