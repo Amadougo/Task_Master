@@ -311,7 +311,7 @@ def controle_cathode(cathode: Cathode):
             t_ecoule = time.monotonic() - cathode.t_0
             print(f"temps écoulé = {t_ecoule}")
             #Test si fini
-            if (courant_cathode > cathode.consigne_courant) or (t_ecoule > consigne_temps_seconde) :
+            if (courant_cathode > cathode.consigne_courant) or (t_ecoule > float(consigne_temps_seconde)) :
                 cathode.etat = EtatCathode.CHAUDE
                 log_with_cooldown(logging.INFO, "Chauffe de la cathode terminee.")
                 return
