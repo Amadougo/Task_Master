@@ -389,6 +389,11 @@ class Gui:
                 self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
                 # self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
                 # self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
+        self.button_box2_1.config(state="disabled")
+        if(int(self.onduleur1.battery_runtime) < 240):
+            self.button_box2_6.config(state="disabled")
+        else:
+            self.button_box2_6.config(state="enabled")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
