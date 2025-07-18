@@ -293,6 +293,7 @@ def controle_cathode(cathode: Cathode):
         serial_cathode.write(command.encode())
         response = serial_cathode.readline().decode().strip()
         courant_cathode = float(response[len("I "):])
+        cathode.courant = courant_cathode
         print(f"Le courant est : {courant_cathode}A")
 
         #Récupération de la tension
@@ -300,6 +301,7 @@ def controle_cathode(cathode: Cathode):
         serial_cathode.write(command.encode())
         response = serial_cathode.readline().decode().strip()
         tension_cathode = float(response[len("V "):])
+        cathode.tension = tension_cathode
         print(f"La tension est : {tension_cathode}V")
         
         if tension_cathode != 18.00 :
