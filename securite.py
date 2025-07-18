@@ -17,6 +17,7 @@ class Securite:
         self.securite_pression_actif = securite_pression_actif  # Indicateur pour activer ou désactiver la sécurité
 
     def securite(self) :
+        print(f"PRESSION_SEUIL_PRIMAIRE = {PRESSION_SEUIL_PRIMAIRE}")
         #Actions lorsque la manip est en 'OFF'
         if (self.etat_manip == EtatManip.OFF) :
             """#Exctinction de l'ordinateur en cas de coupure de courant prolongée
