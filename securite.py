@@ -7,7 +7,7 @@ import subprocess
 import time
 from logs import * # type: ignore
 
-PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #Torr
+PRESSION_SEUIL_PRIMAIRE = pow(10,-4) #Torr
 class Securite:
     def __init__(self, etat_manip, pression, onduleur1, onduleur2, securite_pression_actif):
         self.etat_manip = etat_manip
