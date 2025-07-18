@@ -1192,6 +1192,7 @@ class Gui:
         def on_yes():
             if(int(self.onduleur1.battery_runtime) > 240):
                 self.securite.etat_manip = EtatManip.DEMARRAGE
+                self.etatManip = self.securite.etat_manip
                 log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
                 popup.destroy()
 
@@ -1236,6 +1237,7 @@ class Gui:
 
         def on_yes():
             self.securite.etat_manip = EtatManip.ARRET_EN_COURS
+            self.etatManip = self.securite.etat_manip
             log_with_cooldown(logging.INFO, "Lancement du programme : Extinction generale progressive.")
             popup.destroy()
 
