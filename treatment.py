@@ -326,14 +326,16 @@ def controle_cathode(cathode: Cathode):
 
         if cathode.etat == EtatCathode.REFROIDISSEMENT : 
             #Calcul du temps écoulé
-            t_ecoule = float(consigne_temps_seconde) - time.monotonic() - cathode.t_0
+            #t_ecoule = float(consigne_temps_seconde) - time.monotonic() - cathode.t_0
+            t_ecoule = time.monotonic() - cathode.t_0
+            t_restant = float(consigne_temps_seconde) - t_ecoule
             #Test si fini
             if (courant_cathode <= float(cathode.consigne_courant)) or (t_ecoule <= 0) :
                 cathode.etat = EtatCathode.FROIDE
                 log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
                 return
             #Calcul de la fonction
-            intensite_cathode = math.sqrt(t_ecoule/(float(consigne_temps_seconde)/math.pow(float(cathode.consigne_courant),2)))
+            intensite_cathode = math.sqrt(t_restant/(float(consigne_temps_seconde)/math.pow(float(cathode.consigne_courant),2)))
             #Mise à jour du courant
             command = "I " + str(intensite_cathode) + "\n"
             print(f" commande envoyée : {command}")
