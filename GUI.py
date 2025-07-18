@@ -349,8 +349,6 @@ class Gui:
 
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
-            print("----- Affichage -----")
-            print(f"Pression de la 1ère pompe Turbo (Jauge_1_Turbo) : {self.pression.Jauge_1_Turbo}")
             self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
             self.text2_box1_1_2.config(text=f"Onduleur1: Fréquence d'entrée (input_frequency) : {self.onduleur1.input_frequency} Hz")
             self.text3_box1_1_3.config(text=f"Onduleur1: Tension de la batterie (battery_voltage) : {self.onduleur1.battery_voltage} V")
@@ -398,23 +396,14 @@ class Gui:
             self.button_box2_6.config(state="normal")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
-        print("----- recuperer_donnees -----")
         recuperer_donnees_onduleur(onduleur1)
-        print("recuperation_donneees ONDULEUR : 1")
         recuperer_donnees_onduleur(onduleur2)
-        print("recuperation_donneees ONDULEUR : 2")
         recuperer_donnees_pression_jauge1(pression)
-        print("recuperation_donneees JAUGE : 1")
         recuperer_donnees_pression_jauge2(pression)
-        print("recuperation_donneees JAUGE : 2")
         recuperer_donnees_pression_jauge3(pression)
-        print("recuperation_donneees JAUGE : 3")
         recuperer_donnees_pression_jauge4(pression)
-        print("recuperation_donneees JAUGE : 4")
         recuperer_donnees_pression_jauge5(pression)
-        print("recuperation_donneees JAUGE : 5")
         recuperer_donnees_pression_jauge6(pression)
-        print("recuperation_donneees JAUGE : 6")
 
     def run(self):
         # Display of the window
@@ -899,7 +888,6 @@ class Gui:
 
     def check_logs_with_data(self):
         while self.running:
-            print("----- check_logs_with_data -----")
             self.recuperer_donnees(self.onduleur1, self.onduleur2, self.pression)
 
             # INFO Logs
@@ -926,8 +914,8 @@ class Gui:
                 return #### log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)"""
 
             # WARNING Logs
-            """if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
-                log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 30)"""
+            if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
+                log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 30)
             if(False): # L'onduleur1 va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
                 log_with_cooldown(logging.WARNING, "L'onduleur1 va se couper dans X minute(s). Processus d'extinction enclenche")
             if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
@@ -1322,7 +1310,6 @@ class Gui:
     def coupure_de_courant_gui(self):
         time.sleep(30)
         while self.running4:
-            print("----- thread coupure_de_courant -----")
             self.coupure_de_courant()
 
             time.sleep(1)
