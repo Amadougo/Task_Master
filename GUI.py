@@ -1018,7 +1018,7 @@ class Gui:
         label_3.pack(pady=20)
 
         # Zone de saisie de l'intensité (en min)
-        entry_time = Spinbox(popup, from_=0, to=60, increment=1, width=10)
+        entry_time = Spinbox(popup, from_=1, to=60, increment=1, width=10)
         entry_time.pack()
 
         def on_yes():
@@ -1080,7 +1080,7 @@ class Gui:
         label_3.pack(pady=20)
 
         # Zone de saisie de l'intensité (en min)
-        entry_time = Spinbox(popup, from_=0, to=60, increment=1, width=10)
+        entry_time = Spinbox(popup, from_=1, to=60, increment=1, width=10)
         entry_time.pack()
 
         def on_yes():
