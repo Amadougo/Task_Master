@@ -400,13 +400,21 @@ class Gui:
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         print("----- recuperer_donnees -----")
         recuperer_donnees_onduleur(onduleur1)
+        print("recuperation_donneees ONDULEUR : 1")
         recuperer_donnees_onduleur(onduleur2)
+        print("recuperation_donneees ONDULEUR : 2")
         recuperer_donnees_pression_jauge1(pression)
+        print("recuperation_donneees JAUGE : 1")
         recuperer_donnees_pression_jauge2(pression)
+        print("recuperation_donneees JAUGE : 2")
         recuperer_donnees_pression_jauge3(pression)
+        print("recuperation_donneees JAUGE : 3")
         recuperer_donnees_pression_jauge4(pression)
+        print("recuperation_donneees JAUGE : 4")
         recuperer_donnees_pression_jauge5(pression)
+        print("recuperation_donneees JAUGE : 5")
         recuperer_donnees_pression_jauge6(pression)
+        print("recuperation_donneees JAUGE : 6")
 
     def run(self):
         # Display of the window
