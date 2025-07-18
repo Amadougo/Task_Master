@@ -398,6 +398,7 @@ class Gui:
             self.button_box2_6.config(state="normal")
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
+        print("----- recuperer_donnees -----")
         recuperer_donnees_onduleur(onduleur1)
         recuperer_donnees_onduleur(onduleur2)
         recuperer_donnees_pression_jauge1(pression)
