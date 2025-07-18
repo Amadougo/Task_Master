@@ -7,7 +7,7 @@ import subprocess
 import time
 from logs import * # type: ignore
 
-PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #milibar
+PRESSION_SEUIL_PRIMAIRE = pow(10,-2) #Torr
 class Securite:
     def __init__(self, etat_manip, pression, onduleur1, onduleur2, securite_pression_actif):
         self.etat_manip = etat_manip
@@ -59,6 +59,8 @@ class Securite:
                         self.etat_manip = EtatManip.ARRET_EN_COURS
                         log_with_cooldown(logging.CRITICAL, f"La jauge de pression 5 a depasse la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} mbar.")
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
+            #La manipe se coupe lorsqu'il reste moins de 240 secondes = 4 minutes
+            # d'autonomie sur l'onduleur1
             if (int(self.onduleur1.battery_runtime) < 240) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
                 log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
