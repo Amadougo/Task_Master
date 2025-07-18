@@ -921,13 +921,13 @@ class Gui:
                 log_with_cooldown(logging.INFO, "Envoi du sms pour motif de coupure de courant bien envoye.")
             if(False): # "Logs bien envoyées par mail" (mail toutes les semaines pour l'envoi des logs).
                 log_with_cooldown(logging.INFO, "Logs bien envoyees par mail.")
-            if(self.onduleur1.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
+            """if(self.onduleur1.ups_status == "OL CHRG"): # Reprise du courant + mail avec temps pendant lequel il n'y avait plus de courant.
                 # log_with_cooldown(logging.INFO, f"Temps de coupure du courant : {#calcul du temps de coupure}")
-                return #### log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)
+                return #### log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur,", 5)"""
 
             # WARNING Logs
-            if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
-                log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 30)
+            """if(self.onduleur1.ups_status == "OB"): # Coupure de courant.
+                log_with_cooldown(logging.WARNING, "Coupure de courant : Onduleur1 sur batterie", 30)"""
             if(False): # L'onduleur1 va se couper dans X minute(s) (environ 2min30) -> arrêt complet progressif lancé.
                 log_with_cooldown(logging.WARNING, "L'onduleur1 va se couper dans X minute(s). Processus d'extinction enclenche")
             if(False): # La jauge de pression 1 a dépassé la valeur seuil haute.
