@@ -1303,12 +1303,12 @@ class Gui:
         var = self.onduleur1.ups_status
         var = var[:2]
         indicateur = False
-        while(var != "OL"):
+        """while(var != "OL"):
             indicateur = True
             log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
         else:
             if indicateur:
-                subprocess.run(["sudo", "upsdrvctl", "start"]) # Lancement driver onduleur en cas de coupure de courant
+                subprocess.run(["sudo", "upsdrvctl", "start"]) # Lancement driver onduleur en cas de coupure de courant"""
 
     def securite_gui(self):
         time.sleep(10)
