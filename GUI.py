@@ -395,6 +395,7 @@ class Gui:
         else:
             self.button_box2_6.config(state="normal")
 
+        print(f"self.etatManip : {self.etatManip}, self.cathode.etat : {self.cathode.etat}, self.cathode.etat : {self.cathode.etat}")
         if((self.etatManip == EtatManip.FONCTIONNE) and (self.cathode.etat != EtatCathode.CHAUFFE) and (self.cathode.etat != EtatCathode.REFROIDISSEMENT)):
             self.button_box2_3.config(state="normal")
             self.button_box2_5.config(state="normal")
