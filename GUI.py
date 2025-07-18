@@ -1314,6 +1314,7 @@ class Gui:
     def coupure_de_courant_gui(self):
         time.sleep(30)
         while self.running4:
+            print("----- thread coupure_de_courant -----")
             self.coupure_de_courant()
 
             time.sleep(1)
