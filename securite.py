@@ -56,11 +56,11 @@ class Securite:
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             #La manipe se coupe lorsqu'il reste moins de 240 secondes = 4 minutes
             # d'autonomie sur l'onduleur1
-            print(f"self.onduleur1.battery_runtime : {self.onduleur1.battery_runtime}")
+            print(f"self.onduleur1.battery_runtime : {self.onduleur1.battery_runtime}, etat_manip : {self.etat_manip}")
             if (int(self.onduleur1.battery_runtime) < 58200) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
                 log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
-            
+
 
         #Actions lorsque la manip est en 'cours d'arrêt'
         elif (self.etat_manip == EtatManip.ARRET_EN_COURS) :
