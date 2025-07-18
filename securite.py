@@ -59,6 +59,7 @@ class Securite:
             print(f"etat_manip : {self.etat_manip}")
             if (int(self.onduleur1.battery_runtime) < 58200) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
+                print(f"self.onduleur1.battery_runtime : {self.onduleur1.battery_runtime}")
                 log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
 
 
