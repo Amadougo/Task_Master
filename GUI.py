@@ -395,6 +395,20 @@ class Gui:
         else:
             self.button_box2_6.config(state="normal")
 
+        if((self.etatManip == EtatManip.FONCTIONNE) and (self.cathode.etat != EtatCathode.CHAUFFE) and (self.cathode.etat != EtatCathode.REFROIDISSEMENT)):
+            self.button_box2_3.config(state="normal")
+            self.button_box2_5.config(state="normal")
+        else:
+            self.button_box2_3.config(state="disabled")
+            self.button_box2_5.config(state="disabled")
+
+        # Refroidissement d'urgence de la cathode lors d'un arrêt en cours.
+        if(self.etatManip == EtatManip.ARRET_EN_COURS):
+            self.cathode.etat = EtatCathode.REFROIDISSEMENT
+            self.cathode.consigne_courant = 0.38
+            self.cathode.consigne_temps = 5.0
+            log_with_cooldown(logging.WARNING, "Refroidissement d'urgence de la cathode lors d'un arrêt en cours.", 600)
+
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
         recuperer_donnees_onduleur(onduleur2)
