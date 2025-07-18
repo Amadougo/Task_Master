@@ -347,6 +347,8 @@ class Gui:
         # Callback of the gui update function after 1 seconde
         self.window.after(1000, self.update_gui)
 
+        self.etatManip = self.securite.etat_manip
+
         # Update the widgets of box1_1 if 4 is in Affichage_donnees's state
         if self.affichage_donnees == True:
             self.text1_box1_1_1.config(text=f"Onduleur1: Tension d'entrée (input_voltage) : {self.onduleur1.input_voltage} V")
@@ -1192,7 +1194,6 @@ class Gui:
         def on_yes():
             if(int(self.onduleur1.battery_runtime) > 240):
                 self.securite.etat_manip = EtatManip.DEMARRAGE
-                self.etatManip = self.securite.etat_manip
                 log_with_cooldown(logging.INFO, "Lancement du programme : Demarrage progressif.")
                 popup.destroy()
 
@@ -1237,7 +1238,6 @@ class Gui:
 
         def on_yes():
             self.securite.etat_manip = EtatManip.ARRET_EN_COURS
-            self.etatManip = self.securite.etat_manip
             log_with_cooldown(logging.INFO, "Lancement du programme : Extinction generale progressive.")
             popup.destroy()
 
