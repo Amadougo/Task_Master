@@ -50,15 +50,9 @@ class Securite:
             #On vérifie si la sécurité de pression est active
             if self.securite_pression_actif:
                 #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
-                if (self.pression.Jauge_5_Primaire == "Déconnectée" or self.pression.Jauge_5_Primaire == "Validation manuelle requise") :
+                if (self.pression.pression_seuil_atteinte == True) :
                     self.etat_manip = EtatManip.ARRET_EN_COURS
-                    log_with_cooldown(logging.CRITICAL, "Erreur jauge primaire -> arrêt de la manipulation")
-                else :
-                    value = self.pression.Jauge_5_Primaire.split(" ")      
-                    flt = float(value[0])
-                    if (flt > PRESSION_SEUIL_PRIMAIRE) :
-                        self.etat_manip = EtatManip.ARRET_EN_COURS
-                        log_with_cooldown(logging.CRITICAL, f"La jauge de pression 5 a depasse la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} Torr.")
+                    log_with_cooldown(logging.CRITICAL, f"La jauge de pression 5 a depasse la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} Torr.")
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             #La manipe se coupe lorsqu'il reste moins de 240 secondes = 4 minutes
             # d'autonomie sur l'onduleur1
@@ -84,3 +78,14 @@ class Securite:
                 #Arrêt impossible
                 log_with_cooldown(logging.CRITICAL, "Erreur SCU800 lors de l'arrêt de la manipulation")
             time.sleep(5)  # Attente pour éviter une boucle trop rapide
+
+        #Vérification de la pression primaire
+        if (self.pression.Jauge_5_Primaire == "Déconnectée" or self.pression.Jauge_5_Primaire == "Validation manuelle requise") :
+            self.pression.pression_seuil_atteinte = True
+        else :
+            value = self.pression.Jauge_5_Primaire.split(" ")      
+            flt = float(value[0])
+            if (flt > PRESSION_SEUIL_PRIMAIRE) :
+                self.pression.pression_seuil_atteinte = True
+            else:
+                self.pression.pression_seuil_atteinte = False

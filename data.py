@@ -37,13 +37,16 @@ class Pression :
                  Jauge_3_Turbo: str = "Déconnectée",
                  Jauge_4_Turbo: str = "Déconnectée",
                  Jauge_5_Primaire: str = "Déconnectée",
-                 Jauge_6_Vide: str = "Déconnectée"):
+                 Jauge_6_Vide: str = "Déconnectée",
+                 pression_seuil_atteinte: bool = False):
+
         self.Jauge_1_Turbo = Jauge_1_Turbo
         self.Jauge_2_Turbo = Jauge_2_Turbo
         self.Jauge_3_Turbo = Jauge_3_Turbo
         self.Jauge_4_Turbo = Jauge_4_Turbo
         self.Jauge_5_Primaire = Jauge_5_Primaire
         self.Jauge_6_Vide = Jauge_6_Vide
+        self.pression_seuil_atteinte = pression_seuil_atteinte
 
     def afficher_donnees_pression(self):
         print(f"Jauge 1 : {self.Jauge_1_Turbo} ")
@@ -52,6 +55,7 @@ class Pression :
         print(f"Jauge 4 : {self.Jauge_4_Turbo} ")
         print(f"Jauge 5 Pompe primaire : {self.Jauge_5_Primaire} ")
         print(f"Jauge 6 Pompe non connectée : {self.Jauge_6_Vide} ")
+        print(f"Pression seuil atteinte : {self.pression_seuil_atteinte}")
 
 class EtatCathode(Enum):
     FROIDE = "froide"

@@ -390,7 +390,7 @@ class Gui:
                 # self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
                 # self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
         
-        if(int(self.onduleur1.battery_runtime) < 240):
+        if(int(self.onduleur1.battery_runtime) < 240 and self.pression.pression_seuil_atteinte == True):
             self.button_box2_6.config(state="disabled")
         else:
             self.button_box2_6.config(state="normal")
