@@ -1070,6 +1070,10 @@ class Gui:
         def on_yes():
             self.cathode.consigne_courant = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
             self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
+            if(self.cathode.consigne_courant >= self.cathode.courant):
+                self.cathode.etat = EtatCathode.CHAUFFE
+            else:
+                self.cathode.etat = EtatCathode.REFROIDISSEMENT
             self.cathode.t_0 = time.monotonic()
             log_with_cooldown(logging.INFO, "Lancement du programme : Changement de la consigne de la cathode.")
             print("Action confirmée.")
