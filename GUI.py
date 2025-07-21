@@ -979,7 +979,7 @@ class Gui:
 
     def bouton_Chauffe_Cathode(self):
         popup = Toplevel(self.window)
-        popup.title("Confirmation chauffe cathode")
+        popup.title("Confirmation reconnexion série cathode")
         popup.geometry("800x400")
         popup.transient(self.window) 
         popup.grab_set()
@@ -1003,29 +1003,11 @@ class Gui:
         popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
         # ---------------------
 
-        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (chauffage de la cathode) ?", font=("Arial", 14))
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (reconnexion série de la cathode) ?", font=("Arial", 14))
         label_1.pack(pady=40)
 
-        label_2 = Label(popup, text="Entrer l'intensité de consigne (en A, intensité conseillée : [0.00;9.00]Ampères)", font=("Arial", 14))
-        label_2.pack(pady=20)
-
-        # Zone de saisie de l'intensité (en A)
-        entry_intensity = Spinbox(popup, from_=0.00, to=9.00, increment=0.01, format="%.2f", width=10)
-        entry_intensity.pack()
-
-        label_3 = Label(popup, text="Entrer le temps de consigne (en min, temps conseillé : [30;60]minutes)", font=("Arial", 14))
-        label_3.pack(pady=20)
-
-        # Zone de saisie de l'intensité (en min)
-        entry_time = Spinbox(popup, from_=1, to=60, increment=1, width=10)
-        entry_time.pack()
-
         def on_yes():
-            self.cathode.consigne_courant = entry_intensity.get() # Récupère l'intensité de consigne (en A)
-            self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
-            self.cathode.t_0 = time.monotonic()
-            self.cathode.etat = EtatCathode.CHAUFFE
-            log_with_cooldown(logging.INFO,"Lancement du programme : Chauffe cathode.")
+            log_with_cooldown(logging.INFO,"Lancement du programme : Reconnexion série de la cathode.")
             print("Action confirmée.")
             popup.destroy()
 
