@@ -57,8 +57,8 @@ class Gui:
         self.box1.grid_columnconfigure(index=1, weight=1)
 
         # Creation of 2 boxes inside box1
-        self.box1_1 = Frame(self.box1, bg='#64698A', bd=0)
-        self.box1_2 = Frame(self.box1, bg='#64698A', bd=0)
+        self.box1_1 = Frame(self.box1, bg='#242424', bd=0)
+        self.box1_2 = Frame(self.box1, bg='#242424', bd=0)
         self.box1_1.grid(row=0, column=0, sticky='nsew')
         self.box1_2.grid(row=0, column=1, sticky='nsew')
 
