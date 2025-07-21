@@ -304,7 +304,7 @@ class Gui:
         self.button_box2_2 = Button(self.box2_2, text="Extinction générale progressive", bg='#3f3f3f', fg='red', font=('Helvetica', 15), command=self.changer_EtatManip_Arret_En_Cours)
         self.button_box2_3 = Button(self.box2_3, text="Changement consignes cathode", bg='#3f3f3f', fg='orange', font=('Helvetica', 15), command=self.bouton_Refroidissement_Cathode)
         self.button_box2_4 = Button(self.box2_4, text="Afficher les LOGS", bg='#3f3f3f', fg='white', font=('Helvetica', 15), command=self.change_state_button_Affichage_Logs)
-        self.button_box2_5 = Button(self.box2_5, text="Reconnexion série cathode", bg='#3f3f3f', fg='blue', font=('Helvetica', 15), command=self.bouton_Chauffe_Cathode)
+        self.button_box2_5 = Button(self.box2_5, text="Reconnexion série cathode", bg='#3f3f3f', fg='lightblue', font=('Helvetica', 15), command=self.bouton_Chauffe_Cathode)
         self.button_box2_6 = Button(self.box2_6, text="Démarrage progressif", bg='#3f3f3f', fg='lightgreen', font=('Helvetica', 15), command=self.changer_EtatManip_Demarrage)
 
         self.button_box2_1.pack(expand=YES)
