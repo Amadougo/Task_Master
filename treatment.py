@@ -110,6 +110,10 @@ def connexion_serie_cathode():
     
 serial_cathode = connexion_serie_cathode()
 
+def connexion_cathode():
+    global serial_cathode
+    serial_cathode = connexion_serie_cathode()
+
 #Port série pour la sécurité des pompes finales
 port_secu_finale = '/dev/ttyS0'
 baud_rate = 19200

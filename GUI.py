@@ -10,7 +10,7 @@ import time
 import threading
 from securite import Securite
 import subprocess
-from treatment import serial_cathode, connexion_serie_cathode
+from treatment import connexion_cathode
 
 class Gui:
     def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, securite, affichage_donnees, mode_securite_actif):
@@ -1008,8 +1008,9 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            global serial_cathode
-            serial_cathode = connexion_serie_cathode()
+            """global serial_cathode
+            serial_cathode = connexion_serie_cathode()"""
+            connexion_cathode()
             log_with_cooldown(logging.INFO,"Lancement du programme : Reconnexion série de la cathode.")
             print("Action confirmée.")
             popup.destroy()
