@@ -817,13 +817,13 @@ class Gui:
         self.text3_box1_1_3.grid(row=0, column=1, sticky='nsew')
 
         self.label_image_box1_1_4.grid(row=0, column=1, sticky='')
-        self.text4_box1_1_4.grid(row=0, column=0, sticky='e')
+        self.text4_box1_1_4.grid(row=0, column=0, sticky='nsew')
 
         self.label_image_box1_1_5.grid(row=0, column=1, sticky='')
-        self.text5_box1_1_5.grid(row=0, column=0, sticky='e')
+        self.text5_box1_1_5.grid(row=0, column=0, sticky='nsew')
 
         self.label_image_box1_1_6.grid(row=0, column=1, sticky='')
-        self.text6_box1_1_6.grid(row=0, column=0, sticky='e')
+        self.text6_box1_1_6.grid(row=0, column=0, sticky='nsew')
 
         # self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
         self.text7_box1_1_7.grid(row=0, column=1, sticky='nsew')
@@ -838,13 +838,13 @@ class Gui:
         self.text3_2_box1_1_3.grid(row=1, column=1, sticky='nsew')
 
         self.label_image_2_box1_1_4.grid(row=1, column=1, sticky='')
-        self.text4_2_box1_1_4.grid(row=1, column=0, sticky='e')
+        self.text4_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
 
         self.label_image_2_box1_1_5.grid(row=1, column=1, sticky='')
-        self.text5_2_box1_1_5.grid(row=1, column=0, sticky='e')
+        self.text5_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
 
         self.label_image_2_box1_1_6.grid(row=1, column=1, sticky='')
-        self.text6_2_box1_1_6.grid(row=1, column=0, sticky='e')
+        self.text6_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
 
         # self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
         self.text7_2_box1_1_7.grid(row=1, column=1, sticky='nsew')
