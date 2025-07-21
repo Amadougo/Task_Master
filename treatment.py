@@ -273,6 +273,10 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
             pression.Jauge_6_Vide = 'Déconnectée'
     return Pression
 
+# -------------------------------- #
+#       Gestion de la cathode      #
+# -------------------------------- #
+
 def controle_cathode(cathode: Cathode):
     #Récupération du courant
     command = "I?\n"
