@@ -408,6 +408,11 @@ class Gui:
         if(self.cathode.etat == EtatCathode.DECONNECTEE):
             self.button_box2_3.config(state="disabled")
 
+        if((self.cathode.etat != EtatCathode.CHAUFFE) and (self.cathode.etat != EtatCathode.REFROIDISSEMENT)):
+            self.button_box2_5.config(state="normal")
+        else:
+            self.button_box2_5.config(state="disabled")
+
         # Refroidissement d'urgence de la cathode lors d'un arrêt en cours.
         if(self.etatManip == EtatManip.ARRET_EN_COURS):
             self.cathode.etat = EtatCathode.REFROIDISSEMENT
@@ -1011,8 +1016,6 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
-            """global serial_cathode
-            serial_cathode = connexion_serie_cathode()"""
             connexion_cathode()
             log_with_cooldown(logging.INFO,"Lancement du programme : Reconnexion série de la cathode.")
             print("Action confirmée.")
