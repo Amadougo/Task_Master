@@ -46,8 +46,8 @@ class Gui:
         self.window.grid_columnconfigure(index=0, weight=1) # 1st and only column takes the whole space
 
         # Creation of 2 boxes
-        self.box1 = Frame(self.window, bg='#64698A', bd=0)
-        self.box2 = Frame(self.window, bg='#64698A', bd=0)
+        self.box1 = Frame(self.window, bg='#242424', bd=0)
+        self.box2 = Frame(self.window, bg='#242424', bd=0)
         self.box1.grid(row=0, column=0, sticky='nsew')
         self.box2.grid(row=1, column=0, sticky='nsew')
 
