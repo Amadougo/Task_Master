@@ -408,7 +408,7 @@ class Gui:
         if(self.cathode.etat == EtatCathode.DECONNECTEE):
             self.button_box2_3.config(state="disabled")
 
-        if(self.cathode.etat == EtatCathode.FROIDE):
+        if(self.cathode.etat == EtatCathode.DECONNECTEE):
             self.button_box2_5.config(state="normal")
         else:
             self.button_box2_5.config(state="disabled")
