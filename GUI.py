@@ -1016,8 +1016,9 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
+            self.cathode.etat = EtatCathode.FROIDE
             connexion_cathode()
-            log_with_cooldown(logging.INFO,"Lancement du programme : Reconnexion série de la cathode.")
+            log_with_cooldown(logging.INFO,"Reconnexion série de la cathode...")
             print("Action confirmée.")
             popup.destroy()
 
@@ -1315,11 +1316,12 @@ class Gui:
 
     def controle_cathode_gui(self):
         while self.running3:
-            try:
-                controle_cathode(self.cathode)
-            except Exception as e:
-                print(f"Cathode déconnectée : {e}")
-                self.cathode.etat = EtatCathode.DECONNECTEE
+            if self.cathode.etat != EtatCathode.DECONNECTEE:
+                try:
+                    controle_cathode(self.cathode)
+                except Exception as e:
+                    print(f"Cathode déconnectée : {e}")
+                    self.cathode.etat = EtatCathode.DECONNECTEE
             time.sleep(1)
 
     def coupure_de_courant_gui(self):
