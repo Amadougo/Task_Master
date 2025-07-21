@@ -117,6 +117,7 @@ def connexion_cathode():
     if serial_cathode is not None and serial_cathode.is_open:
         try:
             serial_cathode.close()
+            
             print("Ancienne connexion série cathode fermée.")
         except Exception as e:
             print(f"Erreur lors de la fermeture : {e}")
@@ -304,6 +305,10 @@ def controle_cathode(cathode: Cathode):
     if serial_cathode is None or not serial_cathode.is_open:
         cathode.etat = EtatCathode.DECONNECTEE
         return
+    
+    #
+    print(f"cathode.etat = {cathode.etat}")
+    # #
 
     # Récupération du courant
     command = "I?\n"
