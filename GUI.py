@@ -77,18 +77,18 @@ class Gui:
 
         # Boxes which contain image (left) and text (right)
         self.box1_1_1 = Frame(self.box1_1, bg="#242424", bd=0)
-        self.box1_1_2 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_3 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_4 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_5 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_6 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_7 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_8 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_9 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_10 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_11 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_12 = Frame(self.box1_1, bg='#64698A', bd=0)
-        self.box1_1_13 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_2 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_3 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_4 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_5 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_6 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_7 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_8 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_9 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_10 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_11 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_12 = Frame(self.box1_1, bg='#242424', bd=0)
+        self.box1_1_13 = Frame(self.box1_1, bg='#242424', bd=0)
 
         i = 0
         for label in[
@@ -107,130 +107,130 @@ class Gui:
         # images in box1_1_1 to box1_1_13
         self.image_pillow_box1_1_1 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1_1) # Save for TkInter
-        self.label_image_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_box1_1_1, bg="#64698A", bd=0)
+        self.label_image_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_box1_1_1, bg="#242424", bd=0)
         # self.label_image_box1_1_1.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_2 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_2 = ImageTk.PhotoImage(self.image_pillow_box1_1_2) # Save for TkInter
-        self.label_image_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_box1_1_2, bg="#64698A", bd=0)
+        self.label_image_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_box1_1_2, bg="#242424", bd=0)
         # self.label_image_box1_1_2.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_3 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_3 = ImageTk.PhotoImage(self.image_pillow_box1_1_3) # Save for TkInter
-        self.label_image_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_box1_1_3, bg="#64698A", bd=0)
+        self.label_image_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_box1_1_3, bg="#242424", bd=0)
         # self.label_image_box1_1_3.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_4 = ImageTk.PhotoImage(self.image_pillow_box1_1_4) # Save for TkInter
-        self.label_image_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_box1_1_4, bg="#64698A", bd=0)
+        self.label_image_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_box1_1_4, bg="#242424", bd=0)
         self.label_image_box1_1_4.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_5 = ImageTk.PhotoImage(self.image_pillow_box1_1_5) # Save for TkInter
-        self.label_image_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_box1_1_5, bg="#64698A", bd=0)
+        self.label_image_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_box1_1_5, bg="#242424", bd=0)
         self.label_image_box1_1_5.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_6 = ImageTk.PhotoImage(self.image_pillow_box1_1_6) # Save for TkInter
-        self.label_image_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_box1_1_6, bg="#64698A", bd=0)
+        self.label_image_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_box1_1_6, bg="#242424", bd=0)
         self.label_image_box1_1_6.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_7 = ImageTk.PhotoImage(self.image_pillow_box1_1_7) # Save for TkInter
-        self.label_image_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_box1_1_7, bg="#64698A", bd=0)
+        self.label_image_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_box1_1_7, bg="#242424", bd=0)
         # self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
 
         self.image_2_pillow_box1_1_1 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_2_box1_1_1 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_1) # Save for TkInter
-        self.label_image_2_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_2_box1_1_1, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_2_box1_1_1, bg="#242424", bd=0)
         # self.label_image_2_box1_1_1.grid(row=1, column=0, sticky='nsew')
 
         self.image_2_pillow_box1_1_2 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_2_box1_1_2 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_2) # Save for TkInter
-        self.label_image_2_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_2_box1_1_2, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_2_box1_1_2, bg="#242424", bd=0)
         # self.label_image_2_box1_1_2.grid(row=1, column=0, sticky='nsew')
 
         self.image_2_pillow_box1_1_3 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_2_box1_1_3 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_3) # Save for TkInter
-        self.label_image_2_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_2_box1_1_3, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_2_box1_1_3, bg="#242424", bd=0)
         # self.label_image_2_box1_1_3.grid(row=1, column=0, sticky='nsew')
 
         self.image_2_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_2_box1_1_4 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_4) # Save for TkInter
-        self.label_image_2_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_2_box1_1_4, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_2_box1_1_4, bg="#242424", bd=0)
         self.label_image_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
 
         self.image_2_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_2_box1_1_5 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_5) # Save for TkInter
-        self.label_image_2_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_2_box1_1_5, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_2_box1_1_5, bg="#242424", bd=0)
         self.label_image_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
 
         self.image_2_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_2_box1_1_6 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_6) # Save for TkInter
-        self.label_image_2_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_2_box1_1_6, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_2_box1_1_6, bg="#242424", bd=0)
         self.label_image_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
 
         self.image_2_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_2_box1_1_7 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_7) # Save for TkInter
-        self.label_image_2_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_2_box1_1_7, bg="#64698A", bd=0)
+        self.label_image_2_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_2_box1_1_7, bg="#242424", bd=0)
         # self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_8 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_8 = ImageTk.PhotoImage(self.image_pillow_box1_1_8) # Save for TkInter
-        self.label_image_box1_1_8 = Label(self.box1_1_8, image=self.tk_image_box1_1_8, bg="#64698A", bd=0)
+        self.label_image_box1_1_8 = Label(self.box1_1_8, image=self.tk_image_box1_1_8, bg="#242424", bd=0)
         # self.label_image_box1_1_8.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_9 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_9 = ImageTk.PhotoImage(self.image_pillow_box1_1_9) # Save for TkInter
-        self.label_image_box1_1_9 = Label(self.box1_1_9, image=self.tk_image_box1_1_9, bg="#64698A", bd=0)
+        self.label_image_box1_1_9 = Label(self.box1_1_9, image=self.tk_image_box1_1_9, bg="#242424", bd=0)
         # self.label_image_box1_1_9.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_10 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_10 = ImageTk.PhotoImage(self.image_pillow_box1_1_10) # Save for TkInter
-        self.label_image_box1_1_10 = Label(self.box1_1_10, image=self.tk_image_box1_1_10, bg="#64698A", bd=0)
+        self.label_image_box1_1_10 = Label(self.box1_1_10, image=self.tk_image_box1_1_10, bg="#242424", bd=0)
         # self.label_image_box1_1_10.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_11 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_11 = ImageTk.PhotoImage(self.image_pillow_box1_1_11) # Save for TkInter
-        self.label_image_box1_1_11 = Label(self.box1_1_11, image=self.tk_image_box1_1_11, bg="#64698A", bd=0)
+        self.label_image_box1_1_11 = Label(self.box1_1_11, image=self.tk_image_box1_1_11, bg="#242424", bd=0)
         # self.label_image_box1_1_11.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_12 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_12 = ImageTk.PhotoImage(self.image_pillow_box1_1_12) # Save for TkInter
-        self.label_image_box1_1_12 = Label(self.box1_1_12, image=self.tk_image_box1_1_12, bg="#64698A", bd=0)
+        self.label_image_box1_1_12 = Label(self.box1_1_12, image=self.tk_image_box1_1_12, bg="#242424", bd=0)
         # self.label_image_box1_1_12.grid(row=0, column=0, sticky='nsew')
 
         self.image_pillow_box1_1_13 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_13 = ImageTk.PhotoImage(self.image_pillow_box1_1_13) # Save for TkInter
-        self.label_image_box1_1_13 = Label(self.box1_1_13, image=self.tk_image_box1_1_13, bg="#64698A", bd=0)
+        self.label_image_box1_1_13 = Label(self.box1_1_13, image=self.tk_image_box1_1_13, bg="#242424", bd=0)
         # self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
 
         # Add labels inside box1_1
         # Onduleur1 data
-        self.text1_box1_1_1 = Label(self.box1_1_1, text="text1_box1_1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text2_box1_1_2 = Label(self.box1_1_2, text="text2_box1_1_2", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text3_box1_1_3 = Label(self.box1_1_3, text="text3_box1_1_3", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text4_box1_1_4 = Label(self.box1_1_4, text="text4_box1_1_4", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text5_box1_1_5 = Label(self.box1_1_5, text="text5_box1_1_5", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text6_box1_1_6 = Label(self.box1_1_6, text="text6_box1_1_6", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text7_box1_1_7 = Label(self.box1_1_7, text="text7_box1_1_7", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text1_box1_1_1 = Label(self.box1_1_1, text="text1_box1_1_1", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text2_box1_1_2 = Label(self.box1_1_2, text="text2_box1_1_2", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text3_box1_1_3 = Label(self.box1_1_3, text="text3_box1_1_3", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text4_box1_1_4 = Label(self.box1_1_4, text="text4_box1_1_4", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text5_box1_1_5 = Label(self.box1_1_5, text="text5_box1_1_5", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text6_box1_1_6 = Label(self.box1_1_6, text="text6_box1_1_6", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text7_box1_1_7 = Label(self.box1_1_7, text="text7_box1_1_7", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Onduleur2 data
-        self.text1_2_box1_1_1 = Label(self.box1_1_1, text="text1_2_box1_1_1", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text2_2_box1_1_2 = Label(self.box1_1_2, text="text2_2_box1_1_2", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text3_2_box1_1_3 = Label(self.box1_1_3, text="text3_2_box1_1_3", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text4_2_box1_1_4 = Label(self.box1_1_4, text="text4_2_box1_1_4", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text5_2_box1_1_5 = Label(self.box1_1_5, text="text5_2_box1_1_5", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text6_2_box1_1_6 = Label(self.box1_1_6, text="text6_2_box1_1_6", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text7_2_box1_1_7 = Label(self.box1_1_7, text="text7_2_box1_1_7", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text1_2_box1_1_1 = Label(self.box1_1_1, text="text1_2_box1_1_1", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text2_2_box1_1_2 = Label(self.box1_1_2, text="text2_2_box1_1_2", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text3_2_box1_1_3 = Label(self.box1_1_3, text="text3_2_box1_1_3", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text4_2_box1_1_4 = Label(self.box1_1_4, text="text4_2_box1_1_4", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text5_2_box1_1_5 = Label(self.box1_1_5, text="text5_2_box1_1_5", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text6_2_box1_1_6 = Label(self.box1_1_6, text="text6_2_box1_1_6", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text7_2_box1_1_7 = Label(self.box1_1_7, text="text7_2_box1_1_7", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Pression data
-        self.text8_box1_1_8 = Label(self.box1_1_8, text="text8_box1_1_8", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text9_box1_1_9 = Label(self.box1_1_9, text="text9_box1_1_9", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text10_box1_1_10 = Label(self.box1_1_10, text="text10_box1_1_10", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text11_box1_1_11 = Label(self.box1_1_11, text="text11_box1_1_11", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text12_box1_1_12 = Label(self.box1_1_12, text="text12_box1_1_12", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
-        self.text13_box1_1_13 = Label(self.box1_1_13, text="text13_box1_1_13", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text8_box1_1_8 = Label(self.box1_1_8, text="text8_box1_1_8", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text9_box1_1_9 = Label(self.box1_1_9, text="text9_box1_1_9", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text10_box1_1_10 = Label(self.box1_1_10, text="text10_box1_1_10", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text11_box1_1_11 = Label(self.box1_1_11, text="text11_box1_1_11", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text12_box1_1_12 = Label(self.box1_1_12, text="text12_box1_1_12", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.text13_box1_1_13 = Label(self.box1_1_13, text="text13_box1_1_13", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         self.text1_box1_1_1.grid(row=0, column=0, sticky='nsew')
         self.text2_box1_1_2.grid(row=0, column=0, sticky='nsew')
@@ -254,15 +254,15 @@ class Gui:
         self.text13_box1_1_13.grid(row=0, column=0, sticky='nsew')
 
         # Logs
-        self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#64698A', fg='white', font=('Helvetica', 12, 'bold italic'))
+        self.textlog1_box1_1 = Label(self.box1_1, text="LOGS", bg='#242424', fg='white', font=('Helvetica', 12, 'bold italic'))
 
         # Add labels inside box1_2
         self.text1_box1_2 = Label(self.box1_2, text="text1_box1_2", bg='#242424', fg='white', font=('Helvetica', 15, 'bold italic'))
         self.text2_box1_2 = Label(self.box1_2, text="text2_box1_2", bg='#242424', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text3_box1_2 = Label(self.box1_2, text="text3_box1_2", bg='#242424', fg='white', font=('Helvetica', 16, 'bold italic'))
-        self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
-        self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
-        self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#64698A', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text4_box1_2 = Label(self.box1_2, text="text4_box1_2", bg='#242424', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text5_box1_2 = Label(self.box1_2, text="text5_box1_2", bg='#242424', fg='white', font=('Helvetica', 16, 'bold italic'))
+        self.text6_box1_2 = Label(self.box1_2, text="text6_box1_2", bg='#242424', fg='white', font=('Helvetica', 16, 'bold italic'))
         self.text7_box1_2 = Label(self.box1_2, text="text7_box1_2", bg="#93949B", fg='lightgreen', font=('Helvetica', 16, 'bold'))
 
         self.text1_box1_2.pack(expand=YES)
@@ -284,12 +284,12 @@ class Gui:
         self.box2.grid_columnconfigure(index=6, weight=1)
 
         # Creation of 5 boxes inside box2
-        self.box2_1 = Frame(self.box2, bg="#64698A", bd=0)
-        self.box2_2 = Frame(self.box2, bg='#64698A', bd=0)
-        self.box2_3 = Frame(self.box2, bg='#64698A', bd=0)
-        self.box2_4 = Frame(self.box2, bg='#64698A', bd=0)
-        self.box2_5 = Frame(self.box2, bg='#64698A', bd=0)
-        self.box2_6 = Frame(self.box2, bg='#64698A', bd=0)
+        self.box2_1 = Frame(self.box2, bg="#242424", bd=0)
+        self.box2_2 = Frame(self.box2, bg='#242424', bd=0)
+        self.box2_3 = Frame(self.box2, bg='#242424', bd=0)
+        self.box2_4 = Frame(self.box2, bg='#242424', bd=0)
+        self.box2_5 = Frame(self.box2, bg='#242424', bd=0)
+        self.box2_6 = Frame(self.box2, bg='#242424', bd=0)
 
         self.box2_1.grid(row=0, column=0, sticky='nsew')
         self.box2_2.grid(row=0, column=1, sticky='nsew')
