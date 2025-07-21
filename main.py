@@ -4,6 +4,7 @@ import os
 import time
 from securite import Securite
 from logs import * # type: ignore
+import subprocess
 
 # Creation of an Onduleur object
 onduleur1 = Onduleur(name_ups_data="onduleur1@localhost")
@@ -24,6 +25,7 @@ est_securite_active = True
 securite = Securite(etatManip, pression, onduleur1, onduleur2, est_securite_active)
 
 log_with_cooldown(logging.INFO, "Démarrage du programme",60)
+subprocess.run(["sudo", "upsdrvctl", "start"]) # Lancement driver onduleur en cas de coupure de courant
 
 while(os.environ.get("DISPLAY") == None):
     recuperer_donnees_onduleur(onduleur1)
