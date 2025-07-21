@@ -123,17 +123,17 @@ class Gui:
         self.image_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_4 = ImageTk.PhotoImage(self.image_pillow_box1_1_4) # Save for TkInter
         self.label_image_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_box1_1_4, bg="#242424", bd=0)
-        self.label_image_box1_1_4.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_4.grid(row=0, column=1, sticky='nsew')
 
         self.image_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_5 = ImageTk.PhotoImage(self.image_pillow_box1_1_5) # Save for TkInter
         self.label_image_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_box1_1_5, bg="#242424", bd=0)
-        self.label_image_box1_1_5.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_5.grid(row=0, column=1, sticky='nsew')
 
         self.image_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_box1_1_6 = ImageTk.PhotoImage(self.image_pillow_box1_1_6) # Save for TkInter
         self.label_image_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_box1_1_6, bg="#242424", bd=0)
-        self.label_image_box1_1_6.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_6.grid(row=0, column=1, sticky='nsew')
 
         self.image_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_box1_1_7 = ImageTk.PhotoImage(self.image_pillow_box1_1_7) # Save for TkInter
@@ -158,17 +158,17 @@ class Gui:
         self.image_2_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_2_box1_1_4 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_4) # Save for TkInter
         self.label_image_2_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_2_box1_1_4, bg="#242424", bd=0)
-        self.label_image_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
+        self.label_image_2_box1_1_4.grid(row=1, column=1, sticky='nsew')
 
         self.image_2_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_2_box1_1_5 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_5) # Save for TkInter
         self.label_image_2_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_2_box1_1_5, bg="#242424", bd=0)
-        self.label_image_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
+        self.label_image_2_box1_1_5.grid(row=1, column=1, sticky='nsew')
 
         self.image_2_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
         self.tk_image_2_box1_1_6 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_6) # Save for TkInter
         self.label_image_2_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_2_box1_1_6, bg="#242424", bd=0)
-        self.label_image_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
+        self.label_image_2_box1_1_6.grid(row=1, column=1, sticky='nsew')
 
         self.image_2_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
         self.tk_image_2_box1_1_7 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_7) # Save for TkInter
@@ -235,16 +235,16 @@ class Gui:
         self.text1_box1_1_1.grid(row=0, column=1, sticky='')
         self.text2_box1_1_2.grid(row=0, column=1, sticky='')
         self.text3_box1_1_3.grid(row=0, column=1, sticky='')
-        self.text4_box1_1_4.grid(row=0, column=1, sticky='nsew')
-        self.text5_box1_1_5.grid(row=0, column=1, sticky='nsew')
-        self.text6_box1_1_6.grid(row=0, column=1, sticky='nsew')
+        self.text4_box1_1_4.grid(row=0, column=0, sticky='nsew')
+        self.text5_box1_1_5.grid(row=0, column=0, sticky='nsew')
+        self.text6_box1_1_6.grid(row=0, column=0, sticky='nsew')
         self.text7_box1_1_7.grid(row=0, column=1, sticky='')
         self.text1_2_box1_1_1.grid(row=1, column=1, sticky='')
         self.text2_2_box1_1_2.grid(row=1, column=1, sticky='')
         self.text3_2_box1_1_3.grid(row=1, column=1, sticky='')
-        self.text4_2_box1_1_4.grid(row=1, column=1, sticky='nsew')
-        self.text5_2_box1_1_5.grid(row=1, column=1, sticky='nsew')
-        self.text6_2_box1_1_6.grid(row=1, column=1, sticky='nsew')
+        self.text4_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
+        self.text5_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
+        self.text6_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
         self.text7_2_box1_1_7.grid(row=1, column=1, sticky='')
         self.text8_box1_1_8.grid(row=0, column=1, sticky='')
         self.text9_box1_1_9.grid(row=0, column=1, sticky='')
@@ -816,14 +816,14 @@ class Gui:
         # self.label_image_box1_1_3.grid(row=0, column=0, sticky='nsew')
         self.text3_box1_1_3.grid(row=0, column=1, sticky='nsew')
 
-        self.label_image_box1_1_4.grid(row=0, column=0, sticky='nsew')
-        self.text4_box1_1_4.grid(row=0, column=1, sticky='nsew')
+        self.label_image_box1_1_4.grid(row=0, column=1, sticky='nsew')
+        self.text4_box1_1_4.grid(row=0, column=0, sticky='nsew')
 
-        self.label_image_box1_1_5.grid(row=0, column=0, sticky='nsew')
-        self.text5_box1_1_5.grid(row=0, column=1, sticky='nsew')
+        self.label_image_box1_1_5.grid(row=0, column=1, sticky='nsew')
+        self.text5_box1_1_5.grid(row=0, column=0, sticky='nsew')
 
-        self.label_image_box1_1_6.grid(row=0, column=0, sticky='nsew')
-        self.text6_box1_1_6.grid(row=0, column=1, sticky='nsew')
+        self.label_image_box1_1_6.grid(row=0, column=1, sticky='nsew')
+        self.text6_box1_1_6.grid(row=0, column=0, sticky='nsew')
 
         # self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
         self.text7_box1_1_7.grid(row=0, column=1, sticky='nsew')
@@ -837,14 +837,14 @@ class Gui:
         # self.label_image_2_box1_1_3.grid(row=1, column=0, sticky='nsew')
         self.text3_2_box1_1_3.grid(row=1, column=1, sticky='nsew')
 
-        self.label_image_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
-        self.text4_2_box1_1_4.grid(row=1, column=1, sticky='nsew')
+        self.label_image_2_box1_1_4.grid(row=1, column=1, sticky='nsew')
+        self.text4_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
 
-        self.label_image_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
-        self.text5_2_box1_1_5.grid(row=1, column=1, sticky='nsew')
+        self.label_image_2_box1_1_5.grid(row=1, column=1, sticky='nsew')
+        self.text5_2_box1_1_5.grid(row=1, column=0, sticky='nsew')
 
-        self.label_image_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
-        self.text6_2_box1_1_6.grid(row=1, column=1, sticky='nsew')
+        self.label_image_2_box1_1_6.grid(row=1, column=1, sticky='nsew')
+        self.text6_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
 
         # self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
         self.text7_2_box1_1_7.grid(row=1, column=1, sticky='nsew')
