@@ -1312,8 +1312,11 @@ class Gui:
 
     def controle_cathode_gui(self):
         while self.running3:
-            controle_cathode(self.cathode)
-
+            try:
+                controle_cathode(self.cathode)
+            except Exception as e:
+                print(f"Cathode déconnectée : {e}")
+                self.cathode.etat = EtatCathode.DECONNECTEE
             time.sleep(1)
 
     def coupure_de_courant_gui(self):
