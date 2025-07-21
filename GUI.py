@@ -1008,6 +1008,7 @@ class Gui:
         label_1.pack(pady=40)
 
         def on_yes():
+            global serial_cathode
             serial_cathode = connexion_serie_cathode()
             log_with_cooldown(logging.INFO,"Lancement du programme : Reconnexion série de la cathode.")
             print("Action confirmée.")
