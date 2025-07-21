@@ -280,7 +280,7 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
 #       Gestion de la cathode      #
 # -------------------------------- #
 
-def controle_cathode(cathode: Cathode):
+"""def controle_cathode(cathode: Cathode):
     global serial_cathode
     if serial_cathode is None or not serial_cathode.is_open:
         cathode.etat = EtatCathode.DECONNECTEE
@@ -348,7 +348,92 @@ def controle_cathode(cathode: Cathode):
             #Mise à jour du courant
             command = "I " + str(intensite_cathode) + "\n"
             print(f" commande envoyée : {command}")
-            serial_cathode.write(command.encode())
+            serial_cathode.write(command.encode())"""
+
+def controle_cathode(cathode: Cathode):
+    global serial_cathode
+    if serial_cathode is None or not serial_cathode.is_open:
+        cathode.etat = EtatCathode.DECONNECTEE
+        return
+
+    # Récupération du courant
+    command = "I?\n"
+    serial_cathode.write(command.encode())
+    response = serial_cathode.readline().decode().strip()
+    
+    if(response == '' or response[0] != "I"):
+        cathode.etat = EtatCathode.DECONNECTEE
+        return
+    elif(cathode.etat == EtatCathode.DECONNECTEE):
+        cathode.etat = EtatCathode.FROIDE  # Reconnexion
+    
+    # Conversion temps consigne
+    consigne_temps_seconde = float(cathode.consigne_temps) * 60
+
+    # Récupération du courant
+    command = "I?\n"
+    serial_cathode.write(command.encode())
+    response = serial_cathode.readline().decode().strip()
+    courant_cathode = float(response[len("I "):])
+    cathode.courant = courant_cathode
+
+    # Récupération de la tension
+    command = "V?\n"
+    serial_cathode.write(command.encode())
+    response = serial_cathode.readline().decode().strip()
+    tension_cathode = float(response[len("V "):])
+    cathode.tension = tension_cathode
+
+    # Assure la tension à 18 V
+    if tension_cathode != 18.00:
+        command = "V 18.00\n"
+        serial_cathode.write(command.encode())
+
+    # ----- CHAUFFE -----
+    if cathode.etat == EtatCathode.CHAUFFE:
+        t_ecoule = time.monotonic() - cathode.t_0
+        print(f"temps écoulé = {t_ecoule:.2f} s")
+
+        i0 = float(cathode.i_depart)
+        if_ = float(cathode.consigne_courant)
+        T = float(consigne_temps_seconde)
+
+        if (cathode.courant >= if_) or (t_ecoule >= T):
+            cathode.etat = EtatCathode.CHAUDE
+            log_with_cooldown(logging.INFO, "Chauffe de la cathode terminée.")
+            return
+
+        rac_i0 = math.sqrt(i0)
+        rac_if = math.sqrt(if_)
+        I_t = rac_i0 + (t_ecoule / T) * (rac_if - rac_i0)
+        i_t = I_t ** 2
+
+        command = f"I {i_t:.2f}\n"
+        print(f"commande envoyée : {command}")
+        serial_cathode.write(command.encode())
+
+    # ----- REFROIDISSEMENT -----
+    if cathode.etat == EtatCathode.REFROIDISSEMENT:
+        t_ecoule = time.monotonic() - cathode.t_0
+        t_restant = float(consigne_temps_seconde) - t_ecoule
+
+        i0 = float(cathode.i_depart)
+        if_ = float(cathode.consigne_courant)
+        T = float(consigne_temps_seconde)
+
+        if (cathode.courant <= if_) or (t_restant <= 0):
+            cathode.etat = EtatCathode.FROIDE
+            log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminé.")
+            return
+
+        rac_i0 = math.sqrt(i0)
+        rac_if = math.sqrt(if_)
+        I_t = rac_if + (1 - t_ecoule / T) * (rac_i0 - rac_if)
+        i_t = I_t ** 2
+
+        command = f"I {i_t:.2f}\n"
+        print(f"commande envoyée : {command}")
+        serial_cathode.write(command.encode())
 
 # -------------------------------- #
 #  Gestion des pompes secondaires  #

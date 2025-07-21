@@ -1075,6 +1075,7 @@ class Gui:
             else:
                 self.cathode.etat = EtatCathode.REFROIDISSEMENT
             self.cathode.t_0 = time.monotonic()
+            self.cathode.i_depart = float(self.cathode.courant)
             log_with_cooldown(logging.INFO, "Lancement du programme : Changement de la consigne de la cathode.")
             print("Action confirmée.")
             popup.destroy()
