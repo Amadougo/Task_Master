@@ -96,16 +96,19 @@ else:
 	print(f"Impossible d'ouvrir le Port {port_SCU_1400_2}")
 
 #Port série pour le contrôleur de cathode
-port_cathode = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port0'
-baud_rate = 9600
-time_out = 1
 
-serial_cathode = serial.Serial(port_cathode, baudrate= baud_rate, timeout=time_out)
-
-if serial_cathode.is_open:
-	print(f"Port {port_cathode} ouvert avec succès.")
-else:
-	print(f"Impossible d'ouvrir le Port {port_cathode}")
+def connexion_serie_cathode():
+    try:
+        port_cathode = '/dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge-if00-port0'
+        baud_rate = 9600
+        time_out = 1
+        serial_cathode = serial.Serial(port_cathode, baudrate=baud_rate, timeout=time_out)
+        return serial_cathode
+    except serial.SerialException as e:
+        print(f"Erreur de connexion au port série de la cathode : {e}")
+        return None
+    
+serial_cathode = connexion_serie_cathode()
 
 #Port série pour la sécurité des pompes finales
 port_secu_finale = '/dev/ttyS0'
