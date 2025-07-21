@@ -36,7 +36,7 @@ class Gui:
         # Edit of the main features for the window
         # Ajout Plein écran avec 'F11' self.window.bind("<F11>", lambda event: self.window.attributes("-fullscreen", not self.window.attributes("-fullscreen")))
         self.window.geometry(f"{self.screen_width}x{self.screen_height}")
-        self.window.configure(bg='#64698A')
+        self.window.configure(bg='#242424')
         # Redéfinir le comportement de fermeture
         self.window.protocol("WM_DELETE_WINDOW", self.popUpConfirmationQuitterApplication)
 
