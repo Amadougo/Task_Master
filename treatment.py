@@ -133,7 +133,7 @@ def close_serial_ports():
         serial_SCU_1400_1.close()
     if serial_SCU_1400_2.is_open:
         serial_SCU_1400_2.close()
-    if serial_cathode.is_open:
+    if serial_cathode is not None and serial_cathode.is_open:
         serial_cathode.close()
     if serial_secu_finale.is_open:
         serial_secu_finale.close()
@@ -281,6 +281,10 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
 # -------------------------------- #
 
 def controle_cathode(cathode: Cathode):
+    global serial_cathode
+    if serial_cathode is None or not serial_cathode.is_open:
+        cathode.etat = EtatCathode.DECONNECTEE
+        return
     #Récupération du courant
     command = "I?\n"
     serial_cathode.write(command.encode())
