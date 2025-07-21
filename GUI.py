@@ -1070,7 +1070,7 @@ class Gui:
         def on_yes():
             self.cathode.consigne_courant = entry_intensity.get()  # Récupère l'intensité de consigne (en A)
             self.cathode.consigne_temps = entry_time.get() # Récupère le temps de consigne (en min)
-            if(self.cathode.consigne_courant >= self.cathode.courant):
+            if(float(self.cathode.consigne_courant) >= float(self.cathode.courant)):
                 self.cathode.etat = EtatCathode.CHAUFFE
             else:
                 self.cathode.etat = EtatCathode.REFROIDISSEMENT
