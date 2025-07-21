@@ -981,7 +981,7 @@ class Gui:
     def bouton_Chauffe_Cathode(self):
         popup = Toplevel(self.window)
         popup.title("Confirmation reconnexion série cathode")
-        popup.geometry("800x400")
+        popup.geometry("800x200")
         popup.transient(self.window) 
         popup.grab_set()
         popup.focus_force()
@@ -989,7 +989,7 @@ class Gui:
         # ----- Centrage de la pop up dans l'écran -----
         self.window.update_idletasks()  # Assure les dimensions correctes
         window_width = 800
-        window_height = 400
+        window_height = 200
 
         # Récupère la position de la fenêtre principale
         x = self.window.winfo_x()
