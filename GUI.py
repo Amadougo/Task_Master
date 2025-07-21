@@ -405,6 +405,9 @@ class Gui:
             self.button_box2_3.config(state="disabled")
             self.button_box2_5.config(state="disabled")
 
+        if(self.cathode.etat == EtatCathode.DECONNECTEE):
+            self.button_box2_3.config(state="disabled")
+
         # Refroidissement d'urgence de la cathode lors d'un arrêt en cours.
         if(self.etatManip == EtatManip.ARRET_EN_COURS):
             self.cathode.etat = EtatCathode.REFROIDISSEMENT
