@@ -112,7 +112,22 @@ serial_cathode = connexion_serie_cathode()
 
 def connexion_cathode():
     global serial_cathode
+
+    # Fermer proprement l’ancienne connexion si elle est encore ouverte
+    if serial_cathode is not None and serial_cathode.is_open:
+        try:
+            serial_cathode.close()
+            print("Ancienne connexion série cathode fermée.")
+        except Exception as e:
+            print(f"Erreur lors de la fermeture : {e}")
+
+    # Réouvrir une nouvelle connexion
     serial_cathode = connexion_serie_cathode()
+
+    if serial_cathode and serial_cathode.is_open:
+        print("Reconnexion série cathode réussie.")
+    else:
+        print("Échec de la reconnexion série cathode.")
 
 #Port série pour la sécurité des pompes finales
 port_secu_finale = '/dev/ttyS0'
@@ -283,76 +298,6 @@ def recuperer_donnees_pression_jauge6(pression : Pression) : #913, 914, 915, 934
 # -------------------------------- #
 #       Gestion de la cathode      #
 # -------------------------------- #
-
-"""def controle_cathode(cathode: Cathode):
-    global serial_cathode
-    if serial_cathode is None or not serial_cathode.is_open:
-        cathode.etat = EtatCathode.DECONNECTEE
-        return
-    #Récupération du courant
-    command = "I?\n"
-    serial_cathode.write(command.encode())
-    response = serial_cathode.readline().decode().strip()
-    
-    if(response == '' or response[0] != "I"):
-       cathode.etat = EtatCathode.DECONNECTEE
-    elif(cathode.etat == EtatCathode.DECONNECTEE):
-        cathode.etat = EtatCathode.FROIDE # Seulement pour la première où l'appareil est reconnecté/rallumé
-
-    if(cathode.etat != EtatCathode.DECONNECTEE):
-        #Convertion du temps en secondes
-        consigne_temps_seconde = float(cathode.consigne_temps)*60
-        
-        #Récupération du courant
-        command = "I?\n"
-        serial_cathode.write(command.encode())
-        response = serial_cathode.readline().decode().strip()
-        courant_cathode = float(response[len("I "):])
-        cathode.courant = courant_cathode
-
-        #Récupération de la tension
-        command = "V?\n"
-        serial_cathode.write(command.encode())
-        response = serial_cathode.readline().decode().strip()
-        tension_cathode = float(response[len("V "):])
-        cathode.tension = tension_cathode
-        
-        if tension_cathode != 18.00 :
-            command = "V 18.00\n"
-            serial_cathode.write(command.encode())
-
-        if cathode.etat == EtatCathode.CHAUFFE : 
-            #Calcul du temps ecoulé
-            t_ecoule = time.monotonic() - cathode.t_0
-            print(f"temps écoulé = {t_ecoule}")
-            #Test si fini
-            if (courant_cathode > float(cathode.consigne_courant)) or (t_ecoule > float(consigne_temps_seconde)) :
-                cathode.etat = EtatCathode.CHAUDE
-                log_with_cooldown(logging.INFO, "Chauffe de la cathode terminee.")
-                return
-            #Calcul de la fonction
-            intensite_cathode = math.sqrt(t_ecoule/(float(consigne_temps_seconde)/math.pow(float(cathode.consigne_courant),2)))
-            #Mise Ã  jour du courant
-            command = "I " + str(intensite_cathode) + "\n"
-            print(f" commande envoyée : {command}")
-            serial_cathode.write(command.encode())
-
-        if cathode.etat == EtatCathode.REFROIDISSEMENT : 
-            #Calcul du temps écoulé
-            #t_ecoule = float(consigne_temps_seconde) - time.monotonic() - cathode.t_0
-            t_ecoule = time.monotonic() - cathode.t_0
-            t_restant = float(consigne_temps_seconde) - t_ecoule
-            #Test si fini
-            if (courant_cathode <= float(cathode.consigne_courant)) or (t_restant <= 0) :
-                cathode.etat = EtatCathode.FROIDE
-                log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
-                return
-            #Calcul de la fonction
-            intensite_cathode = math.sqrt(t_restant/(float(consigne_temps_seconde)/math.pow(float(cathode.consigne_courant),2)))
-            #Mise à jour du courant
-            command = "I " + str(intensite_cathode) + "\n"
-            print(f" commande envoyée : {command}")
-            serial_cathode.write(command.encode())"""
 
 def controle_cathode(cathode: Cathode):
     global serial_cathode
