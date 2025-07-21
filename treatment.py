@@ -332,7 +332,7 @@ def controle_cathode(cathode: Cathode):
             t_ecoule = time.monotonic() - cathode.t_0
             t_restant = float(consigne_temps_seconde) - t_ecoule
             #Test si fini
-            if (courant_cathode <= float(cathode.consigne_courant)) or (t_ecoule <= 0) :
+            if (courant_cathode <= float(cathode.consigne_courant)) or (t_restant <= 0) :
                 cathode.etat = EtatCathode.FROIDE
                 log_with_cooldown(logging.INFO, "Refroidissement de la cathode terminee.")
                 return

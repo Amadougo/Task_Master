@@ -1065,7 +1065,7 @@ class Gui:
         popup.geometry(f"{window_width}x{window_height}+{x_center}+{y_center}")
         # ---------------------
 
-        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (refroidissement de la cathode) ?", font=("Arial", 14))
+        label_1 = Label(popup, text="Êtes-vous sûr de vouloir continuer (valeur de songi) ?", font=("Arial", 14))
         label_1.pack(pady=40)
 
         label_2 = Label(popup, text="Entrer l'intensité de consigne (par pas de 0.01 A, intensité conseillée : [0.00;9.00]Ampères)", font=("Arial", 14))
