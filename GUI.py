@@ -785,15 +785,15 @@ class Gui:
 
     def hide_data_box1_1(self):
         for label in [
-            # self.label_image_box1_1_1, self.label_image_box1_1_2, self.label_image_box1_1_3,
+            self.label_image_box1_1_1, self.label_image_box1_1_2, self.label_image_box1_1_3,
             self.label_image_box1_1_4, self.label_image_box1_1_5, self.label_image_box1_1_6,
-            # self.label_image_box1_1_7, 
-            # self.label_image_2_box1_1_1, self.label_image_2_box1_1_2, self.label_image_2_box1_1_3,
+            self.label_image_box1_1_7, 
+            self.label_image_2_box1_1_1, self.label_image_2_box1_1_2, self.label_image_2_box1_1_3,
             self.label_image_2_box1_1_4, self.label_image_2_box1_1_5, self.label_image_2_box1_1_6,
-            # self.label_image_2_box1_1_7,
-            # self.label_image_box1_1_8, self.label_image_box1_1_9,
-            # self.label_image_box1_1_10, self.label_image_box1_1_11, self.label_image_box1_1_12,
-            # self.label_image_box1_1_13,
+            self.label_image_2_box1_1_7,
+            self.label_image_box1_1_8, self.label_image_box1_1_9,
+            self.label_image_box1_1_10, self.label_image_box1_1_11, self.label_image_box1_1_12,
+            self.label_image_box1_1_13,
             self.text1_box1_1_1, self.text2_box1_1_2, self.text3_box1_1_3,
             self.text4_box1_1_4, self.text5_box1_1_5, self.text6_box1_1_6,
             self.text7_box1_1_7, 
@@ -807,13 +807,13 @@ class Gui:
             label.grid_forget()
 
     def show_data_box1_1(self):
-        # self.label_image_box1_1_1.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_1.grid(row=0, column=0, sticky='nsew')
         self.text1_box1_1_1.grid(row=0, column=0, sticky='nsew')
 
-        # self.label_image_box1_1_2.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_2.grid(row=0, column=0, sticky='nsew')
         self.text2_box1_1_2.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_3.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_3.grid(row=0, column=0, sticky='nsew')
         self.text3_box1_1_3.grid(row=0, column=1, sticky='nsew')
 
         self.label_image_box1_1_4.grid(row=0, column=0, sticky='nsew')
@@ -825,16 +825,16 @@ class Gui:
         self.label_image_box1_1_6.grid(row=0, column=0, sticky='nsew')
         self.text6_box1_1_6.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
         self.text7_box1_1_7.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_2_box1_1_1.grid(row=1, column=0, sticky='nsew')
+        self.label_image_2_box1_1_1.grid(row=1, column=0, sticky='nsew')
         self.text1_2_box1_1_1.grid(row=1, column=1, sticky='nsew')
 
-        # self.label_image_2_box1_1_2.grid(row=1, column=0, sticky='nsew')
+        self.label_image_2_box1_1_2.grid(row=1, column=0, sticky='nsew')
         self.text2_2_box1_1_2.grid(row=1, column=1, sticky='nsew')
 
-        # self.label_image_2_box1_1_3.grid(row=1, column=0, sticky='nsew')
+        self.label_image_2_box1_1_3.grid(row=1, column=0, sticky='nsew')
         self.text3_2_box1_1_3.grid(row=1, column=1, sticky='nsew')
 
         self.label_image_2_box1_1_4.grid(row=1, column=0, sticky='nsew')
@@ -846,25 +846,25 @@ class Gui:
         self.label_image_2_box1_1_6.grid(row=1, column=0, sticky='nsew')
         self.text6_2_box1_1_6.grid(row=1, column=1, sticky='nsew')
 
-        # self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
+        self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
         self.text7_2_box1_1_7.grid(row=1, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_8.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_8.grid(row=0, column=0, sticky='nsew')
         self.text8_box1_1_8.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_9.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_9.grid(row=0, column=0, sticky='nsew')
         self.text9_box1_1_9.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_10.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_10.grid(row=0, column=0, sticky='nsew')
         self.text10_box1_1_10.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_11.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_11.grid(row=0, column=0, sticky='nsew')
         self.text11_box1_1_11.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_12.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_12.grid(row=0, column=0, sticky='nsew')
         self.text12_box1_1_12.grid(row=0, column=1, sticky='nsew')
 
-        # self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
+        self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
         self.text13_box1_1_13.grid(row=0, column=1, sticky='nsew')
 
     def hide_data_box1_2(self):
