@@ -76,7 +76,7 @@ class Gui:
             self.box1_1.grid_rowconfigure(i, weight=1) # Every box will have same dimensions
 
         # Boxes which contain image (left) and text (right)
-        self.box1_1_1 = Frame(self.box1_1, bg='#64698A', bd=0)
+        self.box1_1_1 = Frame(self.box1_1, bg="#242424", bd=0)
         self.box1_1_2 = Frame(self.box1_1, bg='#64698A', bd=0)
         self.box1_1_3 = Frame(self.box1_1, bg='#64698A', bd=0)
         self.box1_1_4 = Frame(self.box1_1, bg='#64698A', bd=0)
