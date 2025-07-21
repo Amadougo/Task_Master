@@ -305,10 +305,6 @@ def controle_cathode(cathode: Cathode):
     if serial_cathode is None or not serial_cathode.is_open:
         cathode.etat = EtatCathode.DECONNECTEE
         return
-    
-    #
-    print(f"cathode.etat = {cathode.etat}")
-    # #
 
     # Récupération du courant
     command = "I?\n"
@@ -320,6 +316,10 @@ def controle_cathode(cathode: Cathode):
         return
     elif(cathode.etat == EtatCathode.DECONNECTEE):
         cathode.etat = EtatCathode.FROIDE  # Reconnexion
+
+    #
+    print(f"cathode.etat = {cathode.etat}")
+    #
     
     # Conversion temps consigne
     consigne_temps_seconde = float(cathode.consigne_temps) * 60
