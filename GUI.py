@@ -865,7 +865,7 @@ class Gui:
         self.text12_box1_1_12.grid(row=0, column=0, sticky='nsew')
 
         # self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
-        self.text13_box1_1_13.grid(row=0, column=0, sticky='nsew')
+        self.text13_box1_1_13.grid(row=0, column=0)
 
     def hide_data_box1_2(self):
         for label in [
