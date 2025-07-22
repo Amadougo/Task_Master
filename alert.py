@@ -92,7 +92,8 @@ def power_monitor_loop():
             if wait_for_network():
                 send_email_with_attachment(
                     "Alerte : Coupure de courant détectée",
-                    "Une coupure de courant a été détectée. L'alimentation et le réseau sont maintenant rétablis."
+                    "Une coupure de courant a été détectée. L'alimentation et le réseau sont maintenant rétablis.",
+                    "fichier_log.log"
                 )
             else:
                 print("❌ Réseau non revenu, email non envoyé.")
