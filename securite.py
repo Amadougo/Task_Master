@@ -58,13 +58,13 @@ class Securite:
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             #La manipe se coupe lorsqu'il reste moins de 240 secondes = 4 minutes
             # d'autonomie sur l'onduleur1
-            elif (int(self.onduleur1.battery_runtime) < 240) :
+            if (int(self.onduleur1.battery_runtime) < 240) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
                 log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
             #Sécurité en cas de reprise du courant pour relancer les SCU - 800
             # si on est en fonctionnement : et que ya pas de coupure de courant :
             #  on vérifie sur le scu 800 est bien en normal ou acceleration
-            elif (self.coupure_courant.alimentation_secteur == True) :
+            if (self.coupure_courant.alimentation_secteur == True and self.etat_manip == EtatManip.FONCTIONNE) :
                 etat_SCU = recuperer_etat_SCU_800()
                 if (etat_SCU != 4 or etat_SCU != 3):
                     log_with_cooldown(logging.INFO, "Ralancement des pompes secondaires suite au rétablissment du courant.")
