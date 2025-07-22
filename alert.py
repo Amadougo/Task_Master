@@ -77,6 +77,7 @@ def wait_for_network(timeout=300, interval=5):
     print("Timeout atteint : réseau toujours indisponible.")
     return False
 
+"""
 def power_monitor_loop():
     power_was_lost = True
 
@@ -97,3 +98,5 @@ def power_monitor_loop():
 # Lancer la surveillance
 if __name__ == "__main__":
     power_monitor_loop()
+
+    """
