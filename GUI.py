@@ -418,13 +418,9 @@ class Gui:
 
             if(self.etatManip == EtatManip.FONCTIONNE):
                 print("----- FONCTIONNE !!! -----")
-                self.label_image_box1_1_4.config(image=self.tk_image_charge_verte_4)
-                self.label_image_box1_1_4.image = self.tk_image_charge_verte_4  # important pour la référence
             else:
                 print("----- ** NE FONCTIONNE PAS ** !!! -----")
-                self.label_image_box1_1_4.config(image=self.tk_image_charge_rouge_1)
-                self.label_image_box1_1_4.image = self.tk_image_charge_rouge_1  # important pour la référence
-
+                
             # Gestion des boutons de chauffe et refroidissement de la cathode
             if ((self.cathode.etat == EtatCathode.FROIDE) or (self.cathode.etat == EtatCathode.CHAUDE)):
                 self.button_box2_3.config(state="normal") 
@@ -534,7 +530,12 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            resized_image = self.image_pillow_box1_1_4.resize(
+            if(self.etatManip == EtatManip.FONCTIONNE):
+                img = self.image_pillow_charge_verte_4
+            else:
+                img = self.image_pillow_charge_rouge_1
+            
+            resized_image = img.resize(
                 (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
