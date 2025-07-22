@@ -20,7 +20,7 @@ import os
 
 # Configuration email
 SMTP_SERVER = "smtp.univ-paris13.fr"
-SMTP_PORT = 993
+SMTP_PORT = 587
 EMAIL_SENDER = "hugo.lebaud@edu.univ-paris13.fr"
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_RECEIVER = "hugo.l@mac.com"
