@@ -29,6 +29,7 @@ EMAIL_RECEIVER = "hugo.l@mac.com"
 PING_HOST = "8.8.8.8"
 
 def send_email_with_attachment(subject, body, log_file_path=None):
+    print("Fonction envoie email avec pièce jointe :")
     msg = MIMEMultipart()
     msg["Subject"] = subject
     msg["From"] = EMAIL_SENDER
@@ -38,6 +39,7 @@ def send_email_with_attachment(subject, body, log_file_path=None):
     msg.attach(MIMEText(body, "plain"))
 
     # Ajout de pièce jointe si demandée
+    print("Ajout de la pièce jointe si demandée…")
     if log_file_path:
         try:
             with open(log_file_path, "rb") as f:
@@ -46,7 +48,7 @@ def send_email_with_attachment(subject, body, log_file_path=None):
             msg.attach(part)
         except Exception as e:
             msg.attach(MIMEText(f"[Erreur lecture log : {e}]", "plain"))
-
+    print("Envoi de l'email…")
     try:
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls()
