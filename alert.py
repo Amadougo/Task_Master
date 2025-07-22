@@ -18,11 +18,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
 # Configuration email
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
-EMAIL_SENDER = "tonemail@gmail.com"
-EMAIL_PASSWORD = "motdepasse_app"
-EMAIL_RECEIVER = "destinataire@gmail.com"
+SMTP_SERVER = "smtp.univ-paris13.fr"
+SMTP_PORT = 993
+EMAIL_SENDER = "hugo.lebaud@edu.univ-paris13.fr"
+EMAIL_PASSWORD = "J1e2h3u4g5o6?"
+EMAIL_RECEIVER = "hugo.l@mac.com"
 
 # Adresse à ping (Google DNS ou ton propre serveur)
 PING_HOST = "8.8.8.8"
