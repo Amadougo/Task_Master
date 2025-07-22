@@ -23,7 +23,7 @@ SMTP_SERVER = "smtp.univ-paris13.fr"
 SMTP_PORT = 587
 EMAIL_SENDER = "hugo.lebaud@edu.univ-paris13.fr"
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-EMAIL_RECEIVER = "hugo.l@mac.com"
+EMAIL_RECEIVERS = ["hugo.l@mac.com","greg77290@yahoo.fr"]
 
 # Adresse à ping (Google DNS ou ton propre serveur)
 PING_HOST = "8.8.8.8"
@@ -33,7 +33,7 @@ def send_email_with_attachment(subject, body, log_file_path=None):
     msg = MIMEMultipart()
     msg["Subject"] = subject
     msg["From"] = EMAIL_SENDER
-    msg["To"] = EMAIL_RECEIVER
+    msg["To"] = ", ".join(EMAIL_RECEIVERS)
 
     # Texte principal
     msg.attach(MIMEText(body, "plain"))
@@ -55,7 +55,7 @@ def send_email_with_attachment(subject, body, log_file_path=None):
             if EMAIL_PASSWORD is None:
               raise ValueError("Mot de passe non défini dans les variables d'environnement.")
             server.login(EMAIL_SENDER, EMAIL_PASSWORD)
-            server.sendmail(EMAIL_SENDER, [EMAIL_RECEIVER], msg.as_string())
+            server.sendmail(EMAIL_SENDER, EMAIL_RECEIVERS, msg.as_string())
         print("Email avec pièce jointe envoyé.")
     except Exception as e:
         print(f"Erreur lors de l'envoi : {e}")
