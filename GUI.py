@@ -356,6 +356,7 @@ class Gui:
         self.update_gui()
 
         # Bind the images to rescale them later
+        self.configure_initial_resizing()
         self.window.after(500, self.force_initial_resizing)
 
         # Thread de mise à jour
@@ -419,12 +420,10 @@ class Gui:
                 print("----- FONCTIONNE !!! -----")
                 self.label_image_box1_1_4.config(image=self.tk_image_charge_verte_4)
                 self.label_image_box1_1_4.image = self.tk_image_charge_verte_4  # important pour la référence
-                self.force_initial_resizing()
             else:
                 print("----- ** NE FONCTIONNE PAS ** !!! -----")
                 self.label_image_box1_1_4.config(image=self.tk_image_charge_rouge_1)
                 self.label_image_box1_1_4.image = self.tk_image_charge_rouge_1  # important pour la référence
-                self.force_initial_resizing()
 
             # Gestion des boutons de chauffe et refroidissement de la cathode
             if ((self.cathode.etat == EtatCathode.FROIDE) or (self.cathode.etat == EtatCathode.CHAUDE)):
