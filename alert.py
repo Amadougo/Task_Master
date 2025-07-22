@@ -86,6 +86,7 @@ def power_monitor_loop():
 
     while True:
         time.sleep(5)
+        print("Boucle de surveillance de l'alimentation en cours...")
 
         if power_was_lost:
             print("⚡ Courant revenu, vérification réseau...")
