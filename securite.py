@@ -1,4 +1,4 @@
-from data import EtatManip, Pression, Onduleur, coupureCourant
+from data import EtatManip, Pression, Onduleur, CoupureCourant
 from math import pow
 from treatment import relais1et2_OFF, relais1et2_ON
 from treatment import pompe_SCU_1400_1_ON, pompe_SCU_1400_1_OFF, pompe_SCU_1400_2_ON, pompe_SCU_1400_2_OFF, pompe_SCU_800_OFF, pompe_SCU_800_ON
