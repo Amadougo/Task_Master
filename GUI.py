@@ -1375,7 +1375,7 @@ class Gui:
             var = var[:2]
             self.coupureCourant.alimentation_secteur = False
             indicateur = True
-            log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
+            # log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
             time.sleep(30)  # Attendre 1 seconde avant de vérifier à nouveau
         else:
             if indicateur:
@@ -1384,7 +1384,7 @@ class Gui:
 
                 # On remet le courant en True
                 self.coupureCourant.alimentation_secteur = True
-                log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur", 1)
+                # log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur", 1)
 
                 # Envoi du mail avec le temps de coupure de courant
                 if wait_for_network():
