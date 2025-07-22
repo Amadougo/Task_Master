@@ -551,7 +551,12 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            resized_image = self.image_pillow_box1_1_5.resize(
+            if(self.etatManip == EtatManip.FONCTIONNE):
+                img = self.image_pillow_charge_verte_4
+            else:
+                img = self.image_pillow_charge_rouge_1
+            
+            resized_image = img.resize(
                 (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
@@ -565,7 +570,12 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            resized_image = self.image_pillow_box1_1_6.resize(
+            if(self.etatManip == EtatManip.FONCTIONNE):
+                img = self.image_pillow_charge_verte_4
+            else:
+                img = self.image_pillow_charge_rouge_1
+            
+            resized_image = img.resize(
                 (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
@@ -635,7 +645,12 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            resized_image = self.image_2_pillow_box1_1_4.resize(
+            if(self.etatManip == EtatManip.FONCTIONNE):
+                img = self.image_pillow_charge_verte_4
+            else:
+                img = self.image_pillow_charge_rouge_1
+
+            resized_image = img.resize(
                 (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
@@ -649,7 +664,12 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            resized_image = self.image_2_pillow_box1_1_5.resize(
+            if(self.etatManip == EtatManip.FONCTIONNE):
+                img = self.image_pillow_charge_verte_4
+            else:
+                img = self.image_pillow_charge_rouge_1
+
+            resized_image = img.resize(
                 (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
@@ -663,7 +683,12 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            resized_image = self.image_2_pillow_box1_1_6.resize(
+            if(self.etatManip == EtatManip.FONCTIONNE):
+                img = self.image_pillow_charge_verte_4
+            else:
+                img = self.image_pillow_charge_rouge_1
+
+            resized_image = img.resize(
                 (new_width, new_height),
                 Image.Resampling.LANCZOS
             )
