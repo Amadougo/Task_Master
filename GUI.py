@@ -92,7 +92,7 @@ class Gui:
 
         # Chargement des images de charges dans des variables
         self.image_pillow_charge_noire_0 = Image.open('assets/Charge_noire/Charge_noire_0.png')
-        self.tk_image_charge_noire_0 = Image.open(self.image_pillow_charge_noire_0) # Save for TkInter
+        self.tk_image_charge_noire_0 = ImageTk.PhotoImage(self.image_pillow_charge_noire_0) # Save for TkInter
         self.image_pillow_charge_noire_1 = Image.open('assets/Charge_noire/Charge_noire_1.png')
         self.tk_image_charge_noire_1 = ImageTk.PhotoImage(self.image_pillow_charge_noire_1) # Save for TkInter
         self.image_pillow_charge_noire_2 = Image.open('assets/Charge_noire/Charge_noire_2.png')
