@@ -1284,6 +1284,7 @@ class Gui:
             self.running3 = False
             self.running4 = False
             time.sleep(2)
+            log_with_cooldown(logging.INFO, "Fermeture du programme...")
             self.window.destroy()  # Ferme l'application et le programme de sécurité OIA
 
         def on_no():
