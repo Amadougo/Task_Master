@@ -90,6 +90,40 @@ class Gui:
         self.box1_1_12 = Frame(self.box1_1, bg='#242424', bd=0)
         self.box1_1_13 = Frame(self.box1_1, bg='#242424', bd=0)
 
+        # Chargement des images de charges dans des variables
+        self.image_pillow_charge_noire_0 = Image.open('assets/Charge_noire_0.png')
+        self.tk_image_charge_noire_0 = Image.open(self.image_pillow_charge_noire_0) # Save for TkInter
+        self.image_pillow_charge_noire_1 = Image.open('assets/Charge_noire_1.png')
+        self.tk_image_charge_noire_1 = ImageTk.PhotoImage(self.image_pillow_charge_noire_1) # Save for TkInter
+        self.image_pillow_charge_noire_2 = Image.open('assets/Charge_noire_2.png')
+        self.tk_image_charge_noire_2 = ImageTk.PhotoImage(self.image_pillow_charge_noire_2) # Save for TkInter
+        self.image_pillow_charge_noire_3 = Image.open('assets/Charge_noire_3.png')
+        self.tk_image_charge_noire_3 = ImageTk.PhotoImage(self.image_pillow_charge_noire_3) # Save for TkInter
+        self.image_pillow_charge_noire_4 = Image.open('assets/Charge_noire_4.png')
+        self.tk_image_charge_noire_4 = ImageTk.PhotoImage(self.image_pillow_charge_noire_4) # Save for TkInter
+
+        self.image_pillow_charge_rouge_0 = Image.open('assets/Charge_rouge_0.png')
+        self.tk_image_charge_rouge_0 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_0) # Save for TkInter
+        self.image_pillow_charge_rouge_1 = Image.open('assets/Charge_rouge_1.png')
+        self.tk_image_charge_rouge_1 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_1) # Save for TkInter
+        self.image_pillow_charge_rouge_2 = Image.open('assets/Charge_rouge_2.png')
+        self.tk_image_charge_rouge_2 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_2) # Save for TkInter
+        self.image_pillow_charge_rouge_3 = Image.open('assets/Charge_rouge_3.png')
+        self.tk_image_charge_rouge_3 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_3) # Save for TkInter
+        self.image_pillow_charge_rouge_4 = Image.open('assets/Charge_rouge_4.png')
+        self.tk_image_charge_rouge_4 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_4) # Save for TkInter
+
+        self.image_pillow_charge_verte_0 = Image.open('assets/Charge_verte_0.png')
+        self.tk_image_charge_verte_0 = ImageTk.PhotoImage(self.image_pillow_charge_verte_0) # Save for TkInter
+        self.image_pillow_charge_verte_1 = Image.open('assets/Charge_verte_1.png')
+        self.tk_image_charge_verte_1 = ImageTk.PhotoImage(self.image_pillow_charge_verte_1) # Save for TkInter
+        self.image_pillow_charge_verte_2 = Image.open('assets/Charge_verte_2.png')
+        self.tk_image_charge_verte_2 = ImageTk.PhotoImage(self.image_pillow_charge_verte_2) # Save for TkInter
+        self.image_pillow_charge_verte_3 = Image.open('assets/Charge_verte_3.png')
+        self.tk_image_charge_verte_3 = ImageTk.PhotoImage(self.image_pillow_charge_verte_3) # Save for TkInter
+        self.image_pillow_charge_verte_4 = Image.open('assets/Charge_verte_4.png')
+        self.tk_image_charge_verte_4 = ImageTk.PhotoImage(self.image_pillow_charge_verte_4) # Save for TkInter
+
         i = 0
         for label in[
             self.box1_1_1, self.box1_1_2, self.box1_1_3, 
@@ -381,6 +415,15 @@ class Gui:
             self.text6_box1_2.config(text=f"Temps de consigne : {self.cathode.consigne_temps}")
             self.text7_box1_2.config(text=f"Etat de la manip : {self.securite.etat_manip}")
 
+            if(self.etatManip == EtatManip.FONCTIONNE):
+                print("----- FONCTIONNE !!! -----")
+                self.label_image_box1_1_4.config(image=self.tk_image_charge_verte_4)
+                self.label_image_box1_1_4.image = self.tk_image_charge_verte_4  # important pour la référence
+            else:
+                print("----- ** NE FONCTIONNE PAS ** !!! -----")
+                self.label_image_box1_1_4.config(image=self.tk_image_charge_rouge_1)
+                self.label_image_box1_1_4.image = self.tk_image_charge_rouge_1  # important pour la référence
+
             # Gestion des boutons de chauffe et refroidissement de la cathode
             if ((self.cathode.etat == EtatCathode.FROIDE) or (self.cathode.etat == EtatCathode.CHAUDE)):
                 self.button_box2_3.config(state="normal") 
@@ -392,7 +435,7 @@ class Gui:
                 self.button_box2_5.config(state="disabled") # Fonctionnement normal cathode enlever les commentaires
                 # self.button_box2_3.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement
                 # self.button_box2_5.config(state="disabled") # A enlever lorsque la cathode sera commandable correctement            
-        
+
         if(int(self.onduleur1.battery_runtime) < 240 or self.pression.pression_seuil_atteinte == True):
             self.button_box2_6.config(state="disabled")
         else:
