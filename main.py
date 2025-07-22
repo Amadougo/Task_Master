@@ -1,4 +1,4 @@
-from data import Onduleur, Pression, Cathode, EtatManip
+from data import Onduleur, Pression, Cathode, EtatManip, CoupureCourant
 from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 import os
 import time
@@ -20,9 +20,12 @@ cathode = Cathode()
 # Creation of a EtatManip object
 etatManip: EtatManip = EtatManip.OFF
 
+# Creation of a CoupureCourant object
+coupureCourant = CoupureCourant()
+
 # Creation of a Securite object
 est_securite_active = True
-securite = Securite(etatManip, pression, onduleur1, onduleur2, est_securite_active)
+securite = Securite(etatManip, pression, onduleur1, onduleur2, coupureCourant, est_securite_active)
 
 log_with_cooldown(logging.INFO, "Démarrage du programme",60)
 # subprocess.run(["sudo", "upsdrvctl", "start"]) # Lancement driver onduleur en cas de coupure de courant
@@ -45,7 +48,7 @@ from GUI import Gui # import the GUI class from GUI.py
 print("interface graphique")
 
 # Creation of the GUI
-gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, securite, affichage_donnees=True, mode_securite_actif=est_securite_active)
+gui = Gui(onduleur1, onduleur2, pression, cathode, etatManip, securite, coupureCourant, affichage_donnees=True, mode_securite_actif=est_securite_active)
 
 # Force the resize of boxes dimensions
 gui.force_initial_resizing()

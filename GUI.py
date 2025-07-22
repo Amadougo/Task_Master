@@ -2,8 +2,7 @@ from tkinter import * # type: ignore
 from tkinter import scrolledtext
 from treatment import recuperer_donnees_onduleur, recuperer_donnees_pression_jauge1, recuperer_donnees_pression_jauge2, recuperer_donnees_pression_jauge3, recuperer_donnees_pression_jauge4, recuperer_donnees_pression_jauge5, recuperer_donnees_pression_jauge6
 from treatment import controle_cathode
-from data import EtatCathode
-from data import EtatManip
+from data import EtatCathode, EtatManip, CoupureCourant
 from logs import * # type: ignore
 from PIL import Image, ImageTk # type: ignore
 import time
@@ -13,7 +12,7 @@ import subprocess
 from treatment import connexion_cathode
 
 class Gui:
-    def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, securite, affichage_donnees, mode_securite_actif):
+    def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, securite, coupureCourant, affichage_donnees, mode_securite_actif):
         self.window = Tk()  # Creation of the window (Graphical User Interface)
         self.onduleur1 = onduleur1  # Creation of the onduleur1 object
         self.onduleur2 = onduleur2  # Creation of the onduleur2 object
@@ -21,6 +20,7 @@ class Gui:
         self.cathode = cathode # Creation of the cathode object
         self.etatManip = etatManip # Creation of the etatManip object
         self.securite = securite # Creation of the securite object
+        self.coupureCourant = coupureCourant # Creation of the coupureCourant object
         self.affichage_donnees = affichage_donnees # Creation of the affichage_donnees object
         self.mode_securite_actif = mode_securite_actif # Creation of the mode_securite_actif object
         self.setup_gui()  # Initial configuration of the gui setup
