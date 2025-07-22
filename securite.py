@@ -9,11 +9,12 @@ from logs import * # type: ignore
 
 PRESSION_SEUIL_PRIMAIRE = 7.1*pow(10,-1) #Torr
 class Securite:
-    def __init__(self, etat_manip, pression, onduleur1, onduleur2, coupureCourant, securite_pression_actif):
+    def __init__(self, etat_manip, pression, onduleur1, onduleur2, coupure_courant, securite_pression_actif):
         self.etat_manip = etat_manip
         self.pression = pression
         self.onduleur1 = onduleur1
         self.onduleur2 = onduleur2
+        self.coupure_courant = coupure_courant 
         self.securite_pression_actif = securite_pression_actif  # Indicateur pour activer ou désactiver la sécurité
 
     def securite(self) :
@@ -47,6 +48,7 @@ class Securite:
 
         #Actions lorsque la manip est en 'Fonctionnement'
         elif (self.etat_manip == EtatManip.FONCTIONNE) :
+            
             #On vérifie si la sécurité de pression est active
             if self.securite_pression_actif:
                 #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
@@ -56,11 +58,21 @@ class Securite:
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             #La manipe se coupe lorsqu'il reste moins de 240 secondes = 4 minutes
             # d'autonomie sur l'onduleur1
-            if (int(self.onduleur1.battery_runtime) < 240) :
+            elif (int(self.onduleur1.battery_runtime) < 240) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
-                print(f"----- self.onduleur1.battery_runtime : {self.onduleur1.battery_runtime} -----")
                 log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
-
+            #Sécurité en cas de reprise du courant pour relancer les SCU - 800
+            # si on est en fonctionnement : et que ya pas de coupure de courant :
+            #  on vérifie sur le scu 800 est bien en normal ou acceleration
+            elif (self.coupure_courant.alimentation_secteur == True) :
+                etat_SCU = recuperer_etat_SCU_800()
+                if (etat_SCU != 4 or etat_SCU != 3):
+                    log_with_cooldown(logging.INFO, "Ralancement des pompes secondaires suite au rétablissment du courant.")
+                    #On relance les pompes secondaires
+                    pompe_SCU_1400_1_ON()
+                    pompe_SCU_1400_2_ON()
+                    pompe_SCU_800_ON()
+                
 
         #Actions lorsque la manip est en 'cours d'arrêt'
         elif (self.etat_manip == EtatManip.ARRET_EN_COURS) :

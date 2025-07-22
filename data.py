@@ -94,9 +94,9 @@ class EtatManip(Enum):
 
 class CoupureCourant():
     def __init__(self,
-                 courant_perdu: bool = False,
+                 alimentation_secteur: bool = True,
                  heure_coupure: float = 0.0,
                  heure_reprise: float = 0.0):
-        self.courant_perdu = courant_perdu
+        self.alimentation_secteur = alimentation_secteur
         self.heure_coupure = heure_coupure
         self.heure_reprise = heure_reprise
