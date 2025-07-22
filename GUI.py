@@ -528,7 +528,7 @@ class Gui:
             
     def resize_image_box1_1_4(self, event=None):
         width = 500
-        height = 150
+        height = 100
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
