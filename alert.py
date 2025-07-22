@@ -60,15 +60,6 @@ def send_email_with_attachment(subject, body, log_file_path=None):
     except Exception as e:
         print(f"Erreur lors de l'envoi : {e}")
 
-
-def is_power_lost():
-    try:
-        result = subprocess.check_output(["upsc", "mononduler@localhost"])
-        result = result.decode("utf-8").lower()
-        return "on battery" in result
-    except subprocess.CalledProcessError:
-        return False
-
 def wait_for_network(timeout=300, interval=5):
     """
     Attend que le réseau soit opérationnel en pingant une adresse.
@@ -91,8 +82,6 @@ def power_monitor_loop():
 
     while True:
         time.sleep(5)
-        print("Boucle de surveillance de l'alimentation en cours...")
-
         if power_was_lost:
             print("⚡ Courant revenu, vérification réseau...")
             if wait_for_network():
