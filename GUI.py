@@ -1375,7 +1375,7 @@ class Gui:
             var = var[:2]
             self.coupureCourant.alimentation_secteur = False
             indicateur = True
-            log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
+            #log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
             time.sleep(30)  # Attendre 1 seconde avant de vérifier à nouveau
         else:
             if indicateur:
