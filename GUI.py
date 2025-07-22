@@ -91,37 +91,37 @@ class Gui:
         self.box1_1_13 = Frame(self.box1_1, bg='#242424', bd=0)
 
         # Chargement des images de charges dans des variables
-        self.image_pillow_charge_noire_0 = Image.open('assets/Charge_noire_0.png')
+        self.image_pillow_charge_noire_0 = Image.open('assets/Charge_noire/Charge_noire_0.png')
         self.tk_image_charge_noire_0 = Image.open(self.image_pillow_charge_noire_0) # Save for TkInter
-        self.image_pillow_charge_noire_1 = Image.open('assets/Charge_noire_1.png')
+        self.image_pillow_charge_noire_1 = Image.open('assets/Charge_noire/Charge_noire_1.png')
         self.tk_image_charge_noire_1 = ImageTk.PhotoImage(self.image_pillow_charge_noire_1) # Save for TkInter
-        self.image_pillow_charge_noire_2 = Image.open('assets/Charge_noire_2.png')
+        self.image_pillow_charge_noire_2 = Image.open('assets/Charge_noire/Charge_noire_2.png')
         self.tk_image_charge_noire_2 = ImageTk.PhotoImage(self.image_pillow_charge_noire_2) # Save for TkInter
-        self.image_pillow_charge_noire_3 = Image.open('assets/Charge_noire_3.png')
+        self.image_pillow_charge_noire_3 = Image.open('assets/Charge_noire/Charge_noire_3.png')
         self.tk_image_charge_noire_3 = ImageTk.PhotoImage(self.image_pillow_charge_noire_3) # Save for TkInter
-        self.image_pillow_charge_noire_4 = Image.open('assets/Charge_noire_4.png')
+        self.image_pillow_charge_noire_4 = Image.open('assets/Charge_noire/Charge_noire_4.png')
         self.tk_image_charge_noire_4 = ImageTk.PhotoImage(self.image_pillow_charge_noire_4) # Save for TkInter
 
-        self.image_pillow_charge_rouge_0 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_charge_rouge_0 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_charge_rouge_0 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_0) # Save for TkInter
-        self.image_pillow_charge_rouge_1 = Image.open('assets/Charge_rouge_1.png')
+        self.image_pillow_charge_rouge_1 = Image.open('assets/Charge_rouge/Charge_rouge_1.png')
         self.tk_image_charge_rouge_1 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_1) # Save for TkInter
-        self.image_pillow_charge_rouge_2 = Image.open('assets/Charge_rouge_2.png')
+        self.image_pillow_charge_rouge_2 = Image.open('assets/Charge_rouge/Charge_rouge_2.png')
         self.tk_image_charge_rouge_2 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_2) # Save for TkInter
-        self.image_pillow_charge_rouge_3 = Image.open('assets/Charge_rouge_3.png')
+        self.image_pillow_charge_rouge_3 = Image.open('assets/Charge_rouge/Charge_rouge_3.png')
         self.tk_image_charge_rouge_3 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_3) # Save for TkInter
-        self.image_pillow_charge_rouge_4 = Image.open('assets/Charge_rouge_4.png')
+        self.image_pillow_charge_rouge_4 = Image.open('assets/Charge_rouge/Charge_rouge_4.png')
         self.tk_image_charge_rouge_4 = ImageTk.PhotoImage(self.image_pillow_charge_rouge_4) # Save for TkInter
 
-        self.image_pillow_charge_verte_0 = Image.open('assets/Charge_verte_0.png')
+        self.image_pillow_charge_verte_0 = Image.open('assets/Charge_verte/Charge_verte_0.png')
         self.tk_image_charge_verte_0 = ImageTk.PhotoImage(self.image_pillow_charge_verte_0) # Save for TkInter
-        self.image_pillow_charge_verte_1 = Image.open('assets/Charge_verte_1.png')
+        self.image_pillow_charge_verte_1 = Image.open('assets/Charge_verte/Charge_verte_1.png')
         self.tk_image_charge_verte_1 = ImageTk.PhotoImage(self.image_pillow_charge_verte_1) # Save for TkInter
-        self.image_pillow_charge_verte_2 = Image.open('assets/Charge_verte_2.png')
+        self.image_pillow_charge_verte_2 = Image.open('assets/Charge_verte/Charge_verte_2.png')
         self.tk_image_charge_verte_2 = ImageTk.PhotoImage(self.image_pillow_charge_verte_2) # Save for TkInter
-        self.image_pillow_charge_verte_3 = Image.open('assets/Charge_verte_3.png')
+        self.image_pillow_charge_verte_3 = Image.open('assets/Charge_verte/Charge_verte_3.png')
         self.tk_image_charge_verte_3 = ImageTk.PhotoImage(self.image_pillow_charge_verte_3) # Save for TkInter
-        self.image_pillow_charge_verte_4 = Image.open('assets/Charge_verte_4.png')
+        self.image_pillow_charge_verte_4 = Image.open('assets/Charge_verte/Charge_verte_4.png')
         self.tk_image_charge_verte_4 = ImageTk.PhotoImage(self.image_pillow_charge_verte_4) # Save for TkInter
 
         i = 0
