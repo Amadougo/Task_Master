@@ -460,7 +460,7 @@ class Gui:
             self.cathode.consigne_temps = 5.0
             log_with_cooldown(logging.WARNING, "Refroidissement d'urgence de la cathode lors d'un arrêt en cours.", 600)
 
-        self.force_initial_resizing()
+        self.resize_image_box1_1_4()
 
     def recuperer_donnees(self, onduleur1, onduleur2, pression):
         recuperer_donnees_onduleur(onduleur1)
