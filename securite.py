@@ -67,7 +67,7 @@ class Securite:
             if (self.coupure_courant.alimentation_secteur == True and self.etat_manip == EtatManip.FONCTIONNE) :
                 etat_SCU = recuperer_etat_SCU_800()
                 if (etat_SCU != 4 or etat_SCU != 3):
-                    log_with_cooldown(logging.INFO, "Ralancement des pompes secondaires suite au rétablissment du courant.")
+                    log_with_cooldown(logging.INFO, "Relancement des pompes secondaires suite au rétablissment du courant.")
                     #On relance les pompes secondaires
                     pompe_SCU_1400_1_ON()
                     pompe_SCU_1400_2_ON()
