@@ -415,11 +415,6 @@ class Gui:
             self.text5_box1_2.config(text=f"Courant de consigne : {self.cathode.consigne_courant}")
             self.text6_box1_2.config(text=f"Temps de consigne : {self.cathode.consigne_temps}")
             self.text7_box1_2.config(text=f"Etat de la manip : {self.securite.etat_manip}")
-
-            if(self.etatManip == EtatManip.FONCTIONNE):
-                print("----- FONCTIONNE !!! -----")
-            else:
-                print("----- ** NE FONCTIONNE PAS ** !!! -----")
                 
             # Gestion des boutons de chauffe et refroidissement de la cathode
             if ((self.cathode.etat == EtatCathode.FROIDE) or (self.cathode.etat == EtatCathode.CHAUDE)):
