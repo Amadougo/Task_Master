@@ -527,8 +527,8 @@ class Gui:
             self.label_image_box1_1_3.image = self.tk_resized_image_box1_1_3
             
     def resize_image_box1_1_4(self, event=None):
-        width = 50
-        height = 40
+        width = 300
+        height = 150
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
