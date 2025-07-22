@@ -357,7 +357,7 @@ class Gui:
 
         # Bind the images to rescale them later
         # self.configure_initial_resizing()
-        # self.window.after(500, self.force_initial_resizing)
+        self.window.after(500, self.force_initial_resizing)
 
         # Thread de mise à jour
         self.running = True
