@@ -16,12 +16,13 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
+import os
 
 # Configuration email
 SMTP_SERVER = "smtp.univ-paris13.fr"
 SMTP_PORT = 993
 EMAIL_SENDER = "hugo.lebaud@edu.univ-paris13.fr"
-EMAIL_PASSWORD = "J1e2h3u4g5o6?"
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_RECEIVER = "hugo.l@mac.com"
 
 # Adresse à ping (Google DNS ou ton propre serveur)
@@ -49,6 +50,8 @@ def send_email_with_attachment(subject, body, log_file_path=None):
     try:
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls()
+            if EMAIL_PASSWORD is None:
+              raise ValueError("Mot de passe non défini dans les variables d'environnement.")
             server.login(EMAIL_SENDER, EMAIL_PASSWORD)
             server.sendmail(EMAIL_SENDER, [EMAIL_RECEIVER], msg.as_string())
         print("Email avec pièce jointe envoyé.")
