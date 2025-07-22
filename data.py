@@ -91,3 +91,12 @@ class EtatManip(Enum):
     DEMARRAGE = "demarrage"
     FONCTIONNE = "fonctionne"
     ARRET_EN_COURS = "arret en cours"
+
+class CoupureCourant():
+    def __init__(self,
+                 courant_perdu: bool = False,
+                 heure_coupure: float = 0.0,
+                 heure_reprise: float = 0.0):
+        self.courant_perdu = courant_perdu
+        self.heure_coupure = heure_coupure
+        self.heure_reprise = heure_reprise
