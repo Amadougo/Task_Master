@@ -1366,38 +1366,7 @@ class Gui:
         bouton_non.pack()
 
     def coupure_de_courant(self):
-        var = self.onduleur1.ups_status
-        var = var[:2]
-        indicateur = False
-        self.coupureCourant.heure_coupure = time.clock_gettime(time.CLOCK_MONOTONIC)
-        while(var != "OL"):
-            var = self.onduleur1.ups_status
-            var = var[:2]
-            self.coupureCourant.alimentation_secteur = False
-            indicateur = True
-            # log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
-            time.sleep(30)  # Attendre 1 seconde avant de vérifier à nouveau
-        else:
-            if indicateur:
-                # Calcul du temps de coupure de courant
-                self.coupureCourant.heure_reprise = time.clock_gettime(time.CLOCK_MONOTONIC)
-
-                # On remet le courant en True
-                self.coupureCourant.alimentation_secteur = True
-                # log_with_cooldown(logging.INFO, "Reprise de courant : Onduleur1 sur secteur", 1)
-
-                # Envoi du mail avec le temps de coupure de courant
-                if wait_for_network():
-                    send_email_with_attachment(
-                        "Alerte : Coupure de courant détectée",
-                        f"Une coupure de courant a été détectée à {self.coupureCourant.heure_coupure}. L'alimentation et le réseau sont maintenant rétablis à {self.coupureCourant.heure_reprise}.",
-                        "fichier_log.log"
-                    )
-                else:
-                    print("❌ Réseau non revenu, email non envoyé.")
-
-                # Lancement driver onduleur en cas de fin de coupure de courant
-                subprocess.run(["sudo", "upsdrvctl", "start"])
+        print("salut")
 
 
     def securite_gui(self):
@@ -1429,6 +1398,7 @@ class Gui:
                 self.coupureCourant.alimentation_secteur = False
                 indicateur = True
                 log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
+                time.sleep(30)
             else:
                 if indicateur:
                     # Calcul du temps de coupure de courant
