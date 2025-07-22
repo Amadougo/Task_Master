@@ -1371,9 +1371,12 @@ class Gui:
         indicateur = False
         self.coupureCourant.heure_coupure = time.clock_gettime(time.CLOCK_MONOTONIC)
         while(var != "OL"):
+            var = self.onduleur1.ups_status
+            var = var[:2]
             self.coupureCourant.alimentation_secteur = False
             indicateur = True
             log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
+            time.sleep(30)  # Attendre 1 seconde avant de vérifier à nouveau
         else:
             if indicateur:
                 # Calcul du temps de coupure de courant
