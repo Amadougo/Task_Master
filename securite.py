@@ -66,6 +66,7 @@ class Securite:
             #  on vérifie sur le scu 800 est bien en normal ou acceleration
             if (self.coupure_courant.alimentation_secteur == True and self.etat_manip == EtatManip.FONCTIONNE) :
                 etat_SCU = recuperer_etat_SCU_800()
+                time.sleep(5)  # Attente pour éviter une boucle trop rapide
                 if (etat_SCU != 4 or etat_SCU != 3):
                     log_with_cooldown(logging.INFO, "Relancement des pompes secondaires suite au rétablissment du courant.")
                     #On relance les pompes secondaires
