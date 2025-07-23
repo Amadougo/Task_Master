@@ -85,25 +85,6 @@ def wait_for_network(timeout=900, interval=5):
     return False
 
 
-"""def power_monitor_loop():
-    power_was_lost = True
 
-    while True:
-        time.sleep(5)
-        if power_was_lost:
-            print("⚡ Courant revenu, vérification réseau...")
-            if wait_for_network():
-                send_email_with_attachment(
-                    "Alerte : Coupure de courant détectée",
-                    "Une coupure de courant a été détectée. L'alimentation et le réseau sont maintenant rétablis.",
-                    "fichier_log.log"
-                )
-            else:
-                print("❌ Réseau non revenu, email non envoyé.")
-            power_was_lost = False
-
-# Lancer la surveillance
-if __name__ == "__main__":
-    power_monitor_loop()"""
 
 

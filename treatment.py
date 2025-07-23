@@ -22,10 +22,10 @@ def get_ups_data(ups_name="onduleur1@localhost"):
         return data
 
     except subprocess.CalledProcessError as e:
-        print("Erreur avec upsc :", e)
+        log_with_cooldown(logging.WARNING,"Erreur avec upsc :", e)
         return None
     except FileNotFoundError:
-        print("La commande 'upsc' n'est pas trouvée. Vérifie que NUT est installé.")
+        log_with_cooldown(logging.WARNING,"La commande 'upsc' n'est pas trouvée. Vérifie que NUT est installé.")
         return None
 
 #Fonction pour récupérer les données de l'onduleur et les mettre dans la class 'Onduleur'
@@ -43,7 +43,7 @@ def recuperer_donnees_onduleur(onduleur : Onduleur) :
         # Affichage terminal optionnel
         #onduleur.afficher_donnees_onduleur() 
     else:
-        print("Impossible de récupérer les données de l'onduleur.")
+        log_with_cooldown(logging.WARNING,"Impossible de récupérer les données de l'onduleur.",120)
     
     return onduleur
 
@@ -59,7 +59,7 @@ serial_jauges = serial.Serial(port_jauges, baudrate= baud_rate, timeout=time_out
 if serial_jauges.is_open:
 	print(f"port_jauges {port_jauges} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le port_jauges {port_jauges}")
+	log_with_cooldown(logging.WARNING,f"Impossible d'ouvrir le port_jauges {port_jauges}")
 
 #Port série pour les contrôleurs de pompes (SCU - 800, SCU - 1400 1 et 2)
 port_SCU_800 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_A_CRd143M08-if00-port0'
@@ -69,9 +69,9 @@ time_out = 1
 serial_SCU_800 = serial.Serial(port_SCU_800, baudrate= baud_rate, timeout=time_out)
 
 if serial_SCU_800.is_open:
-	print(f"Port SCU 800 {port_SCU_800} ouvert avec succès.")
+	log_with_cooldown(logging.INFO,f"Port SCU 800 {port_SCU_800} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port_SCU_800}")
+	log_with_cooldown(logging.WARNING,f"Impossible d'ouvrir le Port {port_SCU_800}")
 
 port_SCU_1400_1 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CGARc143M08-if00-port0'
 baud_rate = 9600
@@ -80,9 +80,9 @@ time_out = 1
 serial_SCU_1400_1 = serial.Serial(port_SCU_1400_1, baudrate= baud_rate, timeout=time_out)
 
 if serial_SCU_1400_1.is_open:
-	print(f"Port SCU 1400 1 {port_SCU_1400_1} ouvert avec succès.")
+	log_with_cooldown(logging.INFO,f"Port SCU 1400 1 {port_SCU_1400_1} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port_SCU_1400_1}")
+	log_with_cooldown(logging.WARNING,f"Impossible d'ouvrir le Port {port_SCU_1400_1}")
 
 port_SCU_1400_2 = '/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_EDAQc143M08-if00-port0'
 baud_rate = 9600
@@ -91,9 +91,9 @@ time_out = 1
 serial_SCU_1400_2 = serial.Serial(port_SCU_1400_2, baudrate= baud_rate, timeout=time_out)
 
 if serial_SCU_1400_2.is_open:
-	print(f"Port SCU 1400 2 {port_SCU_1400_2} ouvert avec succès.")
+	log_with_cooldown(logging.INFO,f"Port SCU 1400 2 {port_SCU_1400_2} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port_SCU_1400_2}")
+	log_with_cooldown(logging.WARNING,f"Impossible d'ouvrir le Port {port_SCU_1400_2}")
 
 #Port série pour le contrôleur de cathode
 
@@ -105,7 +105,7 @@ def connexion_serie_cathode():
         serial_cathode = serial.Serial(port_cathode, baudrate=baud_rate, timeout=time_out)
         return serial_cathode
     except serial.SerialException as e:
-        print(f"Erreur de connexion au port série de la cathode : {e}")
+        log_with_cooldown(logging.WARNING,f"Erreur de connexion au port série de la cathode : {e}")
         return None
     
 serial_cathode = connexion_serie_cathode()
@@ -118,17 +118,17 @@ def connexion_cathode():
         try:
             serial_cathode.close()
             
-            print("Ancienne connexion série cathode fermée.")
+            log_with_cooldown(logging.INFO,"Ancienne connexion série cathode fermée.")
         except Exception as e:
-            print(f"Erreur lors de la fermeture : {e}")
+            log_with_cooldown(logging.WARNING,f"Erreur lors de la fermeture : {e}")
 
     # Réouvrir une nouvelle connexion
     serial_cathode = connexion_serie_cathode()
 
     if serial_cathode and serial_cathode.is_open:
-        print("Reconnexion série cathode réussie.")
+        log_with_cooldown(logging.INFO,"Reconnexion série cathode réussie.")
     else:
-        print("Échec de la reconnexion série cathode.")
+        log_with_cooldown(logging.WARNING,"Échec de la reconnexion série cathode.")
 
 #Port série pour la sécurité des pompes finales
 port_secu_finale = '/dev/ttyS0'
@@ -140,7 +140,7 @@ serial_secu_finale = serial.Serial(port_secu_finale, baudrate= baud_rate, timeou
 if serial_secu_finale.is_open:
 	print(f"Port {port_secu_finale} ouvert avec succès.")
 else:
-	print(f"Impossible d'ouvrir le Port {port_secu_finale}")
+	log_with_cooldown(logging.WARNING,f"Impossible d'ouvrir le Port {port_secu_finale}")
      
 #Fonction pour fermer les ports série à la fin du programme
 def close_serial_ports():
@@ -316,10 +316,6 @@ def controle_cathode(cathode: Cathode):
         return
     elif(cathode.etat == EtatCathode.DECONNECTEE):
         cathode.etat = EtatCathode.FROIDE  # Reconnexion
-
-    #
-    print(f"cathode.etat = {cathode.etat}")
-    #
     
     # Conversion temps consigne
     consigne_temps_seconde = float(cathode.consigne_temps) * 60
@@ -346,7 +342,6 @@ def controle_cathode(cathode: Cathode):
     # ----- CHAUFFE -----
     if cathode.etat == EtatCathode.CHAUFFE:
         t_ecoule = time.monotonic() - cathode.t_0
-        print(f"temps écoulé = {t_ecoule:.2f} s")
 
         i0 = float(cathode.i_depart)
         if_ = float(cathode.consigne_courant)
@@ -363,7 +358,6 @@ def controle_cathode(cathode: Cathode):
         i_t = I_t ** 2
 
         command = f"I {i_t:.2f}\n"
-        print(f"commande envoyée : {command}")
         serial_cathode.write(command.encode())
 
     # ----- REFROIDISSEMENT -----
@@ -386,7 +380,6 @@ def controle_cathode(cathode: Cathode):
         i_t = I_t ** 2
 
         command = f"I {i_t:.2f}\n"
-        print(f"commande envoyée : {command}")
         serial_cathode.write(command.encode())
 
 # -------------------------------- #
@@ -394,15 +387,7 @@ def controle_cathode(cathode: Cathode):
 # -------------------------------- #
 
 def envoyer_commande_SCU_800(cmd_bytes):
-    print(f"Envoi : {cmd_bytes.hex()}")
     serial_SCU_800.write(cmd_bytes)
-    time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
-    response = serial_SCU_800.read(100)
-    print("Réponse brute hex :", response.hex())
-    try:
-        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
-    except:
-        print("Impossible de décoder la réponse.")
 
 def pompe_SCU_800_ON():
     # Commande allumer pompe SCU-800
@@ -421,28 +406,15 @@ def recuperer_etat_SCU_800():
     serial_SCU_800.reset_input_buffer()
     serial_SCU_800.reset_output_buffer()
 
-    print(f"Envoi : {cmd_bytes.hex()}")
     serial_SCU_800.write(cmd_bytes)
     time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
     responseSCU800 = serial_SCU_800.read(100)
-    print("Réponse brute hex :", responseSCU800.hex())
-    try:
-        print("Réponse ASCII :", responseSCU800.decode('ascii', errors='replace'))
-    except:
-        print("Impossible de décoder la réponse.")
-    
+
     return responseSCU800[8] - 48 # 1 = Levitation, 2 = no levitation, 3 = acceleration, 4 = normal, 5 = brake 
 
 def envoyer_commande_SCU_1400_1(cmd_bytes):
-    print(f"Envoi : {cmd_bytes.hex()}")
     serial_SCU_1400_1.write(cmd_bytes)
-    time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
-    response = serial_SCU_1400_1.read(100)
-    print("Réponse brute hex :", response.hex())
-    try:
-        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
-    except:
-        print("Impossible de décoder la réponse.")
+    time.sleep(0.2)  # Laisse un peu le temps au msg pour s'envoyer
 
 def pompe_SCU_1400_1_ON():
     # Commande allumer pompe SCU-1400 1
@@ -455,15 +427,8 @@ def pompe_SCU_1400_1_OFF():
     envoyer_commande_SCU_1400_1(cmd_off)
 
 def envoyer_commande_SCU_1400_2(cmd_bytes):
-    print(f"Envoi : {cmd_bytes.hex()}")
     serial_SCU_1400_2.write(cmd_bytes)
-    time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
-    response = serial_SCU_1400_2.read(100)
-    print("Réponse brute hex :", response.hex())
-    try:
-        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
-    except:
-        print("Impossible de décoder la réponse.")
+    time.sleep(0.2)  # Laisse un peu le temps au msg pour s'envoyer
 
 def pompe_SCU_1400_2_ON():
     # Commande allumer pompe SCU-1400 2
@@ -480,15 +445,8 @@ def pompe_SCU_1400_2_OFF():
 # -------------------------------- #
     
 def envoyer_commande_carte_relais(cmd_bytes):
-    print(f"Envoi : {cmd_bytes.hex()}")
     serial_secu_finale.write(cmd_bytes)
     time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
-    response = serial_secu_finale.read(100)
-    print("Réponse brute hex :", response.hex())
-    try:
-        print("Réponse ASCII :", response.decode('ascii', errors='replace'))
-    except:
-        print("Impossible de décoder la réponse.")
 
 def relais1et2_OFF():
     # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
@@ -513,87 +471,3 @@ def relais1et2_ON():
     # Commande allumer relais 1 et 2
     cmd_on = bytes([0x03, 0x01, 0x03, 0x01]) # SetPORT  Relais1 allumé
     envoyer_commande_carte_relais(cmd_on)
-
-
-
-
-
-
-
-
-'''
-def recuperer_donnees_pression(pression : Pression) :
-    #Cette commande renvoie les valeurs de toutes les jauges
-    command = "?V940\r"
-    ser.write(command.encode())
-    response = ser.readline().decode().strip()
-    # 1. Enlever le préfixe (facultatif)
-    if response.startswith("=V940 "):
-        data_str = response[len("=V940 "):]
-
-        # 2. Séparer par les points-virgules
-        values = data_str.split(";")
-
-        i = 0
-        #while i < len(values):
-        # 3. Vérifier le statut de la jauge
-        if (values[i] == '1') and (i < len(values)):
-            # 4. enregistrer la valeur lue
-            if values[i+1] == '9.9000e+09' :
-                pression.Jauge_1_Turbo = 'OFF'
-            else :
-                pression.Jauge_1_Turbo = values[i] + "Torr"
-            i+=2
-        else :
-            pression.Jauge_1_Turbo = 'Déconnectée'
-        
-        if (values[i] == '2') and (i < len(values)):
-            if values[i+1] == '9.9000e+09' :
-                pression.Jauge_2_Turbo = 'OFF'
-            else :
-                pression.Jauge_2_Turbo = values[i]+ "Torr"
-            i+=2
-        else :
-            pression.Jauge_2_Turbo = 'Déconnectée'
-
-        if (values[i] == '3') and (i < len(values)):
-            if values[i+1] == '9.9000e+09' :
-                pression.Jauge_3_Turbo = 'OFF'
-            else :
-                pression.Jauge_3_Turbo = values[i]+ "Torr"
-            i+=2
-        else :
-            pression.Jauge_3_Turbo = 'Déconnectée'
-
-        if (values[i] == '4') and (i < len(values)):
-            if values[i+1] == '9.9000e+09' :
-                pression.Jauge_4_Turbo = 'OFF'
-            else :
-                pression.Jauge_4_Turbo = values[i]+ "Torr"
-            i+=2
-        else :
-            pression.Jauge_4_Turbo = 'Déconnectée'
-
-        if (values[i] == '5') and (i < len(values)):
-            if values[i+1] == '9.9000e+09' :
-                pression.Jauge_5_Primaire = 'OFF'
-            else :
-                pression.Jauge_5_Primaire = values[i]+ "Torr"
-            i+=2
-        else :
-            pression.Jauge_5_Primaire = 'Déconnectée'
-
-        if (values[i] == '6') and (i < len(values)):
-            if values[i+1] == '9.9000e+09' :
-                pression.Jauge_6_Vide = 'OFF'
-            else :
-                pression.Jauge_6_Vide = values[i]+ "Torr"
-            i+=2
-        else :
-            pression.Jauge_6_Vide = 'Déconnectée'
-
-    else:
-        print("Erreur lors de la récupération des valeurs de jauge.")
-
-    return pression
-'''
