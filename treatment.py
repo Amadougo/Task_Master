@@ -22,7 +22,7 @@ def get_ups_data(ups_name="onduleur1@localhost"):
         return data
 
     except subprocess.CalledProcessError as e:
-        log_with_cooldown(logging.WARNING,"Erreur avec upsc :", e)
+        log_with_cooldown(logging.WARNING,f"Erreur avec upsc : {e}")
         return None
     except FileNotFoundError:
         log_with_cooldown(logging.WARNING,"La commande 'upsc' n'est pas trouvée. Vérifie que NUT est installé.")
