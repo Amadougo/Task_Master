@@ -1418,7 +1418,7 @@ class Gui:
                         print("❌ Réseau non revenu, email non envoyé.")
 
                     # Lancement driver onduleur en cas de fin de coupure de courant
-                    # subprocess.run(["sudo", "upsdrvctl", "start"])
+                    subprocess.run(["sudo", "upsdrvctl", "start"])
 
                     print("if")
 
