@@ -1397,7 +1397,7 @@ class Gui:
                 log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
                 print("True")
                 time.sleep(1)
-            """else:
+            else:
                 if indicateur:
                     # Calcul du temps de coupure de courant
                     self.coupureCourant.heure_reprise = time.clock_gettime(time.CLOCK_MONOTONIC)
@@ -1417,6 +1417,6 @@ class Gui:
                         print("❌ Réseau non revenu, email non envoyé.")
 
                     # Lancement driver onduleur en cas de fin de coupure de courant
-                    subprocess.run(["sudo", "upsdrvctl", "start"])"""
+                    # subprocess.run(["sudo", "upsdrvctl", "start"])
 
             time.sleep(1)
