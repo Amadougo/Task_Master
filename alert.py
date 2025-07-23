@@ -19,6 +19,7 @@ from email.mime.application import MIMEApplication
 import os
 from dotenv import load_dotenv
 import os
+from logs import logging, log_with_cooldown
 
 load_dotenv()  # Charge les variables du fichier .env
 
@@ -39,7 +40,6 @@ PING_HOST = "8.8.8.8"
 def send_email_with_attachment(subject, body, log_file_path=None):
     if EMAIL_SENDER is None or EMAIL_PASSWORD is None:
       raise ValueError("EMAIL_SENDER ou EMAIL_PASSWORD non défini dans .env")
-    print("Fonction envoie email avec pièce jointe :")
     msg = MIMEMultipart()
     msg["Subject"] = subject
     msg["From"] = EMAIL_SENDER
@@ -49,7 +49,6 @@ def send_email_with_attachment(subject, body, log_file_path=None):
     msg.attach(MIMEText(body, "plain"))
 
     # Ajout de pièce jointe si demandée
-    print("Ajout de la pièce jointe si demandée…")
     if log_file_path:
         try:
             with open(log_file_path, "rb") as f:
@@ -58,7 +57,6 @@ def send_email_with_attachment(subject, body, log_file_path=None):
             msg.attach(part)
         except Exception as e:
             msg.attach(MIMEText(f"[Erreur lecture log : {e}]", "plain"))
-    print("Envoi de l'email…")
     try:
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls()
@@ -66,11 +64,11 @@ def send_email_with_attachment(subject, body, log_file_path=None):
               raise ValueError("Mot de passe non défini dans les variables d'environnement.")
             server.login(EMAIL_SENDER, EMAIL_PASSWORD)
             server.sendmail(EMAIL_SENDER, EMAIL_RECEIVERS, msg.as_string())
-        print("Email avec pièce jointe envoyé.")
+        log_with_cooldown(logging.INFO, "Email avec pièce jointe envoyé.")
     except Exception as e:
-        print(f"Erreur lors de l'envoi : {e}")
+        log_with_cooldown(logging.WARNING, f"Erreur lors de l'envoi : {e}")
 
-def wait_for_network(timeout=300, interval=5):
+def wait_for_network(timeout=900, interval=5):
     """
     Attend que le réseau soit opérationnel en pingant une adresse.
     Timeout total en secondes, intervalle entre deux pings.
@@ -79,12 +77,11 @@ def wait_for_network(timeout=300, interval=5):
     while time.time() - start_time < timeout:
         try:
             subprocess.check_output(["ping", "-c", "1", "-W", "1", PING_HOST])
-            print("Réseau détecté.")
+            log_with_cooldown(logging.INFO, "Réseau détecté.")
             return True
         except subprocess.CalledProcessError:
-            print("Réseau encore indisponible...")
             time.sleep(interval)
-    print("Timeout atteint : réseau toujours indisponible.")
+    log_with_cooldown(logging.WARNING, "Timeout atteint : réseau toujours indisponible.")
     return False
 
 
