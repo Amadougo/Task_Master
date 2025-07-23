@@ -68,7 +68,7 @@ class Securite:
                 etat_SCU = recuperer_etat_SCU_800()
                 time.sleep(5)  # Attente pour éviter une boucle trop rapide
                 print(f"Etat SCU 800 : {etat_SCU}")
-                if (etat_SCU != 4 or etat_SCU != 3):
+                if (etat_SCU != 4 and etat_SCU != 3):
                     log_with_cooldown(logging.INFO, "Relancement des pompes secondaires suite au rétablissment du courant.")
                     #On relance les pompes secondaires
                     pompe_SCU_1400_1_ON()
