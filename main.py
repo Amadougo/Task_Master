@@ -30,7 +30,7 @@ securite = Securite(etatManip, pression, onduleur1, onduleur2, coupureCourant, e
 log_with_cooldown(logging.INFO, "Démarrage du programme",60)
 # subprocess.run(["sudo", "upsdrvctl", "start"]) # Lancement driver onduleur en cas de coupure de courant
 
-while(os.environ.get("DISPLAY") is None or os.environ.get("WAYLAND_DISPLAY") is None):
+"""while(os.environ.get("DISPLAY") is None or os.environ.get("WAYLAND_DISPLAY") is None):
     recuperer_donnees_onduleur(onduleur1)
     recuperer_donnees_onduleur(onduleur2)
     recuperer_donnees_pression_jauge1(pression)
@@ -41,7 +41,9 @@ while(os.environ.get("DISPLAY") is None or os.environ.get("WAYLAND_DISPLAY") is 
     recuperer_donnees_pression_jauge6(pression)
     securite.securite()
     print("test OS")
-    time.sleep(1)
+    time.sleep(1)"""
+
+time.sleep(30)
 
 from GUI import Gui # import the GUI class from GUI.py
 
