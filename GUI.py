@@ -11,6 +11,8 @@ from securite import Securite
 import subprocess
 from treatment import connexion_cathode
 from alert import send_email_with_attachment, wait_for_network
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 class Gui:
     def __init__(self, onduleur1, onduleur2, pression, cathode, etatManip, securite, coupureCourant, affichage_donnees, mode_securite_actif):
@@ -1388,7 +1390,7 @@ class Gui:
             var = self.onduleur1.ups_status
             var = var[:2]
             indicateur = False
-            self.coupureCourant.heure_coupure = time.clock_gettime(time.CLOCK_MONOTONIC)
+            self.coupureCourant.heure_coupure = datetime.now(ZoneInfo("Europe/Paris"))
             
             while(var != "OL"):
                 self.coupureCourant.alimentation_secteur = False
@@ -1403,7 +1405,7 @@ class Gui:
             else:
                 if indicateur:
                     # Calcul du temps de coupure de courant
-                    self.coupureCourant.heure_reprise = time.clock_gettime(time.CLOCK_MONOTONIC)
+                    self.coupureCourant.heure_reprise = datetime.now(ZoneInfo("Europe/Paris")).strftime("%Y-%m-%d %H:%M:%S")
 
                     # On remet le courant en True
                     self.coupureCourant.alimentation_secteur = True
