@@ -412,7 +412,7 @@ class Gui:
             self.text13_box1_1_13.config(text=f"Pression de la 6ème pompe (Jauge_6_Vide) : {self.pression.Jauge_6_Vide}")
             
             self.text1_box1_2.config(text=f"État de la cathode : {self.cathode.etat}")
-            self.text2_box1_2.config(text=f"t_0 : {self.cathode.t_0}")
+            self.text2_box1_2.config(text=f"t_0 : {self.cathode.t_0_print}")
             self.text3_box1_2.config(text=f"Valeur de tension de la cathode : {self.cathode.tension}")
             self.text4_box1_2.config(text=f"Valeur de courant de la cathode : {self.cathode.courant}")
             self.text5_box1_2.config(text=f"Courant de consigne : {self.cathode.consigne_courant}")
@@ -455,6 +455,7 @@ class Gui:
         if((self.cathode.etat == EtatCathode.CHAUDE) and (self.etatManip == EtatManip.ARRET_EN_COURS)):
             self.cathode.etat = EtatCathode.REFROIDISSEMENT
             self.cathode.t_0 = time.monotonic()
+            self.cathode.t_0_print = datetime.now(ZoneInfo("Europe/Paris")).strftime("%H:%M:%S")
             self.cathode.i_depart = float(self.cathode.courant)
             self.cathode.consigne_courant = 0.38
             self.cathode.consigne_temps = 5.0
@@ -1155,6 +1156,7 @@ class Gui:
             else:
                 self.cathode.etat = EtatCathode.REFROIDISSEMENT
             self.cathode.t_0 = time.monotonic()
+            self.cathode.t_0_print = datetime.now(ZoneInfo("Europe/Paris")).strftime("%H:%M:%S")
             self.cathode.i_depart = float(self.cathode.courant)
             log_with_cooldown(logging.INFO, "Lancement du programme : Changement de la consigne de la cathode.")
             print("Action confirmée.")
