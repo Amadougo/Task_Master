@@ -1395,7 +1395,8 @@ class Gui:
                 self.coupureCourant.alimentation_secteur = False
                 indicateur = True
                 log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
-                time.sleep(30)
+                print("True")
+                time.sleep(1)
             """else:
                 if indicateur:
                     # Calcul du temps de coupure de courant
