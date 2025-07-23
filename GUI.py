@@ -142,102 +142,102 @@ class Gui:
             i = i + 1
 
         # images in box1_1_1 to box1_1_13
-        self.image_pillow_box1_1_1 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_box1_1_1 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_1 = ImageTk.PhotoImage(self.image_pillow_box1_1_1) # Save for TkInter
         self.label_image_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_box1_1_1, bg="#242424", bd=0)
         # self.label_image_box1_1_1.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_2 = Image.open('assets/Charge_rouge_4.png')
+        self.image_pillow_box1_1_2 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_2 = ImageTk.PhotoImage(self.image_pillow_box1_1_2) # Save for TkInter
         self.label_image_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_box1_1_2, bg="#242424", bd=0)
         # self.label_image_box1_1_2.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_3 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_box1_1_3 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_3 = ImageTk.PhotoImage(self.image_pillow_box1_1_3) # Save for TkInter
         self.label_image_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_box1_1_3, bg="#242424", bd=0)
         # self.label_image_box1_1_3.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
+        self.image_pillow_box1_1_4 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_4 = ImageTk.PhotoImage(self.image_pillow_box1_1_4) # Save for TkInter
         self.label_image_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_box1_1_4, bg="#242424", bd=0)
         self.label_image_box1_1_4.grid(row=0, column=1, sticky='e')
 
-        self.image_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_box1_1_5 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_5 = ImageTk.PhotoImage(self.image_pillow_box1_1_5) # Save for TkInter
         self.label_image_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_box1_1_5, bg="#242424", bd=0)
         self.label_image_box1_1_5.grid(row=0, column=1, sticky='e')
 
-        self.image_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
+        self.image_pillow_box1_1_6 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_6 = ImageTk.PhotoImage(self.image_pillow_box1_1_6) # Save for TkInter
         self.label_image_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_box1_1_6, bg="#242424", bd=0)
         self.label_image_box1_1_6.grid(row=0, column=1, sticky='e')
 
-        self.image_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_box1_1_7 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_7 = ImageTk.PhotoImage(self.image_pillow_box1_1_7) # Save for TkInter
         self.label_image_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_box1_1_7, bg="#242424", bd=0)
         # self.label_image_box1_1_7.grid(row=0, column=0, sticky='nsew')
 
-        self.image_2_pillow_box1_1_1 = Image.open('assets/Charge_rouge_0.png')
+        self.image_2_pillow_box1_1_1 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_2_box1_1_1 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_1) # Save for TkInter
         self.label_image_2_box1_1_1 = Label(self.box1_1_1, image=self.tk_image_2_box1_1_1, bg="#242424", bd=0)
         # self.label_image_2_box1_1_1.grid(row=1, column=0, sticky='nsew')
 
-        self.image_2_pillow_box1_1_2 = Image.open('assets/Charge_rouge_4.png')
+        self.image_2_pillow_box1_1_2 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_2_box1_1_2 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_2) # Save for TkInter
         self.label_image_2_box1_1_2 = Label(self.box1_1_2, image=self.tk_image_2_box1_1_2, bg="#242424", bd=0)
         # self.label_image_2_box1_1_2.grid(row=1, column=0, sticky='nsew')
 
-        self.image_2_pillow_box1_1_3 = Image.open('assets/Charge_rouge_0.png')
+        self.image_2_pillow_box1_1_3 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_2_box1_1_3 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_3) # Save for TkInter
         self.label_image_2_box1_1_3 = Label(self.box1_1_3, image=self.tk_image_2_box1_1_3, bg="#242424", bd=0)
         # self.label_image_2_box1_1_3.grid(row=1, column=0, sticky='nsew')
 
-        self.image_2_pillow_box1_1_4 = Image.open('assets/Charge_rouge_4.png')
+        self.image_2_pillow_box1_1_4 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_2_box1_1_4 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_4) # Save for TkInter
         self.label_image_2_box1_1_4 = Label(self.box1_1_4, image=self.tk_image_2_box1_1_4, bg="#242424", bd=0)
         self.label_image_2_box1_1_4.grid(row=1, column=1, sticky='e')
 
-        self.image_2_pillow_box1_1_5 = Image.open('assets/Charge_rouge_0.png')
+        self.image_2_pillow_box1_1_5 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_2_box1_1_5 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_5) # Save for TkInter
         self.label_image_2_box1_1_5 = Label(self.box1_1_5, image=self.tk_image_2_box1_1_5, bg="#242424", bd=0)
         self.label_image_2_box1_1_5.grid(row=1, column=1, sticky='e')
 
-        self.image_2_pillow_box1_1_6 = Image.open('assets/Charge_rouge_4.png')
+        self.image_2_pillow_box1_1_6 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_2_box1_1_6 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_6) # Save for TkInter
         self.label_image_2_box1_1_6 = Label(self.box1_1_6, image=self.tk_image_2_box1_1_6, bg="#242424", bd=0)
         self.label_image_2_box1_1_6.grid(row=1, column=1, sticky='e')
 
-        self.image_2_pillow_box1_1_7 = Image.open('assets/Charge_rouge_0.png')
+        self.image_2_pillow_box1_1_7 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_2_box1_1_7 = ImageTk.PhotoImage(self.image_2_pillow_box1_1_7) # Save for TkInter
         self.label_image_2_box1_1_7 = Label(self.box1_1_7, image=self.tk_image_2_box1_1_7, bg="#242424", bd=0)
         # self.label_image_2_box1_1_7.grid(row=1, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_8 = Image.open('assets/Charge_rouge_4.png')
+        self.image_pillow_box1_1_8 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_8 = ImageTk.PhotoImage(self.image_pillow_box1_1_8) # Save for TkInter
         self.label_image_box1_1_8 = Label(self.box1_1_8, image=self.tk_image_box1_1_8, bg="#242424", bd=0)
         # self.label_image_box1_1_8.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_9 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_box1_1_9 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_9 = ImageTk.PhotoImage(self.image_pillow_box1_1_9) # Save for TkInter
         self.label_image_box1_1_9 = Label(self.box1_1_9, image=self.tk_image_box1_1_9, bg="#242424", bd=0)
         # self.label_image_box1_1_9.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_10 = Image.open('assets/Charge_rouge_4.png')
+        self.image_pillow_box1_1_10 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_10 = ImageTk.PhotoImage(self.image_pillow_box1_1_10) # Save for TkInter
         self.label_image_box1_1_10 = Label(self.box1_1_10, image=self.tk_image_box1_1_10, bg="#242424", bd=0)
         # self.label_image_box1_1_10.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_11 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_box1_1_11 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_11 = ImageTk.PhotoImage(self.image_pillow_box1_1_11) # Save for TkInter
         self.label_image_box1_1_11 = Label(self.box1_1_11, image=self.tk_image_box1_1_11, bg="#242424", bd=0)
         # self.label_image_box1_1_11.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_12 = Image.open('assets/Charge_rouge_4.png')
+        self.image_pillow_box1_1_12 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_12 = ImageTk.PhotoImage(self.image_pillow_box1_1_12) # Save for TkInter
         self.label_image_box1_1_12 = Label(self.box1_1_12, image=self.tk_image_box1_1_12, bg="#242424", bd=0)
         # self.label_image_box1_1_12.grid(row=0, column=0, sticky='nsew')
 
-        self.image_pillow_box1_1_13 = Image.open('assets/Charge_rouge_0.png')
+        self.image_pillow_box1_1_13 = Image.open('assets/Charge_rouge/Charge_rouge_0.png')
         self.tk_image_box1_1_13 = ImageTk.PhotoImage(self.image_pillow_box1_1_13) # Save for TkInter
         self.label_image_box1_1_13 = Label(self.box1_1_13, image=self.tk_image_box1_1_13, bg="#242424", bd=0)
         # self.label_image_box1_1_13.grid(row=0, column=0, sticky='nsew')
