@@ -1391,6 +1391,9 @@ class Gui:
             indicateur = False
             self.coupureCourant.heure_coupure = time.clock_gettime(time.CLOCK_MONOTONIC)
             log_with_cooldown(logging.CRITICAL, "----- Test coupure : arrêt onduleur !!! -----", 60)
+            while(True):
+                print("True")
+                time.sleep(1)
             """while(var != "OL"):
                 self.coupureCourant.alimentation_secteur = False
                 indicateur = True
