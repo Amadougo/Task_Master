@@ -1395,7 +1395,7 @@ class Gui:
                 self.coupureCourant.alimentation_secteur = False
                 indicateur = True
                 log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
-                print("True")
+                print("while")
                 time.sleep(1)
             else:
                 if indicateur:
@@ -1419,4 +1419,9 @@ class Gui:
                     # Lancement driver onduleur en cas de fin de coupure de courant
                     # subprocess.run(["sudo", "upsdrvctl", "start"])
 
+                    print("if")
+
+                print("else")
+
+            print("thread")
             time.sleep(1)
