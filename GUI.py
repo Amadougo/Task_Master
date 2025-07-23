@@ -552,10 +552,23 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            if(self.etatManip == EtatManip.FONCTIONNE):
+            """if(self.etatManip == EtatManip.FONCTIONNE):
                 img = self.image_pillow_charge_verte_4
             else:
+                img = self.image_pillow_charge_rouge_1"""
+            
+            if(int(self.onduleur1.battery_charge) == 100):
+                img = self.image_pillow_charge_verte_4
+            elif((int(self.onduleur1.battery_charge) >= 75) and (int(self.onduleur1.battery_charge) < 100)):
+                img = self.image_pillow_charge_noire_4
+            elif((int(self.onduleur1.battery_charge) >= 50) and (int(self.onduleur1.battery_charge) < 75)):
+                img = self.image_pillow_charge_noire_3
+            elif((int(self.onduleur1.battery_charge) >= 25) and (int(self.onduleur1.battery_charge) < 50)):
+                img = self.image_pillow_charge_noire_2
+            elif((int(self.onduleur1.battery_charge) > 0) and (int(self.onduleur1.battery_charge) < 25)):
                 img = self.image_pillow_charge_rouge_1
+            elif(int(self.onduleur1.battery_charge) == 0):
+                img = self.image_pillow_charge_rouge_0
             
             resized_image = img.resize(
                 (new_width, new_height),
@@ -571,10 +584,23 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            if(self.etatManip == EtatManip.FONCTIONNE):
+            """if(self.etatManip == EtatManip.FONCTIONNE):
                 img = self.image_pillow_charge_verte_4
             else:
+                img = self.image_pillow_charge_rouge_1"""
+            
+            if(int(self.onduleur1.ups_load) == 100):
+                img = self.image_pillow_charge_rouge_0
+            elif((int(self.onduleur1.ups_load) >= 75) and (int(self.onduleur1.ups_load) < 100)):
                 img = self.image_pillow_charge_rouge_1
+            elif((int(self.onduleur1.ups_load) >= 50) and (int(self.onduleur1.ups_load) < 75)):
+                img = self.image_pillow_charge_noire_2
+            elif((int(self.onduleur1.ups_load) >= 25) and (int(self.onduleur1.ups_load) < 50)):
+                img = self.image_pillow_charge_noire_3
+            elif((int(self.onduleur1.ups_load) > 0) and (int(self.onduleur1.ups_load) < 25)):
+                img = self.image_pillow_charge_noire_4
+            elif(int(self.onduleur1.ups_load) == 0):
+                img = self.image_pillow_charge_verte_4
             
             resized_image = img.resize(
                 (new_width, new_height),
@@ -665,10 +691,23 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            if(self.etatManip == EtatManip.FONCTIONNE):
+            """if(self.etatManip == EtatManip.FONCTIONNE):
                 img = self.image_pillow_charge_verte_4
             else:
+                img = self.image_pillow_charge_rouge_1"""
+            
+            if(int(self.onduleur1.battery_charge) == 100):
+                img = self.image_pillow_charge_verte_4
+            elif((int(self.onduleur1.battery_charge) >= 75) and (int(self.onduleur1.battery_charge) < 100)):
+                img = self.image_pillow_charge_noire_4
+            elif((int(self.onduleur1.battery_charge) >= 50) and (int(self.onduleur1.battery_charge) < 75)):
+                img = self.image_pillow_charge_noire_3
+            elif((int(self.onduleur1.battery_charge) >= 25) and (int(self.onduleur1.battery_charge) < 50)):
+                img = self.image_pillow_charge_noire_2
+            elif((int(self.onduleur1.battery_charge) > 0) and (int(self.onduleur1.battery_charge) < 25)):
                 img = self.image_pillow_charge_rouge_1
+            elif(int(self.onduleur1.battery_charge) == 0):
+                img = self.image_pillow_charge_rouge_0
 
             resized_image = img.resize(
                 (new_width, new_height),
@@ -684,10 +723,23 @@ class Gui:
         new_width = max(1, int(width * 0.3))
         new_height = max(1, int(height * 0.6))
         if width > 0 and height > 0:                
-            if(self.etatManip == EtatManip.FONCTIONNE):
+            """if(self.etatManip == EtatManip.FONCTIONNE):
                 img = self.image_pillow_charge_verte_4
             else:
+                img = self.image_pillow_charge_rouge_1"""
+
+            if(int(self.onduleur1.ups_load) == 100):
+                img = self.image_pillow_charge_rouge_0
+            elif((int(self.onduleur1.ups_load) >= 75) and (int(self.onduleur1.ups_load) < 100)):
                 img = self.image_pillow_charge_rouge_1
+            elif((int(self.onduleur1.ups_load) >= 50) and (int(self.onduleur1.ups_load) < 75)):
+                img = self.image_pillow_charge_noire_2
+            elif((int(self.onduleur1.ups_load) >= 25) and (int(self.onduleur1.ups_load) < 50)):
+                img = self.image_pillow_charge_noire_3
+            elif((int(self.onduleur1.ups_load) > 0) and (int(self.onduleur1.ups_load) < 25)):
+                img = self.image_pillow_charge_noire_4
+            elif(int(self.onduleur1.ups_load) == 0):
+                img = self.image_pillow_charge_verte_4
 
             resized_image = img.resize(
                 (new_width, new_height),
