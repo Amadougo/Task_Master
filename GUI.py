@@ -454,6 +454,8 @@ class Gui:
         # Refroidissement d'urgence de la cathode lors d'un arrêt en cours.
         if(self.etatManip == EtatManip.ARRET_EN_COURS):
             self.cathode.etat = EtatCathode.REFROIDISSEMENT
+            self.cathode.t_0 = time.monotonic()
+            self.cathode.i_depart = float(self.cathode.courant)
             self.cathode.consigne_courant = 0.38
             self.cathode.consigne_temps = 5.0
             log_with_cooldown(logging.WARNING, "Refroidissement d'urgence de la cathode lors d'un arrêt en cours.", 600)
