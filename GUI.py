@@ -1389,12 +1389,14 @@ class Gui:
             var = var[:2]
             indicateur = False
             self.coupureCourant.heure_coupure = time.clock_gettime(time.CLOCK_MONOTONIC)
-            log_with_cooldown(logging.CRITICAL, "----- Test coupure : arrêt onduleur !!! -----", 60)
+            
             while(var != "OL"):
                 self.coupureCourant.alimentation_secteur = False
                 indicateur = True
                 log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
+                
                 print("while")
+                
                 time.sleep(1)
                 var = self.onduleur1.ups_status
                 var = var[:2]
@@ -1425,4 +1427,5 @@ class Gui:
                 print("else")
 
             print("thread")
+            
             time.sleep(1)
