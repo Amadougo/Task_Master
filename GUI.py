@@ -1385,7 +1385,6 @@ class Gui:
     def coupure_de_courant_gui(self):
         time.sleep(2)
         while self.running4:
-            # self.coupure_de_courant()
             var = self.onduleur1.ups_status
             var = var[:2]
             indicateur = False
@@ -1397,6 +1396,8 @@ class Gui:
                 log_with_cooldown(logging.CRITICAL, "Coupure de courant détectée ou onduleur1 déconnecté", 60)
                 print("while")
                 time.sleep(1)
+                var = self.onduleur1.ups_status
+                var = var[:2]
             else:
                 if indicateur:
                     # Calcul du temps de coupure de courant
