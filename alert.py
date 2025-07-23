@@ -17,18 +17,28 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 import os
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Charge les variables du fichier .env
+
+EMAIL_SENDER = os.environ.get("EMAIL_SENDER")
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_RECEIVERS = os.environ.get("EMAIL_RECEIVERS", "").split(",")
 
 # Configuration email
 SMTP_SERVER = "smtp.univ-paris13.fr"
 SMTP_PORT = 587
-EMAIL_SENDER = "hugo.lebaud@edu.univ-paris13.fr"
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-EMAIL_RECEIVERS = ["hugo.l@mac.com","greg77290@yahoo.fr"]
+#EMAIL_SENDER = "hugo.lebaud@edu.univ-paris13.fr"
+#EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+#EMAIL_RECEIVERS = ["hugo.l@mac.com","greg77290@yahoo.fr"]
 
 # Adresse à ping (Google DNS ou ton propre serveur)
 PING_HOST = "8.8.8.8"
 
 def send_email_with_attachment(subject, body, log_file_path=None):
+    if EMAIL_SENDER is None or EMAIL_PASSWORD is None:
+      raise ValueError("EMAIL_SENDER ou EMAIL_PASSWORD non défini dans .env")
     print("Fonction envoie email avec pièce jointe :")
     msg = MIMEMultipart()
     msg["Subject"] = subject
@@ -77,8 +87,8 @@ def wait_for_network(timeout=300, interval=5):
     print("Timeout atteint : réseau toujours indisponible.")
     return False
 
-"""
-def power_monitor_loop():
+
+"""def power_monitor_loop():
     power_was_lost = True
 
     while True:
@@ -97,6 +107,6 @@ def power_monitor_loop():
 
 # Lancer la surveillance
 if __name__ == "__main__":
-    power_monitor_loop()
+    power_monitor_loop()"""
 
-    """
+
