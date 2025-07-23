@@ -1365,10 +1365,6 @@ class Gui:
         bouton_non = Button(popup, text="Non, je ne veux pas continuer", command=on_no)
         bouton_non.pack()
 
-    def coupure_de_courant(self):
-        print("salut")
-
-
     def securite_gui(self):
         time.sleep(10)
         while self.running2:
@@ -1387,9 +1383,9 @@ class Gui:
             time.sleep(1)
 
     def coupure_de_courant_gui(self):
-        time.sleep(30)
+        time.sleep(2)
         while self.running4:
-            # self.coupure_de_courant()
+            """# self.coupure_de_courant()
             var = self.onduleur1.ups_status
             var = var[:2]
             indicateur = False
@@ -1419,6 +1415,6 @@ class Gui:
                         print("❌ Réseau non revenu, email non envoyé.")
 
                     # Lancement driver onduleur en cas de fin de coupure de courant
-                    subprocess.run(["sudo", "upsdrvctl", "start"])
+                    subprocess.run(["sudo", "upsdrvctl", "start"])"""
 
             time.sleep(1)
