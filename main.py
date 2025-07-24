@@ -43,7 +43,7 @@ log_with_cooldown(logging.INFO, "Démarrage du programme",60)
     print("test OS")
     time.sleep(1)"""
 
-time.sleep(15)
+time.sleep(3)
 
 from GUI import Gui # import the GUI class from GUI.py
 
