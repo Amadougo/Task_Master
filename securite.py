@@ -7,7 +7,7 @@ import subprocess
 import time
 from logs import * # type: ignore
 
-PRESSION_SEUIL_PRIMAIRE = 7.1*pow(10,-1) #Torr
+PRESSION_SEUIL_PRIMAIRE = 1*pow(10,-1) #Torr
 class Securite:
     def __init__(self, etat_manip, pression, onduleur1, onduleur2, coupure_courant, securite_pression_actif):
         self.etat_manip = etat_manip
@@ -18,7 +18,6 @@ class Securite:
         self.securite_pression_actif = securite_pression_actif  # Indicateur pour activer ou désactiver la sécurité
 
     def securite(self) :
-        print(f"PRESSION_SEUIL_PRIMAIRE = {PRESSION_SEUIL_PRIMAIRE}")
         #Actions lorsque la manip est en 'OFF'
         if (self.etat_manip == EtatManip.OFF) :
             """#Exctinction de l'ordinateur en cas de coupure de courant prolongée
@@ -67,7 +66,6 @@ class Securite:
             if (self.coupure_courant.alimentation_secteur == True and self.etat_manip == EtatManip.FONCTIONNE) :
                 etat_SCU = recuperer_etat_SCU_800()
                 time.sleep(1)  # Attente pour éviter une boucle trop rapide
-                print(f"Etat SCU 800 : {etat_SCU}")
                 if (etat_SCU != 4 and etat_SCU != 3):
                     log_with_cooldown(logging.INFO, "Relancement des pompes secondaires suite au rétablissment du courant.")
                     #On relance les pompes secondaires
@@ -104,5 +102,3 @@ class Securite:
                 self.pression.pression_seuil_atteinte = True
             else:
                 self.pression.pression_seuil_atteinte = False
-
-        print(f"etat_manip : {self.etat_manip}")
