@@ -453,7 +453,6 @@ def envoyer_commande_carte_relais(cmd_bytes):
     time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
 
 def relais1et2_OFF():
-    print("----- Entree dans la fonction relais1et2_OFF() -----")
     try:
         # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
         cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
