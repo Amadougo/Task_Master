@@ -409,7 +409,7 @@ def recuperer_etat_SCU_800():
     try :
         serial_SCU_800.write(cmd_bytes)
     except serial.SerialException as e:
-        log_with_cooldown(logging.WARNING,f"Erreur de communication avec SCU-800 : {e}")
+        log_with_cooldown(logging.WARNING,f"Erreur de communication avec SCU-800 : {e}",30)
         return -1  # Indique une erreur de communication
     time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
     responseSCU800 = serial_SCU_800.read(100)
