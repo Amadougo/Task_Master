@@ -453,16 +453,20 @@ def envoyer_commande_carte_relais(cmd_bytes):
     time.sleep(0.2)  # Laisse un peu le temps à la réponse d'arriver
 
 def relais1et2_OFF():
-    # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
-    cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
-    envoyer_commande_carte_relais(cmd_init)
-    
-    # Attendre 1 seconde
-    time.sleep(1)
+    print("----- Entree dans la fonction relais1et2_OFF() -----")
+    try:
+        # IMPORTANT : Initialisé au moins au démarrage de la carte de commande des relais
+        cmd_init = bytes([0x01, 0x01, 0x00, 0x00]) # Initialisation
+        envoyer_commande_carte_relais(cmd_init)
+        
+        # Attendre 1 seconde
+        time.sleep(1)
 
-    # Commande éteindre relais 1 et 2
-    cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Relais1 éteint
-    envoyer_commande_carte_relais(cmd_off)
+        # Commande éteindre relais 1 et 2
+        cmd_off = bytes([0x03, 0x01, 0x00, 0x02]) # SetPORT : Relais1 éteint
+        envoyer_commande_carte_relais(cmd_off)
+    except:
+        log_with_cooldown(logging.WARNING, "Erreur lors de l'extinction des relais1et2 (pompes finales)", 30)
 
 def relais1et2_ON():
     # IMPORTANT  Initialisé au moins au démarrage de la carte de commande des relais
