@@ -59,6 +59,7 @@ class Securite:
             # d'autonomie sur l'onduleur1
             if (int(self.onduleur1.battery_runtime) < 3000) :
                 self.etat_manip = EtatManip.ARRET_EN_COURS
+                relais1et2_OFF()
                 log_with_cooldown(logging.CRITICAL, "Arret general pour cause onduleur1 presque vide (4 minutes restantes avant batteries vides).")
             #Sécurité en cas de reprise du courant pour relancer les SCU - 800
             # si on est en fonctionnement : et que ya pas de coupure de courant :
