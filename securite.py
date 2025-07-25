@@ -53,6 +53,7 @@ class Securite:
                 #Première sécurité si la pression primaire est trop faible ou bien que la jauge est déconnectée
                 if (self.pression.pression_seuil_atteinte == True) :
                     self.etat_manip = EtatManip.ARRET_EN_COURS
+                    relais1et2_OFF()
                     log_with_cooldown(logging.CRITICAL, f"La jauge de pression 5 a depasse la valeur seuil de {PRESSION_SEUIL_PRIMAIRE} Torr.")
             #Deuxième sécurité en cas de coupure de courant de plus de 10min
             #La manipe se coupe lorsqu'il reste moins de 240 secondes = 4 minutes
