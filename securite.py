@@ -68,9 +68,12 @@ class Securite:
                 time.sleep(1)  # Attente pour éviter une boucle trop rapide
                 if (etat_SCU != 4 and etat_SCU != 3):
                     log_with_cooldown(logging.INFO, "Relancement des pompes secondaires suite au rétablissment du courant.")
+                    time.sleep(2)
                     #On relance les pompes secondaires
                     pompe_SCU_1400_1_ON()
+                    time.sleep(2)
                     pompe_SCU_1400_2_ON()
+                    time.sleep(2)
                     pompe_SCU_800_ON()
                 
 
